@@ -1,0 +1,260 @@
+1
+00:00:00,000 --> 00:00:07,380
+ Bonjour à tous et merci de regarder cette vidéo sur les processeurs ou CPU, abbreviation anglaise
+
+2
+00:00:07,380 --> 00:00:12,200
+ d'unité centrale de traitement. Nous allons parler aujourd'hui des processeurs pour ordinateurs de
+
+3
+00:00:12,200 --> 00:00:16,960
+ bureaux proches des ordinateurs portables mais il faut aussi savoir qu'il y en a dans tout ce qui
+
+4
+00:00:16,960 --> 00:00:21,280
+ est électronique maintenant, de l'électroménager aux télévisions ainsi que les téléphones et les
+
+5
+00:00:21,280 --> 00:00:26,560
+ voitures etc. On va donc se demander comment fonctionne un processeur, que contient-il et
+
+6
+00:00:26,560 --> 00:00:30,880
+ quelles sont ses caractéristiques principales. Les processeurs que nous connaissons sont en fait
+
+7
+00:00:30,880 --> 00:00:34,920
+ des microprocesseurs et leurs principales caractéristiques sont leur jeu d'instruction,
+
+8
+00:00:34,920 --> 00:00:39,120
+ leur nombre de transistors c'est à dire leur architecture, le nombre de bits pouvant être
+
+9
+00:00:39,120 --> 00:00:43,160
+ traités et la vitesse de leur loge. Qu'est ce que c'est que tout ça ? Le jeu d'instruction,
+
+10
+00:00:43,160 --> 00:00:47,240
+ ce sont toutes les instructions machines réalisables par le processeur, ce sont en
+
+11
+00:00:47,240 --> 00:00:52,320
+ gros les commandes de programmation mais compilées c'est à dire traduites de notre langage à celui
+
+12
+00:00:52,320 --> 00:00:56,760
+ du processeur, le langage machine uniquement en binaire. Le binaire nous est représenté en
+
+13
+00:00:56,760 --> 00:01:01,920
+ hexadecimal comme sur cet exemple, les fichiers .exe sont en langage machine par exemple. La
+
+14
+00:01:01,920 --> 00:01:05,600
+ complexité de l'architecture elle dépend généralement du nombre de transistors,
+
+15
+00:01:05,600 --> 00:01:09,880
+ plus il y a de transistors dans le processeur plus il peut traiter des nombres de grandes tailles
+
+16
+00:01:09,880 --> 00:01:14,800
+ et des opérations complexes. Aujourd'hui il y en a de l'ordre du milliard de transistors dans un
+
+17
+00:01:14,800 --> 00:01:19,360
+ processeur. Le nombre de bits pouvant être traités dépend de la catégorie précédente,
+
+18
+00:01:19,360 --> 00:01:23,880
+ le bit étant le nombre de 0 ou de 1 des mots traités par le processeur, c'est à dire la
+
+19
+00:01:23,880 --> 00:01:27,720
+ longueur d'un seul nombre en binaire pouvant être traité par le processeur. Pour finir,
+
+20
+00:01:27,720 --> 00:01:31,800
+ la vitesse de l'horloge du processeur c'est une fréquence, c'est à dire le nombre d'opérations
+
+21
+00:01:31,800 --> 00:01:36,880
+ par seconde que le processeur peut traiter de l'ordre du gigahertz aujourd'hui. Les principaux
+
+22
+00:01:36,880 --> 00:01:41,720
+ moyens d'augmenter la performance d'un processeur sont donc soit d'augmenter son nombre de transistors
+
+23
+00:01:41,720 --> 00:01:46,240
+ soit d'augmenter sa fréquence d'utilisation. Quand on overclock un processeur, on augmente
+
+24
+00:01:46,400 --> 00:01:50,840
+ ses performances en augmentant la fréquence d'utilisation des transistors puisqu'on ne peut pas
+
+25
+00:01:50,840 --> 00:01:55,280
+ augmenter leur nombre. Pour pouvoir augmenter le nombre de transistors, on crée de nouveaux
+
+26
+00:01:55,280 --> 00:01:59,280
+ processeurs avec des transistors de plus en plus petits, c'est ce qu'on appelle la finesse de
+
+27
+00:01:59,280 --> 00:02:04,920
+ gravure. Les transistors sont donc passés de 10 micromètres en 1971, c'est à dire 1 millimètre
+
+28
+00:02:04,920 --> 00:02:10,360
+ divisé par 100 à bientôt 5 nanomètres en 2020, c'est à dire 1 millimètre divisé par 200 mille.
+
+29
+00:02:10,360 --> 00:02:14,440
+ Ça fait très petit quand même. Pour toujours plus de performances, il y a la difficulté d'augmenter
+
+30
+00:02:14,640 --> 00:02:19,360
+ la fréquence des transistors. Les processeurs ont plusieurs cœurs, c'est à dire que le
+
+31
+00:02:19,360 --> 00:02:22,920
+ processeur peut faire plusieurs opérations en même temps, c'est à dire que le processeur
+
+32
+00:02:22,920 --> 00:02:26,760
+ est en fait plusieurs processeurs en un. Un processeur est composé de différentes
+
+33
+00:02:26,760 --> 00:02:32,160
+ parties décrites par une microarchitecture. Il se compose entre autres d'unités arithmétiques et
+
+34
+00:02:32,160 --> 00:02:36,720
+ logiques qui effectuent les calculs, ainsi que de registres et de mémoires cache pour stocker
+
+35
+00:02:36,720 --> 00:02:41,560
+ temporairement des données et de pipeline qui découpent les instructions à exécuter. Voilà
+
+36
+00:02:41,560 --> 00:02:45,560
+ comment fonctionne grossièrement un processeur. Un programme est chargé dans la mémoire vive,
+
+37
+00:02:45,560 --> 00:02:50,280
+ RAM, et dicte les instructions à réaliser qui sont stockées dans les registres. Le processeur
+
+38
+00:02:50,280 --> 00:02:54,360
+ charge de la RAM une partie des données à traiter dans sa mémoire cache et les traite,
+
+39
+00:02:54,360 --> 00:02:59,000
+ il les renvoie dans la mémoire et reprend une autre partie à traiter, etc. Retournons à nos
+
+40
+00:02:59,000 --> 00:03:03,240
+ transistors. C'est à cause d'eux qu'un processeur consomme beaucoup d'énergie pour passer d'un état
+
+41
+00:03:03,240 --> 00:03:07,280
+ à un autre. Un transistor a besoin d'une toute petite quantité d'énergie. Mais cependant,
+
+42
+00:03:07,280 --> 00:03:11,240
+ une toute petite quantité d'énergie fois des milliards de transistors fois des milliards
+
+43
+00:03:11,240 --> 00:03:14,960
+ d'opérations par seconde, ça commence à faire beaucoup d'énergie. Qui dit beaucoup d'énergie,
+
+44
+00:03:14,960 --> 00:03:19,480
+ dit beaucoup de dissipation thermique, c'est à dire que de l'énergie est perdue et transformée
+
+45
+00:03:19,480 --> 00:03:24,480
+ en chaleur. Pour éviter de brûler le processeur, les ordinateurs ont un ventirade qui refroidit en
+
+46
+00:03:24,480 --> 00:03:29,080
+ permanence le processeur. Ils sont reliés à une pâte thermique, augmentant à l'extrême les échanges
+
+47
+00:03:29,080 --> 00:03:33,960
+ thermiques, la facilité qu'à l'énergie à se déplacer. Parlons maintenant des modèles actuel
+
+48
+00:03:33,960 --> 00:03:39,120
+ de processeurs. En CPU, il y a deux grands fabricants, Intel et AMD. Intel a les gammes
+
+49
+00:03:39,120 --> 00:03:44,880
+ Celeron, Pentium pour des usages basiques, bureautique, internet, i3 et i5 pour des jeux,
+
+50
+00:03:44,880 --> 00:03:50,320
+ i7 et i9 pour du travail 3D et du montage conséquent. Chez AMD, il y a les mêmes équivalents,
+
+51
+00:03:50,320 --> 00:03:56,640
+ Sempron, Atlon, A6 et A7 pour la bureautique, Ryzen 3 et 5 pour le jeu, Ryzen 7 et 9 pour le
+
+52
+00:03:56,640 --> 00:04:01,280
+ travail 3D. Tous les processeurs actuels sont en 64 bits, mais il existe encore des processeurs
+
+53
+00:04:01,280 --> 00:04:05,800
+ 32 bits plus anciens encore utilisés. C'est pour ça qu'il existe toujours plusieurs versions des
+
+54
+00:04:05,800 --> 00:04:11,240
+ logiciels, notamment de Windows 10 en 32 bits ou en 64 bits. Pour savoir sur Windows 10 si votre
+
+55
+00:04:11,240 --> 00:04:15,800
+ processeur est en accord avec votre type de système d'exploitation, il faut faire clic gauche sur le
+
+56
+00:04:15,800 --> 00:04:19,880
+ logo Windows et aller dans le menu Système. Si vous avez un système 32 bits sur un processeur
+
+57
+00:04:19,880 --> 00:04:25,000
+ 64 bits, il faut le réinstaller pour obtenir de meilleures performances. Le principal problème
+
+58
+00:04:25,000 --> 00:04:30,280
+ des processeurs 32 bits, c'est qu'on ne peut pas avoir plus de 4 Go de mémoire RAM, donc si on a
+
+59
+00:04:30,280 --> 00:04:35,120
+ plus de 4 Go de RAM, c'est qu'on a un processeur 64 bits. On peut le voir dans le même menu ainsi
+
+60
+00:04:35,120 --> 00:04:39,560
+ que le processeur que l'on a. Il existe aussi des processeurs dédiés, les GPU contenus dans les
+
+61
+00:04:39,560 --> 00:04:45,280
+ cartes graphiques pour l'image fabriquées généralement par Nvidia et AMD, les DSP pour traiter
+
+62
+00:04:45,280 --> 00:04:49,560
+ des signaux analogiques comme l'audio. Pour finir, il existe une architecture spéciale de processeurs,
+
+63
+00:04:49,560 --> 00:04:53,720
+ l'ARM dont le fonctionnement est différent. Ils sont utilisés notamment dans les téléphones
+
+64
+00:04:53,720 --> 00:04:58,800
+ portables et les tablettes. C'est tout pour les processeurs, merci d'avoir suivi cette vidéo et
+
+65
+00:04:58,800 --> 00:04:59,560
+ je vous dis à la prochaine !
+

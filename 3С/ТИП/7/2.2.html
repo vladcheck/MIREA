@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <p>Кликните в любом месте страницы для проверки</p>
+    <button>Кнопка для тестирования</button>
+    <script>
+        // Задание №2.2 Объект события и координаты
+        // Назначьте обработчик click на document, который выводит в консоль (F12):
+        // тип события (event.type), координаты клика (event.clientX, event.clientY)
+        // и тег целевого элемента (event.target.tagName).
+        document.addEventListener('click', function (event) {
+            console.log(event.type, 'clientX:', event.clientX, 'clientY:', event.clientY, 'target:', event.target.tagName);
+        });
+    </script>
+</body>
+
+</html>

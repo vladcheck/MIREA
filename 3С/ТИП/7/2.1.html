@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        span.folded {
+            background-color: grey;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Задание №2.1 Раскрывающееся меню
+    Создайте меню, которое по нажатию открывается либо закрывается.
+    Используйте CSS-классы для управления видимостью.
+    Используйте classList.toggle() и CSS-селекторы -->
+    <span>▶ Сладости (нажми меня)!</span>
+    <ul>
+        <li>Пирожное</li>
+        <li>Пончик</li>
+        <li>Мёд</li>
+    </ul>
+    <script>
+        const span = document.querySelector("span")
+        const ul = document.querySelector("ul");
+        span.onclick = function () {
+            span.classList.toggle('folded')
+            ul.classList.toggle('hidden');
+        };
+    </script>
+</body>
+
+</html>

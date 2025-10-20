@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="messages.css">
+    <meta charset="utf-8">
+    <style>
+        .pane {
+            max-width: 50vw;
+        }
+
+        .remove-button {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="pane">
+            <h3>Лошадь</h3>
+            <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид
+                дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
+        </div>
+        <div class="pane">
+            <h3>Осёл</h3>
+            <p>Домашний осёл (лат. Equus asinus asinus), или ишак, — одомашненный подвид дикого осла (Equus asinus),
+                сыгравший важную историческую роль в развитии хозяйства и культуры человека и по-прежнему широко в
+                хозяйстве многих развивающихся стран.</p>
+        </div>
+        <div class="pane">
+            <h3>Кошка</h3>
+            <p>Кошка, или домашняя кошка (лат. Felis silvestris catus), — домашнее животное, одно из наиболее
+                популярных(наряду с собакой) «животных-компаньонов». Являясь одиночным охотником на грызунов и других
+                мелких животных, кошка — социальное животное, использующее для общения широкий диапазон звуковых
+                сигналов.</p>
+        </div>
+    </div>
+    <script>
+        // Задание №3 Добавить кнопку закрытия
+        // Есть список сообщений. При помощи JavaScript для каждого сообщения
+        // добавьте в верхний правый угол кнопку закрытия [x]. Клик по кнопке удаляет
+        // сообщение.
+        // Используйте createElement, querySelectorAll, делегирование событий.
+
+        document.querySelectorAll('.pane').forEach(pane => {
+            const closeButton = document.createElement('button');
+            closeButton.className = 'remove-button';
+            closeButton.textContent = '[x]';
+            pane.prepend(closeButton);
+        });
+
+        document.addEventListener('click', function (event) {
+            if (event.target.className === 'remove-button') {
+                event.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+
+</html>
