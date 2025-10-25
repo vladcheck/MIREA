@@ -19,3 +19,51 @@ dist/
 *.xlsx
 *.mp4
 WeStudy
+
+# Основной env не закидывается, будет закидываться только пример env файла
+.env
+
+# Логи
+logs/
+*.log
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+
+# IDE
+.idea/
+.vs/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Wails
+*.syso
+package.json.md5
+
+
+# Frontend
+node_modules
+frontend/.github
+.next
+
+# Output
+coverage/
+dist/
+build/
+out/
+
+# misc
+.hidden/
