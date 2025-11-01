@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("3 (fractions)")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d849eae3d6d11b119d31ae547fa07a559cbe84df")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9669f2bebfd6e66e88c5e30f6af0e1f255465598")]
 [assembly: System.Reflection.AssemblyProductAttribute("3 (fractions)")]
 [assembly: System.Reflection.AssemblyTitleAttribute("3 (fractions)")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

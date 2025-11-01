@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vova\\Documents\\GitHub\\razrabotka-korporativnyh-sistem\\wb2\\7 (mars)\\7 (mars).csproj",
+      "projectUniqueName": "C:\\Users\\Vova\\Desktop\\Универ\\3С\\ПКС\\wb2\\7 (mars)\\7 (mars).csproj",
       "projectName": "7 (mars)",
-      "projectPath": "C:\\Users\\Vova\\Documents\\GitHub\\razrabotka-korporativnyh-sistem\\wb2\\7 (mars)\\7 (mars).csproj",
+      "projectPath": "C:\\Users\\Vova\\Desktop\\Универ\\3С\\ПКС\\wb2\\7 (mars)\\7 (mars).csproj",
       "packagesPath": "C:\\Users\\Vova\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vova\\Documents\\GitHub\\razrabotka-korporativnyh-sistem\\wb2\\7 (mars)\\obj\\",
+      "outputPath": "C:\\Users\\Vova\\Desktop\\Универ\\3С\\ПКС\\wb2\\7 (mars)\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

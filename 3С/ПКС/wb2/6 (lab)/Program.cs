@@ -1,4 +1,20 @@
-﻿using Utils;
+﻿static uint tryGetUInt(string description = "число")
+{
+    uint result = 0;
+    do
+    {
+        Console.Write($"Введите {description}: ");
+        if (UInt32.TryParse(Console.ReadLine(), out result) && result != 0)
+        {
+            return result;
+        }
+        else
+        {
+            Console.WriteLine("Введите число!");
+        }
+    } while (true);
+}
+
 
 static void printResult(uint bacteriaCount)
 {
@@ -16,8 +32,8 @@ static void main()
 {
     do
     {
-        uint bacteriaCount = Getters.tryGetUInt("количество бактерий");
-        uint antibioticDrops = Getters.tryGetUInt("количество антибиотика (в каплях)");
+        uint bacteriaCount = tryGetUInt("количество бактерий");
+        uint antibioticDrops = tryGetUInt("количество антибиотика (в каплях)");
         uint hour = 0;
         uint antibioticStrength = 10 * antibioticDrops;
 

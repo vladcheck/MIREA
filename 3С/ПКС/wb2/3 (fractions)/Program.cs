@@ -1,17 +1,12 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-static int tryGetInt(string description = "число")
+﻿static int tryGetInt(string description = "число")
 {
     int result = 0;
     do
     {
         Console.Write($"Введите {description}: ");
-        if (Int32.TryParse(Console.ReadLine(), out result) && result != 0)
+        if (Int32.TryParse(Console.ReadLine(), out result))
         {
             return result;
-        } else if (result == 0)
-        {
-            Console.WriteLine("Число не может быть равным нулю");
         } else
         {
             Console.WriteLine("Ошибка!");
@@ -19,23 +14,23 @@ static int tryGetInt(string description = "число")
     } while (true);
 }
 
-static void ReduceFraction(int numerator, int denominator, out int reducedNumerator, out int reducedDenominator)
+static void ReduceFraction(int num, int denom, out int reducedNumerator, out int reducedDenominator)
 {
-    if (numerator < 0 && denominator < 0)
+    if (num < 0 && denom < 0)
     {
-        numerator = -numerator;
-        denominator = -denominator;
+        num = -num;
+        denom = -denom;
     }
-    else if (denominator < 0)
+    else if (denom < 0)
     {
-        numerator = -numerator;
-        denominator = -denominator;
+        num = -num;
+        denom = -denom;
     }
 
-    int gcd = FindGCD(Math.Abs(numerator), Math.Abs(denominator));
+    int gcd = FindGCD(Math.Abs(num), Math.Abs(denom));
 
-    reducedNumerator = numerator / gcd;
-    reducedDenominator = denominator / gcd;
+    reducedNumerator = num / gcd;
+    reducedDenominator = denom / gcd;
 }
 
 // НОД
@@ -55,10 +50,10 @@ static void main()
 {
     do
     {
-        int numerator = tryGetInt("числитель");
-        int denominator = tryGetInt("знаменатель");
+        int num = tryGetInt("числитель");
+        int denom = tryGetInt("знаменатель");
 
-        if (denominator == 0)
+        if (denom == 0)
         {
             Console.WriteLine("Ошибка! Знаменатель не может быть равен 0.");
             return;
@@ -67,9 +62,15 @@ static void main()
         int reducedNumerator;
         int reducedDenominator;
 
-        ReduceFraction(numerator, denominator, out reducedNumerator, out reducedDenominator);
+        ReduceFraction(num, denom, out reducedNumerator, out reducedDenominator);
 
-        Console.WriteLine($"Результат: {reducedNumerator} / {reducedDenominator}");
+        if (reducedDenominator != 1)
+        {
+            Console.WriteLine($"Результат: {reducedNumerator} / {reducedDenominator}");
+        } else
+        {
+            Console.WriteLine($"Результат: {reducedNumerator}");
+        }
     } while (true);
 }
 

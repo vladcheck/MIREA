@@ -22,10 +22,7 @@
 
 static int get_nth_digit(int num, int n)
 {
-    int len = ($"{num}").Length;
-    int result = num % (int)Math.Pow(10,len-n) / (int)Math.Pow(10, len-n+1);
-    Console.WriteLine(result);
-    return result;
+    return num / (int)Math.Pow(10, n) % 10;
 }
 
 static void main()

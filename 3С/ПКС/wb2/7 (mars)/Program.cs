@@ -1,75 +1,115 @@
-﻿static long getLong(string message)
+﻿while (true)
+{
+    uint n = TryGetUInt("Введите количество модулей (n): ");
+    uint a = TryGetUInt("Введите ширину модуля (a): ");
+    uint b = TryGetUInt("Введите длину модуля (b): ");
+    uint w = TryGetUInt("Введите ширину поля (w): ");
+    uint h = TryGetUInt("Введите длину поля (h): ");
+
+    uint maxD = FindMaxProtection(n, a, b, w, h);
+
+    Console.WriteLine($"Максимальная толщина защиты (d) = {maxD}");
+}
+
+static uint TryGetUInt(string prompt)
 {
     while (true)
     {
-        Console.Write(message);
+        Console.Write(prompt);
         string? input = Console.ReadLine();
 
-        if (string.IsNullOrEmpty(input))
+        if (UInt32.TryParse(input, out uint value) && value != 0)
         {
-            Console.WriteLine("Ошибка! Введите число.");
-            continue;
+            return value;
         }
 
-        if (long.TryParse(input, out long result) && result >= 0)
-        {
-            return result;
-        }
-        else
-        {
-            Console.WriteLine("Ошибка! Введите корректное положительное число.");
-        }
+        Console.WriteLine("Ошибка: введите положительное целое число.");
     }
 }
 
-static bool Check(long d, long n, long a, long b, long w, long h)
+static uint FindMaxProtection(uint n, uint a, uint b, uint w, uint h)
 {
-    // Первая ориентация: a - ширина, b - высота
-    long cols1 = w / (a + 2 * d);
-    long rows1 = h / (b + 2 * d);
-    long total1 = cols1 * rows1;
+    uint maxD = 0;
 
-    // Вторая ориентация: b - ширина, a - высота
-    long cols2 = w / (b + 2 * d);
-    long rows2 = h / (a + 2 * d);
-    long total2 = cols2 * rows2;
+    for (uint d = 0; d <= Math.Max(w, h); d++)
+    {
+        if (CanPlaceAllModules(n, a, b, w, h, d))
+        {
+            maxD = d;
+        }
+    }
 
-    return total1 >= n || total2 >= n;
+    return maxD;
 }
 
-
-static void main()
+static bool CanPlaceAllModules(uint n, uint a, uint b, uint w, uint h, uint d)
 {
-    do
+    bool[,] field = new bool[w, h];
+    return TryPlaceModules(field, n, a, b, w, h, d, 0);
+}
+
+static bool TryPlaceModules(bool[,] field, uint remainingModules, uint a, uint b, uint w, uint h, uint d, uint startPos)
+{
+    if (remainingModules == 0)
+        return true;
+
+    uint width1 = a + 2 * d;
+    uint height1 = b + 2 * d;
+    uint width2 = b + 2 * d;
+    uint height2 = a + 2 * d;
+
+    for (uint pos = startPos; pos < w * h; pos++)
     {
-        long n = getLong("Введите количество модулей (n): ");
-        long a = getLong("Введите ширину модуля в метрах (a): ");
-        long b = getLong("Введите длину модуля в метрах (b): ");
-        long w = getLong("Введите ширину поля для модулей в метрах (w): ");
-        long h = getLong("Введите длину поля для модулей в метрах (h): ");
+        uint x = pos % w;
+        uint y = pos / w;
 
-        long low = 0;
-        long high = Math.Max(w, h) + 1;
-        long answer = 0;
-
-        while (low <= high)
+        if (CanPlace(field, x, y, width1, height1, w, h))
         {
-            long d = low + (high - low) / 2;
-
-            if (Check(d, n, a, b, w, h))
-            {
-                answer = d;
-                low = d + 1;
-            }
-            else
-            {
-                high = d - 1;
-            }
+            PlaceModule(field, x, y, width1, height1, true);
+            if (TryPlaceModules(field, remainingModules - 1, a, b, w, h, d, pos + 1))
+                return true;
+            PlaceModule(field, x, y, width1, height1, false);
         }
 
-        Console.WriteLine($"Ответ d = {answer}м");
-        Console.WriteLine();
-    } while (true);
+        if (width2 != width1 || height2 != height1)
+        {
+            if (CanPlace(field, x, y, width2, height2, w, h))
+            {
+                PlaceModule(field, x, y, width2, height2, true);
+                if (TryPlaceModules(field, remainingModules - 1, a, b, w, h, d, pos + 1))
+                    return true;
+                PlaceModule(field, x, y, width2, height2, false);
+            }
+        }
+    }
+
+    return false;
 }
 
-main();
+static bool CanPlace(bool[,] field, uint x, uint y, uint width, uint height, uint w, uint h)
+{
+    if (x + width > w || y + height > h)
+        return false;
+
+    for (uint i = x; i < x + width; i++)
+    {
+        for (uint j = y; j < y + height; j++)
+        {
+            if (field[i, j])
+                return false;
+        }
+    }
+
+    return true;
+}
+
+static void PlaceModule(bool[,] field, uint x, uint y, uint width, uint height, bool place)
+{
+    for (uint i = x; i < x + width; i++)
+    {
+        for (uint j = y; j < y + height; j++)
+        {
+            field[i, j] = place;
+        }
+    }
+}

@@ -31,15 +31,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "6 (lab)",
+              "Title": "6 (lab).csproj",
               "DocumentMoniker": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb2\\6 (lab)\\6 (lab).csproj",
               "RelativeDocumentMoniker": "6 (lab).csproj",
               "ToolTip": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb2\\6 (lab)\\6 (lab).csproj",
               "RelativeToolTip": "6 (lab).csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-22T17:59:43.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-22T17:59:43.466Z"
             },
             {
               "$type": "Document",
@@ -49,7 +48,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb2\\6 (lab)\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-22T17:59:01.531Z",
               "EditorCaption": ""
