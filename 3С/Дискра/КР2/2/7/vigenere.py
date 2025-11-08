@@ -1,4 +1,4 @@
-original_alphabet = "абвгдежзийклмнопрстуфхцчшщъыьэюяqwertyuiopasdfghjklzxcvbnm"
+original_alphabet = "абвгдежзийклмнопрстуфхцчшщъыьэюя"
 
 
 def create_vigenere_key():

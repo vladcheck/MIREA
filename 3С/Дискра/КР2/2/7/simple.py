@@ -1,4 +1,4 @@
-original_alphabet = "абвгдежзийклмнопрстуфхцчшщъыьэюяqwertyuiopasdfghjklzxcvbnm"
+original_alphabet = "абвгдежзийклмнопрстуфхцчшщъыьэюя"
 
 
 def create_simple_substitution_cipher_key():
@@ -9,13 +9,13 @@ def create_simple_substitution_cipher_key():
     """
     unique_chars_in_key = []
     seen = set()
-    for char in input("Введите ключевую строку для шифра простой замены: ").lower():
+    user_input = input("Введите ключевую строку для шифра простой замены: ").lower()
+    for char in user_input:
         if char not in seen and char in original_alphabet:
             unique_chars_in_key.append(char)
             seen.add(char)
 
     cipher_alphabet_list = unique_chars_in_key[:]
-    # Добавляем оставшиеся символы из оригинального алфавита, которые не были в ключе
     for char in original_alphabet:
         if char not in cipher_alphabet_list:
             cipher_alphabet_list.append(char)
@@ -23,10 +23,23 @@ def create_simple_substitution_cipher_key():
     cipher_alphabet = "".join(cipher_alphabet_list)
     print(f"Созданный алфавит шифра: {cipher_alphabet}")
 
-    # Создаем словарь шифрования
     cipher_map = {}
     for i, char in enumerate(original_alphabet):
         cipher_map[char] = cipher_alphabet[i]
+    
+    print("\nТаблица замен (открытый алфавит -> алфавит шифра):")
+    print("-" * 50)
+    sorted_items = sorted(cipher_map.items()) # Сортируем по ключу (исходной букве)
+    line_parts = []
+    for frm, to in sorted_items:
+        line_parts.append(f"{frm}->{to}")
+        if len(line_parts) == 8:
+            print("  ".join(line_parts))
+            line_parts = []
+    if line_parts:
+        print("  ".join(line_parts))
+    print("-" * 50)
+
     return cipher_map
 
 

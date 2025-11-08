@@ -1,0 +1,88 @@
+1
+00:00:00,000 --> 00:00:10,000
+ L'unité de stockage de l'information
+
+2
+00:00:10,000 --> 00:00:21,000
+ Hicham est un jeune informaticien qui n'arrête pas de faire le téléchargement des vidéos, des audios, des images, des documents et beaucoup d'autres informations.
+
+3
+00:00:21,000 --> 00:00:28,000
+ Il a rempli son disque dur et ne peut plus ajouter d'autres informations supplémentaires.
+
+4
+00:00:28,000 --> 00:00:36,000
+ Mais Hicham a trouvé une bonne solution. Il va enregistrer toutes ses données dans une clé USB.
+
+5
+00:00:36,000 --> 00:00:44,000
+ Lorsqu'il a voulu enregistrer toutes les données sur la clé, Hicham a rencontré un autre problème.
+
+6
+00:00:44,000 --> 00:00:54,000
+ La clé USB ne suffit pas pour sauvegarder toutes les données. Elle a un espace insuffisant.
+
+7
+00:00:54,000 --> 00:01:04,000
+ Le dossier personnel de Hicham a une taille de 20 Go alors que la clé USB ne peut supporter que 16 Go.
+
+8
+00:01:04,000 --> 00:01:08,000
+ Quelle est alors la solution ?
+
+9
+00:01:08,000 --> 00:01:22,000
+ Il faut savoir que chaque fichier et dossier a une taille qui occupe un espace sur le support de stockage et que chaque support de stockage a une capacité maximale à ne pas dépasser.
+
+10
+00:01:23,000 --> 00:01:33,000
+ Les dossiers et les fichiers ont une taille. Par contre, les supports de stockage ont une capacité.
+
+11
+00:01:33,000 --> 00:01:41,000
+ Pour résoudre ce problème, Hicham a remplacé la clé USB par un disque dur externe.
+
+12
+00:01:42,000 --> 00:01:52,000
+ Pendant le transfert des données, Hicham n'a trouvé aucun problème. Toutes les données ont été copiées sur le disque dur externe.
+
+13
+00:01:52,000 --> 00:01:59,000
+ En résumé, la capacité des disques durs internes est supérieure à celle de la clé USB.
+
+14
+00:02:00,000 --> 00:02:11,000
+ La quantité d'informations à stocker sur un support de stockage est mesurée en kO, en mO, en gO ou en tO.
+
+15
+00:02:11,000 --> 00:02:15,000
+ Nous allons donner des exemples de taille de fichier.
+
+16
+00:02:15,000 --> 00:02:22,000
+ Nous prenons le cas d'un fichier texte. Il peut avoir une taille de 700 kO.
+
+17
+00:02:22,000 --> 00:02:27,000
+ Un fichier audio peut avoir une taille de 100 mO.
+
+18
+00:02:27,000 --> 00:02:33,000
+ Par contre, un fichier vidéo peut arriver jusqu'à 2 gO.
+
+19
+00:02:35,000 --> 00:02:42,000
+ Maintenant, nous allons voir quelques exemples de capacité de quelques supports de stockage.
+
+20
+00:02:42,000 --> 00:02:51,000
+ Que représente alors le terme mO, gO et tO ?
+
+21
+00:03:12,000 --> 00:03:20,000
+ C'est l'équivalent à 1 mO. 1000 mO est à peu près égal à 1 gO.
+
+22
+00:03:20,000 --> 00:03:25,000
+ Et 1000 gO est sensiblement égal à 1 tO.
+

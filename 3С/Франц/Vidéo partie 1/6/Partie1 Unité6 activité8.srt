@@ -1,0 +1,84 @@
+1
+00:00:00,000 --> 00:00:02,000
+ Qu'est-ce qu'un système d'exploitation ?
+
+2
+00:00:02,000 --> 00:00:06,000
+ Les ordinateurs sont des outils qui mènent à bien vos tâches par voie électronique.
+
+3
+00:00:06,000 --> 00:00:11,000
+ Pour utiliser un ordinateur, nous devons être en mesure de dire à l'ordinateur ce qu'il doit faire.
+
+4
+00:00:11,000 --> 00:00:14,000
+ Ce sont les systèmes d'exploitation qui rendent cela possible.
+
+5
+00:00:14,000 --> 00:00:21,000
+ Le système d'exploitation, parfois appelé OS, est le logiciel principal qui s'exécute sur un ordinateur.
+
+6
+00:00:21,000 --> 00:00:26,000
+ Le système d'exploitation gère tous les autres logiciels et matériels de l'ordinateur
+
+7
+00:00:26,000 --> 00:00:29,000
+ et constitue un moyen pour vous de communiquer avec l'ordinateur.
+
+8
+00:00:29,000 --> 00:00:35,000
+ Les systèmes d'exploitation modernes sont conçus avec des interfaces graphiques contenant des icônes, des boutons et du texte
+
+9
+00:00:35,000 --> 00:00:38,000
+ qui permettent aux personnes d'utiliser facilement l'ordinateur.
+
+10
+00:00:38,000 --> 00:00:45,000
+ Vous pouvez même personnaliser l'apparence de votre système d'exploitation afin de l'utiliser comme bon vous semble.
+
+11
+00:00:45,000 --> 00:00:50,000
+ Par exemple, si vous voulez utiliser votre ordinateur pour créer un document de texte,
+
+12
+00:00:50,000 --> 00:00:55,000
+ vous pouvez utiliser les menus et les boutons du système d'exploitation pour créer le document,
+
+13
+00:00:55,000 --> 00:01:01,000
+ le clavier pour y saisir du texte et indiquer au système d'exploitation d'enregistrer votre fichier.
+
+14
+00:01:01,000 --> 00:01:05,000
+ Le système d'exploitation gère toutes les tâches physiques en arrière-plan,
+
+15
+00:01:05,000 --> 00:01:12,000
+ comme garder une trace de ce que vous avez saisi au clavier, contrôler le processeur et enregistrer vos informations sur le disque dur.
+
+16
+00:01:12,000 --> 00:01:16,000
+ Les systèmes d'exploitation diffèrent en fonction des types d'ordinateurs.
+
+17
+00:01:16,000 --> 00:01:23,000
+ De nombreux PC exécutent Microsoft Windows, tandis que les Mac exécutent le système macOS.
+
+18
+00:01:23,000 --> 00:01:27,000
+ Et certains ordinateurs, le système d'exploitation Linux.
+
+19
+00:01:27,000 --> 00:01:33,000
+ Les appareils mobiles exécutent des systèmes d'exploitation différents de ceux des ordinateurs portables et de bureaux.
+
+20
+00:01:33,000 --> 00:01:38,000
+ Lorsque vous achetez un ordinateur, le système d'exploitation pour cet appareil est généralement préinstallé.
+
+21
+00:01:38,000 --> 00:01:43,000
+ Les systèmes d'exploitation nous permettent d'utiliser les ordinateurs et de mener à bien vos tâches.
+
