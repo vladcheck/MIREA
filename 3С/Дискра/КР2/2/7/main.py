@@ -1,6 +1,6 @@
 import re
 from typing import LiteralString
-from simple_substitution import *
+from simple import *
 from vigenere import *
 
 

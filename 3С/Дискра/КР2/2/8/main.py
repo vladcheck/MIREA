@@ -1,191 +1,108 @@
-import random
-from freq import russian_frequencies
+# main.py (обновленный)
 
-class CharFreq:
-    def __init__(self, char, freq):
-        self.char = char
-        self.freq = freq
+# --- (ВАШ СУЩЕСТВУЮЩИЙ КОД ДО ФУНКЦИИ main) ---
 
-class Substitution:
-    def __init__(self, frm, to):
-        self.frm = frm
-        self.to = to
 
-def generate_random_substitution():
-    russian_letters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
-    letters_list = list(russian_letters)
-    shuffled_list = letters_list[:]
-    random.shuffle(shuffled_list)
+# --- НОВАЯ ФУНКЦИЯ ДЛЯ АТАКИ НА ШИФР ЦЕЗАРЯ ---
+import os
 
-    enc = {}
-    dec = {}
-    for i, ch in enumerate(letters_list):
-        enc[ch] = shuffled_list[i]
-        dec[shuffled_list[i]] = ch
-    return enc, dec
 
-def encrypt(text, sub):
-    result = []
-    for ch in text:
-        lower_ch = ch.lower()
-        if lower_ch in sub:
-            new_ch = sub[lower_ch]
-            if ch.isupper():
-                result.append(new_ch.upper())
+def brute_force_caesar(
+    ciphertext: str, alphabet: str = "абвгдежзийклмнопрстуфхцчшщъыьэюя "
+) -> list[tuple[int, str]]:
+    """
+    Перебирает все возможные сдвиги для шифра Цезаря и возвращает список пар (сдвиг, расшифрованный_текст).
+    """
+    possible_decryptions = []
+    alphabet_size = len(alphabet)
+
+    # Перебираем все возможные сдвиги (от 1 до 31 включительно, 0 - это отсутствие сдвига)
+    for shift in range(1, alphabet_size):
+        decrypted_text = ""
+        for char in ciphertext:
+            if char in alphabet:
+                old_index = alphabet.index(char)
+                # Вычисляем новый индекс, учитывая "зацикленность" алфавита
+                new_index = (old_index - shift) % alphabet_size
+                decrypted_text += alphabet[new_index]
             else:
-                result.append(new_ch)
-        else:
-            result.append(ch)
-    return ''.join(result)
+                # Если символ не в алфавите (например, цифра или специальный символ),
+                # оставляем его без изменений.
+                # В вашем случае с предварительной обработкой таких символов быть не должно.
+                decrypted_text += char
+        possible_decryptions.append((shift, decrypted_text))
 
-def analyze_ciphertext(text):
-    text = text.lower()
-    letter_count = {}
-    total_letters = 0
+    return possible_decryptions
 
-    for ch in text:
-        if is_russian_letter(ch):
-            letter_count[ch] = letter_count.get(ch, 0) + 1
-            total_letters += 1
 
-    frequencies = []
-    for char, count in letter_count.items():
-        freq = (count / total_letters) * 100 if total_letters > 0 else 0
-        frequencies.append(CharFreq(char, freq))
+# --- ОБНОВЛЁННАЯ ФУНКЦИЯ main ---
+def main() -> None:
+    """Основная функция программы."""
+    print("=== ИНСТРУМЕНТ КРИПТОАНАЛИЗА АФФИННОГО ШИФРА ===")
 
-    frequencies.sort(key=lambda x: x.freq, reverse=True)
-    return frequencies
+    # --- ШАГ 1: ШИФРОВАНИЕ АФФИННЫМ ШИФРОМ (ВАШ СУЩЕСТВУЮЩИЙ КОД) ---
+    # ... (весь ваш существующий код для шифрования) ...
+    # Предположим, что после выполнения шага 1 у вас есть файл 'encrypted.txt'
+    # и вы знаете, что он содержит зашифрованный АФФИННЫМ шифром текст.
+    # ...
 
-def create_substitutions(cipher_freqs):
-    russian_sorted = [CharFreq(char, freq) for char, freq in russian_frequencies.items()]
-    russian_sorted.sort(key=lambda x: x.freq, reverse=True)
+    # --- ШАГ 4: КРИПТОАНАЛИЗ ЗАШИФРОВАННОГО ТЕКСТА (ВАШ СУЩЕСТВУЮЩИЙ КОД) ---
+    # ... (ваш существующий код для анализа Хемминга) ...
+    # ...
 
-    substitutions = {}
-    for i in range(min(len(cipher_freqs), len(russian_sorted))):
-        substitutions[cipher_freqs[i].char] = russian_sorted[i].char
+    # --- НОВЫЙ ШАГ: АТАКА НА ШИФР ЦЕЗАРЯ ---
+    print("\n=== ШАГ: АТАКА ПОЛНЫМ ПЕРЕБОРОМ НА ШИФР ЦЕЗАРЯ ===")
+    print(
+        "Предполагается, что зашифрованный текст в 'encrypted.txt' может быть результатом шифра Цезаря."
+    )
+    print("Будут перебраны все возможные сдвиги.")
 
-    return substitutions
-
-def decrypt(ciphertext, substitutions):
-    result = []
-    for ch in ciphertext:
-        lower_ch = ch.lower()
-        if lower_ch in substitutions:
-            sub_ch = substitutions[lower_ch]
-            if ch.isupper():
-                result.append(sub_ch.upper())
-            else:
-                result.append(sub_ch)
-        else:
-            result.append(ch)
-    return ''.join(result)
-
-def write_results(filename, plaintext, ciphertext, analysis, guessed_subs, real_enc_map, decrypted):
-    with open(filename, 'w', encoding='utf-8') as f:
-        def print_header(title):
-            f.write("\n" + "="*72 + "\n")
-            f.write(title + "\n")
-            f.write("="*72 + "\n")
-
-        print_header("1. Исходный текст")
-        f.write(plaintext + "\n")
-
-        print_header("2. Зашифрованный текст")
-        f.write(ciphertext + "\n")
-
-        print_header("3. Частотный анализ")
-        f.write(f"{'Шифр':<10} {'Частота (%)':<15} {'Ожидаемая':<15} {'Предположение':<15}\n")
-        f.write("-" * 72 + "\n")
-
-        for cf in analysis:
-            guess = guessed_subs.get(cf.char, '?')
-            expected = f"{russian_frequencies.get(guess, 0.0):.2f}%"
-            f.write(f"{cf.char:<10} {cf.freq:<15.2f} {expected:<15} {guess:<15}\n")
-
-        print_header("4. Настоящая замена")
-        sorted_real = [Substitution(frm, to) for frm, to in real_enc_map.items()]
-        sorted_real.sort(key=lambda x: x.frm)
-
-        line_parts = []
-        for sr in sorted_real:
-            line_parts.append(f"{sr.frm}->{sr.to}  ")
-            if len(line_parts) == 8:
-                f.write(''.join(line_parts) + "\n")
-                line_parts = []
-        if line_parts:
-            f.write(''.join(line_parts) + "\n")
-
-        print_header("5. Предполагаемая замена (частотный анализ)")
-        sorted_guessed = [Substitution(frm, to) for frm, to in guessed_subs.items()]
-        sorted_guessed.sort(key=lambda x: x.frm)
-
-        line_parts = []
-        for sg in sorted_guessed:
-            line_parts.append(f"{sg.frm}->{sg.to}  ")
-            if len(line_parts) == 8:
-                f.write(''.join(line_parts) + "\n")
-                line_parts = []
-        if line_parts:
-            f.write(''.join(line_parts) + "\n")
-
-        print_header("6. Расшифровка (частотный анализ)")
-        f.write(decrypted + "\n")
-
-        print_header("7. Статистика")
-        total = len(ciphertext)
-        letters = sum(1 for ch in ciphertext if is_russian_letter(ch.lower()))
-        unique_in_cipher = len(analysis)
-        f.write(f"Всего символов: {total}\n")
-        f.write(f"Русских букв: {letters}\n")
-        f.write(f"Уникальных в шифре: {unique_in_cipher}\n")
-
-def is_russian_letter(ch):
-    return 'а' <= ch <= 'я' or ch == 'ё'
-
-def main():
-    input_file = "input.txt"
-    cipher_file = "ciphertext.txt"
-    decipher_file = "decyphered.txt"
-    output_file = "results.txt"
-
+    # 1. Прочитать зашифрованный текст
+    encrypted_filename = "encrypted.txt"
     try:
-        with open(input_file, 'r', encoding='utf-8') as f:
-            plaintext = f.read()
+        with open(encrypted_filename, "r", encoding="utf-8") as f:
+            caesar_ciphertext = f.read().strip()
+        print(
+            f"Зашифрованный текст из '{encrypted_filename}':\n{caesar_ciphertext[:200]}..."
+        )  # Печатаем первые 200 символов
+        print("-" * 50)
+    except FileNotFoundError:
+        print(f"Файл '{encrypted_filename}' не найден. Пропуск атаки на Цезарь.")
+        return
     except Exception as e:
-        print(f"Ошибка чтения {input_file}: {e}")
+        print(f"Ошибка при чтении файла '{encrypted_filename}': {e}")
         return
 
-    encryption_map, decryption_map = generate_random_substitution()
-    ciphertext = encrypt(plaintext, encryption_map)
+    # 2. Перебрать все сдвиги
+    possible_outcomes = brute_force_caesar(caesar_ciphertext)
 
+    # 3. Вывести все результаты в консоль
+    print("\n--- РЕЗУЛЬТАТЫ ПЕРЕБОРА (Сдвиг -> Текст) ---")
+    for shift, decrypted in possible_outcomes:
+        print(
+            f"Сдвиг {shift:2d}: {decrypted[:100]}..."
+        )  # Печатаем первые 100 символов каждого результата
+    print("-" * 50)
+
+    # 4. Сохранить все результаты в файл
+    output_file_path = "caesar_brute_force_results.txt"
     try:
-        with open(cipher_file, 'w', encoding='utf-8') as f:
-            f.write(ciphertext)
+        with open(output_file_path, "w", encoding="utf-8") as f:
+            f.write("=== РЕЗУЛЬТАТЫ АТАКИ ПОЛНЫМ ПЕРЕБОРОМ НА ШИФР ЦЕЗАРЯ ===\n\n")
+            for shift, decrypted in possible_outcomes:
+                f.write(f"--- Сдвиг {shift:2d} ---\n")
+                f.write(f"{decrypted}\n")
+                f.write("\n" + "=" * 20 + "\n")
+        print(f"\nВсе результаты перебора сохранены в '{output_file_path}'.")
     except Exception as e:
-        print(f"Ошибка записи {cipher_file}: {e}")
-        return
+        print(f"Ошибка при записи файла '{output_file_path}': {e}")
 
-    analysis = analyze_ciphertext(ciphertext)
-    guessed_substitutions = create_substitutions(analysis)
-    decrypted = decrypt(ciphertext, guessed_substitutions)
+    print("\n--- АТАКА НА ШИФР ЦЕЗАРЯ ЗАВЕРШЕНА ---")
+    print(
+        "Проанализируйте результаты в консоли или файле, чтобы найти осмысленный текст."
+    )
+    print("Сдвиг, при котором получен осмысленный текст, является искомым ключом.")
 
-    try:
-        with open(decipher_file, 'w', encoding='utf-8') as f:
-            f.write(decrypted)
-    except Exception as e:
-        print(f"Ошибка записи {decipher_file}: {e}")
-        return
-
-    try:
-        write_results(output_file, plaintext, ciphertext, analysis, guessed_substitutions, encryption_map, decrypted)
-    except Exception as e:
-        print(f"Ошибка записи {output_file}: {e}")
-        return
-
-    print("Готово!")
-    print(f"  Зашифровано -> {cipher_file}")
-    print(f"  Расшифровано -> {decipher_file}")
-    print(f"  Анализ -> {output_file}")
 
 if __name__ == "__main__":
     main()
