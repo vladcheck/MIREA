@@ -1,35 +1,36 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 public class Manager
 {
-    public List<Table> Tables { get; } = new();
-    public List<Booking> Bookings { get; } = new();
+    public List<Table> Tables { get; } = [];
+    public List<Booking> Bookings { get; } = [];
+    protected int NextId { get => nextId; set => nextId = value; }
+
     private int nextId = 1;
 
-    public Table AddTable(int id, string location, int seats)
+    public int GetFreeId()
     {
-        if (Tables.Any(t => t.Id == id))
-            throw new ArgumentException($"Стол с ID {id} уже существует.");
+        return this.NextId;
+    }
 
-        var table = new Table(id, location, seats);
+    public Table AddTable(string location, int seats)
+    {
+        var table = new Table(this.NextId, location, seats);
+        this.NextId++;
         Tables.Add(table);
         return table;
     }
 
     public Booking? Book(string name, string phone, string time, string comment, Table table)
     {
-        if (string.IsNullOrWhiteSpace(time) || !table.Schedule.ContainsKey(time))
+        if (string.IsNullOrWhiteSpace(time) || !table.Schedule.TryGetValue(time, out Booking? value))
             return null;
 
-        if (table.Schedule[time] != null)
+        if (value != null)
         {
             Console.WriteLine($"Время {time} уже занято.");
             return null;
         }
 
-        var booking = new Booking(nextId++, name, phone, time, comment, table);
+        var booking = new Booking(NextId++, name, phone, time, comment, table);
         Bookings.Add(booking);
         return booking;
     }
@@ -69,7 +70,7 @@ public class Manager
             Console.WriteLine("Нет бронирований.");
         else
             foreach (var b in Bookings)
-                Console.WriteLine(b);
+                Console.WriteLine(b.ToString());
     }
 
     public void ShowFreeTables(string time, int? minSeats = null)
@@ -86,19 +87,42 @@ public class Manager
             Console.WriteLine($"  Стол {t.Id}: {t.Location}, {t.Seats} мест");
     }
 
-    public void Search(string namePart, string last4)
+    public Booking? Search(string namePart, string last4)
     {
-        if (string.IsNullOrWhiteSpace(namePart) || string.IsNullOrWhiteSpace(last4)) return;
+        if (string.IsNullOrWhiteSpace(namePart)) return null;
 
         var found = Bookings.Where(b =>
-            b.Name.Contains(namePart, StringComparison.OrdinalIgnoreCase) &&
-            b.Phone.Length >= 4 &&
-            b.Phone.EndsWith(last4));
+            b.Name.Contains(namePart, StringComparison.OrdinalIgnoreCase));
+
+        if (last4.Length > 0)
+        {
+            found = found.Where(b =>
+                b.Phone.Length >= 4 &&
+                b.Phone[^4..].Equals(last4));
+        }
 
         if (!found.Any())
-            Console.WriteLine("Ничего не найдено.");
+            return null;
         else
             foreach (var b in found)
-                Console.WriteLine(b);
+                return b;
+        return null;
+    }
+
+    public List<Booking> ShowFreeTablesByFilter(string? clientNamePart)
+    {
+        if (String.IsNullOrEmpty(clientNamePart))
+        {
+            return this.Tables
+                .SelectMany(t => t.Schedule.Values)
+                .Where(b => b != null)
+                .ToList()!;
+        } else
+        {
+            return this.Tables
+                .SelectMany(t => t.Schedule.Values)
+                .Where(b => b != null && b.Name.Contains(clientNamePart, StringComparison.OrdinalIgnoreCase))
+                .ToList()!;
+        }
     }
 }

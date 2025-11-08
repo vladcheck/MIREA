@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 public class Table
 {
@@ -20,7 +18,6 @@ public class Table
             Schedule[slot] = null; 
         }
     }
-
     public void Print()
     {
         Console.WriteLine($"ID: {"".PadRight(80, '-')}{Id:D2}.");

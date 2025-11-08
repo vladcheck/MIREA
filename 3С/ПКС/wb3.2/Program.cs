@@ -1,4 +1,4 @@
-using System;
+using wb3._2;
 
 class Program
 {
@@ -10,19 +10,19 @@ class Program
         while (true)
         {
             PrintMenu();
-            Console.Write("Ваш выбор (1-5): ");
-            string? input = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(input)) continue;
+            int input = Getters.TryGetInt("выбор (0-7)");
 
             switch (input)
             {
-                case "1": CreateTables(manager); break;
-                case "2": CreateBookings(manager); break;
-                case "3": EditTable(manager); break;
-                case "4": ShowTable(manager); break;
-                case "5": Console.WriteLine("\nВыход из программы."); return;
-                default: Console.WriteLine("Ошибка: выберите от 1 до 5.\n"); break;
+                case 0: Console.WriteLine("\nВыход из программы."); return;
+                case 1: CreateTables(manager); break;
+                case 2: CreateBookings(manager); break;
+                case 3: EditTable(manager); break;
+                case 4: ShowTable(manager); break;
+                case 5: manager.ShowAllBookings(); break;
+                case 6: SearchBooking(manager); break;
+                case 7: ShowFreeTablesByFilter(manager); break;
+                default: Console.WriteLine("Ошибка: введите число от 0 до 7.\n"); break;
             }
         }
     }
@@ -30,63 +30,61 @@ class Program
     static void PrintMenu()
     {
         Console.WriteLine("Что вы хотите сделать:");
+        Console.WriteLine("0. Выход");
         Console.WriteLine("1. Создать столы");
         Console.WriteLine("2. Создать бронирования");
         Console.WriteLine("3. Редактировать стол по ID");
         Console.WriteLine("4. Показать информацию о столе");
-        Console.WriteLine("5. Выход\n");
+        Console.WriteLine("5. Показать все бронирования");
+        Console.WriteLine("6. Показать бронирования по фильтру (именя, последние 4 цифры номера телефона)");
+        Console.WriteLine("7. Показать свободные столы по фильтру (время, количество мест)");
+        Console.WriteLine();
+    }
+
+    static void SearchBooking(Manager M)
+    {
+        string partOfName = Getters.TryGetNonEmptyString("часть имени клиента");
+        string last4NumbersOfPhone = Getters.TryGetString("последние 4 цифры номера телефона (Enter — не учитывать)") ?? "";
+
+        Booking? booking = M.Search(partOfName, last4NumbersOfPhone);
+        if (booking != null)
+        {
+            Console.WriteLine("Бронирование найдено:");
+            Console.WriteLine(booking.ToString());
+        }
+        else
+        {
+            Console.WriteLine("Бронирование не найдено.");
+        }
+    }
+
+    static void ShowFreeTablesByFilter(Manager M)
+    {
+        string timeSlot = Getters.TryGetNonEmptyString("временной промежуток (например, 12:00-13:00)");
+        string minSeatsStr = Getters.TryGetString("минимальное количество мест (Enter — не учитывать)") ?? "";
+        int? minSeats = null;
+        if (!string.IsNullOrWhiteSpace(minSeatsStr) && int.TryParse(minSeatsStr, out int seats))
+        {
+            minSeats = seats;
+        }
+        Console.WriteLine();
+        M.ShowFreeTables(timeSlot, minSeats);
+        Console.WriteLine();
     }
 
     static void CreateTables(Manager manager)
     {
-        int n = 0;
-        while (n <= 0)
-        {
-            Console.Write("\nСколько столов создать? (n > 0): ");
-            if (!int.TryParse(Console.ReadLine(), out n) || n <= 0)
-                Console.WriteLine("Ошибка: введите число больше 0.");
-        }
+        int n = Getters.TryGetPositiveInt("количество столов (n > 0)");
 
         for (int i = 0; i < n; i++)
         {
             Console.WriteLine($"\n--- Стол {i + 1} из {n} ---");
 
-            int id = 0;
-            string? location = null;
-            int seats = 0;
+            string location = Getters.TryGetNonEmptyString("место расположения стола");
+            int seats = Getters.TryGetPositiveInt("количество мест (n > 0)");
 
-            while (id <= 0 || manager.Tables.Exists(t => t.Id == id))
-            {
-                Console.Write("ID (целое положительное число): ");
-                if (!int.TryParse(Console.ReadLine(), out id) || id <= 0)
-                {
-                    Console.WriteLine("Ошибка: ID должен быть положительным числом.");
-                    continue;
-                }
-                if (manager.Tables.Exists(t => t.Id == id))
-                {
-                    Console.WriteLine("Ошибка: стол с таким ID уже существует.");
-                    id = 0;
-                }
-            }
-
-            while (string.IsNullOrWhiteSpace(location))
-            {
-                Console.Write("Расположение (не может быть пустым): ");
-                location = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(location))
-                    Console.WriteLine("Ошибка: расположение не может быть пустым.");
-            }
-
-            while (seats <= 0)
-            {
-                Console.Write("Количество мест (целое число > 0): ");
-                if (!int.TryParse(Console.ReadLine(), out seats) || seats <= 0)
-                    Console.WriteLine("Ошибка: количество мест должно быть больше 0.");
-            }
-
-            manager.AddTable(id, location, seats);
-            Console.WriteLine($"Стол {id} создан: {location}, {seats} мест.\n");
+            manager.AddTable(location, seats);
+            Console.WriteLine($"Стол создан: стоит {location}, рассчитан на {seats} мест.\n");
         }
 
         Console.WriteLine($"Готово: создано {n} столов.\n");
@@ -100,55 +98,31 @@ class Program
             return;
         }
 
-        int n = 0;
-        while (n <= 0)
-        {
-            Console.Write("\nСколько бронирований создать? (n > 0): ");
-            if (!int.TryParse(Console.ReadLine(), out n) || n <= 0)
-                Console.WriteLine("Ошибка: введите число > 0.");
-        }
+        int n = Getters.TryGetPositiveInt("количество бронирований");
 
         for (int i = 0; i < n; i++)
         {
             Console.WriteLine($"\n--- Бронирование {i + 1} из {n} ---");
 
-            string? name = null, phone = null, time = null, comment = null;
+            string name = Getters.TryGetString("имя") ?? "гость";
+            string phone = Getters.TryGetString("номер телефона") ?? "не указан";
+            string? time = null;
             Table? selectedTable = null;
-
-            while (string.IsNullOrWhiteSpace(name))
-            {
-                Console.Write("Имя: ");
-                name = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(name)) name = "Гость";
-            }
-
-            while (string.IsNullOrWhiteSpace(phone))
-            {
-                Console.Write("Телефон: ");
-                phone = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(phone)) phone = "не указан";
-            }
 
             while (true)
             {
                 Console.Write("Время (например, 12:00-13:00): ");
-                time = Console.ReadLine();
+                time = Getters.TryGetNonEmptyString("время (промежуток - час, например, 09:00-10:00)");
 
-                if (string.IsNullOrWhiteSpace(time))
-                {
-                    Console.WriteLine("Время не может быть пустым.");
-                    continue;
-                }
-
-                bool validTime = manager.Tables.Any(t => t.Schedule.ContainsKey(time));
-                if (!validTime)
+                bool isValidTime = manager.Tables.Any(t => t.Schedule.ContainsKey(time));
+                if (!isValidTime)
                 {
                     Console.WriteLine("Неверное время. Доступно: 09:00-10:00 ... 17:00-18:00");
                     continue;
                 }
 
-                var freeTables = manager.Tables.Where(t => t.Schedule[time] == null).ToList();
-                if (!freeTables.Any())
+                List<Table> freeTables = [.. manager.Tables.Where(t => t.Schedule[time] == null)];
+                if (freeTables.Count == 0)
                 {
                     Console.WriteLine("На это время нет свободных столов. Выберите другое.");
                     continue;
@@ -158,12 +132,7 @@ class Program
                 foreach (var t in freeTables)
                     Console.WriteLine($"  Стол {t.Id}: {t.Location}, {t.Seats} мест");
 
-                Console.Write("Выберите ID стола: ");
-                if (!int.TryParse(Console.ReadLine(), out int tableId))
-                {
-                    Console.WriteLine("Неверный ID. Повторите.");
-                    continue;
-                }
+                int tableId = Getters.TryGetPositiveInt("ID");
 
                 selectedTable = freeTables.Find(t => t.Id == tableId);
                 if (selectedTable == null)
@@ -175,10 +144,8 @@ class Program
                 break;
             }
 
-            Console.Write("Комментарий (Enter — пусто): ");
-            comment = Console.ReadLine() ?? "";
-
-            var booking = manager.Book(name, phone, time!, comment, selectedTable!);
+            string comment = Getters.TryGetString("примечание") ?? "";
+            Booking booking = manager.Book(name, phone, time, comment, selectedTable);
             if (booking != null)
                 Console.WriteLine($"Бронирование создано! ID клиента: {booking.ClientId}\n");
             else
@@ -190,14 +157,9 @@ class Program
 
     static void EditTable(Manager manager)
     {
-        Console.Write("\nID стола для редактирования: ");
-        if (!int.TryParse(Console.ReadLine(), out int id))
-        {
-            Console.WriteLine("Неверный ID.\n");
-            return;
-        }
+        int id = Getters.TryGetPositiveInt("ID");
 
-        var table = manager.Tables.Find(t => t.Id == id);
+        Table table = manager.Tables.Find(t => t.Id == id);
         if (table == null)
         {
             Console.WriteLine("Стол не найден.\n");
@@ -212,9 +174,9 @@ class Program
 
         Console.WriteLine($"Текущие: {table.Location}, {table.Seats} мест");
         Console.Write("Новое расположение (Enter — не менять): ");
-        string? newLoc = Console.ReadLine();
+        string newLoc = Getters.TryGetString() ?? "";
         Console.Write("Новое кол-во мест (Enter — не менять): ");
-        string? seatsStr = Console.ReadLine();
+        string seatsStr = Getters.TryGetString() ?? "";
 
         string loc = string.IsNullOrWhiteSpace(newLoc) ? table.Location : newLoc;
         int seats = string.IsNullOrWhiteSpace(seatsStr) ? table.Seats : int.Parse(seatsStr);
@@ -225,13 +187,7 @@ class Program
 
     static void ShowTable(Manager manager)
     {
-        Console.Write("\nID стола: ");
-        if (!int.TryParse(Console.ReadLine(), out int id))
-        {
-            Console.WriteLine("Неверный ID.\n");
-            return;
-        }
-
+        int id = Getters.TryGetPositiveInt("ID");
         Console.WriteLine();
         manager.ShowTable(id);
         Console.WriteLine();

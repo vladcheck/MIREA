@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb3\\workbook3.1\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:wb3\\workbook3.1\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb3\\workbook3.1\\workbook3.1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:wb3\\workbook3.1\\workbook3.1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb3\\workbook3.2\\workbook2.1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:wb3\\workbook3.2\\workbook2.1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb2\\5 (coffee)\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:wb2\\5 (coffee)\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -44,18 +56,54 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb3\\workbook3.1\\Program.cs",
+              "RelativeDocumentMoniker": "wb3\\workbook3.1\\Program.cs",
+              "ToolTip": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb3\\workbook3.1\\Program.cs",
+              "RelativeToolTip": "wb3\\workbook3.1\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T06:28:30.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "workbook3.1.csproj",
+              "DocumentMoniker": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb3\\workbook3.1\\workbook3.1.csproj",
+              "RelativeDocumentMoniker": "wb3\\workbook3.1\\workbook3.1.csproj",
+              "ToolTip": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb3\\workbook3.1\\workbook3.1.csproj",
+              "RelativeToolTip": "wb3\\workbook3.1\\workbook3.1.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-07T06:27:49.418Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "workbook2.1.csproj",
+              "DocumentMoniker": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb3\\workbook3.2\\workbook2.1.csproj",
+              "RelativeDocumentMoniker": "wb3\\workbook3.2\\workbook2.1.csproj",
+              "ToolTip": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb3\\workbook3.2\\workbook2.1.csproj",
+              "RelativeToolTip": "wb3\\workbook3.2\\workbook2.1.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-07T06:26:44.261Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb2\\5 (coffee)\\Program.cs",
               "RelativeDocumentMoniker": "wb2\\5 (coffee)\\Program.cs",
               "ToolTip": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb2\\5 (coffee)\\Program.cs",
               "RelativeToolTip": "wb2\\5 (coffee)\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T09:12:39.686Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-27T09:12:39.686Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb2\\4 (guess the number)\\Program.cs",
               "RelativeDocumentMoniker": "wb2\\4 (guess the number)\\Program.cs",
@@ -63,12 +111,11 @@
               "RelativeToolTip": "wb2\\4 (guess the number)\\Program.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAgwCEAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T09:11:56.737Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-27T09:11:56.737Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb2\\3 (fractions)\\Program.cs",
               "RelativeDocumentMoniker": "wb2\\3 (fractions)\\Program.cs",
@@ -76,12 +123,11 @@
               "RelativeToolTip": "wb2\\3 (fractions)\\Program.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAgwEwAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T09:10:58.217Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-27T09:10:58.217Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb2\\2 (lucky ticket)\\lucky ticket\\Program.cs",
               "RelativeDocumentMoniker": "wb2\\2 (lucky ticket)\\lucky ticket\\Program.cs",
@@ -89,12 +135,11 @@
               "RelativeToolTip": "wb2\\2 (lucky ticket)\\lucky ticket\\Program.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAAwCEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T09:06:25.349Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-27T09:06:25.349Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Vova\\Desktop\\\u0423\u043D\u0438\u0432\u0435\u0440\\3\u0421\\\u041F\u041A\u0421\\wb2\\1 (sequences)\\sequences\\Program.cs",
               "RelativeDocumentMoniker": "wb2\\1 (sequences)\\sequences\\Program.cs",
@@ -102,8 +147,7 @@
               "RelativeToolTip": "wb2\\1 (sequences)\\sequences\\Program.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAkwB8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T09:05:30.152Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-27T09:05:30.152Z"
             }
           ]
         }

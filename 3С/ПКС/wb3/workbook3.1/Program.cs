@@ -18,7 +18,14 @@ class Program
 
             if (!string.IsNullOrEmpty(input) && long.TryParse(input, out long number))
             {
-                return number;
+                if (input.Contains('0'))
+                {
+                    Console.WriteLine("Число не может содержать нулей");
+                }
+                else
+                {
+                    return number;
+                }
             }
             else
             {
