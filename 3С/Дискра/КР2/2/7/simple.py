@@ -26,10 +26,10 @@ def create_simple_substitution_cipher_key():
     cipher_map = {}
     for i, char in enumerate(original_alphabet):
         cipher_map[char] = cipher_alphabet[i]
-    
+
     print("\nТаблица замен (открытый алфавит -> алфавит шифра):")
     print("-" * 50)
-    sorted_items = sorted(cipher_map.items()) # Сортируем по ключу (исходной букве)
+    sorted_items = sorted(cipher_map.items())  # Сортируем по ключу (исходной букве)
     line_parts = []
     for frm, to in sorted_items:
         line_parts.append(f"{frm}->{to}")
