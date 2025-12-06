@@ -2,26 +2,56 @@
 
 class Program
 {
-    public static OrderSystemManager manager = new();
-    public static Random random = new();
+    public static OrderSystemManager manager = new ();
+    public static Random random = new ();
 
     static void Main()
     {
-        manager.AddDish([new Dish("Борщ", "Свекла, капуста, картофель, мясо, вода", "300/50/30", 150.0, Category.Soup, 20,[ "горячее"]),
-        new Dish("Оливье", "Картофель, морковь, огурцы, колбаса", "200/30", 120.0, Category.Salad, 10,[ "холодное"]),
-        new Dish("Компот", "Ягоды, вода", "250", 80.0, Category.Beverage, 5, ["веганское"])]);
+        // Добавляем блюда с полной информацией (включая обязательные поля)
+        manager.AddDish([
+            new ("Борщ", "Свекла, капуста, картофель, мясо, вода", "300/50/30", 150.0, Category.Soup, 20, ["горячее"]),
+            new ("Оливье", "Картофель, морковь, огурцы, колбаса", "200/30", 120.0, Category.Salad, 10, [ "холодное"]),
+            new ("Компот", "Ягоды, вода", "250", 80.0, Category.Beverage, 5, ["веганское"])
+        ]);
 
         bool running = true;
         while (running)
         {
             ShowMainMenu();
 
-            if (!byte.TryParse(Console.ReadLine(), out byte choice))
+            var input = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(input) || !byte.TryParse(input, out byte choice))
             {
                 Console.Clear();
                 continue;
             }
 
+            running = Act(choice, running);
+         
+        }
+    }
+
+    static void ViewAllOrders()
+    {
+        if (manager.Orders.Count == 0)
+        {
+            Console.WriteLine("Нет созданных заказов.");
+            return;
+        }
+
+        Console.WriteLine("\nСписок всех заказов:");
+        Console.WriteLine($"{"ID",-4} | {"Стол",-4} | {"Оф.",-4} | {"Статус",-8} | {"Сумма",-8} | {"Время",-10}");
+        Console.WriteLine(new string('-', 50));
+
+        foreach (var order in manager.Orders)
+        {
+            string status = order.IsClosed ? "Закрыт" : "Открыт";
+            Console.WriteLine($"{order.OrderId,-4} | {order.TableId,-4} | {order.WaiterId,-4} | {status,-8} | {order.TotalCost,-8:F2} | {order.OrderTime:HH:mm:ss,-10}");
+        }
+    }
+
+    static bool Act(int choice, bool running)
+    {
             switch (choice)
             {
                 case 1:
@@ -61,65 +91,91 @@ class Program
                     ViewWaiterStats();
                     break;
                 case 13:
-                    manager.PrintDishStatistics();
+                    PrintDishStatistics();
+                    break;
+                case 14:
+                    ViewAllOrders();
+                    break;
+                case 15:
+                    ViewAllDishes();
                     break;
                 case 0:
-                    running = false;
                     Console.WriteLine("Выход из программы...");
-                    break;
+                    return false;
                 default:
                     Console.WriteLine("Неверный выбор. Попробуйте снова.");
-                    break;
-            }
+                    return true;
 
-            if (running && choice != 0)
-            {
-                Console.WriteLine("\nНажмите любую клавишу для продолжения...");
-                Console.ReadKey();
-                Console.Clear();
             }
+        if (running && choice != 0)
+        {
+            Console.WriteLine("\nНажмите любую клавишу для продолжения...");
+            Console.ReadKey();
+            Console.Clear();
+            return true;
         }
+        return true;
+    }
+
+    static void ViewAllDishes()
+    {
+        Console.WriteLine("\n=== Все блюда в меню ===");
+        manager.PrintMenu();
     }
 
     static void ShowMainMenu()
     {
-        string menu = "Выберите действие (0-13)\n" +
-                     "1. Добавить блюдо\n" +
-                     "2. Редактировать блюдо\n" +
-                     "3. Удалить блюдо\n" +
-                     "4. Просмотреть блюдо\n" +
+        string menu = "Выберите действие (положительное целое число, либо ноль)\n\n" +
+                     "=== БЛЮДА ===\n" +
+                     "1. Добавить блюдо по ID\n" +
+                     "2. Редактировать блюдо по ID\n" +
+                     "3. Удалить блюдо по ID\n" +
+                     "4. Просмотреть блюдо по ID\n\n" +
+                     "=== ЗАКАЗЫ ===\n" +
                      "5. Создать заказ\n" +
-                     "6. Изменить заказ\n" +
-                     "7. Закрыть заказ\n" +
-                     "8. Просмотреть заказ\n" +
-                     "9. Распечатать чек\n" +
+                     "6. Изменить заказ по ID\n" +
+                     "7. Закрыть заказ по ID\n" +
+                     "8. Просмотреть заказ по I" +
+                     "D\n" +
+                     "9. Распечатать чек заказа по ID\n\n" +
+                     "=== ОБЩЕЕ ===\n" +
                      "10. Просмотреть меню\n" +
                      "11. Общая выручка\n" +
                      "12. Статистика официанта\n" +
                      "13. Статистика по блюдам\n" +
+                     "14. Просмотреть все заказы\n" +
+                     "15. Просмотреть все блюда\n" +
                      "0. Выход\n";
 
-        Console.Write(menu);
+        Console.WriteLine(menu);
     }
 
-    static int GetIntInput()
+    static int GetIntInput(string prompt = "Введите число: ")
     {
         int result;
-        while (!int.TryParse(Console.ReadLine(), out result))
+        while (true)
         {
-            Console.Write("Введите число: ");
+            Console.Write(prompt);
+            if (int.TryParse(Console.ReadLine(), out result))
+            {
+                return result;
+            }
+            Console.WriteLine("Ошибка ввода. Попробуйте еще раз.");
         }
-        return result;
     }
 
-    static double GetDoubleInput()
+    static double GetDoubleInput(string prompt = "Введите число: ")
     {
         double result;
-        while (!double.TryParse(Console.ReadLine(), out result))
+        while (true)
         {
-            Console.Write("Введите число: ");
+            Console.Write(prompt);
+            if (double.TryParse(Console.ReadLine(), out result))
+            {
+                return result;
+            }
+            Console.WriteLine("Ошибка ввода. Попробуйте еще раз.");
         }
-        return result;
     }
 
     static void AddDish()
@@ -128,7 +184,7 @@ class Program
         do
         {
             Console.Write("Введите название блюда (не может быть пустым): ");
-            name = Console.ReadLine();
+            name = Console.ReadLine() ?? "";
             if (string.IsNullOrWhiteSpace(name))
                 Console.WriteLine("Название блюда не может быть пустым.");
         } while (string.IsNullOrWhiteSpace(name));
@@ -137,7 +193,7 @@ class Program
         do
         {
             Console.Write("Введите состав блюда (не может быть пустым): ");
-            composition = Console.ReadLine();
+            composition = Console.ReadLine() ?? "";
             if (string.IsNullOrWhiteSpace(composition))
                 Console.WriteLine("Состав блюда не может быть пустым.");
         } while (string.IsNullOrWhiteSpace(composition));
@@ -146,7 +202,7 @@ class Program
         do
         {
             Console.Write("Введите вес блюда (формат: 100/20/50): ");
-            weight = Console.ReadLine();
+            weight = Console.ReadLine() ?? "";
             if (!Dish.ValidateWeightFormat(weight))
                 Console.WriteLine("Неверный формат веса. Ожидается формат: 100/20/50 (числа, разделенные слэшами).");
         } while (!Dish.ValidateWeightFormat(weight));
@@ -161,11 +217,12 @@ class Program
         } while (price <= 0);
 
         Console.WriteLine("Выберите категорию:");
-        var categories = Enum.GetValues(typeof(Category));
+        var categories = Enum.GetValues<Category>();
         for (int i = 0; i < categories.Length; i++)
         {
             Console.WriteLine($"{i}. {categories.GetValue(i)}");
         }
+
         int catIndex;
         do
         {
@@ -174,6 +231,7 @@ class Program
             if (catIndex < 0 || catIndex >= categories.Length)
                 Console.WriteLine($"Номер должен быть от 0 до {categories.Length - 1}");
         } while (catIndex < 0 || catIndex >= categories.Length);
+
         Category category = (Category)categories.GetValue(catIndex);
 
         int cookingTime;
@@ -186,16 +244,19 @@ class Program
         } while (cookingTime <= 0);
 
         Console.Write("Введите типы блюда через запятую (например, острое,веганское): ");
-        string typesInput = Console.ReadLine();
-        string[] types = typesInput.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToArray();
+        string typesInput = Console.ReadLine() ?? "";
+        string[] types = typesInput.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                                   .Select(t => t.Trim())
+                                   .ToArray();
 
         // Проверка валидности ввода
         if (manager.ValidateDishInput(name, composition, weight, price, category, cookingTime, types, out string message))
         {
-            Dish dish = new(name, composition, weight, price, category, cookingTime, types);
+            Dish dish = new Dish(name, composition, weight, price, category, cookingTime, types);
             manager.AddDish(dish);
             Console.WriteLine($"Блюдо добавлено успешно! Назначен ID: {dish.Id}");
-        } else
+        }
+        else
         {
             Console.WriteLine($"Ошибка добавления блюда: {message}");
         }
@@ -205,6 +266,7 @@ class Program
     {
         Console.Write("Введите ID блюда для редактирования: ");
         int id = GetIntInput();
+        ViewAllDishes();
 
         var dish = manager.GetDishById(id);
         if (dish == null)
@@ -237,7 +299,7 @@ class Program
                     do
                     {
                         Console.Write("Введите новое название (не может быть пустым): ");
-                        newName = Console.ReadLine();
+                        newName = Console.ReadLine() ?? "";
                         if (string.IsNullOrWhiteSpace(newName))
                             Console.WriteLine("Название блюда не может быть пустым.");
                     } while (string.IsNullOrWhiteSpace(newName));
@@ -248,7 +310,7 @@ class Program
                     do
                     {
                         Console.Write("Введите новый состав (не может быть пустым): ");
-                        newComposition = Console.ReadLine();
+                        newComposition = Console.ReadLine() ?? "";
                         if (string.IsNullOrWhiteSpace(newComposition))
                             Console.WriteLine("Состав блюда не может быть пустым.");
                     } while (string.IsNullOrWhiteSpace(newComposition));
@@ -259,7 +321,7 @@ class Program
                     do
                     {
                         Console.Write("Введите новый вес (формат: 100/20/50): ");
-                        newWeight = Console.ReadLine();
+                        newWeight = Console.ReadLine() ?? "";
                         if (!Dish.ValidateWeightFormat(newWeight))
                             Console.WriteLine("Неверный формат веса. Ожидается формат: 100/20/50 (числа, разделенные слэшами).");
                     } while (!Dish.ValidateWeightFormat(newWeight));
@@ -307,9 +369,11 @@ class Program
                     break;
                 case 7:
                     Console.Write("Введите новые типы через запятую: ");
-                    string typesInput = Console.ReadLine();
-                    string[] newTypes = typesInput.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToArray();
-                    dish.EditDish(newType: newTypes);
+                    string typesInput = Console.ReadLine() ?? "";
+                    string[] newTypes = typesInput.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                                                 .Select(t => t.Trim())
+                                                 .ToArray();
+                    dish.EditDish(changeType: true, newType: newTypes);
                     break;
                 case 8:
                     // Редактирование всех полей с проверками
@@ -317,7 +381,7 @@ class Program
                     do
                     {
                         Console.Write("Введите новое название (не может быть пустым): ");
-                        allName = Console.ReadLine();
+                        allName = Console.ReadLine() ?? "";
                         if (string.IsNullOrWhiteSpace(allName))
                             Console.WriteLine("Название блюда не может быть пустым.");
                     } while (string.IsNullOrWhiteSpace(allName));
@@ -326,7 +390,7 @@ class Program
                     do
                     {
                         Console.Write("Введите новый состав (не может быть пустым): ");
-                        allComposition = Console.ReadLine();
+                        allComposition = Console.ReadLine() ?? "";
                         if (string.IsNullOrWhiteSpace(allComposition))
                             Console.WriteLine("Состав блюда не может быть пустым.");
                     } while (string.IsNullOrWhiteSpace(allComposition));
@@ -335,7 +399,7 @@ class Program
                     do
                     {
                         Console.Write("Введите новый вес (формат: 100/20/50): ");
-                        allWeight = Console.ReadLine();
+                        allWeight = Console.ReadLine() ?? "";
                         if (!Dish.ValidateWeightFormat(allWeight))
                             Console.WriteLine("Неверный формат веса. Ожидается формат: 100/20/50 (числа, разделенные слэшами).");
                     } while (!Dish.ValidateWeightFormat(allWeight));
@@ -375,8 +439,10 @@ class Program
                     } while (allCookingTime <= 0);
 
                     Console.Write("Введите новые типы через запятую: ");
-                    string allTypesInput = Console.ReadLine();
-                    string[] allTypes = allTypesInput.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(t => t.Trim()).ToArray();
+                    string allTypesInput = Console.ReadLine() ?? "";
+                    string[] allTypes = allTypesInput.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                                                    .Select(t => t.Trim())
+                                                    .ToArray();
 
                     dish.EditDish(
                         changeName: true, newName: allName,
@@ -385,7 +451,7 @@ class Program
                         changePrice: true, newPrice: allPrice,
                         changeCategory: true, newCategory: allCategory,
                         changeCookingTime: true, newCookingTime: allCookingTime,
-                        newType: allTypes
+                        changeType: true, newType: allTypes
                     );
                     break;
                 default:
@@ -405,6 +471,7 @@ class Program
     {
         Console.Write("Введите ID блюда для удаления: ");
         int id = GetIntInput();
+        ViewAllDishes();
 
         var dish = manager.GetDishById(id);
         if (dish == null)
@@ -416,13 +483,17 @@ class Program
         dish.PrintDishInfo();
 
         Console.Write("Вы уверены, что хотите удалить это блюдо? (y/n): ");
-        var confirm = Console.ReadLine();
+        var confirm = Console.ReadLine() ?? "";
 
         if (confirm.Equals("y", StringComparison.OrdinalIgnoreCase) || confirm.Equals("yes", StringComparison.OrdinalIgnoreCase))
         {
-            if (dish.DeleteDish(out bool success))
+            if (manager.DeleteDish(id))
             {
                 Console.WriteLine("Блюдо удалено успешно!");
+            }
+            else
+            {
+                Console.WriteLine("Ошибка при удалении блюда.");
             }
         }
         else
@@ -467,9 +538,9 @@ class Program
         } while (waiterId <= 0);
 
         Console.Write("Введите комментарий (или Enter для пропуска): ");
-        string comment = Console.ReadLine();
+        var comment = Console.ReadLine() ?? "";
 
-        var order = manager.CreateOrder(tableId, waiterId, comment ?? "");
+        var order = manager.CreateOrder(tableId, waiterId, comment);
 
         Console.WriteLine($"Заказ создан успешно! Назначен ID: {order.OrderId}");
 
@@ -509,6 +580,7 @@ class Program
     {
         Console.Write("Введите ID заказа для редактирования: ");
         int id = GetIntInput();
+        ViewAllOrders();
 
         var order = manager.GetOrderById(id);
         if (order == null)
@@ -543,7 +615,7 @@ class Program
                 break;
             case 2:
                 Console.Write("Введите новый комментарий: ");
-                string newComment = Console.ReadLine();
+                string newComment = Console.ReadLine() ?? "";
                 order.ChangeOrder(changeComment: true, newComment: newComment);
                 break;
             case 3:
@@ -568,7 +640,7 @@ class Program
                 } while (allTableId <= 0);
 
                 Console.Write("Введите новый комментарий: ");
-                string allComment = Console.ReadLine();
+                string allComment = Console.ReadLine() ?? "";
 
                 Console.Write("Введите новый ID официанта (положительное число): ");
                 int allWaiterId;
@@ -597,6 +669,7 @@ class Program
     {
         Console.Write("Введите ID заказа для закрытия: ");
         int id = GetIntInput();
+        ViewAllOrders();
 
         var order = manager.GetOrderById(id);
         if (order == null)
@@ -614,9 +687,9 @@ class Program
         order.PrintOrderInfo();
 
         Console.Write("Вы уверены, что хотите закрыть этот заказ? (y/n): ");
-        string confirm = Console.ReadLine();
+        var confirm = Console.ReadLine() ?? "";
 
-        if (confirm.ToLower() == "y" || confirm.ToLower() == "yes")
+        if (confirm.Equals("y", StringComparison.OrdinalIgnoreCase) || confirm.Equals("yes", StringComparison.OrdinalIgnoreCase))
         {
             order.CloseOrder();
             Console.WriteLine("Заказ закрыт успешно!");
@@ -631,6 +704,7 @@ class Program
     {
         Console.Write("Введите ID заказа для просмотра: ");
         int id = GetIntInput();
+        ViewAllOrders();
 
         var order = manager.GetOrderById(id);
         if (order == null)
@@ -646,6 +720,7 @@ class Program
     {
         Console.Write("Введите ID заказа для печати чека: ");
         int id = GetIntInput();
+        ViewAllOrders();
 
         var order = manager.GetOrderById(id);
         if (order == null)
@@ -660,7 +735,7 @@ class Program
     static void ViewTotalRevenue()
     {
         double revenue = manager.CalculateTotalRevenue();
-        Console.WriteLine($"Общая выручка: {revenue} руб.");
+        Console.WriteLine($"Общая выручка: {revenue:F2} руб.");
     }
 
     static void ViewWaiterStats()
@@ -670,5 +745,10 @@ class Program
 
         int count = manager.GetWaiterClosedOrdersCount(waiterId);
         Console.WriteLine($"Количество закрытых заказов официанта {waiterId}: {count}");
+    }
+
+    static void PrintDishStatistics()
+    {
+        manager.PrintDishStatistics();
     }
 }

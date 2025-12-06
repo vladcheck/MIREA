@@ -1,57 +1,133 @@
-﻿using System;
+﻿// Order.cs
+using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Xml.Linq;
+using System.Linq;
 
 namespace restaurant
 {
-    public class Order(int tableId,string comment, int waiterId)
+    public class Order(int tableId, string comment, int waiterId)
     {
-        public int OrderId { get; private set; }
+        public readonly int OrderId = _nextOrderId++;
         public int TableId { get; set; } = tableId;
-        public List<Dish> Dishes { get; set; } = [];
         public string Comment { get; set; } = comment;
-        public DateTime OrderTime { get; set; } = DateTime.Now;
         public int WaiterId { get; set; } = waiterId;
-        public DateTime? CloseTime { get; set; }
-        public double TotalCost { get; private set; } = 0;
+        public DateTime OrderTime { get; } = DateTime.Now;
+        public DateTime? CloseTime { get; private set; }
         public bool IsClosed { get; private set; } = false;
+        public double TotalCost { get; private set; } = 0;
 
-        public void SetOrderId(int id)
-        {
-            OrderId = id;
-        }
+        private readonly List<Dish> _dishes = [];
 
-        public void PrintOrderInfo()
-        {
-            string info = $"ID заказа: {OrderId}\n" +
-                         $"ID стола: {TableId}\n" +
-                         $"ID официанта: {WaiterId}\n" +
-                         $"Время принятия заказа: {OrderTime}\n" +
-                         $"Время закрытия заказа: {(CloseTime.HasValue ? CloseTime.Value.ToString() : "Не закрыт")}\n" +
-                         $"Комментарий: {Comment}\n" +
-                         "Блюда в заказе:\n";
+        private static int _nextOrderId = 1;
 
-            foreach (var dish in Dishes)
-            {
-                info += $" - {dish.Name} ({dish.Price} руб.)\n";
-            }
-
-            info += $"Итоговая стоимость: {TotalCost} руб.\n" +
-                   $"Статус: {(IsClosed ? "Закрыт" : "Открыт")}\n\n";
-
-            Console.Write(info);
-        }
+        public IReadOnlyList<Dish> Dishes => _dishes.AsReadOnly();
 
         public void AddDish(Dish dish)
         {
-            this.Dishes.Add(dish);  
+            if (IsClosed)
+                throw new InvalidOperationException("Нельзя добавлять блюда в закрытый заказ.");
+
+            _dishes.Add(dish);
+            TotalCost += dish.Price;
+        }
+
+        public void ChangeOrder(
+            bool changeTableId = false, int newTableId = 0,
+            bool changeComment = false, string newComment = "",
+            bool changeWaiterId = false, int newWaiterId = 0)
+        {
+            if (IsClosed)
+                throw new InvalidOperationException("Нельзя изменять закрытый заказ.");
+
+            if (changeTableId && newTableId > 0)
+                TableId = newTableId;
+
+            if (changeComment)
+                Comment = newComment;
+
+            if (changeWaiterId && newWaiterId > 0)
+                WaiterId = newWaiterId;
         }
 
         public void CloseOrder()
         {
-            CloseTime = DateTime.Now;
+            if (IsClosed)
+                return;
+
             IsClosed = true;
+            CloseTime = DateTime.Now;
+        }
+
+        public void PrintOrderInfo()
+        {
+            Console.WriteLine($"Заказ ID: {OrderId}");
+            Console.WriteLine($"Столик: {TableId}");
+            Console.WriteLine($"Официант ID: {WaiterId}");
+            Console.WriteLine($"Комментарий: {Comment}");
+            Console.WriteLine($"Время создания: {OrderTime:yyyy-MM-dd HH:mm:ss}");
+            Console.WriteLine($"Статус: {(IsClosed ? $"Закрыт в {CloseTime:HH:mm:ss}" : "Открыт")}");
+            Console.WriteLine($"Общая стоимость: {TotalCost:F2} руб.");
+
+            Console.WriteLine("\nБлюда в заказе:");
+            if (_dishes.Count == 0)
+            {
+                Console.WriteLine("Нет блюд");
+            }
+            else
+            {
+                foreach (var dish in _dishes)
+                {
+                    Console.WriteLine($"- {dish.Name} ({dish.Price:F2} руб.)");
+                }
+            }
+            Console.WriteLine("------------------------");
+        }
+
+        public void PrintCheck()
+        {
+            if (!IsClosed)
+            {
+                Console.WriteLine("Чек можно распечатать только для закрытого заказа.");
+                return;
+            }
+
+            Console.WriteLine("*************************************************");
+            Console.WriteLine($"Столик: {TableId}");
+            Console.WriteLine($"Официант: {WaiterId}");
+            Console.WriteLine($"Период обслуживания: с {OrderTime:HH:mm:ss} по {CloseTime:HH:mm:ss}");
+            Console.WriteLine();
+
+            // Группируем блюда по категориям
+            var groupedDishes = _dishes.GroupBy(d => d.Category);
+            double grandTotal = 0;
+
+            foreach (var categoryGroup in groupedDishes)
+            {
+                Console.WriteLine($"{categoryGroup.Key}:");
+
+                // Группируем блюда внутри категории
+                var dishCounts = categoryGroup.GroupBy(d => d.Name)
+                    .Select(g => new {
+                        Name = g.Key,
+                        Dish = g.First(),
+                        Count = g.Count(),
+                        SubTotal = g.First().Price * g.Count()
+                    }).ToList();
+
+                foreach (var dishCount in dishCounts)
+                {
+                    Console.WriteLine($"  {dishCount.Name} {dishCount.Count}*{dishCount.Dish.Price:F2}={dishCount.SubTotal:F2}");
+                }
+
+                double categoryTotal = dishCounts.Sum(dc => dc.SubTotal);
+                Console.WriteLine($"  Под_итог категории: {categoryTotal:F2}");
+                Console.WriteLine();
+
+                grandTotal += categoryTotal;
+            }
+
+            Console.WriteLine($"Итог счета: {grandTotal:F2}");
+            Console.WriteLine("*************************************************");
         }
     }
 }

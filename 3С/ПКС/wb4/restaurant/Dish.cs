@@ -1,40 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-
-namespace restaurant
+﻿namespace restaurant
 {
     public enum Category
     {
-        Beverage,
-        Salad,
-        Cold,
-        Hot,
         Soup,
-        Desert
+        Salad,
+        MainCourse,
+        Dessert,
+        Beverage,
+        Appetizer
     }
 
-    public class Dish(string name, string composition, string weight, double price, Category category, int cookingTime, params string[] type)
+    public class Dish
     {
-        public int Id { get; private set; }
-        public string Name { get; set; } = name;
-        public string Composition { get; set; } = composition;
-        public string Weight { get; set; } = weight;
-        public double Price { get; set; } = price;
-        public required Category Category { get; set; } = category;
-        public required int CookingTime { get; set; } = cookingTime;
-        public required string[] Type { get; set; } = type;
+        public readonly int Id;
+        public string Name { get; private set; }
+        public string Composition { get; private set; }
+        public string Weight { get; private set; }
+        public double Price { get; private set; }
+        public Category Category { get; private set; }
+        public int CookingTime { get; private set; }
+        public string[] Type { get; private set; }
+
+        private static int _nextId = 1;
+
+        public Dish(string name, string composition, string weight, double price, Category category, int cookingTime, string[] type)
+        {
+            Id = _nextId++;
+            Name = name;
+            Composition = composition;
+            Weight = weight;
+            Price = price;
+            Category = category;
+            CookingTime = cookingTime;
+            Type = type ?? Array.Empty<string>();
+        }
+
+        public static bool ValidateWeightFormat(string weight)
+        {
+            if (string.IsNullOrWhiteSpace(weight))
+                return false;
+
+            var parts = weight.Split('/');
+            foreach (var part in parts)
+            {
+                if (!int.TryParse(part, out int value) || value <= 0)
+                    return false;
+            }
+            return true;
+        }
 
         public void EditDish(
             bool changeName = false, string? newName = null,
             bool changeComposition = false, string? newComposition = null,
             bool changeWeight = false, string? newWeight = null,
             bool changePrice = false, double newPrice = 0,
-            bool changeCategory = false, Category newCategory = Category.Beverage,
+            bool changeCategory = false, Category newCategory = default,
             bool changeCookingTime = false, int newCookingTime = 0,
-            params string[] newType)
+            bool changeType = false, string[]? newType = null)
         {
             if (changeName && !string.IsNullOrWhiteSpace(newName))
                 Name = newName;
@@ -42,13 +64,8 @@ namespace restaurant
             if (changeComposition && !string.IsNullOrWhiteSpace(newComposition))
                 Composition = newComposition;
 
-            if (changeWeight && !string.IsNullOrWhiteSpace(newWeight))
-            {
-                if (ValidateWeightFormat(newWeight))
-                    Weight = newWeight;
-                else
-                    throw new ArgumentException("Неверный формат веса. Ожидается формат: 100/20/50");
-            }
+            if (changeWeight && ValidateWeightFormat(newWeight ?? ""))
+                Weight = newWeight;
 
             if (changePrice && newPrice > 0)
                 Price = newPrice;
@@ -59,70 +76,21 @@ namespace restaurant
             if (changeCookingTime && newCookingTime > 0)
                 CookingTime = newCookingTime;
 
-            if (newType != null && newType.Length > 0)
+            if (changeType && newType != null)
                 Type = newType;
-        }
-
-        public void SetId(int id)
-        {
-            Id = id;
         }
 
         public void PrintDishInfo()
         {
-            string info = $"ID: {Id}\n" +
-                         $"Название: {Name}\n" +
-                         $"Состав: {Composition}\n" +
-                         $"Вес: {Weight}\n" +
-                         $"Цена: {Price}\n" +
-                         $"Категория: {Category}\n" +
-                         $"Время готовки: {CookingTime}\n" +
-                         $"Тип: {string.Join(", ", Type)}\n\n";
-
-            Console.Write(info);
-        }
-
-        public static bool DeleteDish(out bool success)
-        {
-            success = true;
-            return success;
-        }
-
-        public static bool ValidateDish(in string name, in double price, out string message)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                message = "Название не может быть пустым";
-                return false;
-            }
-
-            if (price <= 0)
-            {
-                message = "Цена должна быть положительной";
-                return false;
-            }
-
-            message = "Блюдо валидно";
-            return true;
-        }
-
-        public static bool ValidateWeightFormat(string weight)
-        {
-            // Проверяем формат веса: 100/20/50 или 200/30 и т.д.
-            // Разрешены числа, разделенные слэшами
-            if (string.IsNullOrWhiteSpace(weight))
-                return false;
-
-            string[] parts = weight.Split('/');
-            foreach (string part in parts)
-            {
-                if (!int.TryParse(part.Trim(), out int value) || value <= 0)
-                    return false;
-            }
-
-            return true;
+            Console.WriteLine($"ID: {Id}");
+            Console.WriteLine($"Название: {Name}");
+            Console.WriteLine($"Состав: {Composition}");
+            Console.WriteLine($"Вес: {Weight}");
+            Console.WriteLine($"Цена: {Price:F2} руб.");
+            Console.WriteLine($"Категория: {Category}");
+            Console.WriteLine($"Время готовки: {CookingTime} мин.");
+            Console.WriteLine($"Типы: {string.Join(", ", Type)}");
+            Console.WriteLine("------------------------");
         }
     }
-
-    
 }
