@@ -1,109 +1,175 @@
 import time
-from StreamCipher import StreamCipher
+from typing import Any, List
+import struct
 
-LCG_DEFAULT_PARAMS: dict[str, int] = {"a": 1103515245, "c": 12345, "m": 2**32}
-BLOCK_SIZE = 4  # байты
 
-if __name__ == "__main__":
+class LCG:
+    """
+    Линейный конгруэнтный генератор (LCG) псевдослучайных чисел
+    Y(n+1) = (a * Xn + b) mod m, где m = 2^31-1
+    """
+
+    Y: int
+    m: int = 2**31 - 1
+
+    def __init__(
+        self,
+        a: int = 1664525,
+        b: int = 1013904223,
+    ) -> None:
+        self.seed: int = int(time.time() * 1000000) % self.m  # Текущее значение
+        self.Y: int = self.seed
+        self.a: int = a
+        self.b: int = b
+
+    def next_int(self) -> int:
+        self.Y = (self.a * self.Y + self.b) % self.m
+        return self.Y
+
+    def generate_gamma_bytes(self, count: int) -> List[int]:
+        gamma_bytes: List[int] = []
+        numbers_needed: int = (count + 3) // 4
+
+        for _ in range(numbers_needed):
+            rand_num: int = self.next_int()
+            bytes_list: List[int] = list(struct.pack("<I", rand_num))
+            for byte in bytes_list:
+                if len(gamma_bytes) < count:
+                    gamma_bytes.append(byte)
+                else:
+                    break
+        return gamma_bytes
+
+    def reset(self, seed=None) -> None:
+        # Сброс генератора
+        if seed is not None:
+            self.Y = seed
+        else:
+            self.Y = int(time.time() * 1000000) % self.m
+
+
+class StreamCipher:
+    """
+    Потоковый шифр, использующий LCG для генерации гаммы
+    """
+
+    def __init__(self, lcg_params: dict | None = None) -> None:
+        if lcg_params is None:
+            lcg_params = {
+                "a": 1664525,
+                "b": 1013904223,
+            }
+
+        self.lcg = LCG(a=lcg_params["a"], b=lcg_params["b"])
+        self.seed: int = self.lcg.seed  # Сохраняем начальное значение
+
+    def text_to_bytes(self, text: str) -> List[int]:
+        return list(text.encode("utf-8"))
+
+    def bytes_to_text(self, bytes_list: List[int]) -> str:
+        return bytes(bytes_list).decode("utf-8")
+
+    def encrypt(self, plaintext: str) -> List[int]:
+        # Передаем сохраненный seed для сброса
+        self.lcg.reset(self.seed)
+
+        plaintext_bytes: List[int] = self.text_to_bytes(plaintext)
+        length: int = len(plaintext_bytes)
+
+        gamma: List[int] = self.lcg.generate_gamma_bytes(length)
+
+        ciphertext_bytes: List[int] = []
+        for i in range(length):
+            encrypted_byte: int = plaintext_bytes[i] ^ gamma[i]
+            ciphertext_bytes.append(encrypted_byte)
+
+        return ciphertext_bytes
+
+    def decrypt(self, ciphertext_bytes: List[int]) -> str:
+        # Передаем тот же самый seed
+        self.lcg.reset(self.seed)
+
+        length: int = len(ciphertext_bytes)
+        gamma: List[int] = self.lcg.generate_gamma_bytes(length)
+
+        plaintext_bytes: List[int] = []
+        for i in range(length):
+            decrypted_byte: int = ciphertext_bytes[i] ^ gamma[i]
+            plaintext_bytes.append(decrypted_byte)
+
+        return self.bytes_to_text(plaintext_bytes)
+
+
+def main() -> None:
     f = open("output.txt", "w", encoding="utf8")
-    print("ОБРАБОТКА БЛОКАМИ С LCG:")
-    plaintext: str = open("input.txt", encoding="utf8").read()
+    print("ОБРАБОТКА ГАММИРОВАНИЕМ С LCG:")
 
-    print("ПАРАМЕНТРЫ ГЕНЕРАТОРА ПСЕВДОСЛУЧАЙНЫХ ЧИСЕЛ: ")
+    with open("input.txt", "r", encoding="utf8") as file:
+        plaintext: str = file.read()
+
+    print("ПАРАМЕТРЫ ГЕНЕРАТОРА ПСЕВДОСЛУЧАЙНЫХ ЧИСЕЛ: ")
     print("Если хотите, чтобы параметр имел стандартное значение, введите -1")
-    a = int(
-        input(
-            "Введите параметр a (лучше всего подходят числа с остатком 1 при делении на 4): "
-        )
-    )
-    if a == -1:
-        a: int = LCG_DEFAULT_PARAMS["a"]
-    c = int(input("Введите параметр c (лучше всего подходят нечётные числа): "))
-    if c == -1:
-        c: int = LCG_DEFAULT_PARAMS["c"]
-    m: int = LCG_DEFAULT_PARAMS["m"]
 
-    # Используем другие параметры LCG для демонстрации
-    lcg_params: dict[str, int] = {"a": a, "c": c, "m": m}
-    seed = int(input("Введите семя: "))
-    if seed == -1:
-        seed: int = int(time.time() * 1000000) % m
+    # Ввод параметров
+    try:
+        val: str = input("Введите параметр a (множитель): ")
+        a: int = 1664525 if val == "-1" or val == "" else int(val)
+    except:
+        a = 1664525
 
-    cipher = StreamCipher(seed=seed, lcg_params=lcg_params)
+    try:
+        val = input("Введите параметр b (приращение): ")
+        b: int = 1013904223 if val == "-1" or val == "" else int(val)
+    except:
+        b = 1013904223
+
+    lcg_params: dict[str, int] = {"a": a, "b": b}
+    # Инициализация шифра
+    cipher = StreamCipher(lcg_params)
+
+    real_seed: int = cipher.seed
 
     f.write(f"\nИсходный текст: {plaintext}\n")
-    f.write(f"Размер блока: {BLOCK_SIZE} символов\n")
-    print(
-        f"Параметры LCG: a={lcg_params['a']}, c={lcg_params['c']}, m={lcg_params['m']}\n"
+    f.write(f"\nДлина текста: {len(plaintext)} символов\n")
+    f.write(
+        f"\nПараметры LCG: a={lcg_params['a']}, b={lcg_params['b']}, m={lcg_params['m']}, seed={real_seed}\n"
     )
 
-    # Шифрование блоками
+    # Шифрование
     f.write("\n\nПРОЦЕСС ШИФРОВАНИЯ:\n\n")
-    cipher.lcg.reset()
-    encrypted_blocks: list[int] = []
-    total_blocks: int = (len(plaintext) + BLOCK_SIZE - 1) // BLOCK_SIZE
+    ciphertext_bytes: List[int] = cipher.encrypt(plaintext)
 
-    for block_num in range(total_blocks):
-        start_idx: int = block_num * BLOCK_SIZE
-        end_idx: int = start_idx + BLOCK_SIZE
-        block_text: str = plaintext[start_idx:end_idx]
+    # Генерируем гамму для отображения
+    # Сбрасываем с конкретным seed
+    cipher.lcg.reset(real_seed)
+    gamma: List[int] = cipher.lcg.generate_gamma_bytes(len(plaintext.encode("utf-8")))
 
-        f.write(f"Блок {block_num + 1}: '{block_text}'\n")
+    plaintext_bytes: List[int] = list(plaintext.encode("utf-8"))
 
-        # Преобразуем блок в байты
-        block_bytes: list[int] = cipher.text_to_bytes(block_text)
+    f.write(f"\nТекст в байтах (UTF-8): {plaintext_bytes}...\n")
+    f.write(f"\nГамма шифра: {gamma}...\n")
+    f.write(f"\nЗашифрованный текст в байтах: {ciphertext_bytes}...\n")
 
-        # Генерируем гамму для блока
-        block_gamma: list[int] = cipher.generate_gamma(len(block_bytes))
-
-        # Шифруем блок
-        encrypted_block: list[int] = [
-            block_bytes[i] ^ block_gamma[i] for i in range(len(block_bytes))
-        ]
-        encrypted_blocks.extend(encrypted_block)
-
-        f.write(f"  Байты блока: {block_bytes}\n")
-        f.write(f"  Гамма блока: {block_gamma}\n")
-        f.write(f"  Зашифрованные байты: {encrypted_block}\n")
-
-    f.write("\n\nШИФРОВАННЫЙ ТЕКСТ В БАЙТАХ:\n\n")
-    for i in encrypted_blocks:
-        f.write(str(i))
-    f.write("\n")
-
-    # Дешифрование блоками
+    # Дешифрование
     f.write("\n\nПРОЦЕСС ДЕШИФРОВАНИЯ:\n\n")
-    cipher.lcg.reset()
-    decrypted_text: str = ""
+    try:
+        decrypted_text: str = cipher.decrypt(ciphertext_bytes)
+        f.write(f"\nРасшифрованный текст: {decrypted_text}\n")
 
-    for block_num in range(total_blocks):
-        start_idx = block_num * BLOCK_SIZE
-        end_idx = start_idx + BLOCK_SIZE
+        f.write("\n\nРЕЗУЛЬТАТ:\n\n")
+        match: bool = plaintext == decrypted_text
+        f.write(
+            f"\nИсходный текст совпадает с расшифрованным: {'Да' if match else 'Нет'}\n"
+        )
+        print(f"Результаты записаны в output.txt")
+        f.write(f"\nТексты совпадают: {'Да' if match else 'Нет'}")
 
-        # Берем зашифрованные байты блока
-        block_bytes_count: int = min(BLOCK_SIZE, len(encrypted_blocks) - start_idx)
-        block_cipher_bytes: list[int] = encrypted_blocks[
-            start_idx : start_idx + block_bytes_count
-        ]
+    except UnicodeDecodeError as e:
+        print(f"ОШИБКА ДЕКОДИРОВАНИЯ: {e}")
+        f.write(f"ОШИБКА: Не удалось декодировать текст. Гамма рассинхронизирована.\n")
 
-        # Генерируем гамму для блока
-        block_gamma = cipher.generate_gamma(len(block_cipher_bytes))
-
-        # Дешифруем блок
-        decrypted_block_bytes = [
-            block_cipher_bytes[i] ^ block_gamma[i]
-            for i in range(len(block_cipher_bytes))
-        ]
-        decrypted_block: str = cipher.bytes_to_text(decrypted_block_bytes)
-        decrypted_text += decrypted_block
-
-        f.write(f"Блок {block_num + 1}: '{decrypted_block}'\n")
-        f.write(f"  Зашифрованные байты: {block_cipher_bytes}\n")
-        f.write(f"  Гамма блока: {block_gamma}\n")
-        f.write(f"  Расшифрованные байты: {decrypted_block_bytes}\n")
-
-    f.write(decrypted_text)
     f.close()
 
-    print(f"Зашифрованный текст записан в output.txt")
-    print(f"Тексты совпадают: {"Да" if plaintext == decrypted_text else "Нет"}")
+
+if __name__ == "__main__":
+    main()
