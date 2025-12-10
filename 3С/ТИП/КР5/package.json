@@ -1,0 +1,23 @@
+{
+    "name": "express-voting-system",
+    "version": "1.0.0",
+    "description": "Express.js application for voting system",
+    "main": "server.js",
+    "scripts": {
+        "start": "node ./src/server.js",
+        "dev": "nodemon ./src/server.js"
+    },
+    "keywords": [
+        "express",
+        "voting",
+        "api"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.2"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    }
+}
