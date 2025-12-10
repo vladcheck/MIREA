@@ -14,10 +14,14 @@ class LCG:
 
     def __init__(
         self,
+        seed: int | None,
         a: int = 1664525,
         b: int = 1013904223,
     ) -> None:
-        self.seed: int = int(time.time() * 1000000) % self.m  # Текущее значение
+        if seed != None:
+            self.seed = seed
+        else:
+            self.seed: int = int(time.time() * 1000000) % self.m  # Текущее значение
         self.Y: int = self.seed
         self.a: int = a
         self.b: int = b
@@ -60,7 +64,7 @@ class StreamCipher:
                 "b": 1013904223,
             }
 
-        self.lcg = LCG(a=lcg_params["a"], b=lcg_params["b"])
+        self.lcg = LCG(seed=lcg_params["seed"], a=lcg_params["a"], b=lcg_params["b"])
         self.seed: int = self.lcg.seed  # Сохраняем начальное значение
 
     def text_to_bytes(self, text: str) -> List[int]:
@@ -123,7 +127,10 @@ def main() -> None:
     except:
         b = 1013904223
 
-    lcg_params: dict[str, int] = {"a": a, "b": b}
+    val = input("Введите параметр seed (приращение): ")
+    seed: int | None = None if val == "-1" or val == "" else int(val)
+
+    lcg_params: dict[str, int | None] = {"a": a, "b": b, "seed": seed}
     # Инициализация шифра
     cipher = StreamCipher(lcg_params)
 
@@ -132,7 +139,7 @@ def main() -> None:
     f.write(f"\nИсходный текст: {plaintext}\n")
     f.write(f"\nДлина текста: {len(plaintext)} символов\n")
     f.write(
-        f"\nПараметры LCG: a={lcg_params['a']}, b={lcg_params['b']}, m={lcg_params['m']}, seed={real_seed}\n"
+        f"\nПараметры LCG: a={lcg_params['a']}, b={lcg_params['b']}, m={LCG.m}, seed={real_seed}\n"
     )
 
     # Шифрование
