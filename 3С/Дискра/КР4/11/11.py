@@ -1,4 +1,4 @@
-from typing import List, Tuple, Dict, Any
+from typing import List, Tuple, Dict
 
 # --- КОНФИГУРАЦИЯ ---
 
@@ -57,7 +57,9 @@ def gcd(a: int, b: int) -> int:
 
 
 def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
-    """Расширенный алгоритм Евклида: return (g, x, y) такие, что ax + by = g"""
+    """
+    Расширенный алгоритм Евклида: вернуть (g, x, y) такие, что ax + by = g (коэффициеты Безу)
+    """
     if a == 0:
         return b, 0, 1
     d, x1, y1 = extended_gcd(b % a, a)
@@ -67,11 +69,13 @@ def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
 
 
 def mod_inverse(a: int, m: int) -> int | None:
-    """Нахождение обратного элемента: (a * x) % m == 1"""
+    """
+    Нахождение обратного элемента a по модулю m: (a * x) % m == 1
+    """
     d, x, y = extended_gcd(a, m)
     if d != 1:
         return None  # Обратного элемента не существует
-    return (x % m + m) % m
+    return x % m
 
 
 def modular_exponentiation(base: int, exp: int, mod: int) -> int:
@@ -88,11 +92,11 @@ def modular_exponentiation(base: int, exp: int, mod: int) -> int:
 
 def odd_segmented_sieve(k: int, m: int) -> List[int]:
     """Генерация простых чисел (сегментированное решето)"""
-    n = m + 2 * k - 2
-    # Используем простую реализацию решета для надежности в рамках задачи
-    # (Для больших чисел нужен тест Миллера-Рабина, но здесь хватит и этого)
+    n: int = m + 2 * k - 2
     limit: int = n
-    sieve: List[bool] = [True] * (limit + 1)
+    sieve: List[bool] = [True] * (
+        limit + 1
+    )  # массив "простое/составное число". Все числа считаем простыми
     sieve[0] = sieve[1] = False
     for i in range(2, int(limit**0.5) + 1):
         if sieve[i]:
@@ -111,7 +115,7 @@ def find_two_primes(k: int, m: int) -> Tuple[int, int]:
 
     primes: List[int] = odd_segmented_sieve(k, m)
 
-    # Если мало простых чисел, расширяем диапазон
+    # Если простых чисел меньше двух, расширяем диапазон
     if len(primes) < 2:
         return find_two_primes(k * 2, m)
 
@@ -132,7 +136,7 @@ def split_into_blocks(number_str: str, N: int) -> List[int]:
     current_block: str = ""
 
     for digit in number_str:
-        test_block = current_block + digit
+        test_block: str = current_block + digit
         # Проверяем, помещается ли новый кусок в N
         if int(test_block) < N:
             current_block = test_block
@@ -256,9 +260,11 @@ def main() -> None:
 
         blocks: List[int] = split_into_blocks(numeric_text, N)
 
-        f.write(f"\nИсходный текст (сырой): {raw_text[:1000]}...\n")
-        f.write(f"\nЧисловое представление: {numeric_text[:1000]}...\n")
-        f.write(f"\nБлоки ({len(blocks)} шт): {blocks[:100]}...\n")
+        f.write(f"\nИсходный текст (сырой): {raw_text}...\n")
+        f.write(
+            f"\nЧисловое представление (первые 1000 цифр): {numeric_text[:1000]}...\n"
+        )
+        f.write(f"\nБлоки (всего {len(blocks)} шт): {blocks}...\n")
 
         # 4. Шифрование
         print("Шифрование...")
@@ -276,9 +282,11 @@ def main() -> None:
         decrypted_text: str = number_to_text(decrypted_numeric, decoding_table)
 
         f.write(
-            f"\nРасшифрованное числовое представление: {decrypted_numeric[:100]}...\n"
+            f"\nРасшифрованное числовое представление (первые 1000 цифр): {decrypted_numeric[:1000]}...\n"
         )
-        f.write(f"\nРасшифрованный текст: {decrypted_text[:1000]}...\n")
+        f.write(
+            f"\nРасшифрованный текст (первые 100 слов): {decrypted_text[:100]}...\n"
+        )
 
         # Проверка
         # Сравниваем не с raw_text, а с очищенной версией того, что мы закодировали
