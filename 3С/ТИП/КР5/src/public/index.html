@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система голосования</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🗳️ Система голосования</h1>
+            <p>Выберите один из вариантов для голосования</p>
+        </header>
+
+        <main>
+            <div class="options-container" id="options-container">
+                <!-- Опции будут загружены через JavaScript -->
+            </div>
+
+            <div class="results-container" id="results-container">
+                <h2>Результаты голосования</h2>
+                <div class="stats">
+                    <span>Всего голосов: <span id="total-votes">0</span></span>
+                    <button id="reset-button" class="reset-button">Сбросить голоса</button>
+                </div>
+                <div class="chart-container" id="chart-container">
+                    <!-- График будет сгенерирован через JavaScript -->
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h2>🔧 Администрирование</h2>
+                <div class="admin-form">
+                    <input type="text" id="new-option" placeholder="Новый вариант для голосования" maxlength="100">
+                    <button id="add-option" class="add-button">Добавить вариант</button>
+                </div>
+                <div class="options-list" id="admin-options-list">
+                    <!-- Список вариантов для администрирования -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Express.js Voting System • Контрольная работа №5</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
