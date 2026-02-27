@@ -1,0 +1,221 @@
+{
+  "main": {
+    "id": "f0cf5c7be5836545",
+    "type": "split",
+    "children": [
+      {
+        "id": "06b599034830cdae",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "68bc5b7916f6828c",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "eb07f2a4116f073b",
+    "type": "split",
+    "children": [
+      {
+        "id": "081f4f20609a6553",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8c695bee5996cdd9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "5c233ddcd5056d54",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "7f395a9283701dc5",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ee79c64d4bbcc25a",
+    "type": "split",
+    "children": [
+      {
+        "id": "4b079b12dfde964f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a078f8a124895cfa",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Планы работ до 24.02.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Планы работ до 24.02"
+            }
+          },
+          {
+            "id": "b10a04d714003c7f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Планы работ до 24.02.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Планы работ до 24.02"
+            }
+          },
+          {
+            "id": "dbd46886367b94d5",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "214735ea289b735f",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "392f8deba3f8ed79",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Планы работ до 24.02.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Планы работ до 24.02"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "remotely-save:Remotely Save": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "omnisearch:Omnisearch": false
+    }
+  },
+  "active": "68bc5b7916f6828c",
+  "lastOpenFiles": [
+    "Вова/Pasted image 20260226202112.png",
+    "Вова/Отчет.md",
+    "Вова/lu79163fkdk.tmp",
+    "Вова/lu79163fkdh.tmp",
+    "Вова/Pasted image 20260226202112 copy.png",
+    "Вова/lu79163fkde.tmp",
+    "Вова/lu79163fkdb.tmp",
+    "Вова/lu79163fkd8.tmp",
+    "Вова/lu79163fkd5.tmp",
+    "Вова/lu79163fkd2.tmp",
+    "Вова/lu79163fkcz.tmp",
+    "Вова/lu79163fkcw.tmp",
+    "Вова/lu79163fkct.tmp",
+    "Excalidraw/страница поста.md",
+    "Вова/Тасочки (24.02).md",
+    "Вова/Pasted image 20260226202045.png",
+    "Excalidraw/страница профиля.md",
+    "Вова/4 и 5.png",
+    "Вова/preamble.tex.md",
+    "Вова/Pasted image 20260226123647.png",
+    "Вова/Pasted image 20260224100940.png",
+    "Вова/Pasted image 20260224101019.png",
+    "Вова/Pasted image 20260226122134.png",
+    "Excalidraw/Drawing 2026-02-23 11.27.22.excalidraw.md",
+    "Вова/Pasted image 20260224100910.png",
+    "Даня/ErD_03.jpg",
+    "Пояснения к работе.md",
+    "Введение.md",
+    "Миша/Введение.md",
+    "Планы работ до 24.02.md",
+    "Document.canvas",
+    "Welcome.md"
+  ]
+}

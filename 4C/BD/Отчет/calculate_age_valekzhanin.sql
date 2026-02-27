@@ -1,0 +1,7 @@
+CREATE OR REPLACE FUNCTION calculate_age_valekzhanin(birth_date DATE) RETURNS INTEGER AS $$
+    BEGIN
+        RETURN EXTRACT( YEAR FROM AGE(CURRENT_DATE, birth_date))::INTEGER;
+    END;
+$$
+    RETURNS NULL ON NULL INPUT
+    LANGUAGE plpgsql;
