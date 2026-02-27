@@ -1,0 +1,11 @@
+﻿Слово,Перевод,Пример употребления,Перевод примера
+un modem,модем,Un modem permet de transformer les signaux numériques.,Модем позволяет преобразовывать цифровые сигналы.
+un routeur,маршрутизатор,Un routeur connecte deux réseaux commutés par paquets.,Маршрутизатор соединяет две пакетные сети.
+un hub,хаб,Un hub diffuse des données à chaque ordinateur.,Хаб рассылает данные каждому компьютеру.
+un commutateur,коммутатор,Un commutateur inspecte les paquets.,Коммутатор анализирует пакеты.
+un pont,мост,Un pont divise un réseau en sections.,Мост делит сеть на сегменты.
+une passerelle,шлюз,Une passerelle permet la communication entre réseaux.,Шлюз обеспечивает связь между сетями.
+la modulation,модуляция,La modulation convertit le numérique en analogique.,Модуляция преобразует цифровой сигнал в аналоговый.
+le débit,битрейт,Le débit s'exprime en bits par seconde.,Битрейт измеряется в битах в секунду.
+la couche 3,3-й уровень,Les routeurs opèrent à la couche 3.,Маршрутизаторы работают на 3-м уровне.
+les paquets de données,пакеты данных,Le routeur transmet les paquets de données.,Маршрутизатор передает пакеты данных.
