@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+for folder in 2*/; do
+  if [ -d "$folder" ]; then
+    (
+      cd "$folder"
+      if ! [ -d test ]; then 
+        mkdir test
+      fi
+      
+      for f in *.sql; do
+        if [ -f "$f" ]; then
+          touch "test/test_$f"
+          echo "Created ${folder}test/test_$f"
+        fi
+      done
+    )
+  fi
+done
