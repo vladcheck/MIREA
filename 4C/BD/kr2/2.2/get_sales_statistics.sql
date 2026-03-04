@@ -9,6 +9,10 @@ AS $$
 DECLARE
     v_total_sales BIGINT;
 BEGIN
+    IF p_year IS NULL THEN
+        RAISE EXCEPTION 'Год не может быть равен NULL';
+    END IF;
+
     -- Получаем общее количество продаж за год
     SELECT COUNT(*) INTO v_total_sales
     FROM sale
@@ -20,10 +24,10 @@ BEGIN
         COUNT(s.id) AS sales_count,
         CASE 
             WHEN v_total_sales > 0 THEN 
-                ROUND((COUNT(s.id)::DECIMAL / v_total_sales * 100), 2)
-            ELSE 0 
+                ROUND((COUNT(s.id)::DECIMAL / v_total_sales * 100), 2)::DECIMAL(5,2)
+            ELSE 0::DECIMAL(5,2)
         END AS percentage,
-        COALESCE(SUM(s.price), 0) AS total_amount
+        COALESCE(SUM(s.price), 0)::DECIMAL(15,2) AS total_amount
     FROM sale s
     JOIN property p ON s.property_id = p.id
     JOIN type t ON p.type_id = t.id
