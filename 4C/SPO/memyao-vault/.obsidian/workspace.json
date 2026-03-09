@@ -11,10 +11,14 @@
             "id": "68bc5b7916f6828c",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Недели/4 Неделя.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "4 Неделя"
             }
           }
         ]
@@ -74,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "ee79c64d4bbcc25a",
@@ -185,8 +190,14 @@
   },
   "active": "68bc5b7916f6828c",
   "lastOpenFiles": [
-    "Вова/Pasted image 20260226202112.png",
+    "Недели/ERD.md",
+    "Недели/4 Неделя.md",
+    "Недели",
+    "Вова/4 и 5.png",
+    "Вова/Тасочки (24.02).md",
     "Вова/Отчет.md",
+    "Диаграмма прецедентов.md",
+    "Вова/Pasted image 20260226202112.png",
     "Вова/lu79163fkdk.tmp",
     "Вова/lu79163fkdh.tmp",
     "Вова/Pasted image 20260226202112 copy.png",
@@ -197,12 +208,9 @@
     "Вова/lu79163fkd2.tmp",
     "Вова/lu79163fkcz.tmp",
     "Вова/lu79163fkcw.tmp",
-    "Вова/lu79163fkct.tmp",
     "Excalidraw/страница поста.md",
-    "Вова/Тасочки (24.02).md",
     "Вова/Pasted image 20260226202045.png",
     "Excalidraw/страница профиля.md",
-    "Вова/4 и 5.png",
     "Вова/preamble.tex.md",
     "Вова/Pasted image 20260226123647.png",
     "Вова/Pasted image 20260224100940.png",
