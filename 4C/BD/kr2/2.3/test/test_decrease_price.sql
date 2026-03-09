@@ -1,0 +1,1 @@
+SELECT decrease_price_valekzhanin();
