@@ -1,9 +1,9 @@
 {
-  "cssTheme": "",
+  "cssTheme": "Material Gruvbox",
   "interfaceFontFamily": "",
   "textFontFamily": "",
   "monospaceFontFamily": "Fira Code",
-  "baseFontSize": 11,
+  "baseFontSize": 17,
   "baseFontSizeAction": true,
   "accentColor": ""
 }
