@@ -1,0 +1,1 @@
+SELECT realtor_commision_valekzhanin();

@@ -9,7 +9,7 @@ DECLARE
     v_prev_gate_log record;
     v_is_prev_date_assigned boolean := false;
     v_gate_log record;
-    v_total_work_hours numeric := 0;
+    v_total_work_hours numeric(5,2) := 0;
     v_interval_seconds numeric := 0;
 BEGIN
     FOR v_gate_log IN

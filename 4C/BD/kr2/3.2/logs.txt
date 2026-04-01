@@ -1,0 +1,111 @@
+Starting execution at Wed Apr  1 18:19:13 MSK 2026
+Target directory: /Users/valdemar_check/github/vladcheck/MIREA/4C/BD/kr2/3.2
+---
+Running migration: 0_cleanup.sql
+psql:0_cleanup.sql:28: NOTICE:  Удален триггер: trg_check_bonus_limit_valekzhanin
+psql:0_cleanup.sql:28: NOTICE:  Удален триггер: trg_check_passport_format_valekzhanin
+psql:0_cleanup.sql:28: NOTICE:  Удален триггер: trg_format_phone_valekzhanin
+psql:0_cleanup.sql:28: NOTICE:  Удален триггер: trg_update_realtor_bonus_valekzhanin
+psql:0_cleanup.sql:28: NOTICE:  Удалена функция: check_bonus_limit_valekzhanin
+psql:0_cleanup.sql:28: NOTICE:  Удалена функция: check_passport_format_valekzhanin
+psql:0_cleanup.sql:28: NOTICE:  Удалена функция: format_phone_valekzhanin
+psql:0_cleanup.sql:28: NOTICE:  Удалена функция: update_realtor_bonus_valekzhanin
+DO
+Running migration: bonus.sql
+DROP TABLE
+CREATE TABLE
+INSERT 0 5
+Running main script: 1.sql
+CREATE FUNCTION
+psql:1.sql:25: NOTICE:  trigger "trg_update_realtor_bonus_valekzhanin" for relation "sale" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+Running test script: test/1.sql
+BEGIN
+psql:test/1.sql:10: NOTICE:  Тест 1: Обновление существующего бонуса
+psql:test/1.sql:10: NOTICE:  Бонус обновлен для риэлтора 1
+DO
+ROLLBACK
+BEGIN
+psql:test/1.sql:23: NOTICE:  Тест 2: Создание новой записи бонуса
+psql:test/1.sql:23: NOTICE:  Запись бонуса создана для риэлтора 2
+DO
+ROLLBACK
+BEGIN
+psql:test/1.sql:40: NOTICE:  Тест 3: Уменьшение бонуса при удалении продажи
+psql:test/1.sql:40: NOTICE:  Бонус обновлен для риэлтора 3
+psql:test/1.sql:40: NOTICE:  Бонус уменьшен для риэлтора 3
+DO
+ROLLBACK
+Running main script: 2.sql
+CREATE FUNCTION
+psql:2.sql:28: NOTICE:  trigger "trg_check_bonus_limit_valekzhanin" for relation "bonus" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+Running test script: test/2.sql
+BEGIN
+psql:test/2.sql:9: NOTICE:  Тест 1: Бонус в пределах нормы
+DO
+ROLLBACK
+BEGIN
+psql:test/2.sql:20: NOTICE:  Тест 2: Превышение лимита бонуса
+psql:test/2.sql:20: NOTICE:  ВНИМАНИЕ: Накопленный бонус риэлтора 2 (600000.00) превысил лимит (500000.00)
+DO
+ROLLBACK
+BEGIN
+psql:test/2.sql:31: NOTICE:  Тест 3: Превышение лимита при обновлении бонуса
+psql:test/2.sql:31: NOTICE:  ВНИМАНИЕ: Накопленный бонус риэлтора 3 (600000.00) превысил лимит (500000.00)
+DO
+ROLLBACK
+Running main script: 3.sql
+psql:3.sql:1: NOTICE:  column "passport_data" of relation "realtor" already exists, skipping
+ALTER TABLE
+CREATE FUNCTION
+psql:3.sql:16: NOTICE:  trigger "trg_check_passport_format_valekzhanin" for relation "realtor" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+Running test script: test/3.sql
+BEGIN
+psql:test/3.sql:11: NOTICE:  Тест 1: Корректные паспортные данные
+psql:test/3.sql:11: NOTICE:  Тест 1 пройден: запись добавлена
+DO
+ROLLBACK
+BEGIN
+psql:test/3.sql:23: NOTICE:  Тест 2: Некорректные паспортные данные (нарушение маски)
+psql:test/3.sql:23: NOTICE:  Тест 2 пройден: ошибка корректно перехвачена: Некорректные паспортные данные. Ожидается формат: ХХХХ УУУУУУ (получено: 123 4567890)
+DO
+ROLLBACK
+BEGIN
+psql:test/3.sql:35: NOTICE:  Тест 3: Некорректные паспортные данные (буквы вместо цифр)
+psql:test/3.sql:35: NOTICE:  Тест 3 пройден: ошибка корректно перехвачена: Некорректные паспортные данные. Ожидается формат: ХХХХ УУУУУУ (получено: 1234 ABCD90)
+DO
+ROLLBACK
+BEGIN
+psql:test/3.sql:48: NOTICE:  Тест 4: NULL значение паспортных данных (допустимо)
+psql:test/3.sql:48: NOTICE:  Тест 4 пройден: запись добавлена
+DO
+ROLLBACK
+Running main script: 4.sql
+CREATE FUNCTION
+psql:4.sql:13: NOTICE:  trigger "trg_format_phone_valekzhanin" for relation "realtor" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+Running test script: test/4.sql
+BEGIN
+psql:test/4.sql:11: NOTICE:  Тест 1:_raw_номер_требует_форматирования
+psql:test/4.sql:11: NOTICE:  Телефон риэлтора отформатирован: +7 (999) 666 77 88
+psql:test/4.sql:11: NOTICE:  Тест 1 пройден: телефон отформатирован
+DO
+ROLLBACK
+BEGIN
+psql:test/4.sql:24: NOTICE:  Тест 2:_номер_уже_отформатирован
+psql:test/4.sql:24: NOTICE:  Тест 2 пройден: предупреждение не появилось
+DO
+ROLLBACK
+BEGIN
+psql:test/4.sql:37: NOTICE:  Тест 3:_некорректный_номер
+psql:test/4.sql:37: NOTICE:  Тест 3 пройден: форматирование не применено
+DO
+ROLLBACK
+---
+Execution finished at Wed Apr  1 18:19:13 MSK 2026
