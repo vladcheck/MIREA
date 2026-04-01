@@ -9,6 +9,7 @@ DECLARE
     v_processed_count integer := 0;
     v_realtor_full_name text;
 BEGIN
+    ALTER TABLE sale ADD COLUMN IF NOT EXISTS commission DOUBLE PRECISION;
     v_processed_count := 0;
 
     FOR v_sale IN
@@ -52,7 +53,7 @@ BEGIN
         WHERE id = v_sale.id;
 
         -- Логирование результата
-        RAISE NOTICE 'Продажа %: риэлтор %, цена %, комиссия %%% = %',
+        RAISE NOTICE 'Продажа %: риэлтор %, цена %, комиссия % процентов = %',
             v_sale.id, v_realtor_full_name, v_sale_price,
             v_commission_rate * 100, v_commission;
     END LOOP;

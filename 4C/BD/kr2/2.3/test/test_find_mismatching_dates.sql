@@ -1,1 +1,0 @@
-SELECT fix_mismatching_dates_valekzhanin();

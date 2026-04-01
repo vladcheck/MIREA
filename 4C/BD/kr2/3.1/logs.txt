@@ -1,0 +1,148 @@
+Starting execution at Wed Apr  1 18:36:35 MSK 2026
+Target directory: /Users/valdemar_check/github/vladcheck/MIREA/4C/BD/kr2/3.1
+---
+Running migration: 00_cleanup.sql
+psql:00_cleanup.sql:11: NOTICE:  trigger "trg_update_realtor_bonus_valekzhanin" for relation "sale" does not exist, skipping
+psql:00_cleanup.sql:11: NOTICE:  relation "bonus" does not exist, skipping
+psql:00_cleanup.sql:11: NOTICE:  trigger "trg_check_passport_format_valekzhanin" for relation "realtor" does not exist, skipping
+psql:00_cleanup.sql:11: NOTICE:  trigger "trg_format_phone_valekzhanin" for relation "realtor" does not exist, skipping
+psql:00_cleanup.sql:11: NOTICE:  table "bonus" does not exist, skipping
+psql:00_cleanup.sql:11: NOTICE:  column "passport_data" of relation "realtor" does not exist, skipping
+DO
+Running migration: journal.sql
+DROP TABLE
+CREATE TABLE
+Running migration: property_structure.sql
+DROP TABLE
+CREATE TABLE
+INSERT 0 5
+Running main script: 1.sql
+CREATE FUNCTION
+DROP TRIGGER
+CREATE TRIGGER
+Running test script: test/1.sql
+ALTER TABLE
+BEGIN
+psql:test/1.sql:11: NOTICE:  Тест 1: Разница больше 20 процентов
+psql:test/1.sql:11: WARNING:  ВНИМАНИЕ: Разница между заявленной (400253.00) и продажной (750000.00) стоимостью составляет 87.38 (порог: 20.0 )
+psql:test/1.sql:11: NOTICE:  Journal: INSERT operation on sale
+DO
+ROLLBACK
+BEGIN
+psql:test/1.sql:22: NOTICE:  Тест 2: Не существующий объект
+psql:test/1.sql:22: NOTICE:  Тест 2 пройден: ошибка корректно перехвачена: Объект недвижимости с ID 999999 не найден
+DO
+ROLLBACK
+BEGIN
+psql:test/1.sql:33: NOTICE:  Тест 3: Отрицательная цена
+psql:test/1.sql:33: NOTICE:  Тест 3 пройден: ошибка корректно перехвачена: Цена должна быть положительным числом
+DO
+ROLLBACK
+BEGIN
+psql:test/1.sql:45: NOTICE:  Тест 4: Разница меньше 20 процентов
+psql:test/1.sql:45: NOTICE:  Journal: INSERT operation on sale
+psql:test/1.sql:45: NOTICE:  Тест 4 пройден: предупреждение НЕ появилось
+DO
+ROLLBACK
+ALTER TABLE
+Running main script: 2.sql
+CREATE FUNCTION
+DROP TRIGGER
+CREATE TRIGGER
+Running test script: test/2.sql
+BEGIN
+psql:test/2.sql:12: NOTICE:  Тест 1: Повторная продажа объекта
+psql:test/2.sql:12: WARNING:  ВНИМАНИЕ: Разница между заявленной (400253.00) и продажной (1000000.00) стоимостью составляет 149.84 (порог: 20.0 )
+psql:test/2.sql:12: NOTICE:  Journal: INSERT operation on sale
+psql:test/2.sql:12: WARNING:  ВНИМАНИЕ: Разница между заявленной (400253.00) и продажной (1200000.00) стоимостью составляет 199.81 (порог: 20.0 )
+psql:test/2.sql:12: NOTICE:  Тест 1 пройден: ошибка корректно перехвачена: Объект недвижимости с ID 3 уже был продан. Повторная продажа запрещена.
+DO
+ROLLBACK
+BEGIN
+psql:test/2.sql:24: NOTICE:  Тест 2: Первая продажа объекта
+psql:test/2.sql:24: WARNING:  ВНИМАНИЕ: Разница между заявленной (4320000.00) и продажной (1000000.00) стоимостью составляет 76.85 (порог: 20.0 )
+psql:test/2.sql:24: NOTICE:  Journal: INSERT operation on sale
+psql:test/2.sql:24: NOTICE:  Тест 2 пройден: объект продан успешно
+DO
+ROLLBACK
+BEGIN
+psql:test/2.sql:37: NOTICE:  Тест 3: Повторная продажа того же объекта
+psql:test/2.sql:37: WARNING:  ВНИМАНИЕ: Разница между заявленной (4320000.00) и продажной (1000000.00) стоимостью составляет 76.85 (порог: 20.0 )
+psql:test/2.sql:37: NOTICE:  Journal: INSERT operation on sale
+psql:test/2.sql:37: WARNING:  ВНИМАНИЕ: Разница между заявленной (4320000.00) и продажной (1200000.00) стоимостью составляет 72.22 (порог: 20.0 )
+psql:test/2.sql:37: NOTICE:  Тест 3 пройден: ошибка корректно перехвачена: Объект недвижимости с ID 7 уже был продан. Повторная продажа запрещена.
+DO
+ROLLBACK
+Running main script: 3.sql
+CREATE FUNCTION
+psql:3.sql:35: NOTICE:  trigger "trg_check_structure_area_valekzhanin" for relation "property_structure" does not exist, skipping
+DROP TRIGGER
+CREATE TRIGGER
+Running test script: test/3.sql
+BEGIN
+psql:test/3.sql:11: NOTICE:  Тест 1: Сумма площадей в пределах нормы
+psql:test/3.sql:11: NOTICE:  Тест 1 пройден: предупреждение НЕ появилось
+DO
+ROLLBACK
+BEGIN
+psql:test/3.sql:23: NOTICE:  Тест 2: Превышение общей площади объекта
+psql:test/3.sql:23: NOTICE:  ВНИМАНИЕ: Превышение площади составляет 67.00 кв.м. (Сумма: 100.00, Лимит: 33.00)
+DO
+ROLLBACK
+BEGIN
+psql:test/3.sql:37: NOTICE:  Тест 3: Накопительное превышение площади
+psql:test/3.sql:37: NOTICE:  ВНИМАНИЕ: Превышение площади составляет 3.00 кв.м. (Сумма: 50.00, Лимит: 47.00)
+psql:test/3.sql:37: NOTICE:  ВНИМАНИЕ: Превышение площади составляет 53.00 кв.м. (Сумма: 100.00, Лимит: 47.00)
+DO
+ROLLBACK
+Running main script: 4.sql
+CREATE FUNCTION
+DROP TRIGGER
+CREATE TRIGGER
+Running test script: test/4.sql
+ALTER TABLE
+BEGIN
+psql:test/4.sql:12: NOTICE:  Тест 1: Дата продажи корректна
+psql:test/4.sql:12: WARNING:  ВНИМАНИЕ: Разница между заявленной (165502.00) и продажной (5000000.00) стоимостью составляет 2921.11 (порог: 20.0 )
+psql:test/4.sql:12: NOTICE:  Journal: INSERT operation on sale
+psql:test/4.sql:12: NOTICE:  Тест 1 пройден: предупреждение НЕ появилось
+DO
+ROLLBACK
+BEGIN
+psql:test/4.sql:23: NOTICE:  Тест 2: Дата продажи раньше размещения
+psql:test/4.sql:23: WARNING:  ВНИМАНИЕ: Разница между заявленной (241357.00) и продажной (5000000.00) стоимостью составляет 1971.62 (порог: 20.0 )
+psql:test/4.sql:23: NOTICE:  ВНИМАНИЕ: Дата продажи (2022-01-01) раньше даты размещения объявления (2025-08-09)
+psql:test/4.sql:23: NOTICE:  Journal: INSERT operation on sale
+DO
+ROLLBACK
+ALTER TABLE
+Running main script: 5.sql
+CREATE FUNCTION
+DROP TRIGGER
+CREATE TRIGGER
+Running test script: test/5.sql
+ALTER TABLE
+BEGIN
+psql:test/5.sql:12: NOTICE:  Тест 1: Проверка INSERT
+psql:test/5.sql:12: WARNING:  ВНИМАНИЕ: Разница между заявленной (252888.00) и продажной (1000000.00) стоимостью составляет 295.43 (порог: 20.0 )
+psql:test/5.sql:12: NOTICE:  Journal: INSERT operation on sale
+DO
+ROLLBACK
+BEGIN
+psql:test/5.sql:26: NOTICE:  Тест 2: Проверка UPDATE
+psql:test/5.sql:26: WARNING:  ВНИМАНИЕ: Разница между заявленной (296869.00) и продажной (2000000.00) стоимостью составляет 573.70 (порог: 20.0 )
+psql:test/5.sql:26: NOTICE:  Journal: INSERT operation on sale
+psql:test/5.sql:26: WARNING:  ВНИМАНИЕ: Разница между заявленной (296869.00) и продажной (2500000.00) стоимостью составляет 742.12 (порог: 20.0 )
+psql:test/5.sql:26: NOTICE:  Journal: UPDATE operation on sale
+DO
+ROLLBACK
+BEGIN
+psql:test/5.sql:42: NOTICE:  Тест 3: Проверка DELETE
+psql:test/5.sql:42: WARNING:  ВНИМАНИЕ: Разница между заявленной (170424.00) и продажной (3000000.00) стоимостью составляет 1660.32 (порог: 20.0 )
+psql:test/5.sql:42: NOTICE:  Journal: INSERT operation on sale
+psql:test/5.sql:42: NOTICE:  Journal: DELETE operation on sale
+DO
+ROLLBACK
+ALTER TABLE
+---
+Execution finished at Wed Apr  1 18:36:36 MSK 2026
