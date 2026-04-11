@@ -1,0 +1,234 @@
+CREATE OR REPLACE FUNCTION public.prevent_duplicate_sale_valekzhanin()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    v_existing_sale RECORD;
+BEGIN
+    SELECT * INTO v_existing_sale
+    FROM sale
+    WHERE property_id = NEW.property_id;
+
+    IF FOUND THEN
+        RAISE EXCEPTION 'Объект недвижимости с ID % уже был продан. Повторная продажа запрещена.',
+            NEW.property_id;
+    END IF;
+
+    RETURN NEW;
+END;
+$function$
+
+---
+CREATE OR REPLACE FUNCTION public.check_sale_date_valekzhanin()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    v_listing_date DATE;
+BEGIN
+    SELECT listing_date INTO v_listing_date
+    FROM property
+    WHERE id = NEW.property_id;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Объект недвижимости с ID % не найден', NEW.property_id;
+    END IF;
+
+    IF NEW.sale_date < v_listing_date THEN
+        RAISE NOTICE 'ВНИМАНИЕ: Дата продажи (%) раньше даты размещения объявления (%)',
+            NEW.sale_date, v_listing_date;
+    END IF;
+
+    RETURN NEW;
+END;
+$function$
+
+---
+CREATE OR REPLACE FUNCTION public.log_sale_action_valekzhanin()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+    INSERT INTO journal (datetime, action, user_name)
+    VALUES (CURRENT_TIMESTAMP, TG_OP, current_user);
+
+    IF TG_OP = 'INSERT' THEN
+        RAISE NOTICE 'Journal: INSERT operation on sale';
+    ELSIF TG_OP = 'UPDATE' THEN
+        RAISE NOTICE 'Journal: UPDATE operation on sale';
+    ELSIF TG_OP = 'DELETE' THEN
+        RAISE NOTICE 'Journal: DELETE operation on sale';
+    END IF;
+
+    RETURN NULL;
+END;
+$function$
+
+---
+CREATE OR REPLACE FUNCTION public.update_realtor_bonus_valekzhanin()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    v_exists BOOLEAN;
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        SELECT EXISTS(SELECT 1 FROM bonus WHERE realtor_id = NEW.realtor_id) INTO v_exists;
+        IF v_exists THEN
+            UPDATE bonus SET amount = amount + NEW.price * 0.05 WHERE realtor_id = NEW.realtor_id;
+            RAISE NOTICE 'Бонус обновлен для риэлтора %', NEW.realtor_id;
+        ELSE
+            INSERT INTO bonus (realtor_id, amount) VALUES (NEW.realtor_id, NEW.price * 0.05);
+            RAISE NOTICE 'Запись бонуса создана для риэлтора %', NEW.realtor_id;
+        END IF;
+        RETURN NEW;
+    ELSIF TG_OP = 'DELETE' THEN
+        UPDATE bonus SET amount = amount - OLD.price * 0.05 WHERE realtor_id = OLD.realtor_id;
+        RAISE NOTICE 'Бонус уменьшен для риэлтора %', OLD.realtor_id;
+        RETURN OLD;
+    END IF;
+    RETURN NULL;
+END;
+$function$
+
+---
+CREATE OR REPLACE FUNCTION public.check_bonus_limit_valekzhanin()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    v_max_bonus CONSTANT NUMERIC := 500000;
+    v_current_bonus NUMERIC;
+BEGIN
+    SELECT COALESCE(amount, 0) INTO v_current_bonus
+    FROM bonus
+    WHERE realtor_id = NEW.realtor_id;
+
+    IF TG_OP = 'INSERT' THEN
+        v_current_bonus := v_current_bonus + NEW.amount;
+    ELSIF TG_OP = 'UPDATE' THEN
+        v_current_bonus := NEW.amount;
+    END IF;
+
+    IF v_current_bonus > v_max_bonus THEN
+        RAISE NOTICE 'ВНИМАНИЕ: Накопленный бонус риэлтора % (%) превысил лимит (%)',
+            NEW.realtor_id,
+            TO_CHAR(v_current_bonus, 'FM999999999.00'),
+            TO_CHAR(v_max_bonus, 'FM999999999.00');
+    END IF;
+
+    RETURN NULL;
+END;
+$function$
+
+---
+CREATE OR REPLACE FUNCTION public.check_price_difference_valekzhanin()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    v_listed_price NUMERIC;
+    v_sale_price NUMERIC;
+    v_difference_percent NUMERIC;
+    v_threshold_percent CONSTANT NUMERIC := 20.0;
+BEGIN
+    SELECT price INTO v_listed_price
+    FROM property
+    WHERE id = NEW.property_id;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Объект недвижимости с ID % не найден', NEW.property_id;
+    END IF;
+
+    IF v_listed_price IS NULL OR NEW.price IS NULL THEN
+        RAISE EXCEPTION 'Цена не может быть NULL';
+    END IF;
+
+    IF v_listed_price <= 0 OR NEW.price <= 0 THEN
+        RAISE EXCEPTION 'Цена должна быть положительным числом';
+    END IF;
+
+    v_sale_price := NEW.price;
+    v_difference_percent := ABS((v_sale_price - v_listed_price) / v_listed_price * 100);
+
+    IF v_difference_percent > v_threshold_percent THEN
+        RAISE WARNING 'ВНИМАНИЕ: Разница между заявленной (%) и продажной (%) стоимостью составляет % (порог: % )',
+            TO_CHAR(v_listed_price, 'FM999999990.00'),
+            TO_CHAR(v_sale_price, 'FM999999990.00'),
+            TO_CHAR(v_difference_percent, 'FM999999990.00'),
+            TO_CHAR(v_threshold_percent, 'FM999999990.0');
+    END IF;
+
+    RETURN NEW;
+END;
+$function$
+
+---
+CREATE OR REPLACE FUNCTION public.check_structure_area_valekzhanin()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+DECLARE
+    v_property_area NUMERIC;
+    v_current_sum NUMERIC;
+    v_total_sum NUMERIC;
+    v_excess NUMERIC;
+BEGIN
+    SELECT area INTO v_property_area
+    FROM property
+    WHERE id = NEW.property_id;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Объект недвижимости с ID % не найден', NEW.property_id;
+    END IF;
+
+    SELECT COALESCE(SUM(room_area), 0) INTO v_current_sum
+    FROM property_structure
+    WHERE property_id = NEW.property_id;
+
+    v_total_sum := v_current_sum + NEW.room_area;
+
+    IF v_total_sum > v_property_area THEN
+        v_excess := v_total_sum - v_property_area;
+        RAISE NOTICE 'ВНИМАНИЕ: Превышение площади составляет % кв.м. (Сумма: %, Лимит: %)',
+            TO_CHAR(v_excess, 'FM999999990.00'),
+            TO_CHAR(v_total_sum, 'FM999999990.00'),
+            TO_CHAR(v_property_area, 'FM999999990.00');
+    END IF;
+
+    RETURN NEW;
+END;
+$function$
+
+---
+CREATE OR REPLACE FUNCTION public.format_phone_valekzhanin()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+    IF NEW.phone_number ~ '^\d{11}$' THEN
+        NEW.phone_number := regexp_replace(NEW.phone_number, '(\d)(\d{3})(\d{3})(\d{2})(\d{2})', '+\1 (\2) \3 \4 \5');
+        RAISE NOTICE 'Телефон риэлтора отформатирован: %', NEW.phone_number;
+    END IF;
+
+    RETURN NEW;
+END;
+$function$
+
+---
+CREATE OR REPLACE FUNCTION public.check_passport_format_valekzhanin()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+    IF NEW.passport_data IS NOT NULL THEN
+        IF NEW.passport_data !~ '^\d{4} \d{6}$' THEN
+            RAISE EXCEPTION 'Некорректные паспортные данные. Ожидается формат: ХХХХ УУУУУУ (получено: %)', NEW.passport_data;
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+$function$
+
+---

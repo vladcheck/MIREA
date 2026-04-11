@@ -5,6 +5,5 @@ CREATE TABLE bonus (
     amount NUMERIC(15, 2) NOT NULL DEFAULT 0
 );
 
--- Наполняем бонусами существующих риэлторов
 INSERT INTO bonus (realtor_id, amount)
 SELECT id, 0 FROM realtor;
