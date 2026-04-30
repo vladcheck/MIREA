@@ -3,8 +3,6 @@ node_modules
 bin/
 build/
 *.exe
-*.docx
-*.pdf
 *.png
 *.xcf
 *.zip
