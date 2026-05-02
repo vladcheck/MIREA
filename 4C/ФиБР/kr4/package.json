@@ -1,0 +1,10 @@
+{
+  "name": "kr4",
+  "version": "1.0.0",
+  "scripts": {},
+  "devDependencies": {
+    "oxfmt": "0.47.0",
+    "oxlint": "1.62.0"
+  },
+  "packageManager": "pnpm@10.33.2"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "nursery": "warn",
+    "pedantic": "warn",
+    "perf": "warn",
+    "restriction": "warn",
+    "style": "warn"
+  },
+  "rules": {
+    "sort-keys": "allow"
+  },
+  "env": {
+    "builtin": true
+  },
+  "globals": {
+    "__dirname": "readonly",
+    "__filename": "readonly",
+    "document": "readonly",
+    "window": "readonly"
+  }
+}
