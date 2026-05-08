@@ -1,0 +1,17 @@
+{
+  "name": "pr19",
+  "version": "1.0.0",
+  "main": "./src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "swagger": "node ./src/swagger.js"
+  },
+  "dependencies": {
+    "express": "^4.22.1",
+    "pg": "^8.11.3",
+    "dotenv": "^17.4.2",
+    "swagger-ui-express": "^5.0.0",
+    "swagger-autogen": "^2.23.7"
+  },
+  "packageManager": "pnpm@11.0.8"
+}
