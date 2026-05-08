@@ -1,0 +1,46 @@
+{
+  "name": "search_products_by_keyword",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/products/search?keyword=phone",
+      "host": ["{{base_url}}"],
+      "path": ["products", "search"],
+      "query": [
+        {
+          "key": "keyword",
+          "value": "phone"
+        }
+      ]
+    },
+    "description": "Задание 3.2: Поиск продуктов по ключевому слову 'phone'"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function() {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "pm.test('Response contains products array', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.products).to.be.an('array');",
+          "});",
+          "pm.test('Response contains at least 1 product', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.products.length).to.be.at.least(1);",
+          "});",
+          "pm.test('All products contain keyword in name', function() {",
+          "    var jsonData = pm.response.json();",
+          "    jsonData.products.forEach(function(product) {",
+          "        pm.expect(product.name.toLowerCase()).to.include('phone');",
+          "    });",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

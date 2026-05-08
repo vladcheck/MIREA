@@ -1,0 +1,35 @@
+{
+  "name": "get_profile_session_expired_6min",
+  "request": {
+    "method": "GET",
+    "header": [
+      {
+        "key": "Cookie",
+        "value": "session_token={{session_token}}"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/user",
+      "host": ["{{base_url}}"],
+      "path": ["user"]
+    },
+    "description": "Задание 5.3: Запрос через 6 минут — сессия истекла (> 5 мин), ошибка 401"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 401', function() {",
+          "    pm.response.to.have.status(401);",
+          "});",
+          "pm.test('Response contains Session expired message', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.detail.message || jsonData.message).to.exist;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

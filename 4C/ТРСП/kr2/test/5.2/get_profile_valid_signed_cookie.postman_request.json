@@ -1,0 +1,34 @@
+{
+  "name": "get_profile_valid_signed_cookie",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/user",
+      "host": ["{{base_url}}"],
+      "path": ["user"]
+    },
+    "description": "Задание 5.2: Профиль с валидным подписанным cookie"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function() {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "pm.test('Response contains user profile data', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.username).to.exist;",
+          "    pm.expect(jsonData.email).to.exist;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ],
+  "protocolProfileBehavior": {
+    "disableCookies": false
+  }
+}

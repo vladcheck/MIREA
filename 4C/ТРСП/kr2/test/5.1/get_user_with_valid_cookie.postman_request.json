@@ -1,0 +1,37 @@
+{
+  "name": "get_user_with_valid_cookie",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/user",
+      "host": ["{{base_url}}"],
+      "path": ["user"]
+    },
+    "description": "Задание 5.1: Получение профиля с валидным cookie session_token"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function() {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "pm.test('Response contains username', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.username).to.exist;",
+          "});",
+          "pm.test('Response contains is_authenticated true', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.is_authenticated).to.be.true;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ],
+  "protocolProfileBehavior": {
+    "disableCookies": false
+  }
+}

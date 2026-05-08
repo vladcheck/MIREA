@@ -1,0 +1,51 @@
+{
+  "name": "create_user_success",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\",\n  \"age\": 30,\n  \"is_subscribed\": true\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/create_user",
+      "host": ["{{base_url}}"],
+      "path": ["create_user"]
+    },
+    "description": "Задание 3.1: Успешное создание пользователя со всеми полями"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function() {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "pm.test('Response has name Alice', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.name).to.eql('Alice');",
+          "});",
+          "pm.test('Response has valid email', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.email).to.include('@');",
+          "});",
+          "pm.test('Response has age 30', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.age).to.eql(30);",
+          "});",
+          "pm.test('Response has is_subscribed true', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.is_subscribed).to.be.true;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

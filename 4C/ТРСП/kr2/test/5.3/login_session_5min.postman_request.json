@@ -1,0 +1,43 @@
+{
+  "name": "login_session_5min",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n  \"username\": \"user123\",\n  \"password\": \"password123\"\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/login",
+      "host": ["{{base_url}}"],
+      "path": ["login"]
+    },
+    "description": "Задание 5.3: Вход с сессией 5 минут (max_age=300)"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function() {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "pm.test('Cookie max_age is 300 seconds (5 min)', function() {",
+          "    var cookieHeader = pm.response.headers.get('Set-Cookie');",
+          "    pm.expect(cookieHeader).to.include('Max-Age=300');",
+          "});",
+          "pm.test('Session token is stored', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.collectionVariables.set('session_token', jsonData.session_token);",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

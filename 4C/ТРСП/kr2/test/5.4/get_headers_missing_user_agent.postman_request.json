@@ -1,0 +1,35 @@
+{
+  "name": "get_headers_missing_user_agent",
+  "request": {
+    "method": "GET",
+    "header": [
+      {
+        "key": "Accept-Language",
+        "value": "en-US,en;q=0.9"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/headers",
+      "host": ["{{base_url}}"],
+      "path": ["headers"]
+    },
+    "description": "Задание 5.4: Ошибка 400 — отсутствует заголовок User-Agent"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 400', function() {",
+          "    pm.response.to.have.status(400);",
+          "});",
+          "pm.test('Response contains error detail', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.detail).to.exist;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

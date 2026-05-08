@@ -1,0 +1,30 @@
+{
+  "name": "get_product_by_id_not_found",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/product/999",
+      "host": ["{{base_url}}"],
+      "path": ["product", "999"]
+    },
+    "description": "Задание 3.2: Продукт не найден — ошибка 404"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 404', function() {",
+          "    pm.response.to.have.status(404);",
+          "});",
+          "pm.test('Response contains error detail', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.detail).to.exist;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}
