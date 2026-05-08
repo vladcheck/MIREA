@@ -1,0 +1,7 @@
+{
+  "name": "fibr-monorepo",
+  "private": true,
+  "scripts": {
+    "lint": "pnpm --filter frontend lint"
+  }
+}
