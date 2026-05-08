@@ -1,0 +1,42 @@
+{
+  "name": "get_product_by_id_success",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/product/123",
+      "host": ["{{base_url}}"],
+      "path": ["product", "123"]
+    },
+    "description": "Задание 3.2: Успешное получение продукта по ID (Smartphone)"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function() {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "pm.test('Product ID matches 123', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.product_id).to.eql(123);",
+          "});",
+          "pm.test('Product name is Smartphone', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.name).to.eql('Smartphone');",
+          "});",
+          "pm.test('Product category is Electronics', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.category).to.eql('Electronics');",
+          "});",
+          "pm.test('Product price is 599.99', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.price).to.eql(599.99);",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

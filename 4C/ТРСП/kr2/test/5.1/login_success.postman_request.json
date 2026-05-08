@@ -1,0 +1,47 @@
+{
+  "name": "login_success",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n  \"username\": \"user123\",\n  \"password\": \"password123\"\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/login",
+      "host": ["{{base_url}}"],
+      "path": ["login"]
+    },
+    "description": "Задание 5.1: Успешный вход с установкой cookie session_token"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function() {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "pm.test('Response contains session_token', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.session_token).to.exist;",
+          "    pm.collectionVariables.set('session_token', jsonData.session_token);",
+          "});",
+          "pm.test('Response contains username', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.username).to.eql('user123');",
+          "});",
+          "pm.test('Cookie session_token is set', function() {",
+          "    pm.expect(pm.cookies.has('session_token')).to.be.true;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

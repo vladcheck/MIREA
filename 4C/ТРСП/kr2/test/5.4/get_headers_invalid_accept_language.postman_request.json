@@ -1,0 +1,39 @@
+{
+  "name": "get_headers_invalid_accept_language",
+  "request": {
+    "method": "GET",
+    "header": [
+      {
+        "key": "User-Agent",
+        "value": "Mozilla/5.0"
+      },
+      {
+        "key": "Accept-Language",
+        "value": "invalid-format"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/headers",
+      "host": ["{{base_url}}"],
+      "path": ["headers"]
+    },
+    "description": "Задание 5.4: Ошибка 400 — невалидный формат Accept-Language"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 400', function() {",
+          "    pm.response.to.have.status(400);",
+          "});",
+          "pm.test('Response contains validation error', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.detail).to.exist;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

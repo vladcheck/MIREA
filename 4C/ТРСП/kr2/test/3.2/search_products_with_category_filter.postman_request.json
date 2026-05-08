@@ -1,0 +1,54 @@
+{
+  "name": "search_products_with_category_filter",
+  "request": {
+    "method": "GET",
+    "header": [],
+    "url": {
+      "raw": "{{base_url}}/products/search?keyword=phone&category=Electronics&limit=5",
+      "host": ["{{base_url}}"],
+      "path": ["products", "search"],
+      "query": [
+        {
+          "key": "keyword",
+          "value": "phone"
+        },
+        {
+          "key": "category",
+          "value": "Electronics"
+        },
+        {
+          "key": "limit",
+          "value": "5"
+        }
+      ]
+    },
+    "description": "Задание 3.2: Поиск с фильтром по категории Electronics и limit=5"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function() {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "pm.test('Response contains products array', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.products).to.be.an('array');",
+          "});",
+          "pm.test('All products are in Electronics category', function() {",
+          "    var jsonData = pm.response.json();",
+          "    jsonData.products.forEach(function(product) {",
+          "        pm.expect(product.category).to.eql('Electronics');",
+          "    });",
+          "});",
+          "pm.test('Products count does not exceed limit', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.products.length).to.be.at.most(5);",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

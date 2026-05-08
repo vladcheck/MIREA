@@ -1,0 +1,39 @@
+{
+  "name": "create_user_negative_age",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n  \"name\": \"David\",\n  \"email\": \"david@example.com\",\n  \"age\": -5\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/create_user",
+      "host": ["{{base_url}}"],
+      "path": ["create_user"]
+    },
+    "description": "Задание 3.1: Ошибка валидации — отрицательный возраст"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 422', function() {",
+          "    pm.response.to.have.status(422);",
+          "});",
+          "pm.test('Response contains age validation error', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.detail).to.exist;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

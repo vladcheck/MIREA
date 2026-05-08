@@ -1,0 +1,35 @@
+{
+  "name": "get_profile_tampered_cookie",
+  "request": {
+    "method": "GET",
+    "header": [
+      {
+        "key": "Cookie",
+        "value": "session_token=tampered.invalid.signature"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/user",
+      "host": ["{{base_url}}"],
+      "path": ["user"]
+    },
+    "description": "Задание 5.2: Профиль с подделанным cookie — ошибка 401"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 401', function() {",
+          "    pm.response.to.have.status(401);",
+          "});",
+          "pm.test('Response contains Invalid session message', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.detail.message || jsonData.message).to.exist;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

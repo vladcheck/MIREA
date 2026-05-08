@@ -1,0 +1,47 @@
+{
+  "name": "get_headers_valid",
+  "request": {
+    "method": "GET",
+    "header": [
+      {
+        "key": "User-Agent",
+        "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+      },
+      {
+        "key": "Accept-Language",
+        "value": "en-US,en;q=0.9,es;q=0.8"
+      }
+    ],
+    "url": {
+      "raw": "{{base_url}}/headers",
+      "host": ["{{base_url}}"],
+      "path": ["headers"]
+    },
+    "description": "Задание 5.4: Успешное получение заголовков User-Agent и Accept-Language"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 200', function() {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "pm.test('Response contains user_agent', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.user_agent).to.exist;",
+          "});",
+          "pm.test('Response contains accept_language', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.accept_language).to.exist;",
+          "});",
+          "pm.test('Accept-Language format is valid', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.accept_language).to.include('en');",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}

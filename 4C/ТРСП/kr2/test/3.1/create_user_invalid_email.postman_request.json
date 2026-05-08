@@ -1,0 +1,39 @@
+{
+  "name": "create_user_invalid_email",
+  "request": {
+    "method": "POST",
+    "header": [
+      {
+        "key": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "body": {
+      "mode": "raw",
+      "raw": "{\n  \"name\": \"Charlie\",\n  \"email\": \"invalid-email\"\n}"
+    },
+    "url": {
+      "raw": "{{base_url}}/create_user",
+      "host": ["{{base_url}}"],
+      "path": ["create_user"]
+    },
+    "description": "Задание 3.1: Ошибка валидации — невалидный формат email"
+  },
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "pm.test('Status code is 422', function() {",
+          "    pm.response.to.have.status(422);",
+          "});",
+          "pm.test('Response contains email validation error', function() {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData.detail).to.exist;",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}
