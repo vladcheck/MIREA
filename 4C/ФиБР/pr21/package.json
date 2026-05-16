@@ -1,0 +1,11 @@
+{
+  "name": "pr21",
+  "private": true,
+  "packageManager": "pnpm@11.0.8",
+  "scripts": {
+    "lint": "pnpm --filter frontend lint"
+  },
+  "dependencies": {
+    "redis": "5.12.1"
+  }
+}

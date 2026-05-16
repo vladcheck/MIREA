@@ -1,0 +1,38 @@
+<!-- icon.svg -->
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 64 64"
+    width="64"
+    height="64"
+>
+    <!-- Background -->
+    <rect
+        x="0"
+        y="0"
+        width="64"
+        height="64"
+        fill="#000000"
+        rx="4"
+        ry="4"
+    />
+
+    <!-- 3/4 Circle Arc (35° to 325°, anticlockwise) -->
+    <path
+        d="M 48.38 20.52 A 20 20 0 1 0 48.38 43.48"
+        fill="none"
+        stroke="#FFD700"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+
+    <!-- Curved Line from Bottom Right to Center -->
+    <path
+        d="M 54 54 Q 54 38 38 38 Q 32 38 32 28"
+        fill="none"
+        stroke="#FFD700"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+</svg>

@@ -1,0 +1,20 @@
+services:
+  haproxy:
+    image: haproxy:latest
+    ports:
+      - "8081:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - app1
+      - app2
+
+  app1:
+    build: .
+    environment:
+      - PORT=3000
+
+  app2:
+    build: .
+    environment:
+      - PORT=3001
