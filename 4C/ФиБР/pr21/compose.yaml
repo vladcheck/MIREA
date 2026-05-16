@@ -1,0 +1,7 @@
+services:
+  frontend:
+    build: ./src/frontend
+    container_name: frontend
+    ports:
+      - 3001:80
+    restart: on-failure
