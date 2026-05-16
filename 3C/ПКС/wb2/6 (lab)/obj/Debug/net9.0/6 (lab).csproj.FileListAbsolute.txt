@@ -1,0 +1,15 @@
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\bin\Debug\net9.0\6 (lab).exe
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\bin\Debug\net9.0\6 (lab).deps.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\bin\Debug\net9.0\6 (lab).runtimeconfig.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\bin\Debug\net9.0\6 (lab).dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\bin\Debug\net9.0\6 (lab).pdb
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\obj\Debug\net9.0\6 (lab).GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\obj\Debug\net9.0\6 (lab).AssemblyInfoInputs.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\obj\Debug\net9.0\6 (lab).AssemblyInfo.cs
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\obj\Debug\net9.0\6 (lab).csproj.CoreCompileInputs.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\obj\Debug\net9.0\6 (lab).sourcelink.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\obj\Debug\net9.0\6 (lab).dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\obj\Debug\net9.0\refint\6 (lab).dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\obj\Debug\net9.0\6 (lab).pdb
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\obj\Debug\net9.0\6 (lab).genruntimeconfig.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\6 (lab)\obj\Debug\net9.0\ref\6 (lab).dll

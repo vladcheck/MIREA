@@ -1,0 +1,8 @@
+C:\Users\Vova\Documents\GitHub\razrabotka-korporativnyh-sistem\wb1.1\1.2\bin\x64\Debug\1.2.exe.config
+C:\Users\Vova\Documents\GitHub\razrabotka-korporativnyh-sistem\wb1.1\1.2\bin\x64\Debug\1.2.exe
+C:\Users\Vova\Documents\GitHub\razrabotka-korporativnyh-sistem\wb1.1\1.2\bin\x64\Debug\1.2.pdb
+C:\Users\Vova\Documents\GitHub\razrabotka-korporativnyh-sistem\wb1.1\1.2\obj\x64\Debug\1.2.csproj.AssemblyReference.cache
+C:\Users\Vova\Documents\GitHub\razrabotka-korporativnyh-sistem\wb1.1\1.2\obj\x64\Debug\1.2.csproj.CoreCompileInputs.cache
+C:\Users\Vova\Documents\GitHub\razrabotka-korporativnyh-sistem\wb1.1\1.2\obj\x64\Debug\1.2.exe
+C:\Users\Vova\Documents\GitHub\razrabotka-korporativnyh-sistem\wb1.1\1.2\obj\x64\Debug\1.2.pdb
+C:\Users\Vova\Documents\GitHub\razrabotka-korporativnyh-sistem\wb1.1\1.2\obj\x64\Debug\1.2.exe.config

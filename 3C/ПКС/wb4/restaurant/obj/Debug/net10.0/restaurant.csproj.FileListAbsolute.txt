@@ -1,0 +1,15 @@
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\bin\Debug\net10.0\restaurant.exe
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\bin\Debug\net10.0\restaurant.deps.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\bin\Debug\net10.0\restaurant.runtimeconfig.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\bin\Debug\net10.0\restaurant.dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\bin\Debug\net10.0\restaurant.pdb
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\obj\Debug\net10.0\restaurant.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\obj\Debug\net10.0\restaurant.AssemblyInfoInputs.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\obj\Debug\net10.0\restaurant.AssemblyInfo.cs
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\obj\Debug\net10.0\restaurant.csproj.CoreCompileInputs.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\obj\Debug\net10.0\restaurant.sourcelink.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\obj\Debug\net10.0\restaurant.dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\obj\Debug\net10.0\refint\restaurant.dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\obj\Debug\net10.0\restaurant.pdb
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\obj\Debug\net10.0\restaurant.genruntimeconfig.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb4\restaurant\obj\Debug\net10.0\ref\restaurant.dll
