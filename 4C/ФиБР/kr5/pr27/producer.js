@@ -1,5 +1,15 @@
+import "dotenv";
 import express from 'express'
 import amqp from 'amqplib'
+import { Kafka } from 'kafkajs';
+
+const kafka = new Kafka({
+  clientId: process.env.CLIENT_ID,
+  brokers: ['localhost:9092'],
+});
+
+
+const producer = kafka.producer();
 
 const app = express()
 
@@ -7,7 +17,7 @@ app.use(express.json())
 
 const QUEUE = 'tasks'
 
-let channel
+let channel = null;
 
 async function connectQueue() {
   const connection = await amqp.connect('amqp://localhost')
@@ -26,6 +36,31 @@ async function connectQueue() {
 
   console.log('Connected to RabbitMQ')
 }
+
+async function sendEvent(topic, event) {
+  await producer.connect();
+
+  await producer.send({
+    topic,
+    messages: [
+      {
+        key: event.userId,          // Ключ гарантирует порядок событий одного пользователя
+        value: JSON.stringify(event),
+      },
+    ],
+  });
+
+  console.log(`[Kafka Producer] Событие отправлено в топик "${topic}"`);
+  await producer.disconnect();
+}
+
+await sendEvent('user-events', {
+  userId: 'user-42',
+  action: 'purchase',
+  productId: 'prod-100',
+  amount: 1500,
+  timestamp: new Date().toISOString(),
+});
 
 connectQueue()
 
