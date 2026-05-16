@@ -1,0 +1,15 @@
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\bin\Debug\net9.0\workbook3.1.exe
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\bin\Debug\net9.0\workbook3.1.deps.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\bin\Debug\net9.0\workbook3.1.runtimeconfig.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\bin\Debug\net9.0\workbook3.1.dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\bin\Debug\net9.0\workbook3.1.pdb
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\obj\Debug\net9.0\workbook3.1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\obj\Debug\net9.0\workbook3.1.AssemblyInfoInputs.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\obj\Debug\net9.0\workbook3.1.AssemblyInfo.cs
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\obj\Debug\net9.0\workbook3.1.csproj.CoreCompileInputs.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\obj\Debug\net9.0\workbook3.1.sourcelink.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\obj\Debug\net9.0\workbook3.1.dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\obj\Debug\net9.0\refint\workbook3.1.dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\obj\Debug\net9.0\workbook3.1.pdb
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\obj\Debug\net9.0\workbook3.1.genruntimeconfig.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb3\workbook3.1\obj\Debug\net9.0\ref\workbook3.1.dll

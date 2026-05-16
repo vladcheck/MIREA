@@ -1,0 +1,15 @@
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/bin/Debug/net9.0/wb3.2
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/bin/Debug/net9.0/wb3.2.deps.json
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/bin/Debug/net9.0/wb3.2.runtimeconfig.json
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/bin/Debug/net9.0/wb3.2.dll
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/bin/Debug/net9.0/wb3.2.pdb
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/obj/Debug/net9.0/wb3.2.GeneratedMSBuildEditorConfig.editorconfig
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/obj/Debug/net9.0/wb3.2.AssemblyInfoInputs.cache
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/obj/Debug/net9.0/wb3.2.AssemblyInfo.cs
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/obj/Debug/net9.0/wb3.2.csproj.CoreCompileInputs.cache
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/obj/Debug/net9.0/wb3.2.sourcelink.json
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/obj/Debug/net9.0/wb3.2.dll
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/obj/Debug/net9.0/refint/wb3.2.dll
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/obj/Debug/net9.0/wb3.2.pdb
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/obj/Debug/net9.0/wb3.2.genruntimeconfig.cache
+/Users/valdemar_check/github/vladcheck/MIREA/3С/ПКС/wb3.2/obj/Debug/net9.0/ref/wb3.2.dll

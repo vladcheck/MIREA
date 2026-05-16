@@ -1,0 +1,15 @@
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\bin\Debug\net9.0\4 (guess the number).exe
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\bin\Debug\net9.0\4 (guess the number).deps.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\bin\Debug\net9.0\4 (guess the number).runtimeconfig.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\bin\Debug\net9.0\4 (guess the number).dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\bin\Debug\net9.0\4 (guess the number).pdb
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\obj\Debug\net9.0\4 (guess the number).GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\obj\Debug\net9.0\4 (guess the number).AssemblyInfoInputs.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\obj\Debug\net9.0\4 (guess the number).AssemblyInfo.cs
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\obj\Debug\net9.0\4 (guess the number).csproj.CoreCompileInputs.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\obj\Debug\net9.0\4 (guess the number).sourcelink.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\obj\Debug\net9.0\4 (guess the number).dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\obj\Debug\net9.0\refint\4 (guess the number).dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\obj\Debug\net9.0\4 (guess the number).pdb
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\obj\Debug\net9.0\4 (guess the number).genruntimeconfig.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\4 (guess the number)\obj\Debug\net9.0\ref\4 (guess the number).dll

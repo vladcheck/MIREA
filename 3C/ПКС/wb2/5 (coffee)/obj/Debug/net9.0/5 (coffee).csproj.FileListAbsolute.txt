@@ -1,0 +1,15 @@
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\bin\Debug\net9.0\5 (coffee).exe
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\bin\Debug\net9.0\5 (coffee).deps.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\bin\Debug\net9.0\5 (coffee).runtimeconfig.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\bin\Debug\net9.0\5 (coffee).dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\bin\Debug\net9.0\5 (coffee).pdb
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\obj\Debug\net9.0\5 (coffee).GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\obj\Debug\net9.0\5 (coffee).AssemblyInfoInputs.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\obj\Debug\net9.0\5 (coffee).AssemblyInfo.cs
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\obj\Debug\net9.0\5 (coffee).csproj.CoreCompileInputs.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\obj\Debug\net9.0\5 (coffee).sourcelink.json
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\obj\Debug\net9.0\5 (coffee).dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\obj\Debug\net9.0\refint\5 (coffee).dll
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\obj\Debug\net9.0\5 (coffee).pdb
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\obj\Debug\net9.0\5 (coffee).genruntimeconfig.cache
+C:\Users\Vova\Desktop\Универ\3С\ПКС\wb2\5 (coffee)\obj\Debug\net9.0\ref\5 (coffee).dll

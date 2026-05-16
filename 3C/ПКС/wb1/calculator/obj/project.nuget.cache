@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "FmECCDKWtys=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Vova\\Documents\\GitHub\\razrabotka-korporativnyh-sistem\\wb1\\calculator\\calculator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Vova\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.26100.57\\microsoft.windows.sdk.net.ref.10.0.26100.57.nupkg.sha512"
+  ],
+  "logs": []
+}
