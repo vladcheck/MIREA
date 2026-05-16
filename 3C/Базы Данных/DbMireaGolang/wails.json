@@ -1,0 +1,18 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "DbMireaGolang",
+  "clean": true,
+  "version": "2",
+  "assetdir": "frontend/dist",
+  "environment": "development",
+  "frontend:dir": "frontend",
+  "outputfilename": "DB Master",
+  "frontend:install": "pnpm install",
+  "frontend:build": "pnpm run build",
+  "frontend:dev:watcher": "pnpm run dev",
+  "frontend:dev:serverUrl": "http://localhost:5173",
+  "wailsjsdir": "./frontend/src/shared/lib",
+  "author": {
+    "name": "DbMireaGolang team"
+  }
+}

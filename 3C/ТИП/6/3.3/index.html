@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        input {
+            width: 100px;
+        }
+    </style>
+    <input id="input" value="Текст">
+    <script>
+        function adjustWidth(id) {
+            const elem = document.getElementById(id);
+            const width = +window.getComputedStyle(elem).width.slice(0, -2);
+            const newWidth = width + 50
+            console.log(width, newWidth)
+            elem.style.width = (newWidth) + "px"
+        }
+        adjustWidth('input'); 
+    </script>
+</body>
+
+</html>

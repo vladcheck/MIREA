@@ -1,0 +1,52 @@
+.projects-preview {
+  margin-block: var(--space-2xl, 3rem);
+}
+
+.projects-preview__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 22rem));
+  gap: var(--space-lg, 1.5rem);
+  justify-content: center;
+}
+
+.project__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* промежутки между колонками/строками */
+
+  padding: 1rem;
+  box-shadow: 2px 6px 7px var(--color-dark), -6px 2px 5px var(--color-accent);
+  transition: all 0.3s ease-out;
+  border-radius: .75rem;
+  transition: transform .2s ease, box-shadow .2s ease;
+  min-width: 0;
+}
+
+.course {
+  display: block;
+  font-style: italic;
+}
+
+.project__card:hover {
+  transform: translateY(-4px);
+}
+
+.project__card>img {
+  width: 100%;
+}
+
+
+
+.projects-preview__grid {
+  display: grid;
+  /* включаем CSS Grid */
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--space-lg, 1.5rem);
+  /* промежутки между колонками/строками */
+}
+
+.project-card__title,
+.project-card__description {
+  overflow-wrap: anywhere;
+}

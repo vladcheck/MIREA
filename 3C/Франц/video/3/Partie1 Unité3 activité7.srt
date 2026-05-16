@@ -1,0 +1,136 @@
+1
+00:00:00,000 --> 00:00:05,000
+ Bienvenue dans le module consacré au système de refroidissement de votre ordinateur.
+
+2
+00:00:06,000 --> 00:00:09,000
+ Plusieurs composants de votre système produisent de la chaleur.
+
+3
+00:00:10,000 --> 00:00:14,000
+ Un disque dur ou un lecteur de CD-ROM dont les moteurs tournent très vite.
+
+4
+00:00:15,000 --> 00:00:18,000
+ Mais c'est surtout votre processeur qui chauffe.
+
+5
+00:00:19,000 --> 00:00:22,000
+ Et plus un processeur est chaud, moins il est performant.
+
+6
+00:00:23,000 --> 00:00:28,000
+ Dans ce petit film, nous allons passer en revue les différents systèmes de refroidissement existants
+
+7
+00:00:28,000 --> 00:00:32,000
+ et vous montrer comment contrôler la température de votre système.
+
+8
+00:00:35,000 --> 00:00:39,000
+ Chaque ordinateur comporte plusieurs zones chaudes qu'il faut refroidir.
+
+9
+00:00:40,000 --> 00:00:43,000
+ Le principal concerné est le processeur.
+
+10
+00:00:44,000 --> 00:00:49,000
+ Les nombreux électrons qui s'y bousculent pour lui permettre de calculer produisent de la chaleur par frottement.
+
+11
+00:00:51,000 --> 00:00:56,000
+ La vitesse des processeurs augmente chaque année, tout comme leur nombre d'électrons.
+
+12
+00:00:57,000 --> 00:00:59,000
+ Mais leur taille reste identique.
+
+13
+00:01:00,000 --> 00:01:05,000
+ En raison de leur petite surface, les nouveaux processeurs peuvent chauffer autant qu'un réacteur nucléaire.
+
+14
+00:01:07,000 --> 00:01:12,000
+ Sans système de refroidissement, ils peuvent atteindre les 100°C.
+
+15
+00:01:13,000 --> 00:01:19,000
+ À cette température, les plantages système commencent et le processeur risque tout bonnement de brûler.
+
+16
+00:01:20,000 --> 00:01:24,000
+ Il est donc indispensable de bien refroidir votre processeur.
+
+17
+00:01:25,000 --> 00:01:27,000
+ Deux types de systèmes existent.
+
+18
+00:01:28,000 --> 00:01:32,000
+ Les systèmes passifs veillent à disperser et évacuer l'air chaud.
+
+19
+00:01:33,000 --> 00:01:35,000
+ Un dissipateur thermique en est un bon exemple.
+
+20
+00:01:36,000 --> 00:01:40,000
+ Des plaques disposées à la verticale distribuent la chaleur sur une grande surface.
+
+21
+00:01:42,000 --> 00:01:47,000
+ La coque d'un ordinateur portable peut également être conçue de manière à répartir correctement la chaleur.
+
+22
+00:01:47,000 --> 00:01:56,000
+ Mais tout cela ne suffit pas pour les ordinateurs modernes qui ont besoin d'un système actif, comme un ventilateur ou un système de refroidissement hydraulique.
+
+23
+00:01:59,000 --> 00:02:03,000
+ Les ventilateurs sont petits et efficaces mais très bruyants.
+
+24
+00:02:04,000 --> 00:02:07,000
+ Ils ont besoin d'un espace suffisant pour évacuer l'air chaud.
+
+25
+00:02:08,000 --> 00:02:14,000
+ Les systèmes hydrauliques font circuler de l'eau dans un petit tuyau qui parcourt tout l'intérieur de votre ordinateur
+
+26
+00:02:14,000 --> 00:02:18,000
+ et passent le long du processeur afin de le refroidir.
+
+27
+00:02:19,000 --> 00:02:24,000
+ Ces systèmes prennent beaucoup de place mais certaines versions sont totalement silencieuses.
+
+28
+00:02:26,000 --> 00:02:30,000
+ Vous pouvez vous aussi contrôler la température de votre ordinateur.
+
+29
+00:02:31,000 --> 00:02:37,000
+ En effet, son boîtier est équipé de capteurs de chaleur qui protègent votre ordinateur contre toute surchauffe.
+
+30
+00:02:38,000 --> 00:02:48,000
+ Souvent, le fabricant de la carte mère de votre ordinateur mettra à votre disposition sur son site web un programme permettant de contrôler la température de ses capteurs.
+
+31
+00:02:50,000 --> 00:02:53,000
+ Le nom du fabricant figure sur la carte mère.
+
+32
+00:02:54,000 --> 00:03:02,000
+ Si votre PC chauffe et commence à planter, c'est peut-être le moment de changer ou de renforcer le système de refroidissement.
+
+33
+00:03:03,000 --> 00:03:09,000
+ Dans ce module, nous avons vu la différence entre système de refroidissement passif et actif.
+
+34
+00:03:10,000 --> 00:03:14,000
+ De plus, nous vous avons expliqué comment contrôler la température de votre système.
+

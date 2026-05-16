@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        /* стили для скрытия/показа вложенных ul */
+        #tree>ul {
+            display: block;
+        }
+
+        #tree li>* {
+            display: none;
+        }
+
+        #tree li:hover {
+            cursor: pointer;
+        }
+
+        #tree li.open>* {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="tree" id="tree">
+        <li class="tree-item">Животные
+            <ul>
+                <li class="tree-item">Млекопитающие
+                    <ul>
+                        <li>Коровы</li>
+                        <li>Ослы</li>
+                        <li>Собаки</li>
+                        <li>Тигры</li>
+                    </ul>
+                </li>
+                <li class="tree-item">Другие<ul>
+                        <li>Змеи</li>
+                        <li>Птицы</li>
+                        <li>Ящерицы</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li class="tree-item">Рыбы
+            <ul>
+                <li class="tree-item">Аквариумные
+                    <ul>
+                        <li>Гуппи</li>
+                        <li>Скалярии</li>
+                    </ul>
+                </li>
+                <li class="tree-item">Морские
+                    <ul>
+                        <li>Морская форель</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        // Задание №4 Раскрывающееся дерево
+        // Создайте дерево, которое по клику на заголовок скрывает-показывает
+        // потомков. Необходимо использовать только один обработчик событий
+        // (делегирование); клик вне текста заголовка ничего не должен делать; клик по
+        // вложенным элементам не должен влиять на родительские
+        // Делегирование на #tree, проверка target.tagName === 'LI', stopPropagation().
+
+        document.getElementById('tree').addEventListener('click', function (event) {
+            if (event.target.tagName === 'LI') {
+                event.target.classList.toggle('open');
+                event.stopPropagation();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+1
+00:00:00,000 --> 00:00:04,380
+ Sans qu'on s'en rende compte, les langages de programmation sont utilisés partout.
+
+2
+00:00:04,380 --> 00:00:07,440
+ Prenez par exemple votre machine à laver.
+
+3
+00:00:07,440 --> 00:00:09,980
+ Elle ne tourne que quand vous appuyez sur le bouton allumé.
+
+4
+00:00:09,980 --> 00:00:12,760
+ C'est grâce à des lignes de code.
+
+5
+00:00:12,760 --> 00:00:16,440
+ Les langages de programmation nous permettent de communiquer avec les machines.
+
+6
+00:00:16,440 --> 00:00:21,120
+ Ils nous servent à écrire du code contenant des instructions que les ordinateurs peuvent
+
+7
+00:00:21,120 --> 00:00:22,120
+ comprendre.
+
+8
+00:00:22,120 --> 00:00:26,040
+ Et des lignes de code, ça ressemble à ça.
+
+9
+00:00:26,040 --> 00:00:28,880
+ Ouais, quand on voit ça, ça fait un peu peur.
+
+10
+00:00:28,880 --> 00:00:31,240
+ Mais en fait, ce n'est pas si difficile.
+
+11
+00:00:31,240 --> 00:00:34,160
+ Enfin, beaucoup moins que ça.
+
+12
+00:00:34,160 --> 00:00:36,800
+ Ce truc là, c'est du code machine.
+
+13
+00:00:36,800 --> 00:00:40,640
+ Le code machine, c'est le langage natif d'un ordinateur.
+
+14
+00:00:40,640 --> 00:00:43,160
+ C'est-à-dire le seul qui le comprend.
+
+15
+00:00:43,160 --> 00:00:46,160
+ C'est, la plupart du temps, un langage binaire.
+
+16
+00:00:46,160 --> 00:00:50,200
+ C'est-à-dire qu'il est composé uniquement de 0 et de 1.
+
+17
+00:00:50,200 --> 00:00:54,560
+ Sauf qu'en tant qu'être humain, on n'y comprend pas grand-chose et c'est devenu
+
+18
+00:00:54,560 --> 00:00:57,680
+ extrêmement difficile de coder dans ce langage.
+
+19
+00:00:57,680 --> 00:01:02,080
+ C'est pour cela que les langages de programmation plus simples ont été inventés.
+
+20
+00:01:02,080 --> 00:01:07,520
+ Ils représentent donc une manière plus intuitive que le binaire pour communiquer avec un ordinateur.
+
+21
+00:01:07,520 --> 00:01:12,840
+ Et pourtant, je vous ai dit plutôt qu'un ordinateur pouvait comprendre uniquement le
+
+22
+00:01:12,840 --> 00:01:13,840
+ code machine.
+
+23
+00:01:13,840 --> 00:01:18,520
+ Alors, comment pouvons-nous communiquer avec lui sans utiliser ce langage ?
+
+24
+00:01:18,520 --> 00:01:21,600
+ C'est là qu'intervient le compilateur.
+
+25
+00:01:22,480 --> 00:01:27,440
+ Un compilateur, c'est un programme qui permet de transformer du code compréhensible par
+
+26
+00:01:27,440 --> 00:01:29,480
+ les développeurs en langage machine.
+
+27
+00:01:29,480 --> 00:01:32,160
+ On peut le comparer à un traducteur.
+
+28
+00:01:32,160 --> 00:01:37,280
+ Sans lui, ce serait comme si le langage de programmation était de l'espagnol alors
+
+29
+00:01:37,280 --> 00:01:39,080
+ que l'ordinateur ne comprenait que le chinois.
+
+30
+00:01:39,080 --> 00:01:44,720
+ Bon, on commence à bien comprendre ce que c'est qu'un langage de programmation.
+
+31
+00:01:44,720 --> 00:01:47,920
+ Mais au fait, combien en existe-t-il ?
+
+32
+00:01:48,800 --> 00:01:50,800
+ Eh bien, beaucoup.
+
+33
+00:01:50,800 --> 00:01:52,480
+ Genre vraiment beaucoup.
+
+34
+00:01:52,480 --> 00:02:00,480
+ Les plus connus sont Java, Python, HTML, C-Sharp et chacun a un peu son domaine de prédilection.
+
+35
+00:02:00,480 --> 00:02:02,480
+ Prenons Javascript.
+
+36
+00:02:02,480 --> 00:02:05,840
+ C'est un langage qui permet de créer des sites web.
+
+37
+00:02:05,840 --> 00:02:09,720
+ Mais on l'utilisera beaucoup moins pour coder un jeu vidéo par exemple.
+
+38
+00:02:09,720 --> 00:02:14,560
+ C'est pour cette raison qu'on ne peut pas coder n'importe quoi avec n'importe quel
+
+39
+00:02:14,560 --> 00:02:15,560
+ langage.
+
+40
+00:02:16,200 --> 00:02:20,680
+ Mais malgré leurs différences, il y a tout de même beaucoup de similitudes entre tous
+
+41
+00:02:20,680 --> 00:02:22,440
+ les langages de programmation.
+
+42
+00:02:22,440 --> 00:02:27,960
+ Pour créer une condition, c'est à dire exécuter quelque chose uniquement si un événement
+
+43
+00:02:27,960 --> 00:02:34,280
+ se produit, par exemple s'il pleut, alors je prends mon parapluie, on utilisera presque
+
+44
+00:02:34,280 --> 00:02:39,920
+ tout le temps les mots-clés if, else if et else qui se traduisent respectivement par
+
+45
+00:02:39,920 --> 00:02:42,400
+ si, sinon si et sinon.
+
+46
+00:02:43,240 --> 00:02:50,400
+ Pour illustrer tout ça, voici une condition en Python et une condition en Javascript.
+
+47
+00:02:50,400 --> 00:02:54,440
+ Ouais, vu comme ça, on dirait que c'est la même chose.
+
+48
+00:02:54,440 --> 00:02:59,160
+ On retrouve l'un des mots-clés si t'es plus haut, if, dans les deux langages.
+
+49
+00:02:59,160 --> 00:03:02,800
+ Et dans les deux cas, on délimite une zone par des acolades.
+
+50
+00:03:02,800 --> 00:03:05,400
+ Donc même la syntaxe est très ressemblante.
+
+51
+00:03:05,400 --> 00:03:09,560
+ Mais attention, ce n'est pas tout le temps le cas.
+
+52
+00:03:10,440 --> 00:03:14,280
+ Prenons HTML, qui permet de créer des sites web.
+
+53
+00:03:14,280 --> 00:03:18,000
+ Sa spécificité est que c'est un langage dit de balisage.
+
+54
+00:03:18,000 --> 00:03:21,840
+ Il a donc une syntaxe très différente des langages de programmation.
+
+55
+00:03:21,840 --> 00:03:26,800
+ A gauche du HTML et à droite du Python.
+
+56
+00:03:26,800 --> 00:03:30,880
+ Bon, comme ça, c'est assez difficile de comparer quand on ne connaît pas.
+
+57
+00:03:30,880 --> 00:03:33,360
+ Donc on va faire plus simple.
+
+58
+00:03:33,360 --> 00:03:34,360
+ Voilà.
+
+59
+00:03:34,440 --> 00:03:39,480
+ Deux syntaxes radicalement différentes et qui, pourtant, servent à faire la même chose.
+
+60
+00:03:39,480 --> 00:03:41,480
+ Écrire du texte.
+
+61
+00:03:41,480 --> 00:03:46,480
+ C'est donc pour cette raison qu'il faut bien réfléchir à quel langage choisir en fonction de ce qu'on veut faire.
+

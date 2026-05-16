@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./styles/style.css">
+  <meta name="description" content="Introduction">
+  <script src="./scripts/theme.js" defer></script>
+  <title>Мой сайт | Главная страница</title>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+  <header class=" header">
+    <img src="./assets/logo-white.svg" alt="logo" width="64" height="64">
+    <h1 class="header__title">Валекжанин Владимир</h1>
+  </header>
+  <nav class="nav" aria-label="Основная навигация" role="navigation">
+    <ul class="nav__list">
+      <li class="nav__item"><a href="./index.html">Главная</a></li>
+      <li class="nav__item"><a href="./pages/diary.html">Дневник</a></li>
+      <li class="nav__item"><a href="./pages/projects.html">Проекты</a></li>
+      <li class="nav__item"><a href="./pages/contacts.html">Контакты</a></li>
+    </ul>
+  </nav>
+  <button id="button__dark-mode" aria-label="toggle-theme"></button>
+  <main class="main" id="main">
+    <section class="section" id="introduction">
+      <h1 class="section__title">Информация об авторе</h1>
+      <figure class="hero__photo">
+        <picture>
+          <!-- Современные форматы -->
+          <source type="image/avif" srcset="./assets/hero/hero-150.avif 150w, ./assets/hero/hero-200.avif 200w, 
+    ./assets/hero/hero-300.avif 300w" sizes="200px">
+          <source type="image/webp" srcset="./assets/hero/hero-150.webp 150w, ./assets/hero/hero-200.webp 200w, 
+    ./assets/hero/hero-300.webp 300w" sizes="200px">
+
+          <!-- Запасной JPEG -->
+          <img class="hero__photo-image" src="./assets/hero/hero-200.jpg" srcset="./assets/hero/hero-150.jpg 150w, ./assets/hero/hero-200.jpg 200w, 
+    ./assets/hero/hero-300.jpg 300w" sizes="200px" width="200" height="200" alt="Портрет студента"
+            fetchpriority="high">
+        </picture>
+      </figure>
+      <p class="hero__name">Валекжанин Владимир Сергеевич</p>
+      <p class="hero__group">ЭФБО-04-24</p>
+      <div class="hero__about">
+        <h2 class="about__title">Привет! Я студент группы ЭФБО-04-24</h2>
+        <p class="about__description">Увлекаюсь веб-разработкой</p>
+        <a class="hero__resume-button" role="button" href="/resume.txt" download="resume.txt">Скачать резюме</a>
+      </div>
+    </section>
+    <section class="section" id="skills">
+      <h2 class="section__title">Навыки</h2>
+      <ul class="skill__list">
+        <li class="skill__block"><span class="skill__title">HTML</span></li>
+        <li class="skill__block"><span class="skill__title">CSS</span></li>
+        <li class="skill__block"><span class="skill__title">SaSS</span></li>
+        <li class="skill__block"><span class="skill__title">TS</span></li>
+        <li class="skill__block"><span class="skill__title">React</span></li>
+        <li class="skill__block"><span class="skill__title">Next.JS</span></li>
+        <li class="skill__block"><span class="skill__title">Jest</span></li>
+        <li class="skill__block"><span class="skill__title">Bash</span></li>
+        <li class="skill__block"><span class="skill__title">Linux</span></li>
+        <li class="skill__block"><span class="skill__title">Vite</span></li>
+        <li class="skill__block"><span class="skill__title">nvm</span></li>
+        <li class="skill__block"><span class="skill__title">Docker</span></li>
+        <li class="skill__block"><span class="skill__title">Yaml/JSON</span></li>
+        <li class="skill__block">
+          <span class="skill__title">Виртуализация</span>
+        </li>
+      </ul>
+    </section>
+    <section class="section" id="experience">
+      <h2 class="section__title">Мой опыт работы</h2>
+      <div class="experience__card">
+        <h3 class="experience__title">Опыт 1</h3>
+        <br />
+        Ας χρησιμοποιήσουμε το αρχαίο φαγόπυρο για zedki και ούτω καθεξής.
+      </div>
+      <div class="experience__card">
+        <h3 class="experience__title">Опыт 2</h3>
+        <br />
+        Работал воровством. Воровал и продавал.
+      </div>
+      <div class="experience__card">
+        <h3 class="experience__title">Опыт 3</h3>
+        <br />
+        Работал рэпером. Читал и пел.
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__text">&copy; 2024 Мой сайт</p>
+    <p class="footer__text">* Meta признана экстремистской организацией на территории Российской Федерации</p>
+    <p class="footer__text">** Просмотр данного контента не предназначен для людей с эпилепсией. Если вы чувствуете
+      недомогания, жар, или иные симптомы эпилептического припадка, немедленно отойдите от экрана</p>
+    <p class="footer__text">*** Данный ресурс не облагается публичной офертой</p>
+    <p class="footer__text">**** Все события вымышлены, совпадения случайны</p>
+  </footer>
+</body>
+
+</html>

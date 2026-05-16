@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="message">Старое сообщение</div>
+    <script>
+        function updateMessage(id, message) {
+            const elem = document.getElementById(id);
+            elem.textContent = message;
+        }
+        updateMessage('message', 'Новое сообщение!'); 
+    </script>
+</body>
+
+</html>
