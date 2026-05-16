@@ -1,0 +1,125 @@
+@startuml
+skinparam state {
+  BackgroundColor<<Terminal>> LightCoral
+  ArrowColor #444444
+  BorderColor #666666
+}
+
+state "Готово (таблица активна)" as ready <<Process>> {
+  state "Управление таблицей" as table_ops {
+    state "Изменение размеров" as resize {
+      state "resize_init" as rs_init <<hidden>> #FFFFFF
+      state "Добавить ряд" as add_row
+      state "Удалить ряд" as delete_row
+      state "Добавить столбец" as add_col
+      state "Удалить столбец" as delete_col
+
+      rs_init --> add_row
+      add_row --> rs_init
+      rs_init --> delete_row
+      delete_row --> rs_init
+      rs_init --> add_col
+      add_col --> rs_init
+      rs_init --> delete_col
+      delete_col --> rs_init
+    }
+
+state "Навигация" as navigation {
+    [*] --> movement
+
+    state "Перемещение" as movement {
+        state "Активная клетка" as active_cell
+        state "Вправо" as right
+        state "Влево" as left
+        state "Вверх" as up
+        state "Вниз" as down
+        [*] --> active_cell
+
+        active_cell --> right : Tab
+        active_cell --> left : Shift+Tab
+        active_cell --> up : Стрелка вверх
+        active_cell --> down : Стрелка вниз
+
+        right --> active_cell : Обновить позицию
+        left --> active_cell : Обновить позицию
+        up --> active_cell : Обновить позицию
+        down --> active_cell : Обновить позицию
+    }
+}
+
+    [*] --> edit_cell
+    state "Редактирование ячейки" as edit_cell
+  }
+
+  state "Импорт данных" as import {
+    [*] --> check_file
+    state "Проверка файла" as check_file
+    check_file --> import_error : Невалидный файл
+    check_file --> load_data : Файл корректен
+    state "Ошибка импорта" as import_error
+    state "Загрузка данных" as load_data
+    import_error --> [*] : Повторить
+    load_data --> [*] : Успешно
+  }
+
+  state "Экспорт данных" as export {
+      [*] --> check_file
+      state "Проверка файла" as check_file
+      check_file --> import_error : Невалидный файл
+      check_file --> load_data : Файл корректен
+      state "Ошибка импорта" as import_error
+      state "Загрузка данных" as load_data
+      import_error --> [*] : Повторить
+      load_data --> [*] : Успешно
+    }
+
+  state "Авторазмер" as autosize {
+    [*] --> calibrate
+    state "Калибровка ячеек" as calibrate
+    calibrate --> [*]
+  }
+}
+
+state "Настройка графиков" as charts <<Process>> {
+  [*] --> edit_legend
+  state "Редактирование легенды" as edit_legend
+  [*] --> rename_x
+  state "Переименование оси X" as rename_x
+  [*] --> rename_y
+  state "Переименование оси Y" as rename_y
+
+  state "Экстремумы" as extremes {
+    [*] --> max_on
+    [*] --> min_on
+    state "MAX_активен" as max_on
+    state "MIN_активен" as min_on
+    state "MAX_неактивен" as max_off
+    state "MIN_неактивен" as min_off
+    max_on --> max_off : Нажатие MAX
+    max_off --> max_on : Нажатие MAX
+    min_on --> min_off : Нажатие MIN
+    min_off --> min_on : Нажатие MIN
+  }
+}
+
+state "Ошибка" as error <<Terminal>> {
+  [*] --> show_error
+  state "Отображение ошибки" as show_error
+  show_error --> import
+}
+
+state "Завершение работы" as exit <<Terminal>>
+
+[*] --> ready
+ready --> charts : Настройки графиков
+ready --> autosize : Авторазмер
+ready --> import : Импорт файла
+ready --> resize : Изменение размеров
+ready --> exit : Выход
+
+charts --> ready : Сохранить
+autosize --> ready : Готово
+import --> ready : Успех
+import --> error : Ошибка
+error --> ready : Подтвердить
+@enduml
