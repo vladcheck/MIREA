@@ -1,0 +1,27 @@
+{
+  "name": "pr26",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.ts --noEmit --ignoreConfig"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.1",
+    "ws": "^8.20.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.8.0",
+    "typescript": "^6.0.3"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.0.8",
+      "onFail": "download"
+    }
+  }
+}

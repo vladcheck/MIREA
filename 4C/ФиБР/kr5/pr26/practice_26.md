@@ -77,19 +77,19 @@ ID        — уникальный идентификатор (строка ил
 
 ```graphql
 type User {
-    id: ID!
-    name: String!
-    email: String!
-    age: Int
-    posts: [Post!]!
+  id: ID!
+  name: String!
+  email: String!
+  age: Int
+  posts: [Post!]!
 }
 
 type Post {
-    id: ID!
-    title: String!
-    content: String!
-    author: User!
-    createdAt: String!
+  id: ID!
+  title: String!
+  content: String!
+  author: User!
+  createdAt: String!
 }
 ```
 
@@ -101,22 +101,22 @@ type Post {
 
 ```graphql
 type Query {
-    users: [User!]!
-    user(id: ID!): User
-    posts: [Post!]!
-    post(id: ID!): Post
+  users: [User!]!
+  user(id: ID!): User
+  posts: [Post!]!
+  post(id: ID!): Post
 }
 
 type Mutation {
-    createUser(name: String!, email: String!): User!
-    updateUser(id: ID!, name: String): User!
-    deleteUser(id: ID!): Boolean!
-    createPost(title: String!, content: String!, authorId: ID!): Post!
+  createUser(name: String!, email: String!): User!
+  updateUser(id: ID!, name: String): User!
+  deleteUser(id: ID!): Boolean!
+  createPost(title: String!, content: String!, authorId: ID!): Post!
 }
 
 type Subscription {
-    postCreated: Post!
-    userUpdated(id: ID!): User!
+  postCreated: Post!
+  userUpdated(id: ID!): User!
 }
 ```
 
@@ -126,13 +126,13 @@ type Subscription {
 
 ```graphql
 input CreateUserInput {
-    name: String!
-    email: String!
-    age: Int
+  name: String!
+  email: String!
+  age: Int
 }
 
 type Mutation {
-    createUser(input: CreateUserInput!): User!
+  createUser(input: CreateUserInput!): User!
 }
 ```
 
@@ -151,8 +151,8 @@ npm install @apollo/server graphql
 
 ```js
 // server.js
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
 
 // 1. Определяем схему
 const typeDefs = `#graphql
@@ -184,50 +184,50 @@ const typeDefs = `#graphql
 
 // 2. Данные в памяти (в реальном проекте — база данных)
 const users = [
-    { id: '1', name: 'Иван Иванов', email: 'ivan@example.com' },
-    { id: '2', name: 'Мария Петрова', email: 'maria@example.com' },
+  { id: "1", name: "Иван Иванов", email: "ivan@example.com" },
+  { id: "2", name: "Мария Петрова", email: "maria@example.com" },
 ];
 
 const posts = [
-    { id: '1', title: 'Первый пост', content: 'Содержимое...', authorId: '1' },
-    { id: '2', title: 'Второй пост', content: 'Ещё содержимое...', authorId: '1' },
+  { id: "1", title: "Первый пост", content: "Содержимое...", authorId: "1" },
+  { id: "2", title: "Второй пост", content: "Ещё содержимое...", authorId: "1" },
 ];
 
 // 3. Определяем резолверы
 const resolvers = {
-    Query: {
-        users: () => users,
-        user: (_, { id }) => users.find(u => u.id === id),
-        posts: () => posts,
-    },
+  Query: {
+    users: () => users,
+    user: (_, { id }) => users.find((u) => u.id === id),
+    posts: () => posts,
+  },
 
-    Mutation: {
-        createUser: (_, { name, email }) => {
-            const user = { id: String(users.length + 1), name, email };
-            users.push(user);
-            return user;
-        },
-        createPost: (_, { title, content, authorId }) => {
-            const post = { id: String(posts.length + 1), title, content, authorId };
-            posts.push(post);
-            return post;
-        },
+  Mutation: {
+    createUser: (_, { name, email }) => {
+      const user = { id: String(users.length + 1), name, email };
+      users.push(user);
+      return user;
     },
+    createPost: (_, { title, content, authorId }) => {
+      const post = { id: String(posts.length + 1), title, content, authorId };
+      posts.push(post);
+      return post;
+    },
+  },
 
-    // Вложенные резолверы для связей между типами
-    User: {
-        posts: (parent) => posts.filter(p => p.authorId === parent.id),
-    },
-    Post: {
-        author: (parent) => users.find(u => u.id === parent.authorId),
-    },
+  // Вложенные резолверы для связей между типами
+  User: {
+    posts: (parent) => posts.filter((p) => p.authorId === parent.id),
+  },
+  Post: {
+    author: (parent) => users.find((u) => u.id === parent.authorId),
+  },
 };
 
 // 4. Запускаем сервер
 const server = new ApolloServer({ typeDefs, resolvers });
 
 const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
+  listen: { port: 4000 },
 });
 
 console.log(`GraphQL Server ready at: ${url}`);
@@ -250,20 +250,20 @@ fieldName: (parent, args, context, info) => { ... }
 
 ```js
 const resolvers = {
-    Query: {
-        // parent = undefined (корневой резолвер)
-        // args = { id: '42' }
-        user: (parent, args, context) => {
-            // context.db — подключение к базе данных
-            return context.db.findUserById(args.id);
-        },
+  Query: {
+    // parent = undefined (корневой резолвер)
+    // args = { id: '42' }
+    user: (parent, args, context) => {
+      // context.db — подключение к базе данных
+      return context.db.findUserById(args.id);
     },
-    User: {
-        // parent = объект User, полученный из резолвера выше
-        posts: (parent, args, context) => {
-            return context.db.findPostsByAuthorId(parent.id);
-        },
+  },
+  User: {
+    // parent = объект User, полученный из резолвера выше
+    posts: (parent, args, context) => {
+      return context.db.findPostsByAuthorId(parent.id);
     },
+  },
 };
 ```
 
@@ -273,12 +273,12 @@ Context используется для передачи общих зависи
 
 ```js
 const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
-    context: async ({ req }) => {
-        const token = req.headers.authorization || '';
-        const user = verifyToken(token);
-        return { db, currentUser: user };
-    },
+  listen: { port: 4000 },
+  context: async ({ req }) => {
+    const token = req.headers.authorization || "";
+    const user = verifyToken(token);
+    return { db, currentUser: user };
+  },
 });
 ```
 
@@ -291,23 +291,23 @@ const { url } = await startStandaloneServer(server, {
 ```graphql
 # Получить всех пользователей с именем и email
 query {
-    users {
-        id
-        name
-        email
-    }
+  users {
+    id
+    name
+    email
+  }
 }
 
 # Получить конкретного пользователя с его постами
 query GetUserWithPosts($userId: ID!) {
-    user(id: $userId) {
-        name
-        email
-        posts {
-            title
-            content
-        }
+  user(id: $userId) {
+    name
+    email
+    posts {
+      title
+      content
     }
+  }
 }
 ```
 
@@ -316,21 +316,21 @@ query GetUserWithPosts($userId: ID!) {
 ```graphql
 # Создать нового пользователя
 mutation {
-    createUser(name: "Алексей Сидоров", email: "alex@example.com") {
-        id
-        name
-    }
+  createUser(name: "Алексей Сидоров", email: "alex@example.com") {
+    id
+    name
+  }
 }
 
 # Создать пост (с переменными)
 mutation CreatePost($title: String!, $content: String!, $authorId: ID!) {
-    createPost(title: $title, content: $content, authorId: $authorId) {
-        id
-        title
-        author {
-            name
-        }
+  createPost(title: $title, content: $content, authorId: $authorId) {
+    id
+    title
+    author {
+      name
     }
+  }
 }
 ```
 
@@ -347,15 +347,15 @@ npm install @apollo/server @graphql-subscriptions graphql-ws ws graphql
 #### Пример сервера с подписками
 
 ```js
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import { makeExecutableSchema } from '@graphql-tools/schema';
-import { WebSocketServer } from 'ws';
-import { useServer } from 'graphql-ws/lib/use/ws';
-import { PubSub } from 'graphql-subscriptions';
-import express from 'express';
-import http from 'http';
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@apollo/server/express4";
+import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import { WebSocketServer } from "ws";
+import { useServer } from "graphql-ws/lib/use/ws";
+import { PubSub } from "graphql-subscriptions";
+import express from "express";
+import http from "http";
 
 const pubsub = new PubSub();
 
@@ -380,22 +380,22 @@ const typeDefs = `#graphql
 `;
 
 const resolvers = {
-    Query: {
-        posts: () => [],
+  Query: {
+    posts: () => [],
+  },
+  Mutation: {
+    createPost: (_, { title, author }) => {
+      const post = { id: String(Date.now()), title, author };
+      // Публикуем событие — все подписчики получат этот пост
+      pubsub.publish("POST_CREATED", { postCreated: post });
+      return post;
     },
-    Mutation: {
-        createPost: (_, { title, author }) => {
-            const post = { id: String(Date.now()), title, author };
-            // Публикуем событие — все подписчики получат этот пост
-            pubsub.publish('POST_CREATED', { postCreated: post });
-            return post;
-        },
+  },
+  Subscription: {
+    postCreated: {
+      subscribe: () => pubsub.asyncIterator(["POST_CREATED"]),
     },
-    Subscription: {
-        postCreated: {
-            subscribe: () => pubsub.asyncIterator(['POST_CREATED']),
-        },
-    },
+  },
 };
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
@@ -404,47 +404,55 @@ const app = express();
 const httpServer = http.createServer(app);
 
 // WebSocket-сервер для подписок
-const wsServer = new WebSocketServer({ server: httpServer, path: '/graphql' });
+const wsServer = new WebSocketServer({ server: httpServer, path: "/graphql" });
 const serverCleanup = useServer({ schema }, wsServer);
 
 const server = new ApolloServer({
-    schema,
-    plugins: [
-        ApolloServerPluginDrainHttpServer({ httpServer }),
-        { async serverWillStart() { return { async drainServer() { await serverCleanup.dispose(); } }; } },
-    ],
+  schema,
+  plugins: [
+    ApolloServerPluginDrainHttpServer({ httpServer }),
+    {
+      async serverWillStart() {
+        return {
+          async drainServer() {
+            await serverCleanup.dispose();
+          },
+        };
+      },
+    },
+  ],
 });
 
 await server.start();
-app.use('/graphql', express.json(), expressMiddleware(server));
+app.use("/graphql", express.json(), expressMiddleware(server));
 
 httpServer.listen(4000, () => {
-    console.log('Server ready at http://localhost:4000/graphql');
-    console.log('Subscriptions ready at ws://localhost:4000/graphql');
+  console.log("Server ready at http://localhost:4000/graphql");
+  console.log("Subscriptions ready at ws://localhost:4000/graphql");
 });
 ```
 
 #### Пример подписки на клиенте (Apollo Client)
 
 ```js
-import { gql, useSubscription } from '@apollo/client';
+import { gql, useSubscription } from "@apollo/client";
 
 const POST_CREATED = gql`
-    subscription OnPostCreated {
-        postCreated {
-            id
-            title
-            author
-        }
+  subscription OnPostCreated {
+    postCreated {
+      id
+      title
+      author
     }
+  }
 `;
 
 function LiveFeed() {
-    const { data, loading } = useSubscription(POST_CREATED);
+  const { data, loading } = useSubscription(POST_CREATED);
 
-    if (loading) return <p>Ожидание новых постов...</p>;
+  if (loading) return <p>Ожидание новых постов...</p>;
 
-    return <p>Новый пост: {data.postCreated.title}</p>;
+  return <p>Новый пост: {data.postCreated.title}</p>;
 }
 ```
 
@@ -474,11 +482,10 @@ function LiveFeed() {
 
 ### Формат отчета
 
-В качестве ответа на данный блок практик студентом подготавливается тематический проект. Критерии в [Практике 28](https://github.com/darrmr/Frontend_and_backend_dev_26_2/blob/main/practice_28.md)  
+В качестве ответа на данный блок практик студентом подготавливается тематический проект. Критерии в [Практике 28](https://github.com/darrmr/Frontend_and_backend_dev_26_2/blob/main/practice_28.md)
 
 ### Литература
 
 1. [Официальная документация GraphQL](https://graphql.org/learn/)
 2. [Документация Apollo Server](https://www.apollographql.com/docs/apollo-server/)
 3. [Apollo Client (React)](https://www.apollographql.com/docs/react/)
-
