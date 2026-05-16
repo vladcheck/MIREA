@@ -1,0 +1,6 @@
+burger:36
+apple:42
+coffecup:44
+cupcake:39
+soda:41
+tomato:45
