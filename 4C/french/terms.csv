@@ -1,0 +1,337 @@
+1,une architecture,архитектура
+1,une base de données,база данных
+1,un calcul intensif,интенсивные вычисления
+1,une conception graphique,графический дизайн
+1,une disponibilité,доступность
+1,une fiabilité,надежность
+1,une gestion de bases de données,управление базами данных
+1,un jeu vidéo,видеоигра
+1,une machine électronique,электронная машина
+1,un mainframe,мейнфрейм
+1,une navigation sur Internet,навигация в интернете
+1,un ordinateur,компьютер
+1,un ordinateur de bureau,настольный компьютер
+1,un ordinateur portable,ноутбук
+1,un portable,портативный компьютер
+1,une performance,производительность
+1,un processeur,процессор
+1,une programmation,программирование
+1,une puissance,мощность
+1,un réseau,сеть
+1,un serveur,сервер
+1,un smartphone,смартфон
+1,un superordinateur,суперкомпьютер
+1,une tablette,планшет
+1,une taille,размер
+1,une tâche spécifique,конкретная задача
+1,un traitement de texte,текстовый процессор
+1,une visualisation de contenu multimédia,воспроизведение мультимедийного контента
+1,accéder à Internet,подключаться к интернету
+1,accélérer le traitement,ускорять обработку
+1,allumer / éteindre l'écran, l'unité centrale,включать / выключать экран, системный блок
+1,améliorer les performances,улучшать производительность
+1,brancher / débrancher un appareil,подключать / отключать устройство
+1,cliquer (sur un élément),нажимать (на элемент)
+1,connecter / déconnecter un périphérique,подключать / отключать периферийное устройство
+1,déplacer le pointeur / le curseur,перемещать указатель / курсор
+1,effectuer des opérations / des calculs,выполнять операции / вычисления
+1,être équipé de,быть оснащенным
+1,gérer une base de données,управлять базой данных
+1,installer un programme,устанавливать программу
+1,lire un fichier,читать файл
+1,mettre en route l'ordinateur,запускать компьютер
+1,naviguer sur Internet,серфить в интернете
+1,ouvrir / fermer une session, un programme,открывать / закрывать сессию, программу
+1,se déplacer souvent,часто перемещаться
+1,traiter / stocker des données,обрабатывать / хранить данные
+1,travailler simultanément,работать одновременно
+1,utiliser sans clavier,использовать без клавиатуры
+2,un boîtier,корпус
+2,un câble,кабель
+2,une caméra / une webcam,камера / веб-камера
+2,un casque,наушники
+2,un clavier,клавиатура
+2,une connexion filaire,проводное соединение
+2,une connexion sans fil,беспроводное соединение
+2,un connecteur,разъём
+2,un dispositif,устройство
+2,un écran,экран
+2,une enceinte,акустическая система
+2,un haut-parleur,динамик
+2,une image,изображение
+2,une imprimante,принтер
+2,une latence d'entrée,задержка ввода
+2,un lecteur de code-barres,сканер штрих-кодов
+2,une manette de jeu,игровой контроллер
+2,un microphone,микрофон
+2,un moniteur,монитор
+2,un moniteur à cristaux liquides,жидкокристаллический монитор
+2,un moniteur à diode électroluminescente,светодиодный монитор
+2,un moniteur à diode électroluminescente organique,OLED-монитор
+2,un moniteur à projection,проекционный монитор
+2,un moniteur à tube cathodique,электронно-лучевой монитор
+2,un moniteur de jeu,игровой монитор
+2,un moniteur professionnel,профессиональный монитор
+2,un moniteur quatre K,4K-монитор
+2,un moniteur tactile,сенсорный монитор
+2,un moniteur ultra-large,широкоформатный монитор
+2,un pavé tactile,трекпад
+2,un périphérique d'entrée,устройство ввода
+2,un périphérique de sortie,устройство вывода
+2,un pixel,пиксель
+2,un pointeur,указатель
+2,un port,порт
+2,une précision des couleurs,точность цветопередачи
+2,un projecteur,проектор
+2,une résolution,разрешение
+2,un rétroéclairage,подсветка
+2,un scanner,сканер
+2,un son,звук
+2,une souris,мышь
+2,un stylet,стилус
+2,une surface tactile,сенсорная панель
+2,une tablette graphique,графический планшет
+2,une touche,клавиша
+2,afficher une image,отображать изображение
+2,déplacer / sélectionner avec la souris,перемещать / выбирать мышью
+2,de
+2,dessiner / prendre des notes,рисовать / делать заметки
+2,enregistrer / capturer un son, une image,записывать / захватывать звук, изображение
+2,envoyer une commande,отправлять команду
+2,être branché sur un port,быть подключённым к порту
+2,glisser le doigt,проводить пальцем
+2,importer / enregistrer / modifier / partager un fichier,импортировать / сохранять / изменять / делиться файлом
+2,interagir avec une interface,взаимодействовать с интерфейсом
+2,numériser / scanner un document,сканировать документ
+2,produire une copie papier,печатать бумажную копию
+2,projeter sur un écran,проецировать на экран
+2,saisir des données / des informations,вводить данные / информацию
+2,se connecter à Internet,подключаться к интернету
+2,visionner une vidéo,просматривать видео
+3,une alimentation électrique,электропитание
+3,un bloc d'alimentation,блок питания
+3,un boîtier,корпус
+3,une capacité,ёмкость
+3,une carte d'extension,плата расширения
+3,une carte graphique,видеокарта
+3,une carte mère,материнская плата
+3,une carte son,звуковая карта
+3,une carte vidéo,видеокарта
+3,un composant,компонент
+3,un disque dur,жёсткий диск
+3,une fente d'extension,слот расширения
+3,une fréquence,частота
+3,un gigahertz,гигагерц
+3,un gigaoctet,гигабайт
+3,un matériel informatique,компьютерное оборудование
+3,une mémoire morte,постоянная память
+3,une mémoire non volatile,энергонезависимая память
+3,une mémoire temporaire,временная память
+3,une mémoire vive,оперативная память
+3,une mémoire volatile,энергозависимая память
+3,un octet,байт
+3,une performance,производительность
+3,une pièce détachée,запасная часть
+3,un processeur,процессор
+3,un programme,программа
+3,un refroidissement,охлаждение
+3,un signal numérique,цифровой сигнал
+3,un signal visuel,визуальный сигнал
+3,une surchauffe,перегрев
+3,un système de refroidissement,система охлаждения
+3,une taille,размер
+3,un téraoctet,терабайт
+3,une tour,системный блок
+3,une unité centrale,центральный блок
+3,un ventilateur,вентилятор
+3,une vitesse d'horloge,тактовая частота
+3,changer / renforcer un système,менять / усиливать систему
+3,entraîner une surchauffe,вызывать перегрев
+3,exécuter une instruction,выполнять инструкцию
+3,fournir / convertir de l'énergie,подавать / преобразовывать энергию
+3,gérer l'affichage / le son,управлять отображением / звуком
+3,générer / évacuer de la chaleur,выделять / отводить тепло
+3,lancer un programme,запускать программу
+3,maintenir / refroidir la température,поддерживать / охлаждать температуру
+3,mesurer en gigahertz,измерять в гигагерцах
+3,produire / enregistrer / numériser un son,воспроизводить / записывать / оцифровывать звук
+3,ralentir / planter (le système),замедлять / вызывать сбой (системы)
+3,relier les composants ensemble,соединять компоненты между собой
+3,s'exprimer en gigaoctets,измеряться в гигабайтах
+4,une architecture du processeur,архитектура процессора
+4,un bit,бит
+4,un circuit électronique,электронная схема
+4,une consommation d'énergie,потребление энергии
+4,un cœur,ядро
+4,un cycle d'instructions,цикл инструкций
+4,un facteur d'influence,фактор влияния
+4,une fréquence d'horloge,тактовая частота
+4,un gigahertz,гигагерц
+4,un hertz,герц
+4,une horloge interne,внутренние часы
+4,une instruction,инструкция
+4,un jeu d'instructions,набор инструкций
+4,une mémoire cache,кэш-память
+4,un nombre binaire,двоичное число
+4,une opération mathématique et logique,математическая и логическая операция
+4,un processeur monocœur,одноядерный процессор
+4,un processeur multicœur,многоядерный процессор
+4,une puce,чип
+4,un registre d'instruction,регистр инструкций
+4,un signal électrique,электрический сигнал
+4,une taille du cache,размер кэша
+4,une tension,напряжение
+4,un transistor,транзистор
+4,une unité arithmétique et logique,арифметико-логическое устройство
+4,une unité centrale de traitement,центральный процессор
+4,une vitesse d'horloge,тактовая частота
+4,améliorer les performances,улучшать производительность
+4,augmenter le nombre de transistors / la fréquence,увеличивать количество транзисторов / частоту
+4,effectuer des tâches en parallèle,выполнять задачи параллельно
+4,être alimenté par une horloge,управляться тактовым генератором
+4,exécuter une instruction / un programme,выполнять инструкцию / программу
+4,mesurer la fréquence,измерять частоту
+4,overclocker un processeur,разгонять процессор
+4,récupérer / décoder / exécuter / stocker (les étapes),извлекать / декодировать / выполнять / сохранять (этапы)
+4,réguler par une tension,регулировать напряжением
+4,réduire la consommation,снижать потребление
+4,stocker une instruction / des données,сохранять инструкцию / данные
+4,suivre un cycle,следовать циклу
+4,synchroniser les opérations,синхронизировать операции
+4,traiter de grandes quantités de données,обрабатывать большие объёмы данных
+5,une bande magnétique,магнитная лента
+5,un bus,шина
+5,une capacité de stockage,ёмкость хранилища
+5,une carte mémoire,карта памяти
+5,une cellule de mémoire flash,ячейка флэш-памяти
+5,un champ magnétique,магнитное поле
+5,une copie de sauvegarde,резервная копия
+5,une couche réfléchissante,отражающий слой
+5,une défragmentation,дефрагментация
+5,un démarrage,загрузка
+5,un disque à état solide,твердотельный накопитель
+5,un disque Blu-ray,Blu-ray диск
+5,un disque compact,компакт-диск
+5,un disque dur,жёсткий диск
+5,un disque dur externe,внешний жёсткий диск
+5,un disque dur interne,внутренний жёсткий диск
+5,un disque numérique polyvalent,DVD-диск
+5,un disque optique,оптический диск
+5,un dossier,папка
+5,un espace de stockage,место для хранения
+5,un faisceau laser,лазерный луч
+5,un fichier,файл
+5,une fragmentation,фрагментация
+5,un laser,лазер
+5,une mémoire flash,флэш-память
+5,une mémoire interne,внутренняя память
+5,une polarité magnétique,магнитная полярность
+5,une puce de mémoire,чип памяти
+5,une sauvegarde,резервное копирование
+5,un serveur distant,удалённый сервер
+5,un stockage,хранение данных
+5,un stockage cloud,облачное хранилище
+5,un stockage en ligne,онлайн-хранилище
+5,un stockage magnétique,магнитное хранение
+5,un stockage optique,оптическое хранение
+5,un support de stockage,носитель данных
+5,une technologie de stockage flash,технология флэш-хранения
+5,une tête de lecture/écriture,головка чтения/записи
+5,une vitesse de lecture/écriture,скорость чтения/записи
+5,une zone magnétique,магнитная зона
+5,accéder via Internet,получать доступ через интернет
+5,brûler des trous,прожигать отверстия
+5,changer la polarité,менять полярность
+5,connecter via un câble,подключать через кабель
+5,défragmenter régulièrement,регулярно дефрагментировать
+5,détecter / convertir des informations,обнаруживать / преобразовывать информацию
+5,enregistrer / lire / écrire des données,сохранять / читать / записывать данные
+5,entraîner une diminution des performances,вызывать снижение производительности
+5,être dispersé sur le disque,быть разбросанным по диску
+5,être sensible aux chocs,быть чувствительным к ударам
+5,être utilisé dans / pour,использоваться в / для
+5,éviter la perte de données,избегать потери данных
+5,formater un disque,форматировать диск
+5,partager des fichiers,делиться файлами
+5,programmer électriquement,программировать электрически
+5,ralentir le temps de démarrage,замедлять время загрузки
+5,récupérer les données,восстанавливать данные
+5,supprimer un fichier,удалять файл
+5,transférer des fichiers,передавать файлы
+6,un champ de recherche,поле поиска
+6,un code source,исходный код
+6,une communauté de développeurs,сообщество разработчиков
+6,une contrainte de temps,временное ограничение
+6,une correction de bogues,исправление ошибок
+6,une fonctionnalité,функция
+6,une gestion de la mémoire,управление памятью
+6,une interface en ligne de commande,командная строка
+6,une interface graphique utilisateur,графический пользовательский интерфейс
+6,une interface utilisateur,пользовательский интерфейс
+6,un logiciel,программное обеспечение
+6,un logiciel libre,свободное ПО
+6,un logiciel open-source,ПО с открытым исходным кодом
+6,un logiciel propriétaire,проприетарное ПО
+6,un logiciel système,системное ПО
+6,une mémoire virtuelle,виртуальная память
+6,une mise à jour,обновление
+6,un noyau,ядро
+6,un ordonnancement,планирование
+6,un pilote,драйвер
+6,une protection contre les menaces,защита от угроз
+6,une ressource logicielle,программный ресурс
+6,une ressource matérielle,аппаратный ресурс
+6,une sécurité des données,безопасность данных
+6,un système d'exploitation,операционная система
+6,un système monotâche,однозадачная система
+6,un système multitâche,многозадачная система
+6,un système mono-utilisateur,однопользовательская система
+6,un système multi-utilisateur,многопользовательская система
+6,un système coopératif,кооперативная система
+6,un système préemptif,вытесняющая система
+6,une tâche,задача
+6,un utilisateur,пользователь
+6,accéder au code source,получать доступ к исходному коду
+6,apporter des corrections,вносить исправления
+6,céder en fonctionnalité,уступать в функциональности
+6,communiquer avec les périphériques,взаимодействовать с периферией
+6,développer un logiciel,разрабатывать ПО
+6,distribuer des tâches,распределять задачи
+6,étudier / modifier / distribuer librement,изучать / изменять / свободно распространять
+6,gérer les ressources / la mémoire,управлять ресурсами / памятью
+6,interrompre une tâche,прерывать задачу
+6,lancer / démarrer un programme,запускать программу
+6,libérer le processeur,освобождать процессор
+6,permettre l'accès à plusieurs utilisateurs,разрешать доступ нескольким пользователям
+7,un algorithme,алгоритм
+7,une analyse de données,анализ данных
+7,une application,приложение
+7,une application web,веб-приложение
+7,un cadre de développement,фреймворк
+7,un code binaire,двоичный код
+7,un code hexadécimal,шестнадцатеричный код
+7,un codage,кодирование
+7,une commande,команда
+7,un compilateur,компилятор
+7,une condition,условие
+7,un développeur,разработчик
+7,une génération,поколение
+7,une intelligence artificielle,искусственный интеллект
+7,un interpréteur,интерпретатор
+7,un langage de bas niveau,язык низкого уровня
+7,un langage de programmation,язык программирования
+7,un langage de script,скриптовый язык
+7,un langage formel,формальный язык
+7,un langage fonctionnel,функциональный язык
+7,un langage impératif,императивный язык
+7,un langage machine,машинный язык
+7,un langage orienté objet,объектно-ориентированный язык
+7,une ligne de code,строка кода
+7,accomplir une tâche,выполнять задачу
+7,automatiser une tâche,автоматизировать задачу
+7,choisir un langage,выбирать язык
+7,communiquer avec les ordinateurs,взаимодействовать с компьютерами
+7,créer une application,создавать приложение
+7,créer une condition / un site web,создавать условие / веб-сайт
+7,décrire un algorithme,описывать алгоритм
+7,écrire un script,писать скрипт
