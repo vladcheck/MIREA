@@ -1,0 +1,14 @@
+@use "../../styles/colors"
+
+.nav-links
+    display: flex
+    gap: 2rem
+    font-size: 0.8rem
+    color: colors.$inactive-text-clr
+
+.nav-links__item
+    &:hover
+        color: colors.$hover-link-clr
+    &.active
+        color: colors.$active-link-clr
+        font-weight: bold

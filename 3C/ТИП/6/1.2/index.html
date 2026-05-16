@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li id="target">Элемент 1</li>
+        <li>Элемент 2</li>
+    </ul>
+    <script>
+        function highlightSibling(id) {
+            const elem = document.getElementById(id);
+            const sibling = elem.nextElementSibling;
+            const b = document.createElement("b");
+            b.textContent = "Выделено"
+            b.style = "{display: inline-block; margin-left: 1rem;}"
+            sibling.appendChild(b);
+        }
+        highlightSibling('target'); 
+    </script>
+</body>
+
+</html>

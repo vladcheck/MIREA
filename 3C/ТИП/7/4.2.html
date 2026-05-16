@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 4px;
+        }
+
+        th {
+            cursor: pointer;
+        }
+
+        th:hover {
+            background: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="grid">
+        <thead>
+            <tr>
+                <th data-type="number">Возраст</th>
+                <th data-type="string">Имя</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>5</td>
+                <td>Вася</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Петя</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Женя</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Маша</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Илья</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        // Задание №4.2 Сортируемая таблица
+        // Сделать таблицу сортируемой: при клике на элемент <th> строки
+        // таблицы должны сортироваться по соответствующему столбцу.
+        // Каждый элемент <th> имеет атрибут data-type
+        // Сортировка должна поддерживать только типы "string" и "number".
+
+        document.querySelectorAll('#grid th').forEach((header, index) => {
+            header.addEventListener('click', () => {
+                const type = header.getAttribute('data-type');
+                const tbody = document.querySelector('#grid tbody');
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+
+                rows.sort((a, b) => {
+                    const aValue = a.cells[index].textContent;
+                    const bValue = b.cells[index].textContent;
+
+                    if (type === 'number') {
+                        return Number(aValue) - Number(bValue);
+                    } else {
+                        return aValue.localeCompare(bValue);
+                    }
+                });
+
+                rows.forEach(row => tbody.appendChild(row));
+            });
+        });
+    </script>
+</body>
+
+</html>

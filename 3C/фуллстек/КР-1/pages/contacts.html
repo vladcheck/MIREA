@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/contacts.css">
+    <script src="../scripts/theme.js" defer></script>
+    <script src="../scripts/contacts.js" defer></script>
+    <meta name="description" content="How to reach out to me">
+    <title>Контакты</title>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+    <header class="header">
+        <img src="../assets/logo-white.svg" alt="logo" width="64" height="64">
+        <h1 class="header__title">Валекжанин Владимир</h1>
+    </header>
+    <nav class="nav" id="menu" aria-label="Основная навигация" role="navigation">
+        <ul class="nav__list">
+            <li class="nav__item"><a href="../index.html">Главная</a></li>
+            <li class="nav__item"><a href="./diary.html">Дневник</a></li>
+            <li class="nav__item"><a href="./projects.html">Проекты</a></li>
+            <li class="nav__item"><a href="./contacts.html">Контакты</a></li>
+        </ul>
+    </nav>
+    <button id="button__dark-mode" aria-label="toggle-theme"></button>
+    <main class="main" id="main">
+        <section class="section" id="contacts">
+            <h1 class="contacts__title">Контакты</h1>
+            <div class="cards">
+                <div class="contact__card-item">
+                    <span class="contact__card-label">Почта</span>
+                    <span class="email">valdemar@yaclex.ru</span>
+                </div>
+                <div class="contact__card-item">
+                    <span class="contact__card-label">Адрес</span>
+                    <address>Россия, Москва</address>
+                </div>
+                <div class="contact__card-item">
+                    <span class="contact__card-label">Discord</span>
+                    <a href="https://discord.com/valdemarcheck" target="_blank">Valdemarcheck (Discord)</a>
+                </div>
+                <div class="contact__card-item">
+                    <span class="contact__card-label">GitHub</span>
+                    <a href="https://github.com/vladcheck" target="_blank">Vladcheck (GitHub)</a>
+                </div>
+                <div class="contact__card-item">
+                    <span class="contact__card-label">Время работы</span>
+                    <span>Пн-Пт: 9:00-18:00</span>
+                </div>
+                <div class="contact__card-item">
+                    <span class="contact__card-label">Социальные сети</span>
+                    <span>VK, Telegram, WhatsApp</span>
+                </div>
+            </div>
+            <button class="contact__card-button">Позвоните мне!</button>
+        </section>
+        <!-- Измененная кнопка для открытия модального окна -->
+    </main>
+    <footer class="footer">
+        <p class="footer__text">&copy; 2024 Мой сайт</p>
+        <p class="footer__text">* Meta признана экстремистской организацией на территории Российской Федерации</p>
+        <p class="footer__text">** Просмотр данного контента не предназначен для людей с эпилепсией. Если вы чувствуете
+            недомогания, жар, или иные симптомы эпилептического припадка, немедленно отойдите от экрана</p>
+        <p class="footer__text">*** Данный ресурс не облагается публичной офертой</p>
+        <p class="footer__text">**** Все события вымышлены, совпадения случайны</p>
+    </footer>
+    <dialog id="contactModal">
+        <div class="modal-header">
+            <h2>Форма обратной связи</h2>
+        </div>
+        <div class="modal-content">
+            <form id="feedbackForm" method="dialog">
+                <fieldset>
+                    <legend>Личная информация</legend>
+                    <div class="form-row">
+                        <label for="name">Имя <span class="required">*</span>
+                        </label>
+                        <input type="text" id="name" name="name" aria-required="true" placeholder="Введите ваше имя"
+                            minlength="2" maxlength="100" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="surname">Имя <span class="required">*</span>
+                        </label>
+                        <input type="text" id="surname" name="surname" aria-required="false"
+                            placeholder="Введите вашу фамилию" minlength="2" maxlength="40">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Контакты</legend>
+                    <div class="form-row">
+                        <label for="phone">Телефон <span class="required">*
+                            </span></label>
+                        <input type="tel" id="phone" name="phone" aria-required="true" placeholder="+7 (XXX) XXX-XX-XX"
+                            pattern="\+7 \(\d\d\d\) \d\d\d-\d\d-\d\d" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="email">E-mail</label>
+                        <input id="email" name="email" type="email" aria-describedby="email-hint 
+                email-error" aria-required="true" required>
+                        <small id="email-hint" class="visually-hidden">Мы пришлём ответ на этот
+                            адрес</small>
+                        <span id="email-error" class="visually-hidden" role="alert"></span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Обращение</legend>
+                    <div class="form-row">
+                        <label for="category">Категория обращения <span class="required">*</span></label>
+                        <select id="category" name="category" aria-required="true" required>
+                            <option value="" selected>Выберите категорию</option>
+                            <option value="technical">Техническая
+                                поддержка</option>
+                            <option value="commercial">Коммерческое
+                                предложение</option>
+                            <option value="cooperation">Сотрудничество</option>
+                            <option value="complaint">Жалоба</option>
+                            <option value="suggestion">Предложение</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="message">Текст обращения <span class="required">*</span></label>
+                        <textarea id="message" name="message" aria-required="true"
+                            placeholder="Опишите вашу проблему или вопрос..." required></textarea>
+                    </div>
+                </fieldset>
+                <div class="modal-actions">
+                    <button type="button" id="dismiss" class="button button-secondary">Отмена</button>
+                    <button type="submit" class="button button-primary">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+</body>
+
+</html>
