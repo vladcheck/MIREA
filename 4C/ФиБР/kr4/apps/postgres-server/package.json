@@ -11,21 +11,21 @@
     "format:fix": "oxfmt"
   },
   "dependencies": {
-    "dotenv-defaults": "6.0.0",
+    "dotenv": "*",
     "express": "5.2.1",
     "pg": "8.20.0",
     "sequelize": "6.37.8"
   },
   "devDependencies": {
-    "http-status-codes": "2.3.0",
+    "@types/express": "*",
     "@types/node": "25.6.0",
     "@types/pg": "8.20.0",
+    "http-status-codes": "2.3.0",
     "oxfmt": "*",
     "oxlint": "*"
   },
   "peerDependencies": {
     "nodemon": "*",
     "ts-node": "*"
-  },
-  "packageManager": "pnpm@10.33.2"
+  }
 }

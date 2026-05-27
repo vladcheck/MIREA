@@ -1,0 +1,259 @@
+services:
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PostgreSQL instances
+  postgres1:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg1_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres2:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg2_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres3:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5434:5432"
+    volumes:
+      - pg3_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # MongoDB instances
+  mongo1:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo1_data:/data/db
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongo2:
+    image: mongo:7
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo2_data:/data/db
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongo3:
+    image: mongo:7
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo3_data:/data/db
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PostgreSQL app instances
+  pg-app1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+      POSTGRES_HOST: postgres1
+      POSTGRES_PORT: 5432
+      PORT: 3000
+      SERVER_ID: pg-1
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      postgres1:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pg-app.rule=PathPrefix(`/pg`)"
+
+  pg-app2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+      POSTGRES_HOST: postgres2
+      POSTGRES_PORT: 5432
+      PORT: 3000
+      SERVER_ID: pg-2
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      postgres2:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  pg-app3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+      POSTGRES_HOST: postgres3
+      POSTGRES_PORT: 5432
+      PORT: 3000
+      SERVER_ID: pg-3
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      postgres3:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  # MongoDB app instances
+  mongo-app1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      MONGODB_URI: mongodb://mongo1:27017/admin
+      PORT: 3000
+      SERVER_ID: mongo-1
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      mongo1:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  mongo-app2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      MONGODB_URI: mongodb://mongo2:27017/admin
+      PORT: 3000
+      SERVER_ID: mongo-2
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      mongo2:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  mongo-app3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      MONGODB_URI: mongodb://mongo3:27017/admin
+      PORT: 3000
+      SERVER_ID: mongo-3
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      mongo3:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  # Nginx load balancer
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - pg-app1
+      - pg-app2
+      - pg-app3
+      - mongo-app1
+      - mongo-app2
+      - mongo-app3
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  pg1_data:
+  pg2_data:
+  pg3_data:
+  mongo1_data:
+  mongo2_data:
+  mongo3_data:

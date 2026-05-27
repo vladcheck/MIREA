@@ -1,6 +1,6 @@
 services:
   frontend:
-    build: ./src/frontend
+    build: ./frontend
     container_name: frontend
     ports:
       - 3001:80

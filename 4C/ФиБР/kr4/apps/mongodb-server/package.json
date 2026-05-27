@@ -1,8 +1,11 @@
 {
   "name": "mongodb-server",
   "version": "1.0.0",
-  "main": "server.ts",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "server.ts",
   "scripts": {
     "dev": "nodemon ./server.ts",
     "lint": "oxlint",
@@ -10,20 +13,17 @@
     "format": "oxfmt --check",
     "format:fix": "oxfmt"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.33.2",
+  "dependencies": {
+    "dotenv": "*",
+    "express": "*",
+    "mongoose": "9.6.1"
+  },
   "devDependencies": {
-    "http-status-codes": "2.3.0",
+    "@types/express": "^5.0.6",
     "@types/node": "25.6.0",
+    "http-status-codes": "2.3.0",
     "oxfmt": "*",
     "oxlint": "*"
-  },
-  "dependencies": {
-    "dotenv-defaults": "6.0.0",
-    "express": "5.2.1",
-    "mongoose": "9.6.1"
   },
   "peerDependencies": {
     "nodemon": "*",

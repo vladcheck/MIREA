@@ -9,7 +9,6 @@
     "correctness": "error",
     "suspicious": "warn",
     "perf": "warn",
-    "style": "warn"
   },
   "rules": {
     "func-style": "allow",
