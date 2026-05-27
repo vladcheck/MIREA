@@ -34,5 +34,5 @@
     "erasableSyntaxOnly": true,
     "allowJs": false,
     "noEmit": true
-  },
+  }
 }

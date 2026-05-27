@@ -28,7 +28,10 @@ const DB_NAME = process.env.DB_NAME || 'practice20'
 mongoose.connect(`${MONGO_URI}${DB_NAME}`)
   .then(() => {
     console.log('MongoDB connected. Database and collections created on first write.')
-    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`))
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`)
+      console.log(`Swagger running on http://localhost:${PORT}/api-docs`)
+    })
   })
   .catch(err => {
     console.error('DB connection failed:', err)
