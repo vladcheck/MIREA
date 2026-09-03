@@ -2,24 +2,12 @@
 node_modules
 bin/
 build/
-*.exe
-*.png
 *.xcf
-*.zip
-*.rar
 *.tur
-*.jpg
 mt_big_demo/
-*.mp3
 dist/
 *.pyc
 *.pptx
-*.xlsx
-*.mp4
-WeStudy
-
-# Основной env не закидывается, будет закидываться только пример env файла
-.env
 
 # Логи
 logs/
@@ -33,7 +21,6 @@ logs/
 *.dylib
 *.test
 *.out
-go.work
 
 # IDE
 .idea/
@@ -49,20 +36,12 @@ Thumbs.db
 
 # Wails
 *.syso
-package.json.md5
-
 
 # Frontend
-node_modules
-frontend/.github
 .next
 
 # Output
 coverage/
-dist/
-build/
-out/
 
 # misc
 .hidden/
-.vs
