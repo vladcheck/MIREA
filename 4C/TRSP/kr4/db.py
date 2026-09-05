@@ -1,0 +1,1 @@
+db: dict[int, dict] = {}
