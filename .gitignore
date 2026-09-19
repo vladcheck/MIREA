@@ -8,6 +8,7 @@ mt_big_demo/
 dist/
 *.pyc
 *.pptx
+*.lock
 
 # Логи
 logs/
