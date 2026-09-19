@@ -1,0 +1,15 @@
+{
+  "name": "dis-f407vg-lab-runner",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Интерактивное меню для сборки и прошивки лабораторных на стенде DIS_F407VG",
+  "scripts": {
+    "start": "node cli.mjs"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.1",
+    "chalk": "^5.4.1",
+    "gradient-string": "^2.0.0"
+  }
+}
