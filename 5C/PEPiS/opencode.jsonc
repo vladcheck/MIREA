@@ -1,0 +1,32 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "skills": {
+    "paths": [
+      "{env:HOME}/github/agentic/kicad-happy/skills",
+      "{env:HOME}/github/zxkmm/kicad-harness"
+    ]
+  },
+  "mcp": {
+    "kicad": {
+      "type": "local",
+      "command": ["node", "{env:HOME}/KiCAD-MCP-Server/dist/index.js"],
+      "enabled": true,
+      "timeout": 30000,
+      "environment": {
+        "NODE_ENV": "production",
+        "LOG_LEVEL": "info",
+        "KICAD_AUTO_LAUNCH": "false",
+        "KICAD_MCP_DEV": "0",
+        "KICAD_BACKEND": "auto",
+        "KICAD_PYTHON": "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3",
+        "PYTHONPATH": "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages"
+      }
+    },
+    "kicad-copilot": {
+      "type": "local",
+      "command": ["npx", "-y", "kicad-copilot-mcp"],
+      "enabled": true,
+      "timeout": 120000
+    }
+  }
+}

@@ -1,0 +1,1128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>/Users/vlad.valekzhanin/github/vladcheck/microcontrollers/pr3-4/kicad/pr3-4.kicad_sch</source>
+    <date>2026-09-25T20:50:26</date>
+    <tool>Eeschema 10.0.6</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>ПР №3-4. Шина I2C: STM32F103C8 + 24LC64 + DS1307</title>
+        <company>РТУ МИРЭА, ЭФБО-04-24, Валекжанин В.С., вариант 4</company>
+        <rev>1.0</rev>
+        <date>2026-09-25</date>
+        <source>pr3-4.kicad_sch</source>
+        <comment number="1" value="EEPROM 24LC64 ячейка 0x003F &lt;- 0x67; DS1307 регистр 0x00; светодиод успеха PA1"/>
+        <comment number="2" value="I2C1 100 кГц: FREQ=8, CCR=40, TRISE=9; подтяжки 4,7 кОм к 3,3 В"/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>0.1uF</value>
+      <description>Unpolarized capacitor</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c2e97225-ff79-43dd-8024-638660a1d862</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C2">
+      <value>0.1uF</value>
+      <description>Unpolarized capacitor</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d1a85367-d8be-47c3-96f7-7e4ca49de040</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="D1">
+      <value>LED</value>
+      <description>Light emitting diode</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Light emitting diode</field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="LED diode"/>
+      <property name="ki_fp_filters" value="LED* LED_SMD:* LED_THT:*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bd3fd3b3-1aa4-4ed8-ae45-31db52af5c06</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="FLG1">
+      <value>PWR_FLAG</value>
+      <description>Special symbol for telling ERC where power comes from</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Special symbol for telling ERC where power comes from</field>
+      </fields>
+      <libsource lib="power" part="PWR_FLAG" description="Special symbol for telling ERC where power comes from"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="flag power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>537ee0dd-bc89-41a7-868c-e9792b3d0153</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="FLG2">
+      <value>PWR_FLAG</value>
+      <description>Special symbol for telling ERC where power comes from</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Special symbol for telling ERC where power comes from</field>
+      </fields>
+      <libsource lib="power" part="PWR_FLAG" description="Special symbol for telling ERC where power comes from"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="flag power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5e6fa222-5680-43a4-97ce-bcdf950bf985</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="FLG3">
+      <value>PWR_FLAG</value>
+      <description>Special symbol for telling ERC where power comes from</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Special symbol for telling ERC where power comes from</field>
+      </fields>
+      <libsource lib="power" part="PWR_FLAG" description="Special symbol for telling ERC where power comes from"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="flag power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>156535d4-b959-46b9-9483-f5fe3a2a2d39</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="GND1">
+      <value>GND</value>
+      <description>Power symbol creates a global label with name "GND" , ground</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "GND" , ground</field>
+      </fields>
+      <libsource lib="power" part="GND" description="Power symbol creates a global label with name &quot;GND&quot; , ground"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>050b8dbd-fdd1-48ed-9f54-4b2b7a40d451</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="GND2">
+      <value>GND</value>
+      <description>Power symbol creates a global label with name "GND" , ground</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "GND" , ground</field>
+      </fields>
+      <libsource lib="power" part="GND" description="Power symbol creates a global label with name &quot;GND&quot; , ground"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0d37d6dd-9bd9-4124-aa82-a53eefc942b6</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="GND3">
+      <value>GND</value>
+      <description>Power symbol creates a global label with name "GND" , ground</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "GND" , ground</field>
+      </fields>
+      <libsource lib="power" part="GND" description="Power symbol creates a global label with name &quot;GND&quot; , ground"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>100bdeff-a1f0-42d8-b99a-89d5c167607a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="GND4">
+      <value>GND</value>
+      <description>Power symbol creates a global label with name "GND" , ground</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "GND" , ground</field>
+      </fields>
+      <libsource lib="power" part="GND" description="Power symbol creates a global label with name &quot;GND&quot; , ground"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bc620546-418d-41f2-965b-d1283a0e0865</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="GND5">
+      <value>GND</value>
+      <description>Power symbol creates a global label with name "GND" , ground</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "GND" , ground</field>
+      </fields>
+      <libsource lib="power" part="GND" description="Power symbol creates a global label with name &quot;GND&quot; , ground"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>26c4ceef-4070-4ea4-9327-c3111ebf200e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="GND6">
+      <value>GND</value>
+      <description>Power symbol creates a global label with name "GND" , ground</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "GND" , ground</field>
+      </fields>
+      <libsource lib="power" part="GND" description="Power symbol creates a global label with name &quot;GND&quot; , ground"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5cb66e28-52fa-484f-a72d-1cbfbc882d2e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="GND7">
+      <value>GND</value>
+      <description>Power symbol creates a global label with name "GND" , ground</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "GND" , ground</field>
+      </fields>
+      <libsource lib="power" part="GND" description="Power symbol creates a global label with name &quot;GND&quot; , ground"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0b2394eb-1be9-4afe-a702-69744e458377</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="PWR1">
+      <value>+3V3</value>
+      <description>Power symbol creates a global label with name "+3V3"</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "+3V3"</field>
+      </fields>
+      <libsource lib="power" part="+3V3" description="Power symbol creates a global label with name &quot;+3V3&quot;"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>823fc4fe-1d06-4637-9345-1ddc50439ec1</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="PWR2">
+      <value>+3V3</value>
+      <description>Power symbol creates a global label with name "+3V3"</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "+3V3"</field>
+      </fields>
+      <libsource lib="power" part="+3V3" description="Power symbol creates a global label with name &quot;+3V3&quot;"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1b4bf9f9-1591-43ab-b257-1d9eeb7bec59</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="PWR3">
+      <value>+3V3</value>
+      <description>Power symbol creates a global label with name "+3V3"</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "+3V3"</field>
+      </fields>
+      <libsource lib="power" part="+3V3" description="Power symbol creates a global label with name &quot;+3V3&quot;"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c28dc6ab-db5b-45ae-b19d-58acf5151cb7</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="PWR4">
+      <value>+5V</value>
+      <description>Power symbol creates a global label with name "+5V"</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "+5V"</field>
+      </fields>
+      <libsource lib="power" part="+5V" description="Power symbol creates a global label with name &quot;+5V&quot;"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0476f209-1d46-4a00-80d6-45c9284ab874</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="PWR5">
+      <value>+3V3</value>
+      <description>Power symbol creates a global label with name "+3V3"</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "+3V3"</field>
+      </fields>
+      <libsource lib="power" part="+3V3" description="Power symbol creates a global label with name &quot;+3V3&quot;"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>eb01ede5-78ae-4c38-a3a1-f879f5a7a9d1</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="PWR6">
+      <value>+5V</value>
+      <description>Power symbol creates a global label with name "+5V"</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "+5V"</field>
+      </fields>
+      <libsource lib="power" part="+5V" description="Power symbol creates a global label with name &quot;+5V&quot;"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="global power"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>3dbf63a6-73e9-4b36-b4ca-ba23ab1ed440</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R1">
+      <value>4.7k</value>
+      <description>Resistor</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7cdd2cad-bfd3-4720-a70f-58db3cd69f4e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R2">
+      <value>4.7k</value>
+      <description>Resistor</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a4a41f7e-8809-4a9f-a296-47737e9b3633</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R3">
+      <value>330</value>
+      <description>Resistor</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>589aa2fc-254e-47b1-b1a2-a5f05cc6b852</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U1">
+      <value>STM32F103C8T6</value>
+      <footprint>Package_QFP:LQFP-48_7x7mm_P0.5mm</footprint>
+      <datasheet>https://www.st.com/resource/en/datasheet/stm32f103c8.pdf</datasheet>
+      <description>STMicroelectronics Arm Cortex-M3 MCU, 64KB flash, 20KB RAM, 72 MHz, 2.0-3.6V, 37 GPIO, LQFP48</description>
+      <fields>
+        <field name="Footprint">Package_QFP:LQFP-48_7x7mm_P0.5mm</field>
+        <field name="Datasheet">https://www.st.com/resource/en/datasheet/stm32f103c8.pdf</field>
+        <field name="Description">STMicroelectronics Arm Cortex-M3 MCU, 64KB flash, 20KB RAM, 72 MHz, 2.0-3.6V, 37 GPIO, LQFP48</field>
+      </fields>
+      <libsource lib="MCU_ST_STM32F1" part="STM32F103C8Tx" description="STMicroelectronics Arm Cortex-M3 MCU, 64KB flash, 20KB RAM, 72 MHz, 2.0-3.6V, 37 GPIO, LQFP48"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="Arm Cortex-M3 STM32F1 STM32F103"/>
+      <property name="ki_fp_filters" value="LQFP*7x7mm*P0.5mm*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>20db6dd8-afcd-48bb-81c3-f9d354b4927d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="7"/>
+            <pin num="44"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="18"/>
+            <pin num="19"/>
+            <pin num="20"/>
+            <pin num="39"/>
+            <pin num="40"/>
+            <pin num="41"/>
+            <pin num="42"/>
+            <pin num="43"/>
+            <pin num="45"/>
+            <pin num="46"/>
+            <pin num="21"/>
+            <pin num="22"/>
+            <pin num="25"/>
+            <pin num="26"/>
+            <pin num="27"/>
+            <pin num="28"/>
+            <pin num="1"/>
+            <pin num="24"/>
+            <pin num="36"/>
+            <pin num="35"/>
+            <pin num="23"/>
+            <pin num="47"/>
+            <pin num="48"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="10"/>
+            <pin num="11"/>
+            <pin num="12"/>
+            <pin num="13"/>
+            <pin num="14"/>
+            <pin num="15"/>
+            <pin num="16"/>
+            <pin num="17"/>
+            <pin num="29"/>
+            <pin num="30"/>
+            <pin num="31"/>
+            <pin num="32"/>
+            <pin num="33"/>
+            <pin num="34"/>
+            <pin num="37"/>
+            <pin num="38"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U2">
+      <value>24LC64</value>
+      <datasheet>http://ww1.microchip.com/downloads/en/DeviceDoc/21189f.pdf</datasheet>
+      <description>I2C Serial EEPROM, 64Kb, DIP-8/SOIC-8/TSSOP-8/DFN-8</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet">http://ww1.microchip.com/downloads/en/DeviceDoc/21189f.pdf</field>
+        <field name="Description">I2C Serial EEPROM, 64Kb, DIP-8/SOIC-8/TSSOP-8/DFN-8</field>
+      </fields>
+      <libsource lib="Memory_EEPROM" part="24LC64" description="I2C Serial EEPROM, 64Kb, DIP-8/SOIC-8/TSSOP-8/DFN-8"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="I2C Serial EEPROM"/>
+      <property name="ki_fp_filters" value="DIP*W7.62mm* SOIC*3.9x4.9mm* TSSOP*4.4x3mm*P0.65mm* DFN*3x2mm*P0.5mm*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>57ffde23-f3c8-4258-b6a4-4299d2bd1b38</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="8"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U3">
+      <value>DS1307</value>
+      <footprint>Package_DIP:DIP-8_W7.62mm</footprint>
+      <datasheet>https://datasheets.maximintegrated.com/en/ds/DS1307.pdf</datasheet>
+      <description>64 x 8, Serial, I2C Real-time clock, 4.5V to 5.5V VCC, -40°C to +85°C, DIP-8</description>
+      <fields>
+        <field name="Footprint">Package_DIP:DIP-8_W7.62mm</field>
+        <field name="Datasheet">https://datasheets.maximintegrated.com/en/ds/DS1307.pdf</field>
+        <field name="Description">64 x 8, Serial, I2C Real-time clock, 4.5V to 5.5V VCC, -40°C to +85°C, DIP-8</field>
+      </fields>
+      <libsource lib="Timer_RTC" part="DS1307N+" description="64 x 8, Serial, I2C Real-time clock, 4.5V to 5.5V VCC, -40°C to +85°C, DIP-8"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="RTC, Trickle-Charge Timekeeping Chip"/>
+      <property name="ki_fp_filters" value="DIP*W7.62mm*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b9778b1f-a400-457e-bfd3-245d20071f21</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="6"/>
+            <pin num="5"/>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="8"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="7"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="X1">
+      <value>32.768kHz</value>
+      <description>Two pin crystal</description>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Two pin crystal</field>
+      </fields>
+      <libsource lib="Device" part="Crystal" description="Two pin crystal"/>
+      <property name="Sheetname" value="pr3-4"/>
+      <property name="Sheetfile" value="pr3-4.kicad_sch"/>
+      <property name="ki_keywords" value="quartz ceramic resonator oscillator"/>
+      <property name="ki_fp_filters" value="Crystal*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9b6c0863-a4fc-49f6-b321-05caae05b90b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Crystal">
+      <description>Two pin crystal</description>
+      <footprints>
+        <fp>Crystal*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Y</field>
+        <field name="Value">Crystal</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Two pin crystal</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="LED">
+      <description>Light emitting diode</description>
+      <footprints>
+        <fp>LED*</fp>
+        <fp>LED_SMD:*</fp>
+        <fp>LED_THT:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Light emitting diode</field>
+        <field name="Sim.Pins">1=K 2=A</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="MCU_ST_STM32F1" part="STM32F103C8Tx">
+      <description>STMicroelectronics Arm Cortex-M3 MCU, 64KB flash, 20KB RAM, 72 MHz, 2.0-3.6V, 37 GPIO, LQFP48</description>
+      <docs>https://www.st.com/resource/en/datasheet/stm32f103c8.pdf</docs>
+      <footprints>
+        <fp>LQFP*7x7mm*P0.5mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">STM32F103C8Tx</field>
+        <field name="Footprint">Package_QFP:LQFP-48_7x7mm_P0.5mm</field>
+        <field name="Datasheet">https://www.st.com/resource/en/datasheet/stm32f103c8.pdf</field>
+        <field name="Description">STMicroelectronics Arm Cortex-M3 MCU, 64KB flash, 20KB RAM, 72 MHz, 2.0-3.6V, 37 GPIO, LQFP48</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VBAT" type="power_in"/>
+        <pin num="2" name="PC13" type="bidirectional"/>
+        <pin num="3" name="PC14" type="bidirectional"/>
+        <pin num="4" name="PC15" type="bidirectional"/>
+        <pin num="5" name="PD0" type="bidirectional"/>
+        <pin num="6" name="PD1" type="bidirectional"/>
+        <pin num="7" name="NRST" type="input"/>
+        <pin num="8" name="VSSA" type="power_in"/>
+        <pin num="9" name="VDDA" type="power_in"/>
+        <pin num="10" name="PA0" type="bidirectional"/>
+        <pin num="11" name="PA1" type="bidirectional"/>
+        <pin num="12" name="PA2" type="bidirectional"/>
+        <pin num="13" name="PA3" type="bidirectional"/>
+        <pin num="14" name="PA4" type="bidirectional"/>
+        <pin num="15" name="PA5" type="bidirectional"/>
+        <pin num="16" name="PA6" type="bidirectional"/>
+        <pin num="17" name="PA7" type="bidirectional"/>
+        <pin num="18" name="PB0" type="bidirectional"/>
+        <pin num="19" name="PB1" type="bidirectional"/>
+        <pin num="20" name="PB2" type="bidirectional"/>
+        <pin num="21" name="PB10" type="bidirectional"/>
+        <pin num="22" name="PB11" type="bidirectional"/>
+        <pin num="23" name="VSS" type="power_in"/>
+        <pin num="24" name="VDD" type="power_in"/>
+        <pin num="25" name="PB12" type="bidirectional"/>
+        <pin num="26" name="PB13" type="bidirectional"/>
+        <pin num="27" name="PB14" type="bidirectional"/>
+        <pin num="28" name="PB15" type="bidirectional"/>
+        <pin num="29" name="PA8" type="bidirectional"/>
+        <pin num="30" name="PA9" type="bidirectional"/>
+        <pin num="31" name="PA10" type="bidirectional"/>
+        <pin num="32" name="PA11" type="bidirectional"/>
+        <pin num="33" name="PA12" type="bidirectional"/>
+        <pin num="34" name="PA13" type="bidirectional"/>
+        <pin num="35" name="VSS" type="passive"/>
+        <pin num="36" name="VDD" type="power_in"/>
+        <pin num="37" name="PA14" type="bidirectional"/>
+        <pin num="38" name="PA15" type="bidirectional"/>
+        <pin num="39" name="PB3" type="bidirectional"/>
+        <pin num="40" name="PB4" type="bidirectional"/>
+        <pin num="41" name="PB5" type="bidirectional"/>
+        <pin num="42" name="PB6" type="bidirectional"/>
+        <pin num="43" name="PB7" type="bidirectional"/>
+        <pin num="44" name="BOOT0" type="input"/>
+        <pin num="45" name="PB8" type="bidirectional"/>
+        <pin num="46" name="PB9" type="bidirectional"/>
+        <pin num="47" name="VSS" type="passive"/>
+        <pin num="48" name="VDD" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Memory_EEPROM" part="24LC64">
+      <description>I2C Serial EEPROM, 64Kb, DIP-8/SOIC-8/TSSOP-8/DFN-8</description>
+      <docs>http://ww1.microchip.com/downloads/en/DeviceDoc/21189f.pdf</docs>
+      <footprints>
+        <fp>DIP*W7.62mm*</fp>
+        <fp>SOIC*3.9x4.9mm*</fp>
+        <fp>TSSOP*4.4x3mm*P0.65mm*</fp>
+        <fp>DFN*3x2mm*P0.5mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">24LC64</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">http://ww1.microchip.com/downloads/en/DeviceDoc/21189f.pdf</field>
+        <field name="Description">I2C Serial EEPROM, 64Kb, DIP-8/SOIC-8/TSSOP-8/DFN-8</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A0" type="input"/>
+        <pin num="2" name="A1" type="input"/>
+        <pin num="3" name="A2" type="input"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="SDA" type="bidirectional"/>
+        <pin num="6" name="SCL" type="input"/>
+        <pin num="7" name="WP" type="input"/>
+        <pin num="8" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Timer_RTC" part="DS1307N+">
+      <description>64 x 8, Serial, I2C Real-time clock, 4.5V to 5.5V VCC, -40°C to +85°C, DIP-8</description>
+      <docs>https://datasheets.maximintegrated.com/en/ds/DS1307.pdf</docs>
+      <footprints>
+        <fp>DIP*W7.62mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">DS1307N+</field>
+        <field name="Footprint">Package_DIP:DIP-8_W7.62mm</field>
+        <field name="Datasheet">https://datasheets.maximintegrated.com/en/ds/DS1307.pdf</field>
+        <field name="Description">64 x 8, Serial, I2C Real-time clock, 4.5V to 5.5V VCC, -40°C to +85°C, DIP-8</field>
+      </fields>
+      <pins>
+        <pin num="1" name="X1" type="input"/>
+        <pin num="2" name="X2" type="input"/>
+        <pin num="3" name="VBAT" type="power_in"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="SDA" type="bidirectional"/>
+        <pin num="6" name="SCL" type="input"/>
+        <pin num="7" name="SQW/OUT" type="open_collector"/>
+        <pin num="8" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="power" part="+3V3">
+      <description>Power symbol creates a global label with name "+3V3"</description>
+      <fields>
+        <field name="Reference">#PWR</field>
+        <field name="Value">+3V3</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "+3V3"</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="power" part="+5V">
+      <description>Power symbol creates a global label with name "+5V"</description>
+      <fields>
+        <field name="Reference">#PWR</field>
+        <field name="Value">+5V</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "+5V"</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="power" part="GND">
+      <description>Power symbol creates a global label with name "GND" , ground</description>
+      <fields>
+        <field name="Reference">#PWR</field>
+        <field name="Value">GND</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Power symbol creates a global label with name "GND" , ground</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="power" part="PWR_FLAG">
+      <description>Special symbol for telling ERC where power comes from</description>
+      <fields>
+        <field name="Reference">#FLG</field>
+        <field name="Value">PWR_FLAG</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Special symbol for telling ERC where power comes from</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="power_out"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Device">
+      <uri>${KICAD10_SYMBOL_DIR}/Device.kicad_sym</uri>
+    </library>
+    <library logical="MCU_ST_STM32F1">
+      <uri>${KICAD10_SYMBOL_DIR}/MCU_ST_STM32F1.kicad_sym</uri>
+    </library>
+    <library logical="Memory_EEPROM">
+      <uri>${KICAD10_SYMBOL_DIR}/Memory_EEPROM.kicad_sym</uri>
+    </library>
+    <library logical="Timer_RTC">
+      <uri>${KICAD10_SYMBOL_DIR}/Timer_RTC.kicad_sym</uri>
+    </library>
+    <library logical="power">
+      <uri>${KICAD10_SYMBOL_DIR}/power.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="+3V3" class="Default">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="FLG1" pin="1" pintype="power_out"/>
+      <node ref="PWR1" pin="1" pintype="power_in"/>
+      <node ref="PWR2" pin="1" pintype="power_in"/>
+      <node ref="PWR3" pin="1" pintype="power_in"/>
+      <node ref="PWR5" pin="1" pintype="power_in"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="U1" pin="1" pinfunction="VBAT_1" pintype="power_in"/>
+      <node ref="U1" pin="24" pinfunction="VDD_24" pintype="power_in"/>
+      <node ref="U1" pin="36" pinfunction="VDD_36" pintype="power_in"/>
+      <node ref="U1" pin="48" pinfunction="VDD_48" pintype="power_in"/>
+      <node ref="U1" pin="9" pinfunction="VDDA_9" pintype="power_in"/>
+      <node ref="U2" pin="8" pinfunction="VCC_8" pintype="power_in"/>
+    </net>
+    <net code="2" name="+5V" class="Default">
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="FLG2" pin="1" pintype="power_out"/>
+      <node ref="PWR4" pin="1" pintype="power_in"/>
+      <node ref="PWR6" pin="1" pintype="power_in"/>
+      <node ref="U3" pin="8" pinfunction="VCC_8" pintype="power_in"/>
+    </net>
+    <net code="3" name="/SCL" class="Default">
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="U1" pin="42" pinfunction="PB6_42" pintype="bidirectional"/>
+      <node ref="U2" pin="6" pinfunction="SCL_6" pintype="input"/>
+      <node ref="U3" pin="6" pinfunction="SCL_6" pintype="input"/>
+    </net>
+    <net code="4" name="/SDA" class="Default">
+      <node ref="R2" pin="1" pintype="passive"/>
+      <node ref="U1" pin="43" pinfunction="PB7_43" pintype="bidirectional"/>
+      <node ref="U2" pin="5" pinfunction="SDA_5" pintype="bidirectional"/>
+      <node ref="U3" pin="5" pinfunction="SDA_5" pintype="bidirectional"/>
+    </net>
+    <net code="5" name="GND" class="Default">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="D1" pin="1" pinfunction="K_1" pintype="passive"/>
+      <node ref="FLG3" pin="1" pintype="power_out"/>
+      <node ref="GND1" pin="1" pintype="power_in"/>
+      <node ref="GND2" pin="1" pintype="power_in"/>
+      <node ref="GND3" pin="1" pintype="power_in"/>
+      <node ref="GND4" pin="1" pintype="power_in"/>
+      <node ref="GND5" pin="1" pintype="power_in"/>
+      <node ref="GND6" pin="1" pintype="power_in"/>
+      <node ref="GND7" pin="1" pintype="power_in"/>
+      <node ref="U1" pin="23" pinfunction="VSS_23" pintype="power_in"/>
+      <node ref="U1" pin="35" pinfunction="VSS_35" pintype="passive"/>
+      <node ref="U1" pin="47" pinfunction="VSS_47" pintype="passive"/>
+      <node ref="U1" pin="8" pinfunction="VSSA_8" pintype="power_in"/>
+      <node ref="U2" pin="1" pinfunction="A0_1" pintype="input"/>
+      <node ref="U2" pin="2" pinfunction="A1_2" pintype="input"/>
+      <node ref="U2" pin="3" pinfunction="A2_3" pintype="input"/>
+      <node ref="U2" pin="4" pinfunction="GND_4" pintype="power_in"/>
+      <node ref="U2" pin="7" pinfunction="WP_7" pintype="input"/>
+      <node ref="U3" pin="3" pinfunction="VBAT_3" pintype="power_in"/>
+      <node ref="U3" pin="4" pinfunction="GND_4" pintype="power_in"/>
+    </net>
+    <net code="6" name="Net-(D1-A)" class="Default">
+      <node ref="D1" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+    </net>
+    <net code="7" name="Net-(U1-PA1)" class="Default">
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="U1" pin="11" pinfunction="PA1_11" pintype="bidirectional"/>
+    </net>
+    <net code="8" name="Net-(U3-X1)" class="Default">
+      <node ref="U3" pin="1" pinfunction="X1_1" pintype="input"/>
+      <node ref="X1" pin="1" pinfunction="1_1" pintype="passive"/>
+    </net>
+    <net code="9" name="Net-(U3-X2)" class="Default">
+      <node ref="U3" pin="2" pinfunction="X2_2" pintype="input"/>
+      <node ref="X1" pin="2" pinfunction="2_2" pintype="passive"/>
+    </net>
+    <net code="10" name="unconnected-(U1-BOOT0-Pad44)" class="Default">
+      <node ref="U1" pin="44" pinfunction="BOOT0_44" pintype="input+no_connect"/>
+    </net>
+    <net code="11" name="unconnected-(U1-NRST-Pad7)" class="Default">
+      <node ref="U1" pin="7" pinfunction="NRST_7" pintype="input+no_connect"/>
+    </net>
+    <net code="12" name="unconnected-(U1-PA0-Pad10)" class="Default">
+      <node ref="U1" pin="10" pinfunction="PA0_10" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="13" name="unconnected-(U1-PA2-Pad12)" class="Default">
+      <node ref="U1" pin="12" pinfunction="PA2_12" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="14" name="unconnected-(U1-PA3-Pad13)" class="Default">
+      <node ref="U1" pin="13" pinfunction="PA3_13" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="15" name="unconnected-(U1-PA4-Pad14)" class="Default">
+      <node ref="U1" pin="14" pinfunction="PA4_14" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="16" name="unconnected-(U1-PA5-Pad15)" class="Default">
+      <node ref="U1" pin="15" pinfunction="PA5_15" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="17" name="unconnected-(U1-PA6-Pad16)" class="Default">
+      <node ref="U1" pin="16" pinfunction="PA6_16" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="18" name="unconnected-(U1-PA7-Pad17)" class="Default">
+      <node ref="U1" pin="17" pinfunction="PA7_17" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="19" name="unconnected-(U1-PA8-Pad29)" class="Default">
+      <node ref="U1" pin="29" pinfunction="PA8_29" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="20" name="unconnected-(U1-PA9-Pad30)" class="Default">
+      <node ref="U1" pin="30" pinfunction="PA9_30" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="21" name="unconnected-(U1-PA10-Pad31)" class="Default">
+      <node ref="U1" pin="31" pinfunction="PA10_31" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="22" name="unconnected-(U1-PA11-Pad32)" class="Default">
+      <node ref="U1" pin="32" pinfunction="PA11_32" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="23" name="unconnected-(U1-PA12-Pad33)" class="Default">
+      <node ref="U1" pin="33" pinfunction="PA12_33" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="24" name="unconnected-(U1-PA13-Pad34)" class="Default">
+      <node ref="U1" pin="34" pinfunction="PA13_34" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="25" name="unconnected-(U1-PA14-Pad37)" class="Default">
+      <node ref="U1" pin="37" pinfunction="PA14_37" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="26" name="unconnected-(U1-PA15-Pad38)" class="Default">
+      <node ref="U1" pin="38" pinfunction="PA15_38" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="27" name="unconnected-(U1-PB0-Pad18)" class="Default">
+      <node ref="U1" pin="18" pinfunction="PB0_18" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="28" name="unconnected-(U1-PB1-Pad19)" class="Default">
+      <node ref="U1" pin="19" pinfunction="PB1_19" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="29" name="unconnected-(U1-PB2-Pad20)" class="Default">
+      <node ref="U1" pin="20" pinfunction="PB2_20" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="30" name="unconnected-(U1-PB3-Pad39)" class="Default">
+      <node ref="U1" pin="39" pinfunction="PB3_39" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="31" name="unconnected-(U1-PB4-Pad40)" class="Default">
+      <node ref="U1" pin="40" pinfunction="PB4_40" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="32" name="unconnected-(U1-PB5-Pad41)" class="Default">
+      <node ref="U1" pin="41" pinfunction="PB5_41" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="33" name="unconnected-(U1-PB8-Pad45)" class="Default">
+      <node ref="U1" pin="45" pinfunction="PB8_45" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="34" name="unconnected-(U1-PB9-Pad46)" class="Default">
+      <node ref="U1" pin="46" pinfunction="PB9_46" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="35" name="unconnected-(U1-PB10-Pad21)" class="Default">
+      <node ref="U1" pin="21" pinfunction="PB10_21" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="36" name="unconnected-(U1-PB11-Pad22)" class="Default">
+      <node ref="U1" pin="22" pinfunction="PB11_22" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="37" name="unconnected-(U1-PB12-Pad25)" class="Default">
+      <node ref="U1" pin="25" pinfunction="PB12_25" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="38" name="unconnected-(U1-PB13-Pad26)" class="Default">
+      <node ref="U1" pin="26" pinfunction="PB13_26" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="39" name="unconnected-(U1-PB14-Pad27)" class="Default">
+      <node ref="U1" pin="27" pinfunction="PB14_27" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="40" name="unconnected-(U1-PB15-Pad28)" class="Default">
+      <node ref="U1" pin="28" pinfunction="PB15_28" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="41" name="unconnected-(U1-PC13-Pad2)" class="Default">
+      <node ref="U1" pin="2" pinfunction="PC13_2" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="42" name="unconnected-(U1-PC14-Pad3)" class="Default">
+      <node ref="U1" pin="3" pinfunction="PC14_3" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="43" name="unconnected-(U1-PC15-Pad4)" class="Default">
+      <node ref="U1" pin="4" pinfunction="PC15_4" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="44" name="unconnected-(U1-PD0-Pad5)" class="Default">
+      <node ref="U1" pin="5" pinfunction="PD0_5" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="45" name="unconnected-(U1-PD1-Pad6)" class="Default">
+      <node ref="U1" pin="6" pinfunction="PD1_6" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="46" name="unconnected-(U3-SQW/OUT-Pad7)" class="Default">
+      <node ref="U3" pin="7" pinfunction="SQW/OUT_7" pintype="open_collector+no_connect"/>
+    </net>
+  </nets>
+</export>
