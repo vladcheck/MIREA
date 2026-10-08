@@ -1,0 +1,74 @@
+[
+  {
+    "variant": 7,
+    "N_kb": 8,
+    "K_bytes": 100,
+    "ZZZ": "0x0800",
+    "ref_hex": "0x56",
+    "got_hex": "0x56",
+    "match": true,
+    "corrupt_hex": "0x57",
+    "led_on_mismatch": true,
+    "pass": true
+  },
+  {
+    "variant": 8,
+    "N_kb": 16,
+    "K_bytes": 300,
+    "ZZZ": "0x1000",
+    "ref_hex": "0x32",
+    "got_hex": "0x32",
+    "match": true,
+    "corrupt_hex": "0x33",
+    "led_on_mismatch": true,
+    "pass": true
+  },
+  {
+    "variant": 9,
+    "N_kb": 32,
+    "K_bytes": 500,
+    "ZZZ": "0x2000",
+    "ref_hex": "0x4e",
+    "got_hex": "0x4e",
+    "match": true,
+    "corrupt_hex": "0x4f",
+    "led_on_mismatch": true,
+    "pass": true
+  },
+  {
+    "variant": 10,
+    "N_kb": 8,
+    "K_bytes": 150,
+    "ZZZ": "0x0C00",
+    "ref_hex": "0xa7",
+    "got_hex": "0xa7",
+    "match": true,
+    "corrupt_hex": "0xa6",
+    "led_on_mismatch": true,
+    "pass": true
+  },
+  {
+    "variant": 11,
+    "N_kb": 16,
+    "K_bytes": 350,
+    "ZZZ": "0x1000",
+    "ref_hex": "0x93",
+    "got_hex": "0x93",
+    "match": true,
+    "corrupt_hex": "0x92",
+    "led_on_mismatch": true,
+    "pass": true
+  },
+  {
+    "variant": 12,
+    "N_kb": 32,
+    "K_bytes": 650,
+    "ZZZ": "0x0400",
+    "ref_hex": "0xed",
+    "got_hex": "0xed",
+    "match": true,
+    "corrupt_hex": "0xec",
+    "led_on_mismatch": true,
+    "pass": true
+  }
+]

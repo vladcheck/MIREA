@@ -1,0 +1,752 @@
+{
+  "work": "ПР №3-4. Шина I2C: STM32F103C8 + 24LC64 + DS1307",
+  "variant": 4,
+  "i2c_settings": {
+    "fSCL_Hz": 100000,
+    "STM32": {
+      "FREQ": 8,
+      "CCR": 40,
+      "TRISE": 9,
+      "pins": "PB6=SCL, PB7=SDA (open-drain, 2 MHz)",
+      "clock": "HSI 8 MHz, PCLK1 = 8 MHz"
+    },
+    "ATmega32": {
+      "TWBR": 32,
+      "TWPS": "00",
+      "pins": "PC0=SCL, PC1=SDA (сравнительная часть)",
+      "led": "PB1"
+    }
+  },
+  "positive": {
+    "phases": [
+      {
+        "name": "EEPROM write 0x67 -> 0x003F",
+        "t_start_us": 0.0
+      },
+      {
+        "name": "EEPROM random read 0x003F",
+        "t_start_us": 5445.0
+      },
+      {
+        "name": "DS1307 SetTime(12,34,00)",
+        "t_start_us": 5950.0
+      },
+      {
+        "name": "DS1307 read reg 0x00",
+        "t_start_us": 6425.0
+      }
+    ],
+    "pass": true,
+    "write_ack_polling_ok": true,
+    "write_cycle_us": 5000.0,
+    "eeprom_read": "0x67",
+    "eeprom_match": true,
+    "ds1307_set_ok": true,
+    "ds1307_raw": "0x00",
+    "ds1307_dec": 0,
+    "led": 1,
+    "ack_log": [
+      {
+        "t_us": 10.0,
+        "label": "SLA+W 0xA0",
+        "ack": true
+      },
+      {
+        "t_us": 100.0,
+        "label": "addr hi",
+        "ack": true
+      },
+      {
+        "t_us": 190.0,
+        "label": "addr lo",
+        "ack": true
+      },
+      {
+        "t_us": 280.0,
+        "label": "data 0x67",
+        "ack": true
+      },
+      {
+        "t_us": 395.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 510.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 625.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 740.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 855.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 970.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 1085.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 1200.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 1315.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 1430.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 1545.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 1660.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 1775.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 1890.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 2005.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 2120.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 2235.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 2350.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 2465.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 2580.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 2695.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 2810.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 2925.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 3040.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 3155.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 3270.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 3385.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 3500.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 3615.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 3730.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 3845.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 3960.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 4075.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 4190.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 4305.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 4420.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 4535.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 4650.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 4765.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 4880.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 4995.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 5110.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 5225.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_us": 5340.0,
+        "label": "ACK poll 0xA0",
+        "ack": true
+      },
+      {
+        "t_us": 5455.0,
+        "label": "SLA+W 0xA0",
+        "ack": true
+      },
+      {
+        "t_us": 5545.0,
+        "label": "addr hi",
+        "ack": true
+      },
+      {
+        "t_us": 5635.0,
+        "label": "addr lo",
+        "ack": true
+      },
+      {
+        "t_us": 5755.0,
+        "label": "SLA+R 0xA1",
+        "ack": true
+      },
+      {
+        "t_us": 5845.0,
+        "label": "DATA",
+        "ack": false
+      },
+      {
+        "t_us": 5960.0,
+        "label": "SLA+W 0xD0",
+        "ack": true
+      },
+      {
+        "t_us": 6050.0,
+        "label": "reg 0x00",
+        "ack": true
+      },
+      {
+        "t_us": 6140.0,
+        "label": "0x00",
+        "ack": true
+      },
+      {
+        "t_us": 6230.0,
+        "label": "0x34",
+        "ack": true
+      },
+      {
+        "t_us": 6320.0,
+        "label": "0x12",
+        "ack": true
+      },
+      {
+        "t_us": 6435.0,
+        "label": "SLA+W 0xD0",
+        "ack": true
+      },
+      {
+        "t_us": 6525.0,
+        "label": "reg 0x00",
+        "ack": true
+      },
+      {
+        "t_us": 6645.0,
+        "label": "SLA+R 0xD1",
+        "ack": true
+      },
+      {
+        "t_us": 6735.0,
+        "label": "DATA",
+        "ack": false
+      }
+    ],
+    "transactions": [
+      {
+        "t_start_us": 10.0,
+        "t_end_us": 100.0,
+        "label": "SLA+W 0xA0",
+        "ack": true
+      },
+      {
+        "t_start_us": 100.0,
+        "t_end_us": 190.0,
+        "label": "addr hi",
+        "ack": true
+      },
+      {
+        "t_start_us": 190.0,
+        "t_end_us": 280.0,
+        "label": "addr lo",
+        "ack": true
+      },
+      {
+        "t_start_us": 280.0,
+        "t_end_us": 370.0,
+        "label": "data 0x67",
+        "ack": true
+      },
+      {
+        "t_start_us": 395.0,
+        "t_end_us": 485.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 510.0,
+        "t_end_us": 600.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 625.0,
+        "t_end_us": 715.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 740.0,
+        "t_end_us": 830.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 855.0,
+        "t_end_us": 945.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 970.0,
+        "t_end_us": 1060.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 1085.0,
+        "t_end_us": 1175.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 1200.0,
+        "t_end_us": 1290.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 1315.0,
+        "t_end_us": 1405.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 1430.0,
+        "t_end_us": 1520.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 1545.0,
+        "t_end_us": 1635.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 1660.0,
+        "t_end_us": 1750.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 1775.0,
+        "t_end_us": 1865.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 1890.0,
+        "t_end_us": 1980.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 2005.0,
+        "t_end_us": 2095.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 2120.0,
+        "t_end_us": 2210.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 2235.0,
+        "t_end_us": 2325.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 2350.0,
+        "t_end_us": 2440.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 2465.0,
+        "t_end_us": 2555.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 2580.0,
+        "t_end_us": 2670.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 2695.0,
+        "t_end_us": 2785.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 2810.0,
+        "t_end_us": 2900.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 2925.0,
+        "t_end_us": 3015.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 3040.0,
+        "t_end_us": 3130.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 3155.0,
+        "t_end_us": 3245.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 3270.0,
+        "t_end_us": 3360.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 3385.0,
+        "t_end_us": 3475.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 3500.0,
+        "t_end_us": 3590.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 3615.0,
+        "t_end_us": 3705.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 3730.0,
+        "t_end_us": 3820.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 3845.0,
+        "t_end_us": 3935.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 3960.0,
+        "t_end_us": 4050.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 4075.0,
+        "t_end_us": 4165.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 4190.0,
+        "t_end_us": 4280.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 4305.0,
+        "t_end_us": 4395.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 4420.0,
+        "t_end_us": 4510.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 4535.0,
+        "t_end_us": 4625.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 4650.0,
+        "t_end_us": 4740.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 4765.0,
+        "t_end_us": 4855.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 4880.0,
+        "t_end_us": 4970.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 4995.0,
+        "t_end_us": 5085.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 5110.0,
+        "t_end_us": 5200.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 5225.0,
+        "t_end_us": 5315.0,
+        "label": "ACK poll 0xA0",
+        "ack": false
+      },
+      {
+        "t_start_us": 5340.0,
+        "t_end_us": 5430.0,
+        "label": "ACK poll 0xA0",
+        "ack": true
+      },
+      {
+        "t_start_us": 5455.0,
+        "t_end_us": 5545.0,
+        "label": "SLA+W 0xA0",
+        "ack": true
+      },
+      {
+        "t_start_us": 5545.0,
+        "t_end_us": 5635.0,
+        "label": "addr hi",
+        "ack": true
+      },
+      {
+        "t_start_us": 5635.0,
+        "t_end_us": 5725.0,
+        "label": "addr lo",
+        "ack": true
+      },
+      {
+        "t_start_us": 5755.0,
+        "t_end_us": 5845.0,
+        "label": "SLA+R 0xA1",
+        "ack": true
+      },
+      {
+        "t_start_us": 5845.0,
+        "t_end_us": 5935.0,
+        "label": "DATA",
+        "ack": false
+      },
+      {
+        "t_start_us": 5960.0,
+        "t_end_us": 6050.0,
+        "label": "SLA+W 0xD0",
+        "ack": true
+      },
+      {
+        "t_start_us": 6050.0,
+        "t_end_us": 6140.0,
+        "label": "reg 0x00",
+        "ack": true
+      },
+      {
+        "t_start_us": 6140.0,
+        "t_end_us": 6230.0,
+        "label": "0x00",
+        "ack": true
+      },
+      {
+        "t_start_us": 6230.0,
+        "t_end_us": 6320.0,
+        "label": "0x34",
+        "ack": true
+      },
+      {
+        "t_start_us": 6320.0,
+        "t_end_us": 6410.0,
+        "label": "0x12",
+        "ack": true
+      },
+      {
+        "t_start_us": 6435.0,
+        "t_end_us": 6525.0,
+        "label": "SLA+W 0xD0",
+        "ack": true
+      },
+      {
+        "t_start_us": 6525.0,
+        "t_end_us": 6615.0,
+        "label": "reg 0x00",
+        "ack": true
+      },
+      {
+        "t_start_us": 6645.0,
+        "t_end_us": 6735.0,
+        "label": "SLA+R 0xD1",
+        "ack": true
+      },
+      {
+        "t_start_us": 6735.0,
+        "t_end_us": 6825.0,
+        "label": "DATA",
+        "ack": false
+      }
+    ],
+    "total_time_us": 6840.0
+  },
+  "negative_no_pullup": {
+    "pass": true,
+    "led": 0,
+    "timeout": true,
+    "acks": 0,
+    "reason": "SDA не поднялась: подтяжка отключена"
+  },
+  "negative_wrong_eeprom_address": {
+    "pass": true,
+    "led": 0,
+    "sla_w": "0xA0",
+    "ack": false
+  },
+  "waveform_csv": "out/i2c_waveform.csv",
+  "waveform_png": "img/i2c-waveform.png",
+  "all_pass": true
+}

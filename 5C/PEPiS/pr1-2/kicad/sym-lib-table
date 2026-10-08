@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "pr1")(type "KiCad")(uri "/Users/vlad.valekzhanin/github/vladcheck/microcontrollers/pr1-2/pr1/pr1.kicad_sym")(options "")(descr ""))
+)
