@@ -1,0 +1,2785 @@
+(export
+	(version "E")
+	(design
+		(source "/Users/d.d.lyapunov/GolandProjects/MIREA/5c/PEDS/LR6_DAC/LR6_DAC.kicad_sch")
+		(date "2026-09-28T18:57:18")
+		(tool "Eeschema 10.0.6")
+		(sheet
+			(number "1")
+			(name "/")
+			(tstamps "/")
+			(title_block
+				(title "ЛР6. ЦАП (вар.1)")
+				(company "РТУ МИРЭА, ПЭПС, 5 семестр")
+				(rev "1.0")
+				(date "2026-09-28")
+				(source "LR6_DAC.kicad_sch")
+				(comment
+					(number "1")
+					(value "")
+				)
+				(comment
+					(number "2")
+					(value "")
+				)
+				(comment
+					(number "3")
+					(value "")
+				)
+				(comment
+					(number "4")
+					(value "")
+				)
+				(comment
+					(number "5")
+					(value "")
+				)
+				(comment
+					(number "6")
+					(value "")
+				)
+				(comment
+					(number "7")
+					(value "")
+				)
+				(comment
+					(number "8")
+					(value "")
+				)
+				(comment
+					(number "9")
+					(value "")
+				)
+			)
+		)
+	)
+	(components
+		(comp
+			(ref "BQ1")
+			(value "12 МГц")
+			(footprint "Crystal:Crystal_HC49-U_Vertical")
+			(description "Two pin crystal")
+			(fields
+				(field
+					(name "Footprint") "Crystal:Crystal_HC49-U_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Two pin crystal")
+			)
+			(libsource
+				(lib "Device")
+				(part "Crystal")
+				(description "Two pin crystal")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "quartz ceramic resonator oscillator")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Crystal*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6c7ccdc7-127d-460a-bfd8-96a053fbbe5c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C1")
+			(value "33 пФ")
+			(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "8e7800c2-a909-4f6b-b58d-8d445bea5516")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C2")
+			(value "33 пФ")
+			(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "ee42c167-a5ad-4f04-9a91-ba896aa436c7")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C3")
+			(value "10 мкФ")
+			(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "662ed9f9-3a2b-433f-948b-1fe9d4926291")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "DA1")
+			(value "DAC08 (ЦАП Зад.1, 8 бит)")
+			(footprint "Package_DIP:DIP-16_W7.62mm")
+			(datasheet "https://www.analog.com/media/en/technical-documentation/data-sheets/DAC08.pdf")
+			(description "DA Converter 8 bits")
+			(fields
+				(field
+					(name "Footprint") "Package_DIP:DIP-16_W7.62mm")
+				(field
+					(name "Datasheet") "https://www.analog.com/media/en/technical-documentation/data-sheets/DAC08.pdf")
+				(field
+					(name "Description") "DA Converter 8 bits")
+			)
+			(libsource
+				(lib "Analog_DAC")
+				(part "DAC08")
+				(description "DA Converter 8 bits")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "DAC CNA")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "c4c0d23d-d3f8-44e8-b62f-1f13838985c4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "DA2")
+			(value "DAC08 (ЦАП Зад.2, 8 бит)")
+			(footprint "Package_DIP:DIP-16_W7.62mm")
+			(datasheet "https://www.analog.com/media/en/technical-documentation/data-sheets/DAC08.pdf")
+			(description "DA Converter 8 bits")
+			(fields
+				(field
+					(name "Footprint") "Package_DIP:DIP-16_W7.62mm")
+				(field
+					(name "Datasheet") "https://www.analog.com/media/en/technical-documentation/data-sheets/DAC08.pdf")
+				(field
+					(name "Description") "DA Converter 8 bits")
+			)
+			(libsource
+				(lib "Analog_DAC")
+				(part "DAC08")
+				(description "DA Converter 8 bits")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "DAC CNA")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "021409fb-8224-4a19-b22a-0ea45b0e0e5d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "DD1")
+			(value "P8051AH (МК-51)")
+			(footprint "Package_DIP:DIP-40_W15.24mm")
+			(datasheet "https://www.datasheetarchive.com/datasheet/MCS%2051/Intel")
+			(description "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			(fields
+				(field
+					(name "Footprint") "Package_DIP:DIP-40_W15.24mm")
+				(field
+					(name "Datasheet") "https://www.datasheetarchive.com/datasheet/MCS%2051/Intel")
+				(field
+					(name "Description") "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			)
+			(libsource
+				(lib "MCU_Intel")
+				(part "P8051AH")
+				(description "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "8051 NMOS HMOS Obsolete")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP*W15.24*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "92b97509-f645-4894-a26f-2840ca6421c8")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "17")
+						)
+						(pin
+							(num "19")
+						)
+						(pin
+							(num "18")
+						)
+						(pin
+							(num "31")
+						)
+						(pin
+							(num "40")
+						)
+						(pin
+							(num "20")
+						)
+						(pin
+							(num "39")
+						)
+						(pin
+							(num "38")
+						)
+						(pin
+							(num "37")
+						)
+						(pin
+							(num "36")
+						)
+						(pin
+							(num "35")
+						)
+						(pin
+							(num "34")
+						)
+						(pin
+							(num "33")
+						)
+						(pin
+							(num "32")
+						)
+						(pin
+							(num "21")
+						)
+						(pin
+							(num "22")
+						)
+						(pin
+							(num "23")
+						)
+						(pin
+							(num "24")
+						)
+						(pin
+							(num "25")
+						)
+						(pin
+							(num "26")
+						)
+						(pin
+							(num "27")
+						)
+						(pin
+							(num "28")
+						)
+						(pin
+							(num "29")
+						)
+						(pin
+							(num "30")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "PV1")
+			(value "V1 (вольтметр)")
+			(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+			(description "Generic connector, single row, 01x02, script generated")
+			(fields
+				(field
+					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x02, script generated")
+			)
+			(libsource
+				(lib "Connector")
+				(part "Conn_01x02_Pin")
+				(description "Generic connector, single row, 01x02, script generated")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a3b8402b-f8b8-4b87-ad46-3f46222f5b1d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "PV2")
+			(value "V2 (вольтметр)")
+			(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+			(description "Generic connector, single row, 01x02, script generated")
+			(fields
+				(field
+					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x02, script generated")
+			)
+			(libsource
+				(lib "Connector")
+				(part "Conn_01x02_Pin")
+				(description "Generic connector, single row, 01x02, script generated")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a74c1996-77f3-4668-a5e2-a7d92d434834")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R1")
+			(value "10 кОм")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6d39cdb1-877a-4f5d-a970-584805ba2e52")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SA1")
+			(value "J1 (бит D0)")
+			(footprint "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+			(description "Switch, single pole double throw")
+			(fields
+				(field
+					(name "Footprint") "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Switch, single pole double throw")
+			)
+			(libsource
+				(lib "Switch")
+				(part "SW_SPDT")
+				(description "Switch, single pole double throw")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "switch single-pole double-throw spdt ON-ON")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f424a550-fbd9-4433-b25f-b12b5d77fe37")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SA2")
+			(value "J2 (бит D1)")
+			(footprint "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+			(description "Switch, single pole double throw")
+			(fields
+				(field
+					(name "Footprint") "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Switch, single pole double throw")
+			)
+			(libsource
+				(lib "Switch")
+				(part "SW_SPDT")
+				(description "Switch, single pole double throw")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "switch single-pole double-throw spdt ON-ON")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "49fd3f2c-2057-4207-b4b8-155b74985207")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SA3")
+			(value "J3 (бит D2)")
+			(footprint "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+			(description "Switch, single pole double throw")
+			(fields
+				(field
+					(name "Footprint") "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Switch, single pole double throw")
+			)
+			(libsource
+				(lib "Switch")
+				(part "SW_SPDT")
+				(description "Switch, single pole double throw")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "switch single-pole double-throw spdt ON-ON")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d6cf7385-501a-46b7-bfa1-fd7722a5ece4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SA4")
+			(value "J4 (бит D3)")
+			(footprint "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+			(description "Switch, single pole double throw")
+			(fields
+				(field
+					(name "Footprint") "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Switch, single pole double throw")
+			)
+			(libsource
+				(lib "Switch")
+				(part "SW_SPDT")
+				(description "Switch, single pole double throw")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "switch single-pole double-throw spdt ON-ON")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f8f893b3-8d7e-4f53-b03b-195d33c5add8")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SA5")
+			(value "J5 (бит D4)")
+			(footprint "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+			(description "Switch, single pole double throw")
+			(fields
+				(field
+					(name "Footprint") "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Switch, single pole double throw")
+			)
+			(libsource
+				(lib "Switch")
+				(part "SW_SPDT")
+				(description "Switch, single pole double throw")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "switch single-pole double-throw spdt ON-ON")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "0c5126b1-3b42-44d3-80c6-3f021246f85c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SA6")
+			(value "J6 (бит D5)")
+			(footprint "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+			(description "Switch, single pole double throw")
+			(fields
+				(field
+					(name "Footprint") "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Switch, single pole double throw")
+			)
+			(libsource
+				(lib "Switch")
+				(part "SW_SPDT")
+				(description "Switch, single pole double throw")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "switch single-pole double-throw spdt ON-ON")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b691f577-34bd-4bd5-82ae-e5482354c85f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SA7")
+			(value "J7 (бит D6)")
+			(footprint "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+			(description "Switch, single pole double throw")
+			(fields
+				(field
+					(name "Footprint") "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Switch, single pole double throw")
+			)
+			(libsource
+				(lib "Switch")
+				(part "SW_SPDT")
+				(description "Switch, single pole double throw")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "switch single-pole double-throw spdt ON-ON")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "19cec285-11b1-4e9b-837a-1251234f2a87")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "SA8")
+			(value "J8 (бит D7)")
+			(footprint "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+			(description "Switch, single pole double throw")
+			(fields
+				(field
+					(name "Footprint") "Button_Switch_THT:SW_E-Switch_EG1271_SPDT")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Switch, single pole double throw")
+			)
+			(libsource
+				(lib "Switch")
+				(part "SW_SPDT")
+				(description "Switch, single pole double throw")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "switch single-pole double-throw spdt ON-ON")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "54b58233-07b0-42d5-9d55-f27fca53f233")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "XSC1")
+			(value "XSC1 (осциллограф)")
+			(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+			(description "Generic connector, single row, 01x02, script generated")
+			(fields
+				(field
+					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x02, script generated")
+			)
+			(libsource
+				(lib "Connector")
+				(part "Conn_01x02_Pin")
+				(description "Generic connector, single row, 01x02, script generated")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "2e23b2e7-3f8d-4b89-ba27-102d52d46927")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "XSC2")
+			(value "XSC2 (осциллограф)")
+			(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+			(description "Generic connector, single row, 01x02, script generated")
+			(fields
+				(field
+					(name "Footprint") "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x02, script generated")
+			)
+			(libsource
+				(lib "Connector")
+				(part "Conn_01x02_Pin")
+				(description "Generic connector, single row, 01x02, script generated")
+			)
+			(property
+				(name "Sheetname")
+				(value "LR6_DAC")
+			)
+			(property
+				(name "Sheetfile")
+				(value "LR6_DAC.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "connector")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Connector*:*_1x??_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a6c95204-8c69-409c-a368-88c009e42db4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+	)
+	(groups)
+	(variants)
+	(libparts
+		(libpart
+			(lib "Analog_DAC")
+			(part "DAC08")
+			(description "DA Converter 8 bits")
+			(docs "https://www.analog.com/media/en/technical-documentation/data-sheets/DAC08.pdf")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "DAC08")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet") "https://www.analog.com/media/en/technical-documentation/data-sheets/DAC08.pdf")
+				(field
+					(name "Description") "DA Converter 8 bits")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "VLC")
+					(type "input")
+				)
+				(pin
+					(num "2")
+					(name "I+")
+					(type "output")
+				)
+				(pin
+					(num "3")
+					(name "V-")
+					(type "power_in")
+				)
+				(pin
+					(num "4")
+					(name "I-")
+					(type "output")
+				)
+				(pin
+					(num "5")
+					(name "B0")
+					(type "input")
+				)
+				(pin
+					(num "6")
+					(name "B1")
+					(type "input")
+				)
+				(pin
+					(num "7")
+					(name "B2")
+					(type "input")
+				)
+				(pin
+					(num "8")
+					(name "B3")
+					(type "input")
+				)
+				(pin
+					(num "9")
+					(name "B4")
+					(type "input")
+				)
+				(pin
+					(num "10")
+					(name "B5")
+					(type "input")
+				)
+				(pin
+					(num "11")
+					(name "B6")
+					(type "input")
+				)
+				(pin
+					(num "12")
+					(name "B7")
+					(type "input")
+				)
+				(pin
+					(num "13")
+					(name "V+")
+					(type "power_in")
+				)
+				(pin
+					(num "14")
+					(name "R+")
+					(type "input")
+				)
+				(pin
+					(num "15")
+					(name "R-")
+					(type "input")
+				)
+				(pin
+					(num "16")
+					(name "CMP")
+					(type "input")
+				)
+			)
+		)
+		(libpart
+			(lib "Connector")
+			(part "Conn_01x02_Pin")
+			(description "Generic connector, single row, 01x02, script generated")
+			(footprints
+				(fp "Connector*:*_1x??_*")
+			)
+			(fields
+				(field
+					(name "Reference") "J")
+				(field
+					(name "Value") "Conn_01x02_Pin")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Generic connector, single row, 01x02, script generated")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "Pin_1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "Pin_2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Device")
+			(part "C")
+			(description "Unpolarized capacitor")
+			(footprints
+				(fp "C_*")
+			)
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "C")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Device")
+			(part "Crystal")
+			(description "Two pin crystal")
+			(footprints
+				(fp "Crystal*")
+			)
+			(fields
+				(field
+					(name "Reference") "Y")
+				(field
+					(name "Value") "Crystal")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Two pin crystal")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Device")
+			(part "R")
+			(description "Resistor")
+			(footprints
+				(fp "R_*")
+			)
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "R")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "MCU_Intel")
+			(part "P8051AH")
+			(description "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			(docs "https://www.datasheetarchive.com/datasheet/MCS%2051/Intel")
+			(footprints
+				(fp "DIP*W15.24*")
+			)
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "P8051AH")
+				(field
+					(name "Footprint") "Package_DIP:DIP-40_W15.24mm")
+				(field
+					(name "Datasheet") "https://www.datasheetarchive.com/datasheet/MCS%2051/Intel")
+				(field
+					(name "Description") "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "P1.0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "P1.1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "P1.2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "P1.3")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "P1.4")
+					(type "bidirectional")
+				)
+				(pin
+					(num "6")
+					(name "P1.5")
+					(type "bidirectional")
+				)
+				(pin
+					(num "7")
+					(name "P1.6")
+					(type "bidirectional")
+				)
+				(pin
+					(num "8")
+					(name "P1.7")
+					(type "bidirectional")
+				)
+				(pin
+					(num "9")
+					(name "RST")
+					(type "input")
+				)
+				(pin
+					(num "10")
+					(name "P3.0/RXD")
+					(type "bidirectional")
+				)
+				(pin
+					(num "11")
+					(name "P3.1/TXD")
+					(type "bidirectional")
+				)
+				(pin
+					(num "12")
+					(name "P3.2/~{INT0}")
+					(type "bidirectional")
+				)
+				(pin
+					(num "13")
+					(name "P3.3/~{INT1}")
+					(type "bidirectional")
+				)
+				(pin
+					(num "14")
+					(name "P3.4/T0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "15")
+					(name "P3.5/T1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "16")
+					(name "P3.6/~{WR}")
+					(type "bidirectional")
+				)
+				(pin
+					(num "17")
+					(name "P3.7/~{RD}")
+					(type "bidirectional")
+				)
+				(pin
+					(num "18")
+					(name "XTAL2")
+					(type "output")
+				)
+				(pin
+					(num "19")
+					(name "XTAL1")
+					(type "input")
+				)
+				(pin
+					(num "20")
+					(name "VSS")
+					(type "power_in")
+				)
+				(pin
+					(num "21")
+					(name "P2.0/A8")
+					(type "bidirectional")
+				)
+				(pin
+					(num "22")
+					(name "P2.1/A9")
+					(type "bidirectional")
+				)
+				(pin
+					(num "23")
+					(name "P2.2/A10")
+					(type "bidirectional")
+				)
+				(pin
+					(num "24")
+					(name "P2.3/A11")
+					(type "bidirectional")
+				)
+				(pin
+					(num "25")
+					(name "P2.4/A12")
+					(type "bidirectional")
+				)
+				(pin
+					(num "26")
+					(name "P2.5/A13")
+					(type "bidirectional")
+				)
+				(pin
+					(num "27")
+					(name "P2.6/A14")
+					(type "bidirectional")
+				)
+				(pin
+					(num "28")
+					(name "P2.7/A15")
+					(type "bidirectional")
+				)
+				(pin
+					(num "29")
+					(name "~{PSEN}")
+					(type "output")
+				)
+				(pin
+					(num "30")
+					(name "ALE")
+					(type "output")
+				)
+				(pin
+					(num "31")
+					(name "~{EA}")
+					(type "input")
+				)
+				(pin
+					(num "32")
+					(name "P0.7/AD7")
+					(type "bidirectional")
+				)
+				(pin
+					(num "33")
+					(name "P0.6/AD6")
+					(type "bidirectional")
+				)
+				(pin
+					(num "34")
+					(name "P0.5/AD5")
+					(type "bidirectional")
+				)
+				(pin
+					(num "35")
+					(name "P0.4/AD4")
+					(type "bidirectional")
+				)
+				(pin
+					(num "36")
+					(name "P0.3/AD3")
+					(type "bidirectional")
+				)
+				(pin
+					(num "37")
+					(name "P0.2/AD2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "38")
+					(name "P0.1/AD1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "39")
+					(name "P0.0/AD0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "40")
+					(name "VCC")
+					(type "power_in")
+				)
+			)
+		)
+		(libpart
+			(lib "Switch")
+			(part "SW_SPDT")
+			(description "Switch, single pole double throw")
+			(fields
+				(field
+					(name "Reference") "SW")
+				(field
+					(name "Value") "SW_SPDT")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Switch, single pole double throw")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "A")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "B")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "C")
+					(type "passive")
+				)
+			)
+		)
+	)
+	(libraries
+		(library
+			(logical "Analog_DAC")
+			(uri "${KICAD10_SYMBOL_DIR}/Analog_DAC.kicad_sym")
+		)
+		(library
+			(logical "Connector")
+			(uri "${KICAD10_SYMBOL_DIR}/Connector.kicad_sym")
+		)
+		(library
+			(logical "Device")
+			(uri "${KICAD10_SYMBOL_DIR}/Device.kicad_sym")
+		)
+		(library
+			(logical "MCU_Intel")
+			(uri "${KICAD10_SYMBOL_DIR}/MCU_Intel.kicad_sym")
+		)
+		(library
+			(logical "Switch")
+			(uri "${KICAD10_SYMBOL_DIR}/Switch.kicad_sym")
+		)
+	)
+	(nets
+		(net
+			(code "1")
+			(name "+5V")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "13")
+				(pinfunction "V+_13")
+				(pintype "power_in")
+			)
+			(node
+				(ref "DA1")
+				(pin "14")
+				(pinfunction "R+_14")
+				(pintype "input")
+			)
+			(node
+				(ref "DA2")
+				(pin "13")
+				(pinfunction "V+_13")
+				(pintype "power_in")
+			)
+			(node
+				(ref "DA2")
+				(pin "14")
+				(pinfunction "R+_14")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "31")
+				(pinfunction "~{EA}_31")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "40")
+				(pinfunction "VCC_40")
+				(pintype "power_in")
+			)
+			(node
+				(ref "R1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA1")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA2")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA3")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA4")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA5")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA6")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA7")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA8")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "2")
+			(name "/RST")
+			(class "Default")
+			(node
+				(ref "C3")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD1")
+				(pin "9")
+				(pinfunction "RST_9")
+				(pintype "input")
+			)
+			(node
+				(ref "R1")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "3")
+			(name "/T1_D0")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "5")
+				(pinfunction "B0_5")
+				(pintype "input")
+			)
+			(node
+				(ref "SA1")
+				(pin "2")
+				(pinfunction "B_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "4")
+			(name "/T1_D1")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "6")
+				(pinfunction "B1_6")
+				(pintype "input")
+			)
+			(node
+				(ref "SA2")
+				(pin "2")
+				(pinfunction "B_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "5")
+			(name "/T1_D2")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "7")
+				(pinfunction "B2_7")
+				(pintype "input")
+			)
+			(node
+				(ref "SA3")
+				(pin "2")
+				(pinfunction "B_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "6")
+			(name "/T1_D3")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "8")
+				(pinfunction "B3_8")
+				(pintype "input")
+			)
+			(node
+				(ref "SA4")
+				(pin "2")
+				(pinfunction "B_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "7")
+			(name "/T1_D4")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "9")
+				(pinfunction "B4_9")
+				(pintype "input")
+			)
+			(node
+				(ref "SA5")
+				(pin "2")
+				(pinfunction "B_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "8")
+			(name "/T1_D5")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "10")
+				(pinfunction "B5_10")
+				(pintype "input")
+			)
+			(node
+				(ref "SA6")
+				(pin "2")
+				(pinfunction "B_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "9")
+			(name "/T1_D6")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "11")
+				(pinfunction "B6_11")
+				(pintype "input")
+			)
+			(node
+				(ref "SA7")
+				(pin "2")
+				(pinfunction "B_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "10")
+			(name "/T1_D7")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "12")
+				(pinfunction "B7_12")
+				(pintype "input")
+			)
+			(node
+				(ref "SA8")
+				(pin "2")
+				(pinfunction "B_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "11")
+			(name "/T1_OUT")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "2")
+				(pinfunction "I+_2")
+				(pintype "output")
+			)
+			(node
+				(ref "PV1")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "XSC1")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "12")
+			(name "/T2_D0")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "5")
+				(pinfunction "B0_5")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "1")
+				(pinfunction "P1.0_1")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "13")
+			(name "/T2_D1")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "6")
+				(pinfunction "B1_6")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "2")
+				(pinfunction "P1.1_2")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "14")
+			(name "/T2_D2")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "7")
+				(pinfunction "B2_7")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "3")
+				(pinfunction "P1.2_3")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "15")
+			(name "/T2_D3")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "8")
+				(pinfunction "B3_8")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "4")
+				(pinfunction "P1.3_4")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "16")
+			(name "/T2_D4")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "9")
+				(pinfunction "B4_9")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "5")
+				(pinfunction "P1.4_5")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "17")
+			(name "/T2_D5")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "10")
+				(pinfunction "B5_10")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "6")
+				(pinfunction "P1.5_6")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "18")
+			(name "/T2_D6")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "11")
+				(pinfunction "B6_11")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "7")
+				(pinfunction "P1.6_7")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "19")
+			(name "/T2_D7")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "12")
+				(pinfunction "B7_12")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "8")
+				(pinfunction "P1.7_8")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "20")
+			(name "/T2_OUT")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "2")
+				(pinfunction "I+_2")
+				(pintype "output")
+			)
+			(node
+				(ref "PV2")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "XSC2")
+				(pin "1")
+				(pinfunction "Pin_1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "21")
+			(name "/XTAL1")
+			(class "Default")
+			(node
+				(ref "BQ1")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+			(node
+				(ref "C1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD1")
+				(pin "19")
+				(pinfunction "XTAL1_19")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "22")
+			(name "/XTAL2")
+			(class "Default")
+			(node
+				(ref "BQ1")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C2")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD1")
+				(pin "18")
+				(pinfunction "XTAL2_18")
+				(pintype "output")
+			)
+		)
+		(net
+			(code "23")
+			(name "GND")
+			(class "Default")
+			(node
+				(ref "C1")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C2")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C3")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "DA1")
+				(pin "1")
+				(pinfunction "VLC_1")
+				(pintype "input")
+			)
+			(node
+				(ref "DA1")
+				(pin "15")
+				(pinfunction "R-_15")
+				(pintype "input")
+			)
+			(node
+				(ref "DA1")
+				(pin "3")
+				(pinfunction "V-_3")
+				(pintype "power_in")
+			)
+			(node
+				(ref "DA2")
+				(pin "1")
+				(pinfunction "VLC_1")
+				(pintype "input")
+			)
+			(node
+				(ref "DA2")
+				(pin "15")
+				(pinfunction "R-_15")
+				(pintype "input")
+			)
+			(node
+				(ref "DA2")
+				(pin "3")
+				(pinfunction "V-_3")
+				(pintype "power_in")
+			)
+			(node
+				(ref "DD1")
+				(pin "20")
+				(pinfunction "VSS_20")
+				(pintype "power_in")
+			)
+			(node
+				(ref "PV1")
+				(pin "2")
+				(pinfunction "Pin_2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "PV2")
+				(pin "2")
+				(pinfunction "Pin_2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA1")
+				(pin "3")
+				(pinfunction "C_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA2")
+				(pin "3")
+				(pinfunction "C_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA3")
+				(pin "3")
+				(pinfunction "C_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA4")
+				(pin "3")
+				(pinfunction "C_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA5")
+				(pin "3")
+				(pinfunction "C_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA6")
+				(pin "3")
+				(pinfunction "C_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA7")
+				(pin "3")
+				(pinfunction "C_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "SA8")
+				(pin "3")
+				(pinfunction "C_3")
+				(pintype "passive")
+			)
+			(node
+				(ref "XSC1")
+				(pin "2")
+				(pinfunction "Pin_2_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "XSC2")
+				(pin "2")
+				(pinfunction "Pin_2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "24")
+			(name "unconnected-(DA1-CMP-Pad16)")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "16")
+				(pinfunction "CMP_16")
+				(pintype "input+no_connect")
+			)
+		)
+		(net
+			(code "25")
+			(name "unconnected-(DA1-I--Pad4)")
+			(class "Default")
+			(node
+				(ref "DA1")
+				(pin "4")
+				(pinfunction "I-_4")
+				(pintype "output+no_connect")
+			)
+		)
+		(net
+			(code "26")
+			(name "unconnected-(DA2-CMP-Pad16)")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "16")
+				(pinfunction "CMP_16")
+				(pintype "input+no_connect")
+			)
+		)
+		(net
+			(code "27")
+			(name "unconnected-(DA2-I--Pad4)")
+			(class "Default")
+			(node
+				(ref "DA2")
+				(pin "4")
+				(pinfunction "I-_4")
+				(pintype "output+no_connect")
+			)
+		)
+		(net
+			(code "28")
+			(name "unconnected-(DD1-ALE-Pad30)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "30")
+				(pinfunction "ALE_30")
+				(pintype "output+no_connect")
+			)
+		)
+		(net
+			(code "29")
+			(name "unconnected-(DD1-P0.0{slash}AD0-Pad39)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "39")
+				(pinfunction "P0.0/AD0_39")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "30")
+			(name "unconnected-(DD1-P0.1{slash}AD1-Pad38)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "38")
+				(pinfunction "P0.1/AD1_38")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "31")
+			(name "unconnected-(DD1-P0.2{slash}AD2-Pad37)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "37")
+				(pinfunction "P0.2/AD2_37")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "32")
+			(name "unconnected-(DD1-P0.3{slash}AD3-Pad36)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "36")
+				(pinfunction "P0.3/AD3_36")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "33")
+			(name "unconnected-(DD1-P0.4{slash}AD4-Pad35)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "35")
+				(pinfunction "P0.4/AD4_35")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "34")
+			(name "unconnected-(DD1-P0.5{slash}AD5-Pad34)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "34")
+				(pinfunction "P0.5/AD5_34")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "35")
+			(name "unconnected-(DD1-P0.6{slash}AD6-Pad33)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "33")
+				(pinfunction "P0.6/AD6_33")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "36")
+			(name "unconnected-(DD1-P0.7{slash}AD7-Pad32)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "32")
+				(pinfunction "P0.7/AD7_32")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "37")
+			(name "unconnected-(DD1-P2.0{slash}A8-Pad21)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "21")
+				(pinfunction "P2.0/A8_21")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "38")
+			(name "unconnected-(DD1-P2.1{slash}A9-Pad22)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "22")
+				(pinfunction "P2.1/A9_22")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "39")
+			(name "unconnected-(DD1-P2.2{slash}A10-Pad23)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "23")
+				(pinfunction "P2.2/A10_23")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "40")
+			(name "unconnected-(DD1-P2.3{slash}A11-Pad24)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "24")
+				(pinfunction "P2.3/A11_24")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "41")
+			(name "unconnected-(DD1-P2.4{slash}A12-Pad25)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "25")
+				(pinfunction "P2.4/A12_25")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "42")
+			(name "unconnected-(DD1-P2.5{slash}A13-Pad26)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "26")
+				(pinfunction "P2.5/A13_26")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "43")
+			(name "unconnected-(DD1-P2.6{slash}A14-Pad27)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "27")
+				(pinfunction "P2.6/A14_27")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "44")
+			(name "unconnected-(DD1-P2.7{slash}A15-Pad28)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "28")
+				(pinfunction "P2.7/A15_28")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "45")
+			(name "unconnected-(DD1-P3.0{slash}RXD-Pad10)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "10")
+				(pinfunction "P3.0/RXD_10")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "46")
+			(name "unconnected-(DD1-P3.1{slash}TXD-Pad11)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "11")
+				(pinfunction "P3.1/TXD_11")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "47")
+			(name "unconnected-(DD1-P3.2{slash}~{INT0}-Pad12)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "12")
+				(pinfunction "P3.2/~{INT0}_12")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "48")
+			(name "unconnected-(DD1-P3.3{slash}~{INT1}-Pad13)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "13")
+				(pinfunction "P3.3/~{INT1}_13")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "49")
+			(name "unconnected-(DD1-P3.4{slash}T0-Pad14)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "14")
+				(pinfunction "P3.4/T0_14")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "50")
+			(name "unconnected-(DD1-P3.5{slash}T1-Pad15)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "15")
+				(pinfunction "P3.5/T1_15")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "51")
+			(name "unconnected-(DD1-P3.6{slash}~{WR}-Pad16)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "16")
+				(pinfunction "P3.6/~{WR}_16")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "52")
+			(name "unconnected-(DD1-P3.7{slash}~{RD}-Pad17)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "17")
+				(pinfunction "P3.7/~{RD}_17")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "53")
+			(name "unconnected-(DD1-~{PSEN}-Pad29)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "29")
+				(pinfunction "~{PSEN}_29")
+				(pintype "output+no_connect")
+			)
+		)
+	)
+)
