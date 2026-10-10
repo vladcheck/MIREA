@@ -1,0 +1,22 @@
+{
+  "_comment": "ПР №3. Варианты табл.10: PX.Y, S (ON, с), K (OFF, с), T (мин). База 50мс: TH0=0x3C, TL0=0xB0.",
+  "fosc_mhz": 12,
+  "t_machine_us": 1,
+  "timer_base_ms": 50,
+  "th0": "0x3C",
+  "tl0": "0xB0",
+  "counts_per_base": 50000,
+  "variants": [
+    {"variant": 1, "pxy": "P1.3", "S_s": 2, "K_s": 1, "T_min": 3, "N_on": 40, "N_off": 20, "cycles": 60},
+    {"variant": 2, "pxy": "P1.7", "S_s": 3, "K_s": 2, "T_min": 5, "N_on": 60, "N_off": 40, "cycles": 60},
+    {"variant": 3, "pxy": "P2.5", "S_s": 1, "K_s": 0.5, "T_min": 2, "N_on": 20, "N_off": 10, "cycles": 80},
+    {"variant": 4, "pxy": "P2.1", "S_s": 0.5, "K_s": 1, "T_min": 1, "N_on": 10, "N_off": 20, "cycles": 40},
+    {"variant": 5, "pxy": "P3.5", "S_s": 4, "K_s": 3, "T_min": 8, "N_on": 80, "N_off": 60, "cycles": 68},
+    {"variant": 6, "pxy": "P1.6", "S_s": 6, "K_s": 4, "T_min": 10, "N_on": 120, "N_off": 80, "cycles": 60},
+    {"variant": 7, "pxy": "P3.2", "S_s": 0.7, "K_s": 0.3, "T_min": 2, "N_on": 14, "N_off": 6, "cycles": 120},
+    {"variant": 8, "pxy": "P1.4", "S_s": 5, "K_s": 4, "T_min": 1, "N_on": 100, "N_off": 80, "cycles": 6},
+    {"variant": 9, "pxy": "P2.6", "S_s": 6, "K_s": 5, "T_min": 5, "N_on": 120, "N_off": 100, "cycles": 27},
+    {"variant": 10, "pxy": "P3.3", "S_s": 7, "K_s": 6, "T_min": 15, "N_on": 140, "N_off": 120, "cycles": 69}
+  ],
+  "demo": {"variant": 1, "note": "S=2с=40x50мс, K=1с=20x50мс, период 3с, T=180с=60 циклов"}
+}

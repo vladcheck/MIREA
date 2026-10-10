@@ -1,0 +1,80 @@
+[
+  {
+    "variant": 1,
+    "N_kb": 8,
+    "XX": "0xAA",
+    "ZZZ": "0x0800",
+    "start": 2048,
+    "size": 1024,
+    "pattern": 170,
+    "write_read_ok": true,
+    "led_on_fault": true,
+    "first_bad": null,
+    "pass": true
+  },
+  {
+    "variant": 2,
+    "N_kb": 2,
+    "XX": "0x55",
+    "ZZZ": "0x0100",
+    "start": 256,
+    "size": 1024,
+    "pattern": 85,
+    "write_read_ok": true,
+    "led_on_fault": true,
+    "first_bad": null,
+    "pass": true
+  },
+  {
+    "variant": 3,
+    "N_kb": 8,
+    "XX": "0x00",
+    "ZZZ": "0x0C00",
+    "start": 3072,
+    "size": 1024,
+    "pattern": 0,
+    "write_read_ok": true,
+    "led_on_fault": true,
+    "first_bad": null,
+    "pass": true
+  },
+  {
+    "variant": 4,
+    "N_kb": 8,
+    "XX": "0xFF",
+    "ZZZ": "0x1000",
+    "start": 4096,
+    "size": 1024,
+    "pattern": 255,
+    "write_read_ok": true,
+    "led_on_fault": true,
+    "first_bad": null,
+    "pass": true
+  },
+  {
+    "variant": 5,
+    "N_kb": 8,
+    "XX": "0x55",
+    "ZZZ": "0x1400",
+    "start": 5120,
+    "size": 1024,
+    "pattern": 85,
+    "write_read_ok": true,
+    "led_on_fault": true,
+    "first_bad": null,
+    "pass": true
+  },
+  {
+    "variant": 6,
+    "N_kb": 2,
+    "XX": "0xAA",
+    "ZZZ": "0x0400",
+    "start": 1024,
+    "size": 1024,
+    "pattern": 170,
+    "write_read_ok": true,
+    "led_on_fault": true,
+    "first_bad": null,
+    "pass": true
+  }
+]

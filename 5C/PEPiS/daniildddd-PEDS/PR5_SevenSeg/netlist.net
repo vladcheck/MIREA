@@ -1,0 +1,4871 @@
+(export
+	(version "E")
+	(design
+		(source "/Users/d.d.lyapunov/GolandProjects/MIREA/5c/PEDS/PR5_SevenSeg/PR5_SevenSeg.kicad_sch")
+		(date "2026-09-28T19:11:07")
+		(tool "Eeschema 10.0.6")
+		(sheet
+			(number "1")
+			(name "/")
+			(tstamps "/")
+			(title_block
+				(title "ПР5. Семисегментные индикаторы (вар.1)")
+				(company "РТУ МИРЭА, ПЭПС, 5 семестр")
+				(rev "1.0")
+				(date "2026-09-28")
+				(source "PR5_SevenSeg.kicad_sch")
+				(comment
+					(number "1")
+					(value "")
+				)
+				(comment
+					(number "2")
+					(value "")
+				)
+				(comment
+					(number "3")
+					(value "")
+				)
+				(comment
+					(number "4")
+					(value "")
+				)
+				(comment
+					(number "5")
+					(value "")
+				)
+				(comment
+					(number "6")
+					(value "")
+				)
+				(comment
+					(number "7")
+					(value "")
+				)
+				(comment
+					(number "8")
+					(value "")
+				)
+				(comment
+					(number "9")
+					(value "")
+				)
+			)
+		)
+	)
+	(components
+		(comp
+			(ref "C1")
+			(value "33p")
+			(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "45aa881b-0398-44d3-87fa-8691a50add6d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C2")
+			(value "33p")
+			(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "440f14ba-2df2-403c-806a-3f0b615d90b5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C3")
+			(value "33p")
+			(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "505a6a2d-2018-4787-aba9-993c5ac04a4c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C4")
+			(value "33p")
+			(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "89052861-8522-4ee6-ac27-4fe17af008d5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C5")
+			(value "10u")
+			(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f98b157e-8939-44c7-913b-d73204d55fa2")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "C6")
+			(value "10u")
+			(footprint "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+			(description "Unpolarized capacitor")
+			(fields
+				(field
+					(name "Footprint") "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(libsource
+				(lib "Device")
+				(part "C")
+				(description "Unpolarized capacitor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "cap capacitor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "C_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "12b33a1a-dcbe-4464-b38f-f60084809e85")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "DD1")
+			(value "P8051AH (МК-51, Задание 1)")
+			(footprint "Package_DIP:DIP-40_W15.24mm")
+			(datasheet "https://www.datasheetarchive.com/datasheet/MCS%2051/Intel")
+			(description "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			(fields
+				(field
+					(name "Footprint") "Package_DIP:DIP-40_W15.24mm")
+				(field
+					(name "Datasheet") "https://www.datasheetarchive.com/datasheet/MCS%2051/Intel")
+				(field
+					(name "Description") "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			)
+			(libsource
+				(lib "MCU_Intel")
+				(part "P8051AH")
+				(description "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "8051 NMOS HMOS Obsolete")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP*W15.24*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "77ece07b-f44c-4fe7-90be-fb242ecdc1da")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "17")
+						)
+						(pin
+							(num "19")
+						)
+						(pin
+							(num "18")
+						)
+						(pin
+							(num "31")
+						)
+						(pin
+							(num "40")
+						)
+						(pin
+							(num "20")
+						)
+						(pin
+							(num "39")
+						)
+						(pin
+							(num "38")
+						)
+						(pin
+							(num "37")
+						)
+						(pin
+							(num "36")
+						)
+						(pin
+							(num "35")
+						)
+						(pin
+							(num "34")
+						)
+						(pin
+							(num "33")
+						)
+						(pin
+							(num "32")
+						)
+						(pin
+							(num "21")
+						)
+						(pin
+							(num "22")
+						)
+						(pin
+							(num "23")
+						)
+						(pin
+							(num "24")
+						)
+						(pin
+							(num "25")
+						)
+						(pin
+							(num "26")
+						)
+						(pin
+							(num "27")
+						)
+						(pin
+							(num "28")
+						)
+						(pin
+							(num "29")
+						)
+						(pin
+							(num "30")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "DD2")
+			(value "P8051AH (МК-51, Задание 2)")
+			(footprint "Package_DIP:DIP-40_W15.24mm")
+			(datasheet "https://www.datasheetarchive.com/datasheet/MCS%2051/Intel")
+			(description "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			(fields
+				(field
+					(name "Footprint") "Package_DIP:DIP-40_W15.24mm")
+				(field
+					(name "Datasheet") "https://www.datasheetarchive.com/datasheet/MCS%2051/Intel")
+				(field
+					(name "Description") "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			)
+			(libsource
+				(lib "MCU_Intel")
+				(part "P8051AH")
+				(description "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "8051 NMOS HMOS Obsolete")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP*W15.24*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "411249d5-e72b-4b22-8170-9c997f361776")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "17")
+						)
+						(pin
+							(num "19")
+						)
+						(pin
+							(num "18")
+						)
+						(pin
+							(num "31")
+						)
+						(pin
+							(num "40")
+						)
+						(pin
+							(num "20")
+						)
+						(pin
+							(num "39")
+						)
+						(pin
+							(num "38")
+						)
+						(pin
+							(num "37")
+						)
+						(pin
+							(num "36")
+						)
+						(pin
+							(num "35")
+						)
+						(pin
+							(num "34")
+						)
+						(pin
+							(num "33")
+						)
+						(pin
+							(num "32")
+						)
+						(pin
+							(num "21")
+						)
+						(pin
+							(num "22")
+						)
+						(pin
+							(num "23")
+						)
+						(pin
+							(num "24")
+						)
+						(pin
+							(num "25")
+						)
+						(pin
+							(num "26")
+						)
+						(pin
+							(num "27")
+						)
+						(pin
+							(num "28")
+						)
+						(pin
+							(num "29")
+						)
+						(pin
+							(num "30")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "HG1")
+			(value "SA39-11EWA")
+			(footprint "Display_7Segment:Sx39-1xxxxx")
+			(datasheet "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+			(description "Single digit 7 segment display, high efficiency red, common anode")
+			(fields
+				(field
+					(name "Footprint") "Display_7Segment:Sx39-1xxxxx")
+				(field
+					(name "Datasheet") "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+				(field
+					(name "Description") "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(libsource
+				(lib "Display_Character")
+				(part "SA39-11EWA")
+				(description "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "display LED 7-segment")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "S?39?1*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "ebe1ac0b-c46f-4114-b4c8-37f3722c74f3")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "8")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "HG2")
+			(value "SA39-11EWA")
+			(footprint "Display_7Segment:Sx39-1xxxxx")
+			(datasheet "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+			(description "Single digit 7 segment display, high efficiency red, common anode")
+			(fields
+				(field
+					(name "Footprint") "Display_7Segment:Sx39-1xxxxx")
+				(field
+					(name "Datasheet") "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+				(field
+					(name "Description") "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(libsource
+				(lib "Display_Character")
+				(part "SA39-11EWA")
+				(description "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "display LED 7-segment")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "S?39?1*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "754ad292-8e41-4d54-b73d-d44349135dcc")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "8")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "HG3")
+			(value "SA39-11EWA")
+			(footprint "Display_7Segment:Sx39-1xxxxx")
+			(datasheet "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+			(description "Single digit 7 segment display, high efficiency red, common anode")
+			(fields
+				(field
+					(name "Footprint") "Display_7Segment:Sx39-1xxxxx")
+				(field
+					(name "Datasheet") "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+				(field
+					(name "Description") "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(libsource
+				(lib "Display_Character")
+				(part "SA39-11EWA")
+				(description "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "display LED 7-segment")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "S?39?1*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "869f47ed-b4e7-483c-8f6e-52b399985a8c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "8")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "HG4")
+			(value "SA39-11EWA")
+			(footprint "Display_7Segment:Sx39-1xxxxx")
+			(datasheet "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+			(description "Single digit 7 segment display, high efficiency red, common anode")
+			(fields
+				(field
+					(name "Footprint") "Display_7Segment:Sx39-1xxxxx")
+				(field
+					(name "Datasheet") "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+				(field
+					(name "Description") "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(libsource
+				(lib "Display_Character")
+				(part "SA39-11EWA")
+				(description "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "display LED 7-segment")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "S?39?1*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "4814dac6-cac1-4603-b665-e1274e93e067")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "8")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "HG5")
+			(value "SA39-11EWA")
+			(footprint "Display_7Segment:Sx39-1xxxxx")
+			(datasheet "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+			(description "Single digit 7 segment display, high efficiency red, common anode")
+			(fields
+				(field
+					(name "Footprint") "Display_7Segment:Sx39-1xxxxx")
+				(field
+					(name "Datasheet") "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+				(field
+					(name "Description") "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(libsource
+				(lib "Display_Character")
+				(part "SA39-11EWA")
+				(description "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "display LED 7-segment")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "S?39?1*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "de7858f9-ba6f-457f-97ff-5ff12b82f2d8")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "8")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R1")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "0b29292f-94cb-40d9-9bae-4fccce5dd9fc")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R2")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "c01a9cf4-f73b-47d4-b97b-d3fc22731e70")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R3")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "00eba9bf-06a9-4979-bc28-78df5ec233e3")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R4")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "b89dfe81-43cb-4732-a000-2e7258242a78")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R5")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "adf78431-64af-4f0b-9558-ded856c65ded")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R6")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "5bcd52dd-9e9a-479b-8540-57919782ad08")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R7")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "9101fcaf-c5c9-48e7-9a37-87236dc092a8")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R8")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "5aaad5fc-283b-4019-8890-986508adc825")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R9")
+			(value "4.7k")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "14211295-32e2-4f8c-bc8e-81a194909f56")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R10")
+			(value "4.7k")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "03f03e4e-226a-4584-b1e7-8c25575a55fe")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R11")
+			(value "4.7k")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d0f97081-13d8-4445-a9f0-5cc800f3a882")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R12")
+			(value "10k")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d4988fc3-817d-4cd7-be60-f04efd370e0b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R13")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6fd82346-6f24-44fa-a8fe-1496117dd212")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R14")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "a092db68-7fbb-4f44-b6de-b60598c4c06d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R15")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "f5b1586f-2493-4462-a03a-b849f346a77c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R16")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "502abde8-05e0-48af-bcf5-76dd4c70ed0b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R17")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "bd91dccb-b434-4231-9e25-8dc0ac4a8cb5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R18")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "ec4032fe-43d8-4245-aed5-dcf213e9612d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R19")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "adb42b36-7b94-4892-a667-7b88ccad291c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R20")
+			(value "270")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "dd99f7ae-ecb2-4037-8ac0-70ae0166126b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R21")
+			(value "4.7k")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "1f3ae615-1bb7-4bb9-8038-e13a5ed4acea")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R22")
+			(value "4.7k")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "6f5f40d3-c1cd-4a06-a77a-e4f5537c9798")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "R23")
+			(value "10k")
+			(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+			(description "Resistor")
+			(fields
+				(field
+					(name "Footprint") "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "R")
+				(description "Resistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "R res resistor")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "R_*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "0716cfe5-ce4b-43bd-91c6-cb3f7e692f9e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "VT1")
+			(value "KT361")
+			(footprint "Package_TO_SOT_THT:TO-92_Inline")
+			(description "PNP bipolar junction transistor")
+			(fields
+				(field
+					(name "Footprint") "Package_TO_SOT_THT:TO-92_Inline")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "PNP bipolar junction transistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "Q_PNP")
+				(description "PNP bipolar junction transistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "BJT")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "744ddad3-2835-4400-9e87-846ee13c91eb")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "B")
+						)
+						(pin
+							(num "C")
+						)
+						(pin
+							(num "E")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "VT2")
+			(value "KT361")
+			(footprint "Package_TO_SOT_THT:TO-92_Inline")
+			(description "PNP bipolar junction transistor")
+			(fields
+				(field
+					(name "Footprint") "Package_TO_SOT_THT:TO-92_Inline")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "PNP bipolar junction transistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "Q_PNP")
+				(description "PNP bipolar junction transistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "BJT")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "04587483-a768-47c8-92af-94e286a7350a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "B")
+						)
+						(pin
+							(num "C")
+						)
+						(pin
+							(num "E")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "VT3")
+			(value "KT361")
+			(footprint "Package_TO_SOT_THT:TO-92_Inline")
+			(description "PNP bipolar junction transistor")
+			(fields
+				(field
+					(name "Footprint") "Package_TO_SOT_THT:TO-92_Inline")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "PNP bipolar junction transistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "Q_PNP")
+				(description "PNP bipolar junction transistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "BJT")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "dfd9363b-5400-45f2-9ab0-9b24166c631e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "B")
+						)
+						(pin
+							(num "C")
+						)
+						(pin
+							(num "E")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "VT4")
+			(value "KT361")
+			(footprint "Package_TO_SOT_THT:TO-92_Inline")
+			(description "PNP bipolar junction transistor")
+			(fields
+				(field
+					(name "Footprint") "Package_TO_SOT_THT:TO-92_Inline")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "PNP bipolar junction transistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "Q_PNP")
+				(description "PNP bipolar junction transistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "BJT")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "8372edd0-02e7-4534-9c28-8b8081405e9f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "B")
+						)
+						(pin
+							(num "C")
+						)
+						(pin
+							(num "E")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "VT5")
+			(value "KT361")
+			(footprint "Package_TO_SOT_THT:TO-92_Inline")
+			(description "PNP bipolar junction transistor")
+			(fields
+				(field
+					(name "Footprint") "Package_TO_SOT_THT:TO-92_Inline")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "PNP bipolar junction transistor")
+			)
+			(libsource
+				(lib "Device")
+				(part "Q_PNP")
+				(description "PNP bipolar junction transistor")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "BJT")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "d71e9482-6308-4575-84bc-31fe70612576")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "B")
+						)
+						(pin
+							(num "C")
+						)
+						(pin
+							(num "E")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "Y1")
+			(value "12MHz")
+			(footprint "Crystal:Crystal_HC49-U_Horizontal")
+			(description "Two pin crystal")
+			(fields
+				(field
+					(name "Footprint") "Crystal:Crystal_HC49-U_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Two pin crystal")
+			)
+			(libsource
+				(lib "Device")
+				(part "Crystal")
+				(description "Two pin crystal")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "quartz ceramic resonator oscillator")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Crystal*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "1c5c9917-d6b3-498d-a8ff-08418c0ffa4a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "Y2")
+			(value "12MHz")
+			(footprint "Crystal:Crystal_HC49-U_Horizontal")
+			(description "Two pin crystal")
+			(fields
+				(field
+					(name "Footprint") "Crystal:Crystal_HC49-U_Horizontal")
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Two pin crystal")
+			)
+			(libsource
+				(lib "Device")
+				(part "Crystal")
+				(description "Two pin crystal")
+			)
+			(property
+				(name "Sheetname")
+				(value "PR5_SevenSeg")
+			)
+			(property
+				(name "Sheetfile")
+				(value "PR5_SevenSeg.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "quartz ceramic resonator oscillator")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "Crystal*")
+			)
+			(sheetpath
+				(names "/")
+				(tstamps "/")
+			)
+			(tstamps "9836d0c2-fc4b-4b3a-9a3c-b6e150457d03")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+	)
+	(groups)
+	(variants)
+	(libparts
+		(libpart
+			(lib "Device")
+			(part "C")
+			(description "Unpolarized capacitor")
+			(footprints
+				(fp "C_*")
+			)
+			(fields
+				(field
+					(name "Reference") "C")
+				(field
+					(name "Value") "C")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Unpolarized capacitor")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Device")
+			(part "Crystal")
+			(description "Two pin crystal")
+			(footprints
+				(fp "Crystal*")
+			)
+			(fields
+				(field
+					(name "Reference") "Y")
+				(field
+					(name "Value") "Crystal")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Two pin crystal")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "1")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "2")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Device")
+			(part "Q_PNP")
+			(description "PNP bipolar junction transistor")
+			(fields
+				(field
+					(name "Reference") "Q")
+				(field
+					(name "Value") "Q_PNP")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "PNP bipolar junction transistor")
+			)
+			(pins
+				(pin
+					(num "B")
+					(name "B")
+					(type "input")
+				)
+				(pin
+					(num "C")
+					(name "C")
+					(type "passive")
+				)
+				(pin
+					(num "E")
+					(name "E")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Device")
+			(part "R")
+			(description "Resistor")
+			(footprints
+				(fp "R_*")
+			)
+			(fields
+				(field
+					(name "Reference") "R")
+				(field
+					(name "Value") "R")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Resistor")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Display_Character")
+			(part "SA39-11EWA")
+			(description "Single digit 7 segment display, high efficiency red, common anode")
+			(docs "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+			(footprints
+				(fp "S?39?1*")
+			)
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "SA39-11EWA")
+				(field
+					(name "Footprint") "Display_7Segment:Sx39-1xxxxx")
+				(field
+					(name "Datasheet") "http://www.kingbrightusa.com/images/catalog/SPEC/sa39-11ewa.pdf")
+				(field
+					(name "Description") "Single digit 7 segment display, high efficiency red, common anode")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "G")
+					(type "input")
+				)
+				(pin
+					(num "2")
+					(name "F")
+					(type "input")
+				)
+				(pin
+					(num "3")
+					(name "CA")
+					(type "input")
+				)
+				(pin
+					(num "4")
+					(name "E")
+					(type "input")
+				)
+				(pin
+					(num "5")
+					(name "D")
+					(type "input")
+				)
+				(pin
+					(num "6")
+					(name "DP")
+					(type "input")
+				)
+				(pin
+					(num "7")
+					(name "C")
+					(type "input")
+				)
+				(pin
+					(num "8")
+					(name "CA")
+					(type "input")
+				)
+				(pin
+					(num "9")
+					(name "B")
+					(type "input")
+				)
+				(pin
+					(num "10")
+					(name "A")
+					(type "input")
+				)
+			)
+		)
+		(libpart
+			(lib "MCU_Intel")
+			(part "P8051AH")
+			(description "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			(docs "https://www.datasheetarchive.com/datasheet/MCS%2051/Intel")
+			(footprints
+				(fp "DIP*W15.24*")
+			)
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "P8051AH")
+				(field
+					(name "Footprint") "Package_DIP:DIP-40_W15.24mm")
+				(field
+					(name "Datasheet") "https://www.datasheetarchive.com/datasheet/MCS%2051/Intel")
+				(field
+					(name "Description") "MCS-51 8-bit Control-Oriented Microcontrollers, 4K x 8 masked ROM, 128 x 8 RAM, 2x 16-bit timers / event counters, 12MHz, DIP-40")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "P1.0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "P1.1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "P1.2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "P1.3")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "P1.4")
+					(type "bidirectional")
+				)
+				(pin
+					(num "6")
+					(name "P1.5")
+					(type "bidirectional")
+				)
+				(pin
+					(num "7")
+					(name "P1.6")
+					(type "bidirectional")
+				)
+				(pin
+					(num "8")
+					(name "P1.7")
+					(type "bidirectional")
+				)
+				(pin
+					(num "9")
+					(name "RST")
+					(type "input")
+				)
+				(pin
+					(num "10")
+					(name "P3.0/RXD")
+					(type "bidirectional")
+				)
+				(pin
+					(num "11")
+					(name "P3.1/TXD")
+					(type "bidirectional")
+				)
+				(pin
+					(num "12")
+					(name "P3.2/~{INT0}")
+					(type "bidirectional")
+				)
+				(pin
+					(num "13")
+					(name "P3.3/~{INT1}")
+					(type "bidirectional")
+				)
+				(pin
+					(num "14")
+					(name "P3.4/T0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "15")
+					(name "P3.5/T1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "16")
+					(name "P3.6/~{WR}")
+					(type "bidirectional")
+				)
+				(pin
+					(num "17")
+					(name "P3.7/~{RD}")
+					(type "bidirectional")
+				)
+				(pin
+					(num "18")
+					(name "XTAL2")
+					(type "output")
+				)
+				(pin
+					(num "19")
+					(name "XTAL1")
+					(type "input")
+				)
+				(pin
+					(num "20")
+					(name "VSS")
+					(type "power_in")
+				)
+				(pin
+					(num "21")
+					(name "P2.0/A8")
+					(type "bidirectional")
+				)
+				(pin
+					(num "22")
+					(name "P2.1/A9")
+					(type "bidirectional")
+				)
+				(pin
+					(num "23")
+					(name "P2.2/A10")
+					(type "bidirectional")
+				)
+				(pin
+					(num "24")
+					(name "P2.3/A11")
+					(type "bidirectional")
+				)
+				(pin
+					(num "25")
+					(name "P2.4/A12")
+					(type "bidirectional")
+				)
+				(pin
+					(num "26")
+					(name "P2.5/A13")
+					(type "bidirectional")
+				)
+				(pin
+					(num "27")
+					(name "P2.6/A14")
+					(type "bidirectional")
+				)
+				(pin
+					(num "28")
+					(name "P2.7/A15")
+					(type "bidirectional")
+				)
+				(pin
+					(num "29")
+					(name "~{PSEN}")
+					(type "output")
+				)
+				(pin
+					(num "30")
+					(name "ALE")
+					(type "output")
+				)
+				(pin
+					(num "31")
+					(name "~{EA}")
+					(type "input")
+				)
+				(pin
+					(num "32")
+					(name "P0.7/AD7")
+					(type "bidirectional")
+				)
+				(pin
+					(num "33")
+					(name "P0.6/AD6")
+					(type "bidirectional")
+				)
+				(pin
+					(num "34")
+					(name "P0.5/AD5")
+					(type "bidirectional")
+				)
+				(pin
+					(num "35")
+					(name "P0.4/AD4")
+					(type "bidirectional")
+				)
+				(pin
+					(num "36")
+					(name "P0.3/AD3")
+					(type "bidirectional")
+				)
+				(pin
+					(num "37")
+					(name "P0.2/AD2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "38")
+					(name "P0.1/AD1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "39")
+					(name "P0.0/AD0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "40")
+					(name "VCC")
+					(type "power_in")
+				)
+			)
+		)
+	)
+	(libraries
+		(library
+			(logical "Device")
+			(uri "${KICAD10_SYMBOL_DIR}/Device.kicad_sym")
+		)
+		(library
+			(logical "Display_Character")
+			(uri "${KICAD10_SYMBOL_DIR}/Display_Character.kicad_sym")
+		)
+		(library
+			(logical "MCU_Intel")
+			(uri "${KICAD10_SYMBOL_DIR}/MCU_Intel.kicad_sym")
+		)
+	)
+	(nets
+		(net
+			(code "1")
+			(name "+5V")
+			(class "Default")
+			(node
+				(ref "C5")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C6")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD1")
+				(pin "31")
+				(pinfunction "~{EA}_31")
+				(pintype "input")
+			)
+			(node
+				(ref "DD1")
+				(pin "40")
+				(pinfunction "VCC_40")
+				(pintype "power_in")
+			)
+			(node
+				(ref "DD2")
+				(pin "31")
+				(pinfunction "~{EA}_31")
+				(pintype "input")
+			)
+			(node
+				(ref "DD2")
+				(pin "40")
+				(pinfunction "VCC_40")
+				(pintype "power_in")
+			)
+			(node
+				(ref "VT1")
+				(pin "E")
+				(pinfunction "E_E")
+				(pintype "passive")
+			)
+			(node
+				(ref "VT2")
+				(pin "E")
+				(pinfunction "E_E")
+				(pintype "passive")
+			)
+			(node
+				(ref "VT3")
+				(pin "E")
+				(pinfunction "E_E")
+				(pintype "passive")
+			)
+			(node
+				(ref "VT4")
+				(pin "E")
+				(pinfunction "E_E")
+				(pintype "passive")
+			)
+			(node
+				(ref "VT5")
+				(pin "E")
+				(pinfunction "E_E")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "2")
+			(name "/1A")
+			(class "Default")
+			(node
+				(ref "HG1")
+				(pin "10")
+				(pinfunction "A_10")
+				(pintype "input")
+			)
+			(node
+				(ref "HG2")
+				(pin "10")
+				(pinfunction "A_10")
+				(pintype "input")
+			)
+			(node
+				(ref "HG3")
+				(pin "10")
+				(pinfunction "A_10")
+				(pintype "input")
+			)
+			(node
+				(ref "R1")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "3")
+			(name "/1B")
+			(class "Default")
+			(node
+				(ref "HG1")
+				(pin "9")
+				(pinfunction "B_9")
+				(pintype "input")
+			)
+			(node
+				(ref "HG2")
+				(pin "9")
+				(pinfunction "B_9")
+				(pintype "input")
+			)
+			(node
+				(ref "HG3")
+				(pin "9")
+				(pinfunction "B_9")
+				(pintype "input")
+			)
+			(node
+				(ref "R2")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "4")
+			(name "/1C")
+			(class "Default")
+			(node
+				(ref "HG1")
+				(pin "7")
+				(pinfunction "C_7")
+				(pintype "input")
+			)
+			(node
+				(ref "HG2")
+				(pin "7")
+				(pinfunction "C_7")
+				(pintype "input")
+			)
+			(node
+				(ref "HG3")
+				(pin "7")
+				(pinfunction "C_7")
+				(pintype "input")
+			)
+			(node
+				(ref "R3")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "5")
+			(name "/1D")
+			(class "Default")
+			(node
+				(ref "HG1")
+				(pin "5")
+				(pinfunction "D_5")
+				(pintype "input")
+			)
+			(node
+				(ref "HG2")
+				(pin "5")
+				(pinfunction "D_5")
+				(pintype "input")
+			)
+			(node
+				(ref "HG3")
+				(pin "5")
+				(pinfunction "D_5")
+				(pintype "input")
+			)
+			(node
+				(ref "R4")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "6")
+			(name "/1D1")
+			(class "Default")
+			(node
+				(ref "HG1")
+				(pin "3")
+				(pinfunction "CA_3")
+				(pintype "input")
+			)
+			(node
+				(ref "HG1")
+				(pin "8")
+				(pinfunction "CA_8")
+				(pintype "input")
+			)
+			(node
+				(ref "VT1")
+				(pin "C")
+				(pinfunction "C_C")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "7")
+			(name "/1D2")
+			(class "Default")
+			(node
+				(ref "HG2")
+				(pin "3")
+				(pinfunction "CA_3")
+				(pintype "input")
+			)
+			(node
+				(ref "HG2")
+				(pin "8")
+				(pinfunction "CA_8")
+				(pintype "input")
+			)
+			(node
+				(ref "VT2")
+				(pin "C")
+				(pinfunction "C_C")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "8")
+			(name "/1D3")
+			(class "Default")
+			(node
+				(ref "HG3")
+				(pin "3")
+				(pinfunction "CA_3")
+				(pintype "input")
+			)
+			(node
+				(ref "HG3")
+				(pin "8")
+				(pinfunction "CA_8")
+				(pintype "input")
+			)
+			(node
+				(ref "VT3")
+				(pin "C")
+				(pinfunction "C_C")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "9")
+			(name "/1E")
+			(class "Default")
+			(node
+				(ref "HG1")
+				(pin "4")
+				(pinfunction "E_4")
+				(pintype "input")
+			)
+			(node
+				(ref "HG2")
+				(pin "4")
+				(pinfunction "E_4")
+				(pintype "input")
+			)
+			(node
+				(ref "HG3")
+				(pin "4")
+				(pinfunction "E_4")
+				(pintype "input")
+			)
+			(node
+				(ref "R5")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "10")
+			(name "/1F")
+			(class "Default")
+			(node
+				(ref "HG1")
+				(pin "2")
+				(pinfunction "F_2")
+				(pintype "input")
+			)
+			(node
+				(ref "HG2")
+				(pin "2")
+				(pinfunction "F_2")
+				(pintype "input")
+			)
+			(node
+				(ref "HG3")
+				(pin "2")
+				(pinfunction "F_2")
+				(pintype "input")
+			)
+			(node
+				(ref "R6")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "11")
+			(name "/1G")
+			(class "Default")
+			(node
+				(ref "HG1")
+				(pin "1")
+				(pinfunction "G_1")
+				(pintype "input")
+			)
+			(node
+				(ref "HG2")
+				(pin "1")
+				(pinfunction "G_1")
+				(pintype "input")
+			)
+			(node
+				(ref "HG3")
+				(pin "1")
+				(pinfunction "G_1")
+				(pintype "input")
+			)
+			(node
+				(ref "R7")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "12")
+			(name "/1H")
+			(class "Default")
+			(node
+				(ref "HG1")
+				(pin "6")
+				(pinfunction "DP_6")
+				(pintype "input")
+			)
+			(node
+				(ref "HG2")
+				(pin "6")
+				(pinfunction "DP_6")
+				(pintype "input")
+			)
+			(node
+				(ref "HG3")
+				(pin "6")
+				(pinfunction "DP_6")
+				(pintype "input")
+			)
+			(node
+				(ref "R8")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "13")
+			(name "/1P0")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "1")
+				(pinfunction "P1.0_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R1")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "14")
+			(name "/1P1")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "2")
+				(pinfunction "P1.1_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R2")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "15")
+			(name "/1P2")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "3")
+				(pinfunction "P1.2_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R3")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "16")
+			(name "/1P3")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "4")
+				(pinfunction "P1.3_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R4")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "17")
+			(name "/1P4")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "5")
+				(pinfunction "P1.4_5")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R5")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "18")
+			(name "/1P5")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "6")
+				(pinfunction "P1.5_6")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R6")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "19")
+			(name "/1P6")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "7")
+				(pinfunction "P1.6_7")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R7")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "20")
+			(name "/1P7")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "8")
+				(pinfunction "P1.7_8")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R8")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "21")
+			(name "/1RST")
+			(class "Default")
+			(node
+				(ref "C5")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD1")
+				(pin "9")
+				(pinfunction "RST_9")
+				(pintype "input")
+			)
+			(node
+				(ref "R12")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "22")
+			(name "/1S0")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "10")
+				(pinfunction "P3.0/RXD_10")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R9")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "23")
+			(name "/1S0B")
+			(class "Default")
+			(node
+				(ref "R9")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "VT1")
+				(pin "B")
+				(pinfunction "B_B")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "24")
+			(name "/1S1")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "11")
+				(pinfunction "P3.1/TXD_11")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R10")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "25")
+			(name "/1S1B")
+			(class "Default")
+			(node
+				(ref "R10")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "VT2")
+				(pin "B")
+				(pinfunction "B_B")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "26")
+			(name "/1S2")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "12")
+				(pinfunction "P3.2/~{INT0}_12")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R11")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "27")
+			(name "/1S2B")
+			(class "Default")
+			(node
+				(ref "R11")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "VT3")
+				(pin "B")
+				(pinfunction "B_B")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "28")
+			(name "/1X1")
+			(class "Default")
+			(node
+				(ref "C1")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD1")
+				(pin "19")
+				(pinfunction "XTAL1_19")
+				(pintype "input")
+			)
+			(node
+				(ref "Y1")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "29")
+			(name "/1X2")
+			(class "Default")
+			(node
+				(ref "C2")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD1")
+				(pin "18")
+				(pinfunction "XTAL2_18")
+				(pintype "output")
+			)
+			(node
+				(ref "Y1")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "30")
+			(name "/2A")
+			(class "Default")
+			(node
+				(ref "HG4")
+				(pin "10")
+				(pinfunction "A_10")
+				(pintype "input")
+			)
+			(node
+				(ref "HG5")
+				(pin "10")
+				(pinfunction "A_10")
+				(pintype "input")
+			)
+			(node
+				(ref "R13")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "31")
+			(name "/2B")
+			(class "Default")
+			(node
+				(ref "HG4")
+				(pin "9")
+				(pinfunction "B_9")
+				(pintype "input")
+			)
+			(node
+				(ref "HG5")
+				(pin "9")
+				(pinfunction "B_9")
+				(pintype "input")
+			)
+			(node
+				(ref "R14")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "32")
+			(name "/2C")
+			(class "Default")
+			(node
+				(ref "HG4")
+				(pin "7")
+				(pinfunction "C_7")
+				(pintype "input")
+			)
+			(node
+				(ref "HG5")
+				(pin "7")
+				(pinfunction "C_7")
+				(pintype "input")
+			)
+			(node
+				(ref "R15")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "33")
+			(name "/2D")
+			(class "Default")
+			(node
+				(ref "HG4")
+				(pin "5")
+				(pinfunction "D_5")
+				(pintype "input")
+			)
+			(node
+				(ref "HG5")
+				(pin "5")
+				(pinfunction "D_5")
+				(pintype "input")
+			)
+			(node
+				(ref "R16")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "34")
+			(name "/2D1")
+			(class "Default")
+			(node
+				(ref "HG4")
+				(pin "3")
+				(pinfunction "CA_3")
+				(pintype "input")
+			)
+			(node
+				(ref "HG4")
+				(pin "8")
+				(pinfunction "CA_8")
+				(pintype "input")
+			)
+			(node
+				(ref "VT4")
+				(pin "C")
+				(pinfunction "C_C")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "35")
+			(name "/2D2")
+			(class "Default")
+			(node
+				(ref "HG5")
+				(pin "3")
+				(pinfunction "CA_3")
+				(pintype "input")
+			)
+			(node
+				(ref "HG5")
+				(pin "8")
+				(pinfunction "CA_8")
+				(pintype "input")
+			)
+			(node
+				(ref "VT5")
+				(pin "C")
+				(pinfunction "C_C")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "36")
+			(name "/2E")
+			(class "Default")
+			(node
+				(ref "HG4")
+				(pin "4")
+				(pinfunction "E_4")
+				(pintype "input")
+			)
+			(node
+				(ref "HG5")
+				(pin "4")
+				(pinfunction "E_4")
+				(pintype "input")
+			)
+			(node
+				(ref "R17")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "37")
+			(name "/2F")
+			(class "Default")
+			(node
+				(ref "HG4")
+				(pin "2")
+				(pinfunction "F_2")
+				(pintype "input")
+			)
+			(node
+				(ref "HG5")
+				(pin "2")
+				(pinfunction "F_2")
+				(pintype "input")
+			)
+			(node
+				(ref "R18")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "38")
+			(name "/2G")
+			(class "Default")
+			(node
+				(ref "HG4")
+				(pin "1")
+				(pinfunction "G_1")
+				(pintype "input")
+			)
+			(node
+				(ref "HG5")
+				(pin "1")
+				(pinfunction "G_1")
+				(pintype "input")
+			)
+			(node
+				(ref "R19")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "39")
+			(name "/2H")
+			(class "Default")
+			(node
+				(ref "HG4")
+				(pin "6")
+				(pinfunction "DP_6")
+				(pintype "input")
+			)
+			(node
+				(ref "HG5")
+				(pin "6")
+				(pinfunction "DP_6")
+				(pintype "input")
+			)
+			(node
+				(ref "R20")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "40")
+			(name "/2P0")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "1")
+				(pinfunction "P1.0_1")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R13")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "41")
+			(name "/2P1")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "2")
+				(pinfunction "P1.1_2")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R14")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "42")
+			(name "/2P2")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "3")
+				(pinfunction "P1.2_3")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R15")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "43")
+			(name "/2P3")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "4")
+				(pinfunction "P1.3_4")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R16")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "44")
+			(name "/2P4")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "5")
+				(pinfunction "P1.4_5")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R17")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "45")
+			(name "/2P5")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "6")
+				(pinfunction "P1.5_6")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R18")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "46")
+			(name "/2P6")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "7")
+				(pinfunction "P1.6_7")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R19")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "47")
+			(name "/2P7")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "8")
+				(pinfunction "P1.7_8")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R20")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "48")
+			(name "/2RST")
+			(class "Default")
+			(node
+				(ref "C6")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD2")
+				(pin "9")
+				(pinfunction "RST_9")
+				(pintype "input")
+			)
+			(node
+				(ref "R23")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "49")
+			(name "/2S0")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "10")
+				(pinfunction "P3.0/RXD_10")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R21")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "50")
+			(name "/2S0B")
+			(class "Default")
+			(node
+				(ref "R21")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "VT4")
+				(pin "B")
+				(pinfunction "B_B")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "51")
+			(name "/2S1")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "11")
+				(pinfunction "P3.1/TXD_11")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "R22")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "52")
+			(name "/2S1B")
+			(class "Default")
+			(node
+				(ref "R22")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "VT5")
+				(pin "B")
+				(pinfunction "B_B")
+				(pintype "input")
+			)
+		)
+		(net
+			(code "53")
+			(name "/2X1")
+			(class "Default")
+			(node
+				(ref "C3")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD2")
+				(pin "19")
+				(pinfunction "XTAL1_19")
+				(pintype "input")
+			)
+			(node
+				(ref "Y2")
+				(pin "1")
+				(pinfunction "1_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "54")
+			(name "/2X2")
+			(class "Default")
+			(node
+				(ref "C4")
+				(pin "1")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD2")
+				(pin "18")
+				(pinfunction "XTAL2_18")
+				(pintype "output")
+			)
+			(node
+				(ref "Y2")
+				(pin "2")
+				(pinfunction "2_2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "55")
+			(name "GND")
+			(class "Default")
+			(node
+				(ref "C1")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C2")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C3")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "C4")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "DD1")
+				(pin "20")
+				(pinfunction "VSS_20")
+				(pintype "power_in")
+			)
+			(node
+				(ref "DD2")
+				(pin "20")
+				(pinfunction "VSS_20")
+				(pintype "power_in")
+			)
+			(node
+				(ref "R12")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "R23")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "56")
+			(name "unconnected-(DD1-ALE-Pad30)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "30")
+				(pinfunction "ALE_30")
+				(pintype "output+no_connect")
+			)
+		)
+		(net
+			(code "57")
+			(name "unconnected-(DD1-P0.0{slash}AD0-Pad39)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "39")
+				(pinfunction "P0.0/AD0_39")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "58")
+			(name "unconnected-(DD1-P0.1{slash}AD1-Pad38)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "38")
+				(pinfunction "P0.1/AD1_38")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "59")
+			(name "unconnected-(DD1-P0.2{slash}AD2-Pad37)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "37")
+				(pinfunction "P0.2/AD2_37")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "60")
+			(name "unconnected-(DD1-P0.3{slash}AD3-Pad36)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "36")
+				(pinfunction "P0.3/AD3_36")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "61")
+			(name "unconnected-(DD1-P0.4{slash}AD4-Pad35)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "35")
+				(pinfunction "P0.4/AD4_35")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "62")
+			(name "unconnected-(DD1-P0.5{slash}AD5-Pad34)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "34")
+				(pinfunction "P0.5/AD5_34")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "63")
+			(name "unconnected-(DD1-P0.6{slash}AD6-Pad33)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "33")
+				(pinfunction "P0.6/AD6_33")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "64")
+			(name "unconnected-(DD1-P0.7{slash}AD7-Pad32)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "32")
+				(pinfunction "P0.7/AD7_32")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "65")
+			(name "unconnected-(DD1-P2.0{slash}A8-Pad21)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "21")
+				(pinfunction "P2.0/A8_21")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "66")
+			(name "unconnected-(DD1-P2.1{slash}A9-Pad22)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "22")
+				(pinfunction "P2.1/A9_22")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "67")
+			(name "unconnected-(DD1-P2.2{slash}A10-Pad23)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "23")
+				(pinfunction "P2.2/A10_23")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "68")
+			(name "unconnected-(DD1-P2.3{slash}A11-Pad24)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "24")
+				(pinfunction "P2.3/A11_24")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "69")
+			(name "unconnected-(DD1-P2.4{slash}A12-Pad25)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "25")
+				(pinfunction "P2.4/A12_25")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "70")
+			(name "unconnected-(DD1-P2.5{slash}A13-Pad26)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "26")
+				(pinfunction "P2.5/A13_26")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "71")
+			(name "unconnected-(DD1-P2.6{slash}A14-Pad27)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "27")
+				(pinfunction "P2.6/A14_27")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "72")
+			(name "unconnected-(DD1-P2.7{slash}A15-Pad28)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "28")
+				(pinfunction "P2.7/A15_28")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "73")
+			(name "unconnected-(DD1-P3.3{slash}~{INT1}-Pad13)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "13")
+				(pinfunction "P3.3/~{INT1}_13")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "74")
+			(name "unconnected-(DD1-P3.4{slash}T0-Pad14)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "14")
+				(pinfunction "P3.4/T0_14")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "75")
+			(name "unconnected-(DD1-P3.5{slash}T1-Pad15)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "15")
+				(pinfunction "P3.5/T1_15")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "76")
+			(name "unconnected-(DD1-P3.6{slash}~{WR}-Pad16)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "16")
+				(pinfunction "P3.6/~{WR}_16")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "77")
+			(name "unconnected-(DD1-P3.7{slash}~{RD}-Pad17)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "17")
+				(pinfunction "P3.7/~{RD}_17")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "78")
+			(name "unconnected-(DD1-~{PSEN}-Pad29)")
+			(class "Default")
+			(node
+				(ref "DD1")
+				(pin "29")
+				(pinfunction "~{PSEN}_29")
+				(pintype "output+no_connect")
+			)
+		)
+		(net
+			(code "79")
+			(name "unconnected-(DD2-ALE-Pad30)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "30")
+				(pinfunction "ALE_30")
+				(pintype "output+no_connect")
+			)
+		)
+		(net
+			(code "80")
+			(name "unconnected-(DD2-P0.0{slash}AD0-Pad39)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "39")
+				(pinfunction "P0.0/AD0_39")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "81")
+			(name "unconnected-(DD2-P0.1{slash}AD1-Pad38)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "38")
+				(pinfunction "P0.1/AD1_38")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "82")
+			(name "unconnected-(DD2-P0.2{slash}AD2-Pad37)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "37")
+				(pinfunction "P0.2/AD2_37")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "83")
+			(name "unconnected-(DD2-P0.3{slash}AD3-Pad36)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "36")
+				(pinfunction "P0.3/AD3_36")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "84")
+			(name "unconnected-(DD2-P0.4{slash}AD4-Pad35)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "35")
+				(pinfunction "P0.4/AD4_35")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "85")
+			(name "unconnected-(DD2-P0.5{slash}AD5-Pad34)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "34")
+				(pinfunction "P0.5/AD5_34")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "86")
+			(name "unconnected-(DD2-P0.6{slash}AD6-Pad33)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "33")
+				(pinfunction "P0.6/AD6_33")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "87")
+			(name "unconnected-(DD2-P0.7{slash}AD7-Pad32)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "32")
+				(pinfunction "P0.7/AD7_32")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "88")
+			(name "unconnected-(DD2-P2.0{slash}A8-Pad21)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "21")
+				(pinfunction "P2.0/A8_21")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "89")
+			(name "unconnected-(DD2-P2.1{slash}A9-Pad22)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "22")
+				(pinfunction "P2.1/A9_22")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "90")
+			(name "unconnected-(DD2-P2.2{slash}A10-Pad23)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "23")
+				(pinfunction "P2.2/A10_23")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "91")
+			(name "unconnected-(DD2-P2.3{slash}A11-Pad24)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "24")
+				(pinfunction "P2.3/A11_24")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "92")
+			(name "unconnected-(DD2-P2.4{slash}A12-Pad25)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "25")
+				(pinfunction "P2.4/A12_25")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "93")
+			(name "unconnected-(DD2-P2.5{slash}A13-Pad26)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "26")
+				(pinfunction "P2.5/A13_26")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "94")
+			(name "unconnected-(DD2-P2.6{slash}A14-Pad27)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "27")
+				(pinfunction "P2.6/A14_27")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "95")
+			(name "unconnected-(DD2-P2.7{slash}A15-Pad28)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "28")
+				(pinfunction "P2.7/A15_28")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "96")
+			(name "unconnected-(DD2-P3.2{slash}~{INT0}-Pad12)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "12")
+				(pinfunction "P3.2/~{INT0}_12")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "97")
+			(name "unconnected-(DD2-P3.3{slash}~{INT1}-Pad13)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "13")
+				(pinfunction "P3.3/~{INT1}_13")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "98")
+			(name "unconnected-(DD2-P3.4{slash}T0-Pad14)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "14")
+				(pinfunction "P3.4/T0_14")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "99")
+			(name "unconnected-(DD2-P3.5{slash}T1-Pad15)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "15")
+				(pinfunction "P3.5/T1_15")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "100")
+			(name "unconnected-(DD2-P3.6{slash}~{WR}-Pad16)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "16")
+				(pinfunction "P3.6/~{WR}_16")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "101")
+			(name "unconnected-(DD2-P3.7{slash}~{RD}-Pad17)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "17")
+				(pinfunction "P3.7/~{RD}_17")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "102")
+			(name "unconnected-(DD2-~{PSEN}-Pad29)")
+			(class "Default")
+			(node
+				(ref "DD2")
+				(pin "29")
+				(pinfunction "~{PSEN}_29")
+				(pintype "output+no_connect")
+			)
+		)
+	)
+)

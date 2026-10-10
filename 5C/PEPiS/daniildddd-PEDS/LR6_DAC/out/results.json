@@ -1,0 +1,24 @@
+{
+  "uref": 5.0,
+  "zmr_v": 0.019608,
+  "rows": [
+    {
+      "code_dec": 8,
+      "code_hex": "0x08",
+      "code_bin": "00001000",
+      "u_v": 0.1569
+    },
+    {
+      "code_dec": 36,
+      "code_hex": "0x24",
+      "code_bin": "00100100",
+      "u_v": 0.7059
+    },
+    {
+      "code_dec": 107,
+      "code_hex": "0x6B",
+      "code_bin": "01101011",
+      "u_v": 2.098
+    }
+  ]
+}

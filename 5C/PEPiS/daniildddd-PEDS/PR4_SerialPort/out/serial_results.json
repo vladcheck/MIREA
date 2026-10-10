@@ -1,0 +1,13 @@
+{
+  "variant": 1,
+  "mode": 0,
+  "fosc_MHz": 12,
+  "f0_kbps": 1000,
+  "Tbit_us": 1.0,
+  "Tbyte_us": 8.0,
+  "N": 10,
+  "Ttotal_us": 80.0,
+  "XX": "50h",
+  "SCON": "0x00",
+  "status": "PASS"
+}
