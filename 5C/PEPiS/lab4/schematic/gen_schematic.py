@@ -630,7 +630,7 @@ def main():
         "PB4-PB7 не используются (no-connect).",
     ]
     for n, line in enumerate(notes):
-        A(text(line, 100, round(46.0 + 4.5 * n, 2), 1.5))
+        A(text(line, 20, round(215.0 + 4.5 * n, 2), 1.5))
 
     A('\t(sheet_instances\n\t\t(path "/"\n\t\t\t(page "1")\n\t\t)\n\t)')
     A("\t(embedded_fonts no)")

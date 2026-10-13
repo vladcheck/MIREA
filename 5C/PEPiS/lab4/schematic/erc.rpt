@@ -1,16 +1,12 @@
-ERC report (2026-10-13T15:45:25, Encoding UTF8)
+ERC report (2026-10-13T16:18:49, Encoding UTF8)
 Report includes: Errors, Warnings
 
 ***** Sheet /
 [lib_symbol_issues]: Текущая конфигурация не содержит библиотеку символов 'lab4'
     ; warning
     @(152.40 mm, 152.40 mm): Символ U1 [ATmega32]
-[multiple_net_names]: PA0 и PC4 подключены к одним и тем же элементам; в списке цепей будет использован PA0
-    ; warning
-    @(96.52 mm, 69.85 mm): Метка 'PA0'
-    @(195.58 mm, 120.65 mm): Метка 'PC4'
 
- ** ERC messages: 2  Errors 0  Warnings 2
+ ** ERC messages: 1  Errors 0  Warnings 1
 
  ** Ignored checks:
     - Global label only appears once in the schematic
