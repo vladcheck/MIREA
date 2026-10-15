@@ -1,0 +1,15 @@
+[project]
+name = "kd"
+version = "0.1.0"
+description = "MIREA KD practical works"
+requires-python = ">= 3.11"
+dependencies = [
+  "python-docx>=1.1.0",
+  "latex2mathml>=3.77.0",
+]
+
+[dependency-groups]
+viz = [
+  "numpy>=2.0,<3",
+  "matplotlib>=3.9,<4",
+]
