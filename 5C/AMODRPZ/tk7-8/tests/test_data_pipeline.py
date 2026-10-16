@@ -28,6 +28,7 @@ def test_load_clean_split_ratios_and_no_nans():
 
 def test_scaler_fit_on_train_only():
     train, _, _, scaler = load_clean_split(TRAIN_CSV)
+    assert scaler.mean_ is not None
     assert scaler.mean_.shape == (len(FEATURE_COLS),)
     # StandardScaler fitted on train: transformed train has ~zero mean.
     Xt = scaler.transform(train[FEATURE_COLS].values)
@@ -38,4 +39,4 @@ def test_target_imbalance_preserved():
     train, _, _, _ = load_clean_split(TRAIN_CSV)
     rate = (train[TARGET_COL] == 1).mean()
     assert 0.08 < rate < 0.12  # ~9.5% risky in raw probe
-    assert set(np.unique(train[TARGET_COL].values)) <= {0, 1}
+    assert set(np.unique(train[TARGET_COL].values)) <= {0, 1} # type: ignore
