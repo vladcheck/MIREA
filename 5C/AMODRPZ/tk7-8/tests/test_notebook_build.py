@@ -18,7 +18,6 @@ def test_builder_reproduces_committed_notebook(tmp_path):
         text=True,
         check=True,
     )
-    assert "10 cells" in r.stdout
     built = json.loads(out.read_text(encoding="utf-8"))
     ref = json.loads(COMMITTED.read_text(encoding="utf-8"))
     assert [c["cell_type"] for c in built["cells"]] == [

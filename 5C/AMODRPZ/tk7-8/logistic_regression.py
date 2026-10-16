@@ -72,6 +72,8 @@ class LogisticRegressionGD(object):
         steps, errors = [], []
         step = 0
         for _ in range(max_steps):
+            new_error = None
+
             if Rtype == "LL":
                 new_error = self.LogLikelihood(X, y)
                 dT_a = X.T @ (y - self.predict(X)) / X.shape[0]
@@ -82,7 +84,9 @@ class LogisticRegressionGD(object):
                 self.a -= alpha * dT_a
             step += 1
             steps.append(step)
-            errors.append(new_error)
+
+            if new_error is not None:
+                errors.append(new_error)
             # if new_error < epsylon:
             #    break
         return steps, errors

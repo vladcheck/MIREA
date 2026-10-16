@@ -18,10 +18,6 @@ from utils.shared import cells, code, md  # noqa: E402
 
 nb = nbf.v4.new_notebook()
 
-# --- 1. Заголовок ---
-md(r"""Бинарная логистическая регрессия — решение
-Повторяет ход практикума (toy + insclass), код класса — как в методичке, метрики accuracy/precision/recall/f1 — по требованию к сравнению а/б.""")
-
 # --- 2. Импорты ---
 code(r"""import os
 import sys
