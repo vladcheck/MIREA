@@ -8,6 +8,7 @@ Writes results/comparison.csv and learning-curve PNGs.
 
 import os
 import time
+from typing import Dict
 
 import matplotlib
 
@@ -84,7 +85,12 @@ def fit_report(name, x_, Y, alpha=0.01, max_steps=10000):
             np.asarray(errors).ravel()
             if not isinstance(errors[0], (int, float, np.floating))
             else errors,
+            label=rtype,
         )
+        plt.title(f"Кривая обучения: {name} ({rtype})")
+        plt.xlabel("Шаг")
+        plt.ylabel("Ошибка")
+        plt.legend()
         plt.savefig(os.path.join(RESULTS, f"{name}_{rtype}_curve.png"))
         plt.close()
     return row
@@ -107,7 +113,7 @@ def main():
     m_ll, m_ce = LogisticRegressionGD(), LogisticRegressionGD()
     m_ll.fit(Xtr, ytr, max_steps=1000, Rtype="LL")
     m_ce.fit(Xtr, ytr, max_steps=1000, Rtype="CE")
-    val_row = {"dataset": "insclass_validate"}
+    val_row: Dict[str, float | str] = {"dataset": "insclass_validate"}
     for tag, m in (("LL", m_ll), ("CE", m_ce)):
         val_row[f"{tag}_accuracy"] = float(np.asarray(m.accuracy(Xva, yva)).mean())
         val_row[f"{tag}_f1"] = m.f1(Xva, yva)
