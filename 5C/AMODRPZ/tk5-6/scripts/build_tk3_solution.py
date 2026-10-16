@@ -3,8 +3,6 @@
 Same pattern as tk7-8/scripts/build_tk4_solution.py:
 linear md()/code() sequence, cells in call order, structure only
 (outputs are left empty; numbers come from wine_knn.py).
-Workbook: docs/Текущий контроль 3.ipynb (ТК 5-6 = ПР3, kNN);
-deviations from it are marked `# отклонение:` in cell sources.
 Usage: uv run python scripts/build_tk3_solution.py [output.ipynb]
 """
 
@@ -20,14 +18,12 @@ from utils.shared import cells, code, md  # noqa: E402
 
 nb = nbf.v4.new_notebook()
 
-# --- 1. Заголовок + что/зачем блока импортов ---
+# --- 1. Заголовок ---
 md(r"""# ТК 5-6 (ПР3): kNN — качество красного вина
-Код повторяет приёмы workbook `docs/Текущий контроль 3.ipynb` (ячейки 5/7/9/12/20/39–42); отклонения помечены комментарием `# отклонение:`. Оригиналы в `docs/` не меняются. `random_state=42` — отклонение (в workbook сид не задан), нужно для воспроизводимости.
+Датасет `docs/winequality-red.csv`, сплит 70/30 со стратификацией.""")
 
-Следующий блок — импорты. **Что:** подключаем numpy/pandas/seaborn/matplotlib и инструменты sklearn (`train_test_split`, kNN, метрики). **Зачем:** единый набор зависимостей для всего ноутбука; `warnings.filterwarnings('ignore')` убирает шум предупреждений, а `figsize` задаёт читаемый размер всех графиков.""")
-
-# --- 2. Импорты (workbook, ячейка 5) ---
-code(r"""#Импорт необходимых библиотек (workbook, ячейка 5; без mlxtend/datasets — они только для Iris/2D-карт)
+# --- 2. Импорты ---
+code(r"""# Импорты и настройки
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -44,42 +40,37 @@ from sklearn.metrics import classification_report, accuracy_score, confusion_mat
 %matplotlib inline
 plt.rcParams["figure.figsize"] = (10,5)""")
 
-# --- 3. Загрузка датасета (workbook, ячейка 7) ---
-md(
-    r"""Следующий блок — загрузка данных. **Что:** читаем `docs/winequality-red.csv` в DataFrame и показываем первые строки через `head()`. **Зачем:** убедиться, что файл на месте, разделитель распознан и все 11 признаков качества вина загрузились до дальнейшего анализа."""
-)
-code(r"""#Загрузка датасета (workbook, ячейка 7: df + df.head())
+# --- 3. Загрузка датасета ---
+md(r"""## Загрузка""")
+code(r"""# Читаем CSV
 df = pd.read_csv('docs/winequality-red.csv')
 
 df.head()""")
 
-# --- 4. Описание данных (workbook, ячейка 9) ---
-md(
-    r"""Следующий блок — описание набора данных. **Что:** выводим `df.info()` (типы столбцов, число non-null, расход памяти). **Зачем:** проверить, что пропусков нет и все признаки числовые — kNN работает только с числами и чувствителен к их масштабам."""
-)
-code(r"""#Описание набора данных (workbook, ячейка 9: df.info())
+# --- 4. Описание данных ---
+md(r"""## Описание данных""")
+code(r"""# Типы столбцов и пропуски
 df.info()""")
 
-# --- 5. Баланс классов (workbook, ячейка 12) ---
+# --- 5. Баланс классов ---
 md(
-    r"""Следующий блок — баланс классов и проверка «плохого датасета». **Что:** строим столбиковую диаграмму числа вин каждой оценки качества и печатаем число пропусков, полных дубликатов и распределение классов. **Зачем:** сильный дисбаланс (оценки 5/6 доминируют) заранее объясняет будущее расхождение macro/weighted-метрик и нулевую полноту редких классов; проверка пропусков и дубликатов — требование преподавателя."""
+    r"""## Баланс классов
+Классы несбалансированы — это скажется на macro-метриках."""
 )
-code(r"""#Баланс классов (workbook, ячейка 12: sns.countplot)
+code(r"""# Распределение оценок
 sns.countplot(x='quality', hue='quality', data=df)
 plt.xlabel('качество')
 plt.ylabel('количество')
 plt.title('Распределение оценок качества вина')
 
-# отклонение: проверка «плохого датасета» (требование препода)
+# Проверяем пропуски и дубликаты
 print('missing cells:', int(df.isna().sum().sum()))
 print('full-row duplicates:', int(df.duplicated().sum()))
 print(df['quality'].value_counts().sort_index())""")
 
-# --- 6. display_confusion_matrix (workbook, ячейка 20) ---
-md(
-    r"""Следующий блок — вспомогательная функция отрисовки матрицы путаницы. **Что:** определяем `display_confusion_matrix` из workbook дословно (подписи в ячейках, порог цвета текста, тики классов). **Зачем:** переиспользуемая функция для наглядной матрицы: без неё `confusion_matrix` даёт только массив чисел. Подписи по умолчанию переведены на русский."""
-)
-code(r"""# Helper functions (workbook, ячейка 20 — дословно; подписи по умолчанию переведены на русский)
+# --- 6. display_confusion_matrix ---
+md(r"""## Функция отрисовки матрицы путаницы""")
+code(r"""# Отрисовка матрицы путаницы
 def display_confusion_matrix(
     matrix, labels=None,
     title="Матрица путаницы",
@@ -112,39 +103,43 @@ def display_confusion_matrix(
     ax.set_yticklabels(labels)
     plt.show()""")
 
-# --- 7. Сплит train/test (workbook, ячейка 39) ---
+# --- 7. Сплит train/test ---
 md(
-    r"""Следующий блок — разделение на обучающую и тестовую выборки. **Что:** выделяем признаки `X` и метку `y`, делим стратифицированно (`stratify=y`, `test_size=0.3`, `random_state=42`). **Зачем:** стратификация сохраняет доли классов в обеих выборках при сильном дисбалансе; фиксированный сид делает результат воспроизводимым (в workbook сид не задан — это отклонение)."""
+    r"""## Сплит train/test
+Стратификация сохраняет доли классов в обеих выборках."""
 )
-code(r"""#Разделение на обучающий/тестовый набор (workbook, ячейка 39)
+code(r"""# Стратифицированный сплит; random_state=42 — для воспроизводимости
 X = df.drop(['quality'], axis=1)
 y = df['quality']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=0.3, random_state=42)""")
 
-# --- 8. kNN fit (workbook, ячейка 40) ---
+# --- 8. kNN fit ---
 md(
-    r"""Следующий блок — обучение модели kNN. **Что:** создаём `KNeighborsClassifier()` с параметрами по умолчанию (k=5) и обучаем на `X_train`. **Зачем:** бейзлайн строго по протоколу workbook — без масштабирования признаков, чтобы честно показать, как разные масштабы признаков вредят kNN."""
+    r"""## Обучение
+k=5 по умолчанию, без масштабирования — baseline."""
 )
-code(r"""#Модель kNN (workbook, ячейка 40)
+code(r"""# kNN, k=5 по умолчанию
 knn = KNeighborsClassifier()
 knn.fit(X_train, y_train)""")
 
-# --- 9. Отчёт + accuracy (workbook, ячейка 41) ---
+# --- 9. Отчёт + accuracy ---
 md(
-    r"""Следующий блок — первичная оценка. **Что:** предсказываем метки теста, печатаем `classification_report` (precision/recall/F1 по классам) и общую `accuracy`. **Зачем:** report показывает провал на редких классах, а accuracy — долю верных ответов в целом; порядок аргументов `(y_test, preds)` исправлен (в workbook они перепутаны)."""
+    r"""## Метрики
+Precision/recall/F1 по классам и общая accuracy."""
 )
-code(r"""#Оценка: отчёт + accuracy (workbook, ячейка 41; порядок аргументов исправлен: в workbook (preds, y_test))
+code(r"""# Метрики на тесте
 preds = knn.predict(X_test)
 
 print(classification_report(y_test, preds))
 print('accuracy:', accuracy_score(y_test, preds))""")
 
-# --- 10. Матрица путаницы (workbook, ячейка 42) ---
+# --- 10. Матрица путаницы ---
 md(
-    r"""Следующий блок — матрица путаницы. **Что:** считаем `confusion_matrix` и рисуем её через helper из ячейки 20. **Зачем:** видно, какие классы путаются между собой — ожидаем основную путаницу 5↔6 (мажоритарные классы)."""
+    r"""## Матрица путаницы
+Смотрим, какие оценки путаются между собой."""
 )
-code(r"""#Матрица путаницы (workbook, ячейка 42: labels=wine quality)
+code(r"""# Матрица путаницы
 labels = y.unique()
 
 matrix = confusion_matrix(y_test, preds, labels=labels, normalize=None)
@@ -152,11 +147,10 @@ print(matrix)
 
 display_confusion_matrix(matrix, labels)""")
 
-# --- 11. per-class P/R/F1 (отклонение) ---
-md(
-    r"""Следующий блок — сводная таблица метрик из модуля `wine_knn.py`. **Что:** вызываем `evaluate_knn` и печатаем per-class precision/recall/F1, support теста, macro/weighted-агрегаты и OvR AUC. **Зачем:** в workbook этого нет, но для сдачи нужно: macro-среднее показывает провал на редких классах, weighted — среднее с учётом дисбаланса, а AUC оценивает ранжирование (см. Дьяконов)."""
-)
-code(r"""# отклонение: таблица per-class P/R/F1 (в workbook нет; нужно для сдачи)
+# --- 11. per-class P/R/F1 ---
+md(r"""## Сводные метрики
+Per-class P/R/F1 и OvR AUC из `wine_knn.py`.""")
+code(r"""# Сводные метрики из wine_knn.py
 import sys; sys.path.insert(0, '.')
 from wine_knn import evaluate_knn
 res = evaluate_knn('docs/winequality-red.csv')
@@ -168,21 +162,20 @@ print('weighted P/R/F1:', round(res['precision_weighted'],4), round(res['recall_
 print('OvR AUC macro/weighted:', round(res['roc_auc_ovr_macro'],4), round(res['roc_auc_ovr_weighted'],4))
 print('per-class OvR AUC:', {k: round(v,3) for k,v in res['per_class']['roc_auc_ovr'].items()})""")
 
-# --- 12. recall bar (отклонение) ---
-md(
-    r"""Следующий блок — столбиковая диаграмма полноты по классам. **Что:** рисуем `recall` каждого класса качества из результатов `evaluate_knn`. **Зачем:** визуальный аргумент для защиты: полнота редких классов (3/4/8) около нуля — kNN их почти никогда не возвращает."""
-)
-code(r"""# отклонение: recall по классам для защиты
+# --- 12. recall bar ---
+md(r"""## Полнота по классам""")
+code(r"""# Полнота по классам
 recall_by_class = res['per_class']['recall']
 plt.bar(list(recall_by_class.keys()), list(recall_by_class.values()))
 plt.xlabel('качество'); plt.ylabel('полнота')
 plt.title('Полнота по классам (k=5, тест)'); plt.show()""")
 
-# --- 13. k-sweep overfit (отклонение) ---
+# --- 13. k-sweep overfit ---
 md(
-    r"""Следующий блок — проверка переобучения при k=1..30. **Что:** обучаем kNN для каждого k, строим кривые точности на обучении/тесте и macro-полноты. **Зачем:** в workbook один k, а разрыв train/test на малых k — прямое доказательство переобучения и обоснование выбора k."""
+    r"""## Зависимость от k
+k=1..30: точность на обучении и тесте, macro-recall."""
 )
-code(r"""# отклонение: проверка обучения k=1..30 (в workbook один k)
+code(r"""# Точность train/test при k=1..30
 from wine_knn import k_sweep
 rows = k_sweep('docs/winequality-red.csv')
 k_values = [row['k'] for row in rows]
@@ -194,11 +187,12 @@ plt.plot(k_values, test_accuracy, label='точность на тесте')
 plt.plot(k_values, recall_macro, label='макрополнота')
 plt.xlabel('число соседей k'); plt.ylabel('значение метрики'); plt.legend(); plt.title('Проверка переобучения: k=1..30'); plt.show()""")
 
-# --- 14. ROC OvR (отклонение) ---
+# --- 14. ROC OvR ---
 md(
-    r"""Следующий блок — ROC-кривые «один против остальных». **Что:** бинаризуем метки теста, для каждого класса строим ROC-кривую по вероятностям kNN и подписываем AUC; пунктир — случайный классификатор. **Зачем:** оценить ранжирующую способность модели отдельно по каждому классу (AUC — доля верно упорядоченных пар, см. Дьяконов)."""
+    r"""## ROC-кривые OvR
+По классам, пунктир — случайный классификатор."""
 )
-code(r"""# отклонение: ROC OvR по классам (Дьяконов: AUC=доля верно упорядоченных пар)
+code(r"""# ROC OvR; AUC — доля верно упорядоченных пар (Дьяконов)
 from sklearn.metrics import roc_curve
 from sklearn.preprocessing import label_binarize
 classes = res['classes']
@@ -213,11 +207,11 @@ plt.title('ROC-кривые OvR по классам (k=5, тест)'); plt.show(
 
 # --- 15. Выводы ---
 md(r"""## Выводы
-- kNN(k=5) без скейлинга: test accuracy ~0.49 при train ~0.64 — переобучение на малых k, разрыв виден на кривой k=1..30.
-- Путаница в основном 5↔6 (мажоритарные классы); recall классов 3/4/8 ≈ 0 — в тесте их ~3/16/5 шт, kNN редкие классы не возвращает.
-- Macro P/R/F1 ~0.22 против weighted ~0.46–0.49: расхождение — прямое следствие дисбаланса.
-- OvR AUC macro ~0.62: ранжирование слабое; per-class AUC классов 3/8 нестабилен (малые выборки, см. Дьяконов про дисперсию AUC) — не использовать для ранжирования моделей.
-- Масштабы признаков 0.01–289: для корректного kNN нужен StandardScaler (внутри Pipeline при CV); здесь осознанно оставлен протокол workbook без скейлинга.""")
+- k=5: accuracy ~0.49 на тесте против ~0.64 на обучении; разрыв уменьшается с ростом k.
+- Основная путаница — между оценками 5 и 6; recall классов 3, 4, 8 близок к нулю (в тесте их мало).
+- Macro F1 ~0.22, weighted ~0.47 — разница отражает дисбаланс классов.
+- OvR AUC macro ~0.62; оценки 3 и 8 нестабильны из-за малых выборок.
+- Диапазоны признаков различаются на порядки; вариант улучшения — StandardScaler в Pipeline.""")
 
 nb["cells"] = cells
 nb["metadata"] = {
