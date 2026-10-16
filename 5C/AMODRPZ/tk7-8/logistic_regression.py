@@ -76,11 +76,17 @@ class LogisticRegressionGD(object):
 
             if Rtype == "LL":
                 new_error = self.LogLikelihood(X, y)
-                dT_a = X.T @ (y - self.predict(X)) / X.shape[0]
+                resid = (
+                    np.asarray(y).ravel() - np.asarray(self.predict(X)).ravel()
+                ).reshape(-1, 1)
+                dT_a = X.T @ resid / X.shape[0]
                 self.a += alpha * dT_a
             elif Rtype == "CE":
                 new_error = self.CrossEntropy(X, y)
-                dT_a = -X.T @ (y - self.predict(X)) / X.shape[0]
+                resid = (
+                    np.asarray(y).ravel() - np.asarray(self.predict(X)).ravel()
+                ).reshape(-1, 1)
+                dT_a = -X.T @ resid / X.shape[0]
                 self.a -= alpha * dT_a
             step += 1
             steps.append(step)

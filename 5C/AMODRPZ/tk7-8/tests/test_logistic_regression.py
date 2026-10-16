@@ -89,6 +89,24 @@ def test_ll_and_ce_converge_to_same_solution():
     assert abs(a[1] - 0.112152) < 0.005
 
 
+def test_fit_with_1d_y_on_wide_matrix():
+    # insclass shape: X (N, 11) ndarray, y (N,) 1-d — used to broadcast
+    # to (N, N) and crash with ValueError.
+    rng = np.random.default_rng(42)
+    N = 500
+    X = np.concatenate((np.ones((N, 1)), rng.normal(size=(N, 2))), axis=1)
+    y = (X[:, 1] + X[:, 2] > 0).astype(np.int64)
+    for rtype in ("LL", "CE"):
+        m = LogisticRegressionGD()
+        steps, errors = m.fit(X, y, alpha=0.1, max_steps=200, Rtype=rtype)
+        assert np.asarray(m.coefs()).shape == (3, 1)
+        assert len(errors) == 200
+    # Loss must improve over the run (direction depends on Rtype).
+    m = LogisticRegressionGD()
+    _, err_ce = m.fit(X, y, alpha=0.1, max_steps=200, Rtype="CE")
+    assert err_ce[-1] < err_ce[0]
+
+
 def test_metrics_on_hand_worked_example():
     # y_true: 1 1 0 0 1 0 / y_pred: 1 0 0 1 1 0
     # -> TP=2, FN=1, TN=2, FP=1; accuracy=4/6, P=R=F1=2/3.
