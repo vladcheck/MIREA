@@ -1,0 +1,69 @@
+---
+title: Информационная архитектура лендинга «Матпрофи» — редизайн mathprofi.ru · упрощённая иерархическая модель · 3 уровня
+---
+flowchart TB
+    root["Матпрофи — лендинг (одна страница)"]
+
+    header["Header (шапка)"]
+    offer["Первый экран (оффер)"]
+    topics["Темы (каталог уроков)"]
+    services["Услуги"]
+    reviews["Отзывы"]
+    author["Об авторе"]
+    contacts["Контакты / Футер"]
+    modals["Всплывающие окна"]
+
+    root --> header
+    root --> offer
+    root --> topics
+    root --> services
+    root --> reviews
+    root --> author
+    root --> contacts
+    root --> modals
+
+    subgraph sg_reviews["ОТЗЫВЫ (2 УРОВЕНЬ)"]
+        direction TB
+        r_section["Отзывы с фото/именем/курсом (типовая сущность, N штук)"]
+    end
+    reviews --> r_section
+
+    subgraph sg_header["РАЗДЕЛЫ ШАПКИ (2 УРОВЕНЬ)"]
+        direction TB
+        h_logo["Логотип + слоган"]
+        h_menu["Меню: Темы, Услуги, Отзывы, Об авторе, Контакты"]
+        h_search["Поиск по темам"]
+    end
+    header --> h_logo
+    header --> h_menu
+    header --> h_search
+
+    subgraph sg_offer["ЭЛЕМЕНТЫ (2 УРОВЕНЬ)"]
+        direction TB
+        o_title["Заголовок + подзаголовок (польза и элементы доверия текстом)"]
+        o_cta["Кнопка «Заказать решение»"]
+    end
+    offer --> o_title
+    offer --> o_cta
+
+    subgraph sg_topics["СТРУКТУРА КАТАЛОГА (2 УРОВЕНЬ)"]
+        direction TB
+        t_section["Раздел тем (типовая сущность, N штук)"]
+        lesson["Страница урока (3 УРОВЕНЬ)"]
+        l_content["Теория + разобранные примеры + скачивание"]
+        t_section --> lesson
+        lesson --> l_content
+    end
+    topics --> t_section
+
+    subgraph sg_services["ВИДЫ УСЛУГ (2 УРОВЕНЬ)"]
+        direction TB
+        s_order["Заказ решения задач / контрольных"]
+    end
+    services --> s_order
+
+    subgraph sg_modals["ОКНА (2 УРОВЕНЬ)"]
+        direction TB
+        m_order["Форма заказа решения задач"]
+    end
+    modals --> m_order
