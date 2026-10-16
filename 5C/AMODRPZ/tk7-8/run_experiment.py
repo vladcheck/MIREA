@@ -103,16 +103,15 @@ def main():
 
     train, validate, _, scaler = load_clean_split(TRAIN_CSV)
     # ndarrays (not DataFrames): identical math, no per-step pandas overhead.
-    # 1000 steps: workbook itself demoed insclass on a 1000-row sample;
-    # full-batch 10000 x 102k rows is intractable in a plain GD loop.
+    # 10000 шагов, как в методичке.
     Xtr, ytr = scaled_matrix(train, scaler)
     Xva, yva = scaled_matrix(validate, scaler)
-    rows.append(fit_report("insclass_train", Xtr, ytr, max_steps=1000))
+    rows.append(fit_report("insclass_train", Xtr, ytr, max_steps=10000))
 
     # Validate-set scores from the train-fitted models.
     m_ll, m_ce = LogisticRegressionGD(), LogisticRegressionGD()
-    m_ll.fit(Xtr, ytr, max_steps=1000, Rtype="LL")
-    m_ce.fit(Xtr, ytr, max_steps=1000, Rtype="CE")
+    m_ll.fit(Xtr, ytr, max_steps=10000, Rtype="LL")
+    m_ce.fit(Xtr, ytr, max_steps=10000, Rtype="CE")
     val_row: Dict[str, float | str] = {"dataset": "insclass_validate"}
     for tag, m in (("LL", m_ll), ("CE", m_ce)):
         val_row[f"{tag}_accuracy"] = float(np.asarray(m.accuracy(Xva, yva)).mean())
