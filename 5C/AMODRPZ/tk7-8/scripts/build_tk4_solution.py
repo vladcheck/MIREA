@@ -118,12 +118,12 @@ print(len(train), len(validate), len(test))
 train.describe()""")
 
 code(r"""# StandardScaler fit только на train, чтобы не допустить утечки.
-# Ограничиваемся 1000 шагами из-за времени обучения на полном батче.
+# 10000 шагов, как в методичке.
 Xtr, ytr = scaled_matrix(train, scaler)
 Xva, yva = scaled_matrix(validate, scaler)
 m_ll, m_ce = LogisticRegressionGD(), LogisticRegressionGD()
-t0 = time.time(); m_ll.fit(Xtr, ytr, max_steps=1000, Rtype="LL"); t_ll = time.time() - t0
-t0 = time.time(); m_ce.fit(Xtr, ytr, max_steps=1000, Rtype="CE"); t_ce = time.time() - t0
+t0 = time.time(); m_ll.fit(Xtr, ytr, max_steps=10000, Rtype="LL"); t_ll = time.time() - t0
+t0 = time.time(); m_ce.fit(Xtr, ytr, max_steps=10000, Rtype="CE"); t_ce = time.time() - t0
 for tag, m, t in [("LL", m_ll, t_ll), ("CE", m_ce, t_ce)]:
     print(tag, f"{t:.1f} сек.", "train f1:", m.f1(Xtr, ytr), "validate accuracy:", float(np.asarray(m.accuracy(Xva, yva)).mean()), "validate f1:", m.f1(Xva, yva))""")
 
