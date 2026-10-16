@@ -32,15 +32,15 @@ import matplotlib.pyplot as plt
 from logistic_regression import LogisticRegressionGD
 from data_pipeline import load_clean_split, scaled_matrix""")
 
-# --- 3. Toy-данные ---
+# --- 3. Данные примера ---
 md(
-    r"""Toy-данные из методички: `x` — расходы на рекламу, `Y` — эффект (0/1). В выборке специально есть выбросы (x = 100 и x = 200) — дальше будет видно, как они ломают прямую по МНК, а логистическая кривая их выдерживает. Строим диаграмму рассеяния, чтобы увидеть исходные точки."""
+    r"""Данные примера из методички: `x` — расходы на рекламу, `Y` — эффект (0/1). В выборке специально есть выбросы (x = 100 и x = 200) — дальше будет видно, как они ломают прямую по МНК, а логистическая кривая их выдерживает. Строим диаграмму рассеяния, чтобы увидеть исходные точки."""
 )
 code(r"""# Исходные данные из методички: x — расходы на рекламу, Y — эффект (0/1)
 x = pd.DataFrame(np.array([39, 36, 60, 21, 27, 12, 51, 57, 54, 42, 18, 9, 48, 66, 6, 30, 24, 33, 15, 21, 100, 200]))
 Y = pd.DataFrame(np.array([1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1]))
 plt.scatter(x, Y, label="Наблюдения")
-plt.title("Toy-данные: расходы на рекламу и эффект")
+plt.title("Расходы на рекламу и эффект")
 plt.xlabel("Расходы на рекламу (x)")
 plt.ylabel("Эффект (Y)")
 plt.legend()""")
@@ -56,7 +56,7 @@ x_space = np.linspace(6, 70, 20)
 Y_pred = a0.item() + a1.item() * x_space
 plt.plot(x_space, Y_pred, 'r', label="Прямая МНК")
 plt.scatter(x, Y, label="Наблюдения")
-plt.title("Прямая по МНК поверх toy-данных")
+plt.title("Прямая по МНК поверх данных примера")
 plt.xlabel("Расходы на рекламу (x)")
 plt.ylabel("Эффект (Y)")
 plt.legend()""")
@@ -120,7 +120,7 @@ md(
 )
 
 # --- 9. insclass: загрузка ---
-code(r"""TRAIN_CSV = os.path.join("docs", "Текущий контроль_4", "insclass_train.csv")
+code(r"""TRAIN_CSV = os.path.join("docs", "insclass_train.csv")
 train, validate, test, scaler = load_clean_split(TRAIN_CSV)
 print(len(train), len(validate), len(test))
 train.describe()""")
