@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 TK56 = Path(__file__).resolve().parent.parent
-COMMITTED = TK56 / "wine_knn_solution.ipynb"
+COMMITTED = TK56 / "Текущий контроль 3.ipynb"
 
 
 def test_builder_reproduces_committed_notebook(tmp_path):

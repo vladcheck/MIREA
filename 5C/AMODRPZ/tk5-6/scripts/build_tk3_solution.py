@@ -1,4 +1,4 @@
-"""Generate 'wine_knn_solution.ipynb' from md()/code() literals.
+"""Generate 'Текущий контроль 3.ipynb' from md()/code() literals.
 
 Same pattern as tk7-8/scripts/build_tk4_solution.py:
 linear md()/code() sequence, cells in call order, structure only
@@ -222,6 +222,6 @@ nb["metadata"] = {
     },
 }
 
-out = sys.argv[1] if len(sys.argv) > 1 else "wine_knn_solution.ipynb"
+out = sys.argv[1] if len(sys.argv) > 1 else "Текущий контроль 3.ipynb"
 nbf.write(nb, out)
 print(out, "written,", len(cells), "cells")
