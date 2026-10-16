@@ -68,34 +68,48 @@ def _ovr_auc(y_bin, proba, average):
 
 
 def evaluate_knn(csv_path: str | Path, n_neighbors: int = N_NEIGHBORS):
-    """Workbook protocol: stratify split 0.3, KNN(k), test metrics + OvR AUC.
+    """Workbook cells 39-42 shape: split, knn.fit, preds, report, matrix.
 
-    Returns dict with confusion matrix, accuracy/precision/recall/F1
-    (macro + weighted + per-class), OvR ROC AUC, train/test check.
+    Adds (no workbook equivalent): accuracy_score, per-class tables,
+    OvR AUC via predict_proba. random_state=42 documents the workbook's
+    unset seed for reproducibility.
     """
-    X_train, X_test, y_train, y_test, classes = _load_split(csv_path)
-    clf = KNeighborsClassifier(n_neighbors=n_neighbors)
-    clf.fit(X_train, y_train)
-    pred = clf.predict(X_test)
-    cm = confusion_matrix(y_test, pred, labels=classes)
-    precision, recall, f1, support = precision_recall_fscore_support(
-        y_test, pred, labels=classes, zero_division=0
+    df, _ = load_wine_data(csv_path)
+    X = df.drop([TARGET], axis=1)
+    y = df[TARGET]
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, stratify=y, test_size=TEST_SIZE, random_state=RANDOM_STATE
     )
-    proba = clf.predict_proba(X_test)
-    proba_order = [list(clf.classes_).index(c) for c in classes]
-    y_bin = label_binarize(y_test, classes=classes)
+
+    knn = KNeighborsClassifier(n_neighbors=n_neighbors)
+    knn.fit(X_train, y_train)
+
+    preds = knn.predict(X_test)
+    labels = y.unique()
+
+    matrix = confusion_matrix(y_test, preds, labels=labels, normalize=None)
+    accuracy = accuracy_score(y_test, preds)
+    precision, recall, f1, support = precision_recall_fscore_support(
+        y_test, preds, labels=labels, zero_division=0
+    )
+    proba = knn.predict_proba(X_test)
+    proba_order = [list(knn.classes_).index(c) for c in labels]
+    y_bin = label_binarize(y_test, classes=labels)
     proba_aligned = proba[:, proba_order]
     auc_macro = _ovr_auc(y_bin, proba_aligned, "macro")
     auc_weighted = _ovr_auc(y_bin, proba_aligned, "weighted")
     auc_per_class = {
-        c: float(roc_auc_score(y_bin[:, i], proba[:, proba_order[i]]))
-        for i, c in enumerate(classes)
+        int(c): float(roc_auc_score(y_bin[:, i], proba_aligned[:, i]))
+        for i, c in enumerate(labels)
     }
+    classes = sorted(np.unique(y.to_numpy()).tolist())
+    per_class_order = [int(c) for c in labels]
     return {
         "classes": classes,
         "test_size": int(len(y_test)),
-        "train_accuracy": float(accuracy_score(y_train, clf.predict(X_train))),
-        "accuracy": float(accuracy_score(y_test, pred)),
+        "train_accuracy": float(accuracy_score(y_train, knn.predict(X_train))),
+        "accuracy": accuracy,
         "precision_macro": float(np.mean(precision)),
         "recall_macro": float(np.mean(recall)),
         "f1_macro": float(np.mean(f1)),
@@ -103,38 +117,41 @@ def evaluate_knn(csv_path: str | Path, n_neighbors: int = N_NEIGHBORS):
         "recall_weighted": float(np.average(recall, weights=support)),
         "f1_weighted": float(np.average(f1, weights=support)),
         "per_class": {
-            "precision": dict(zip(classes, map(float, precision))),
-            "recall": dict(zip(classes, map(float, recall))),
-            "f1": dict(zip(classes, map(float, f1))),
-            "support_test": dict(zip(classes, map(int, support))),
+            "precision": dict(zip(per_class_order, map(float, precision))),
+            "recall": dict(zip(per_class_order, map(float, recall))),
+            "f1": dict(zip(per_class_order, map(float, f1))),
+            "support_test": dict(zip(per_class_order, map(int, support))),
             "roc_auc_ovr": auc_per_class,
         },
         "roc_auc_ovr_macro": auc_macro,
         "roc_auc_ovr_weighted": auc_weighted,
-        "confusion_matrix": cm,
+        "confusion_matrix": matrix,
         "y_test": y_test,
-        "y_pred": pred,
-        "y_proba": proba[:, proba_order],
+        "y_pred": preds,
+        "y_proba": proba_aligned,
     }
 
 
 def k_sweep(csv_path: str | Path, k_max: int = 30):
-    """Recall-macro/accuracy vs k for the defense plots + overfit check."""
+    """Recall-macro/accuracy vs k for the defense plots + overfit check.
+
+    No workbook equivalent (workbook fits one k); same plain loop style.
+    """
     X_train, X_test, y_train, y_test, classes = _load_split(csv_path)
     rows = []
     for k in range(1, k_max + 1):
-        clf = KNeighborsClassifier(n_neighbors=k)
-        clf.fit(X_train, y_train)
-        pred = clf.predict(X_test)
-        _, rec, _, _ = precision_recall_fscore_support(
-            y_test, pred, labels=classes, zero_division=0
+        knn = KNeighborsClassifier(n_neighbors=k)
+        knn.fit(X_train, y_train)
+        preds = knn.predict(X_test)
+        _, recall, _, _ = precision_recall_fscore_support(
+            y_test, preds, labels=classes, zero_division=0
         )
         rows.append(
             {
                 "k": k,
-                "train_accuracy": float(accuracy_score(y_train, clf.predict(X_train))),
-                "test_accuracy": float(accuracy_score(y_test, pred)),
-                "recall_macro": float(np.mean(rec)),
+                "train_accuracy": float(accuracy_score(y_train, knn.predict(X_train))),
+                "test_accuracy": float(accuracy_score(y_test, preds)),
+                "recall_macro": float(np.mean(recall)),
             }
         )
     return rows
