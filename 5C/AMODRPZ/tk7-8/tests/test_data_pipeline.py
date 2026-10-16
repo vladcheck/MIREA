@@ -6,12 +6,7 @@ from pathlib import Path
 
 from data_pipeline import FEATURE_COLS, TARGET_COL, load_clean_split
 
-TRAIN_CSV = str(
-    Path(__file__).resolve().parent.parent
-    / "docs"
-    / "Текущий контроль_4"
-    / "insclass_train.csv"
-)
+TRAIN_CSV = str(Path(__file__).resolve().parent.parent / "docs" / "insclass_train.csv")
 
 
 def test_load_clean_split_ratios_and_no_nans():
@@ -39,4 +34,4 @@ def test_target_imbalance_preserved():
     train, _, _, _ = load_clean_split(TRAIN_CSV)
     rate = (train[TARGET_COL] == 1).mean()
     assert 0.08 < rate < 0.12  # ~9.5% risky in raw probe
-    assert set(np.unique(train[TARGET_COL].values)) <= {0, 1} # type: ignore
+    assert set(np.unique(train[TARGET_COL].values)) <= {0, 1}  # type: ignore

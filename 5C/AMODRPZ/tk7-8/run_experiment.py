@@ -1,6 +1,6 @@
-"""Workbook flow end-to-end: toy demo + insclass LL vs CE comparison.
+"""Workbook flow end-to-end: advert demo + insclass LL vs CE comparison.
 
-Mirrors workbook cells: toy x/Y, intercept concat, time.time() fits at
+Mirrors workbook cells: advert x/Y, intercept concat, time.time() fits at
 alpha=0.01 / max_steps=10000, coefs + accuracy; then insclass
 load_clean_split -> scaled_matrix -> fits -> accuracy/precision/recall/f1.
 Writes results/comparison.csv and learning-curve PNGs.
@@ -21,12 +21,12 @@ from data_pipeline import TARGET_COL, load_clean_split, scaled_matrix
 from logistic_regression import LogisticRegressionGD
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-TRAIN_CSV = os.path.join(HERE, "docs", "Текущий контроль_4", "insclass_train.csv")
+TRAIN_CSV = os.path.join(HERE, "docs", "insclass_train.csv")
 RESULTS = os.path.join(HERE, "results")
 os.makedirs(RESULTS, exist_ok=True)
 
 
-def toy_frames():
+def advert_frames():
     x = pd.DataFrame(
         np.array(
             [
@@ -98,8 +98,8 @@ def fit_report(name, x_, Y, alpha=0.01, max_steps=10000):
 
 def main():
     rows = []
-    x, Y, x_ = toy_frames()
-    rows.append(fit_report("toy", x_, Y))
+    x, Y, x_ = advert_frames()
+    rows.append(fit_report("advert", x_, Y))
 
     train, validate, _, scaler = load_clean_split(TRAIN_CSV)
     # ndarrays (not DataFrames): identical math, no per-step pandas overhead.
