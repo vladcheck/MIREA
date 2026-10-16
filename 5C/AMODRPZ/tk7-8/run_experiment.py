@@ -123,8 +123,8 @@ def main():
     print(cmp_df.to_string())
     print(f"\ntarget rate train: {(train[TARGET_COL] == 1).mean():.4f}")
     print(
-        "NOTE: insclass_test.csv is absent from the archive; "
-        "held-out split used instead."
+        "ПРИМЕЧАНИЕ: файла insclass_test.csv в архиве нет; "
+        "использована отложенная выборка."
     )
 
 

@@ -18,6 +18,10 @@ from utils.shared import cells, code, md  # noqa: E402
 
 nb = nbf.v4.new_notebook()
 
+# --- Название ---
+md(r"""# ТК 7-8 (ПР4): бинарная логистическая регрессия
+Пример из методички (расходы на рекламу) + договоры insclass: сравнение обучения подъёмом правдоподобия (LL) и спуском по кросс-энтропии (CE).""")
+
 # --- Импорты ---
 md(r"""## Импорты""")
 code(r"""import os
@@ -108,7 +112,7 @@ for tag, m in [("CE", regr_CE), ("LL", regr_LL)]:
 md(
     r"""## Данные insclass
 
-Страховые договоры: 151406 строк, 10 числовых признаков + target. Тестового файла нет — held-out split 70/15/15."""
+Страховые договоры: 151406 строк, 10 числовых признаков + target. Тестового файла нет — отложенная выборка 70/15/15."""
 )
 
 # --- insclass: загрузка ---
@@ -126,6 +130,13 @@ t0 = time.time(); m_ll.fit(Xtr, ytr, max_steps=10000, Rtype="LL"); t_ll = time.t
 t0 = time.time(); m_ce.fit(Xtr, ytr, max_steps=10000, Rtype="CE"); t_ce = time.time() - t0
 for tag, m, t in [("LL", m_ll, t_ll), ("CE", m_ce, t_ce)]:
     print(tag, f"{t:.1f} сек.", "train f1:", m.f1(Xtr, ytr), "validate accuracy:", float(np.asarray(m.accuracy(Xva, yva)).mean()), "validate f1:", m.f1(Xva, yva))""")
+
+# --- Выводы ---
+md(r"""## Выводы
+- Пример: LL и CE дают одинаковые коэффициенты (~-3.60 и ~0.11) и accuracy ~0.82 при F1 ~0.83; время ~0.2 с.
+- insclass: обучение ~29 с на вариант; accuracy ~0.92 на train и validate, но F1 = 0 — модель предсказывает одни нули.
+- Нулевой F1 при высокой accuracy — следствие дисбаланса (рисковых ~8%); accuracy здесь не показательна.
+- Файл insclass_test.csv в архиве отсутствует, поэтому вместо него отложенная выборка 70/15/15.""")
 
 nb["cells"] = cells
 nb["metadata"] = {
