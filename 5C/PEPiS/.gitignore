@@ -10,6 +10,7 @@
 **/.vscode/launch.json
 **/.vscode/ipch
 .DS_Store
+__pycache__/
 *.lck
 *.kicad_prl
 .history/
