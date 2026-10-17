@@ -45,7 +45,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from tim2_model import (  # noqa: E402
     BASE_MS,
-    CEN,
     DIAG_ARR_OFFSET,
     EVENTS_PER_PHASE,
     PSC_DEFAULT,
@@ -55,9 +54,7 @@ from tim2_model import (  # noqa: E402
     TIM2CLK_HZ,
     UIF,
     UG,
-    UIE,
     MCU,
-    TIM2,
     interval_init,
     run_experiment,
     run_ms,
@@ -81,11 +78,11 @@ PNG_PATHS = {
 
 # Ожидаемые фазы последовательности варианта 4: (рабочий ARR, имя, Tзад, мс).
 EXPECTED_PHASES = [
-    (249, "Базовая часть", BASE_MS),
-    (79, "T1", T1_MS),
-    (39, "T2", T2_MS),
-    (139, "Диагностика ARR+100", T2_MS + DIAG_ARR_OFFSET),
-    (39, "Возврат T2", T2_MS),
+    (BASE_MS - 1, "Базовая часть", BASE_MS),
+    (T1_MS - 1, "T1", T1_MS),
+    (T2_MS - 1, "T2", T2_MS),
+    (T2_MS - 1 + DIAG_ARR_OFFSET, "Диагностика ARR+100", T2_MS + DIAG_ARR_OFFSET),
+    (T2_MS - 1, "Возврат T2", T2_MS),
 ]
 
 # Результат прогона последовательности (общий для артефактов) — кладёт сюда
@@ -135,7 +132,12 @@ def group_intervals(edges):
 def test_formula():
     """Проверка общей формулой T = (PSC+1)*(ARR+1)/fTIM из TZ."""
     assert TIM2CLK_HZ // (PSC_DEFAULT + 1) == 1000, "PSC=7999 должен дать fCNT = 1 кГц"
-    for arr, t_ms in ((249, 250), (79, 80), (39, 40), (139, 140)):
+    for arr, t_ms in (
+        (BASE_MS - 1, BASE_MS),
+        (T1_MS - 1, T1_MS),
+        (T2_MS - 1, T2_MS),
+        (T2_MS - 1 + DIAG_ARR_OFFSET, T2_MS + DIAG_ARR_OFFSET),
+    ):
         t = (PSC_DEFAULT + 1) * (arr + 1) / TIM2CLK_HZ * 1000.0
         assert abs(t - t_ms) < 1e-9, (
             f"ARR={arr}: формула даёт {t} мс, ожидалось {t_ms} мс"
@@ -196,11 +198,13 @@ def test_fault_arr_plus_100():
     edges = mcu.gpioa.edges
     fault_iv = intervals_of([e["t_ms"] for e in edges])[1:]  # первый интервал ещё 40 мс
     assert len(fault_iv) >= 5, f"измерено всего {len(fault_iv)} интервалов"
-    assert all(abs(x - 140.0) < 1e-9 for x in fault_iv), (
+    assert all(abs(x - (T2_MS + DIAG_ARR_OFFSET)) < 1e-9 for x in fault_iv), (
         f"интервалы {fault_iv} != 140 мс"
     )
     assert fault_iv[0] / T2_MS == 3.5, "интервал должен вырасти в 3,5 раза"
-    assert delta_pct(sum(fault_iv) / len(fault_iv), 140) == 0.0, "δT от Tзад=140 != 0"
+    assert delta_pct(sum(fault_iv) / len(fault_iv), T2_MS + DIAG_ARR_OFFSET) == 0.0, (
+        "δT от Tзад=140 != 0"
+    )
     dev_t2 = delta_pct(sum(fault_iv) / len(fault_iv), T2_MS)
     assert dev_t2 == 250.0, f"отклонение от T2 = {dev_t2} %, ожидалось 250 %"
     # Возврат правильной конфигурации: только ARR = 39.
@@ -249,7 +253,7 @@ def test_preload_semantics():
     interval_init(mcu, BASE_MS)  # рабочий ARR = 249 -> 250 мс
     run_ms(mcu, 100)  # середина интервала
     mcu.tim2.write_arr(T1_MS - 1)  # запись ARR = 79 в предзагрузку
-    assert mcu.tim2.arr_active == 249, "рабочий регистр ARR должен остаться 249"
+    assert mcu.tim2.arr_active == BASE_MS - 1, "рабочий регистр ARR должен остаться 249"
     run_until_edges(mcu, 1)
     e1 = mcu.gpioa.edges[-1]["t_ms"]
     assert abs(e1 - BASE_MS) < 1e-9, (
@@ -266,27 +270,42 @@ def test_preload_semantics():
 
 
 def test_ug_and_uif_rc_w0():
-    """EGR.UG: немедленная загрузка PSC/ARR, сброс CNT, UIF=1; SR — rc_w0."""
+    """EGR.UG: немедленная загрузка PSC/ARR, сброс CNT, UIF=1; SR — rc_w0.
+
+    Проверяется вся запись SR, а не только бит UIF: различие rc_w0 и обычной
+    записи — в записи 1 в уже очищенные биты (1 не должен их поднять).
+    """
     mcu = MCU()
     tim = mcu.tim2
-    tim.write_psc(7999)
-    tim.write_arr(249)
+    tim.write_psc(PSC_DEFAULT)
+    tim.write_arr(BASE_MS - 1)
     tim.CNT = 123
     tim.write_egr(UG)
     assert tim.CNT == 0, "UG должен немедленно обнулить CNT"
-    assert tim.psc_active == 7999 and tim.arr_active == 249, (
+    assert tim.psc_active == PSC_DEFAULT and tim.arr_active == BASE_MS - 1, (
         "UG должен загрузить PSC и ARR"
     )
-    assert tim.SR & UIF, "UG должен установить UIF"
-    tim.SR = 0xFFFE  # как TIM2->SR = (uint16_t)~TIM_SR_UIF в обработчике
-    assert not (tim.SR & UIF), "запись 0 в бит UIF должна очищать его (rc_w0)"
+    assert tim.SR == UIF, f"UG должен установить только UIF: SR = 0x{tim.SR:04X}"
+    # Очистка записью 0 (как TIM2->SR = (uint16_t)~TIM_SR_UIF в обработчике):
+    # rc_w0 — обнуляется вся запись, а не только бит UIF.
+    tim.SR = 0xFFFE
+    assert tim.SR == 0, f"запись 0xFFFE должна очистить SR: 0x{tim.SR:04X} (rc_w0)"
+    # Различающий случай rc_w0: запись 1 в уже очищенные биты.
+    tim.write_egr(UG)  # UIF = 1
+    assert tim.SR == UIF, f"после UG SR = 0x{tim.SR:04X}, ожидался 0x{UIF:04X}"
+    tim.SR = 0x0000  # очистка rc_w0
+    assert tim.SR == 0, f"запись 0 должна обнулить SR: 0x{tim.SR:04X}"
+    tim.SR = 0xFFFF  # запись 1 в очищенный бит не должна его поднять
+    assert tim.SR == 0, (
+        f"запись 1 не должна устанавливать очищенный rc_w0-бит: SR = 0x{tim.SR:04X}"
+    )
     tim.write_egr(UG)
-    tim.SR = 0xFFFF  # запись 1 не должна очищать rc_w0-бит
-    assert tim.SR & UIF, "запись 1 в UIF не должна ничего менять (rc_w0)"
-    tim.SR = 0x0000
-    assert not (tim.SR & UIF), "запись 0 должна очистить UIF"
+    assert tim.SR == UIF, "после повторного UG SR должен содержать только UIF"
+    tim.SR = 0xFFFE  # запись 0 очищает UIF, остальные биты и так нули
+    assert tim.SR == 0, f"запись 0 должна очистить SR: 0x{tim.SR:04X}"
     return (
-        "UG: CNT=0, PSC/ARR загружены, UIF=1; SR.UIF — rc_w0 (0 очищает, 1 не меняет)"
+        "UG: CNT=0, PSC/ARR загружены, UIF=1; SR — rc_w0 по всей записи "
+        "(0 очищает, 1 в очищенный бит не поднимает)"
     )
 
 
@@ -338,7 +357,8 @@ def test_variant4_sequence():
             f"«{name}»: интервалы {iv} != {arr + 1} мс"
         )
         t_zam = sum(iv) / len(iv)
-        per = [iv[i] + iv[i + 1] for i in range(len(iv) - 1)]
+        # Полный период — той же функцией periods_of, что и в остальных тестах.
+        per = periods_of([edges[i]["t_ms"] for i in range(g["i0"], g["i1"] + 1)])
         dev_t2 = delta_pct(t_zam, T2_MS)
         rec = {
             "name": name,
@@ -379,10 +399,16 @@ def test_variant4_sequence():
         )
         for i in range(1, 5)
     ]
-    assert trans == [250.0, 80.0, 40.0, 140.0], (
+    assert trans == [BASE_MS, T1_MS, T2_MS, T2_MS + DIAG_ARR_OFFSET], (
         f"переходные интервалы {trans} != [250, 80, 40, 140] — предзагрузка нарушена"
     )
-    SEQ = {"mcu": mcu, "edges": edges, "groups": groups, "records": records}
+    SEQ = {
+        "mcu": mcu,
+        "edges": edges,
+        "groups": groups,
+        "records": records,
+        "transition_intervals_ms": trans,  # измеренные, не заданные
+    }
     return (
         "5 фаз x 8 событий = 40 фронтов; фазы 250/80/40/140/40 мс, "
         "δT = 0 % везде, диагностика: 250 % от T2, переходы 250/80/40/140 мс"
@@ -567,7 +593,7 @@ def write_results_json(path, test_results, artifacts):
         "sequence": {
             "order": [p[1] for p in EXPECTED_PHASES],
             "total_edges": len(SEQ["edges"]),
-            "transition_intervals_ms": [250.0, 80.0, 40.0, 140.0],
+            "transition_intervals_ms": SEQ["transition_intervals_ms"],
             "comment": (
                 "переходные интервалы равны длительности старого ARR: записанный "
                 "ARR вступает в силу только на следующем событии обновления "

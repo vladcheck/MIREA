@@ -148,7 +148,8 @@ class TIM2:
         if value & UG:
             self.update_event()  # UG формирует событие обновления немедленно
 
-    # -- командные записи (как в прошивке) ---------------------------------
+    # -- командные записи --------------------------------------------------
+    # write_* — алиасы для соответствия вызовам прошивки (семантика — в свойствах выше).
     def write_psc(self, value):
         self.PSC = value
 
@@ -250,7 +251,12 @@ def interval_init(mcu, interval_ms, psc=PSC_DEFAULT, ui=True, nvic=True):
         mcu.nvic.enable(TIM2_IRQn)
     else:
         mcu.nvic.disable(TIM2_IRQn)
+    # Сбрасываем и журналы/счётчики: повторная инициализация используемого
+    # MCU не должна смешивать фазы в журнале фронтов и в счётчиках событий.
     mcu.gpioa.odr = 0  # BSRR = BR1: PA1 = 0 до первого события
+    mcu.gpioa.edges = []
+    mcu.update_events = 0
+    mcu.update_count = 0
     tim.write_cr1(CEN)
     return tim
 
