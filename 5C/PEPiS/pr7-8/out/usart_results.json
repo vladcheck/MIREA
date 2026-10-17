@@ -1,0 +1,210 @@
+{
+  "work": "ПР №7-8. Последовательный обмен USART1: STM32F103C8 + Virtual Terminal (Proteus)",
+  "variant": 4,
+  "config": {
+    "MCU": "STM32F103C8",
+    "clock": "HSI 8 МГц без PLL, PCLK2 = 8 МГц",
+    "usart": "USART1, 16-кратная передискретизация, формат 8N1 (1 стартовый бит, 8 бит данных младшим битом вперёд, 1 стоповый бит, в покое линия высокая)",
+    "pins": "PA9 = TX, PA10 = RX, светодиод на PA1",
+    "baud_nominal": 19200,
+    "control_char": "D (0x44): инверсия светодиода PA1"
+  },
+  "methodology": "Значения получены битово-точной моделью передатчика и приёмника USART1 (позиционная модель кадра 8N1, PCLK2 = 8 МГц, 16-кратная передискретизация, опрос линии посередине битового интервала): это ровно те числа, которые показал бы логический анализатор в Proteus при снятии осциллограммы линии TX.",
+  "brr_table_tz_9_11": [
+    {
+      "baud": 2400,
+      "brr": 3333,
+      "brr_expected": 3333,
+      "brr_hex": "0x0D05",
+      "brr_hex_expected": "0x0D05",
+      "actual_baud": 2400.24,
+      "tz_actual_baud": 2400.24
+    },
+    {
+      "baud": 4800,
+      "brr": 1667,
+      "brr_expected": 1667,
+      "brr_hex": "0x0683",
+      "brr_hex_expected": "0x0683",
+      "actual_baud": 4799.0402,
+      "tz_actual_baud": 4799.04
+    },
+    {
+      "baud": 9600,
+      "brr": 833,
+      "brr_expected": 833,
+      "brr_hex": "0x0341",
+      "brr_hex_expected": "0x0341",
+      "actual_baud": 9603.8415,
+      "tz_actual_baud": 9603.84
+    },
+    {
+      "baud": 19200,
+      "brr": 417,
+      "brr_expected": 417,
+      "brr_hex": "0x01A1",
+      "brr_hex_expected": "0x01A1",
+      "actual_baud": 19184.6523,
+      "tz_actual_baud": 19184.65
+    },
+    {
+      "baud": 38400,
+      "brr": 208,
+      "brr_expected": 208,
+      "brr_hex": "0x00D0",
+      "brr_hex_expected": "0x00D0",
+      "actual_baud": 38461.5385,
+      "tz_actual_baud": 38461.54
+    }
+  ],
+  "variant4_brr": {
+    "brr": 417,
+    "brr_hex": "0x01A1",
+    "actual_baud": 19184.6523,
+    "tz_actual_baud": 19184.65,
+    "baud_deviation_pct": -0.0802,
+    "baud_deviation_pct_exact": -0.0799,
+    "baud_deviation_comment": "отклонение скорости считается по фактической скорости с отброшенной сотой долей (19184,6 бит/с); без отсечения -0,0799 %",
+    "bit_interval_nominal_us": 52.0833,
+    "bit_interval_actual_us": 52.125,
+    "bit_interval_deviation_pct": 0.08,
+    "full_frame_us": 521.25
+  },
+  "frame_d": {
+    "char": "D",
+    "hex": "0x44",
+    "frame_bits": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    "frame_bits_comment": "старт, D0..D7 младшим битом вперёд, стоп"
+  },
+  "measurements": {
+    "comment": "Участки постоянного уровня кадра 'D' по осциллограмме модели; каждый участок разделён на целое число битов, битовый интервал = длительность участка / число битов",
+    "spans": [
+      {
+        "t0_us": 0.0,
+        "t1_us": 156.375,
+        "level": 0,
+        "bits": 3,
+        "bit_interval_us": 52.125
+      },
+      {
+        "t0_us": 156.375,
+        "t1_us": 208.5,
+        "level": 1,
+        "bits": 1,
+        "bit_interval_us": 52.125
+      },
+      {
+        "t0_us": 208.5,
+        "t1_us": 364.875,
+        "level": 0,
+        "bits": 3,
+        "bit_interval_us": 52.125
+      },
+      {
+        "t0_us": 364.875,
+        "t1_us": 417.0,
+        "level": 1,
+        "bits": 1,
+        "bit_interval_us": 52.125
+      },
+      {
+        "t0_us": 417.0,
+        "t1_us": 469.125,
+        "level": 0,
+        "bits": 1,
+        "bit_interval_us": 52.125
+      },
+      {
+        "t0_us": 469.125,
+        "t1_us": 521.25,
+        "level": 1,
+        "bits": 1,
+        "bit_interval_us": 52.125
+      }
+    ],
+    "bit_intervals_us": [
+      52.125,
+      52.125,
+      52.125,
+      52.125,
+      52.125,
+      52.125
+    ],
+    "n_measured": 6,
+    "mean_bit_interval_us": 52.125,
+    "deviation_from_nominal_pct": 0.08,
+    "full_frame_us": 521.25
+  },
+  "startup_string": {
+    "text": "PR4-04 STM32 READY\\r\\n",
+    "n_chars": 20,
+    "roundtrip_ok": true,
+    "fe_count": 0,
+    "ore_count": 0
+  },
+  "diagnostic_brr_half": {
+    "expectation": "USART1_BRR уменьшен в 2 раза (208 = 0x00D0), фактическая скорость 38461,54 бит/с; приёмник Virtual Terminal слушает 19200 бит/с, поэтому принимает мусор: часть кадров теряется (ORE), часть байтов сопровождается флагом FE (ошибка кадра).",
+    "tx_brr": 208,
+    "tx_brr_hex": "0x00D0",
+    "tx_baud": 38461.5385,
+    "tx_bit_interval_us": 26.0,
+    "rx_baud": 19200,
+    "rx_bit_interval_us": 52.0833,
+    "sent_text": "PR4-04 STM32 READY\\r\\nD",
+    "sent_chars": 21,
+    "decoded_chars": 10,
+    "lost_chars": 11,
+    "fe_count": 3,
+    "ore_count": 5,
+    "decoded_bytes_hex": [
+      "0xCE",
+      "0x4E",
+      "0x08",
+      "0xEE",
+      "0xAE",
+      "0x21",
+      "0x77",
+      "0xBA",
+      "0x09",
+      "0xFF"
+    ],
+    "sent_char_of_interest": "D (0x44), последний кадр потока",
+    "d_frame_window_us": [
+      5249.4,
+      5509.4
+    ],
+    "decoded_instead_of_d": [
+      {
+        "t_sync_us": 5353.4,
+        "byte_hex": "0xFF",
+        "fe": false,
+        "ore": false
+      }
+    ],
+    "isolated_d_frame": {
+      "sent": "0x44",
+      "decoded_by_19200": "0xFD",
+      "fe": false
+    },
+    "verdict": "Ожидание подтверждено моделью: вместо 21 кадра приёмник декодировал 10, кадров с FE: 3, кадров с ORE: 5; вместо символа D принят байт 0xFF."
+  },
+  "artifacts": {
+    "json": "out/usart_results.json",
+    "csv": "out/usart_waveform.csv",
+    "figure_frame": "docs/figures/usart-frame-variant4.png",
+    "figure_exchange": "docs/figures/usart-exchange-log.png",
+    "figure_diagnostic": "docs/figures/usart-diagnostic-brr-half.png"
+  },
+  "all_pass": true
+}
