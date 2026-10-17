@@ -5,6 +5,11 @@
  * которые реально используются в src/main_example.c и
  * src/main_variant4.c.
  *
+ * Ширины регистров упрощены: все поля объявлены как uint32_t, тогда
+ * как в CMSIS часть регистров имеет ширину uint16_t со старшим
+ * зарезервированным словом и выравнивающей заливкой — поэтому
+ * заголовок пригоден только для синтаксической проверки.
+ *
  * Настоящая прошивка собирается PlatformIO с фреймворком CMSIS и
  * подлинным заголовком STM32F1xx (см. platformio.ini), поэтому в
  * реальной сборке этот файл не участвует.
@@ -65,12 +70,17 @@ typedef struct
 /* --- RCC_CR --- */
 #define RCC_CR_HSION   (1U << 0)  /* 0x00000001: вкл. внутр. генератора HSI */
 #define RCC_CR_HSIRDY  (1U << 1)  /* 0x00000002: HSI готов */
+#define RCC_CR_HSEON   (1U << 16) /* 0x00010000: вкл. внешнего резонатора */
+#define RCC_CR_CSSON   (1U << 19) /* 0x00080000: контроллер системы тактирования */
+#define RCC_CR_PLLON   (1U << 24) /* 0x01000000: вкл. PLL */
 
 /* --- RCC_CFGR --- */
 #define RCC_CFGR_SW       (3U << 0)  /* 0x00000003: выбор системной частоты */
-#define RCC_CFGR_SW_HSI   (0U << 0)  /* 0x00000000: SYSCLK = HSI */
 #define RCC_CFGR_SWS      (3U << 2)  /* 0x0000000C: фактический SYSCLK */
 #define RCC_CFGR_SWS_HSI  (0U << 2)  /* 0x00000000: факт. источник = HSI */
+#define RCC_CFGR_HPRE     (15U << 4) /* 0x000000F0: делитель AHB */
+#define RCC_CFGR_PPRE1    (7U << 8)  /* 0x00000700: делитель APB1 */
+#define RCC_CFGR_PPRE2    (7U << 11) /* 0x00003800: делитель APB2 */
 
 /* --- RCC_APB2ENR --- */
 #define RCC_APB2ENR_IOPAEN   (1U << 2)  /* 0x00000004: тактирование GPIOA */
@@ -93,14 +103,12 @@ typedef struct
 /* --- GPIO_ODR --- */
 #define GPIO_ODR_ODR1 (1U << 1) /* 0x00000002: уровень на PA1 */
 
-/* --- USART_SR: у STM32F1 бит 4 — флаг IDLE, поэтому RXNE стоит
- *      в бите 5 (не в бите 4, как у семейства STM32F4) --- */
+/* --- USART_SR: бит 4 — флаг IDLE, поэтому RXNE стоит в бите 5 --- */
 #define USART_SR_PE  (1U << 0) /* 0x01: ошибка чётности */
 #define USART_SR_FE  (1U << 1) /* 0x02: ошибка кадра (нет стопового бита) */
 #define USART_SR_NE  (1U << 2) /* 0x04: ошибка шума */
 #define USART_SR_ORE (1U << 3) /* 0x08: переполнение приёмника */
 #define USART_SR_RXNE (1U << 5) /* 0x20: принятый байт в DR */
-#define USART_SR_TC   (1U << 6) /* 0x40: передача кадра завершена */
 #define USART_SR_TXE  (1U << 7) /* 0x80: DR свободен для передачи */
 
 /* --- USART_CR1 --- */

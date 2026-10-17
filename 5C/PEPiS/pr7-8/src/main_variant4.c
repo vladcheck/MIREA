@@ -32,8 +32,9 @@
  *====================================================================*/
 #include "stm32f1xx.h"
 
-#define PCLK2_HZ 8000000UL
-#define BAUD     19200UL
+#define CLOCK_TIMEOUT   1000000U
+#define PCLK2_HZ        8000000UL
+#define BAUD            19200UL
 #define USART1_BRR_VALUE ((PCLK2_HZ + BAUD / 2UL) / BAUD)
 /* 8 000 000 / 19 200 = 416,67 -> 417 = 0x01A1 (см. расчёт в шапке). */
 
@@ -50,13 +51,26 @@
  * пересоберите — параметры восстановятся. */
 #define USART_DIAG_BRR_HALF 0
 
-static void Clock_Init_HSI8MHz(void)
+static uint8_t Clock_Init_HSI8MHz(void)
 {
-    uint32_t timeout = 1000000UL;
+    uint32_t timeout = CLOCK_TIMEOUT;
+
     RCC->CR |= RCC_CR_HSION;
-    while (!(RCC->CR & RCC_CR_HSIRDY) && timeout--) { }
+    while ((RCC->CR & RCC_CR_HSIRDY) == 0U) {
+        if (--timeout == 0U) return 0U;
+    }
+
     RCC->CFGR &= ~RCC_CFGR_SW;
-    while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_HSI) { }
+    timeout = CLOCK_TIMEOUT;
+    while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_HSI) {
+        if (--timeout == 0U) return 0U;
+    }
+
+    /* Делители шин сбрасываются в ноль, поэтому APB2 = 1 (PCLK2 = 8 МГц)
+     * выполняется по построению; PLL и HSE выключаются. */
+    RCC->CFGR &= ~(RCC_CFGR_HPRE | RCC_CFGR_PPRE1 | RCC_CFGR_PPRE2);
+    RCC->CR &= ~(RCC_CR_CSSON | RCC_CR_PLLON | RCC_CR_HSEON);
+    return 1U;
 }
 
 static void GPIO_Init(void)
@@ -85,7 +99,7 @@ static void USART1_Init(void)
 
 static void USART1_SendChar(uint8_t data)
 {
-    while (!(USART1->SR & USART_SR_TXE)) { }
+    while ((USART1->SR & USART_SR_TXE) == 0U) { }
     USART1->DR = data;
 }
 
@@ -96,18 +110,27 @@ static void USART1_SendString(const char *text)
 
 static void LED_Toggle(void)
 {
-    if ((GPIOA->ODR & GPIO_ODR_ODR1)) GPIOA->ODR &= ~GPIO_ODR_ODR1;
+    if ((GPIOA->ODR & GPIO_ODR_ODR1) != 0U) GPIOA->ODR &= ~GPIO_ODR_ODR1;
     else GPIOA->ODR |= GPIO_ODR_ODR1;
 }
 
 /* --- Кольцевой буфер приёма (листинг 9.6) ---------------------- */
-#define RX_BUF_SIZE 16U
+#define RX_BUF_SIZE 16U /* размер буфера: степень двойки */
+
+/* Проверка на этапе компиляции: переход к следующей позиции выполняется
+ * маской RX_BUF_SIZE - 1, что корректно только для степени двойки. */
+typedef char rx_buf_size_must_be_power_of_two[
+    (RX_BUF_SIZE & (RX_BUF_SIZE - 1U)) == 0U ? 1 : -1];
 
 static volatile uint8_t rx_buffer[RX_BUF_SIZE];
 static volatile uint8_t rx_head;
 static volatile uint8_t rx_tail;
-static volatile uint8_t rx_overflow;
-static volatile uint32_t rx_error_flags;
+
+/* Липкие (sticky) диагностики: их записывает только обработчик
+ * прерывания, программа не сбрасывает — предназначены для просмотра
+ * в отладчике. */
+static volatile uint8_t rx_overflow;     /* 1 — байт потерян: буфер был полон */
+static volatile uint32_t rx_error_flags; /* накопленные флаги ошибок ORE/NE/FE/PE */
 
 static void USART1_EnableRxInterrupt(void)
 {
@@ -122,7 +145,7 @@ static void USART1_EnableRxInterrupt(void)
 void USART1_IRQHandler(void)
 {
     uint32_t status = USART1->SR;
-    if (status & (USART_SR_RXNE | USART_SR_ORE | USART_SR_NE | USART_SR_FE | USART_SR_PE)) {
+    if ((status & (USART_SR_RXNE | USART_SR_ORE | USART_SR_NE | USART_SR_FE | USART_SR_PE)) != 0U) {
         uint8_t data = (uint8_t)USART1->DR;
         uint32_t errors = status & (USART_SR_ORE | USART_SR_NE | USART_SR_FE | USART_SR_PE);
         if (errors != 0U) rx_error_flags |= errors;
@@ -145,11 +168,16 @@ static uint8_t USART1_RxPop(uint8_t *data)
 int main(void)
 {
     uint8_t data;
-    Clock_Init_HSI8MHz(); GPIO_Init(); USART1_Init();
+
+    if (!Clock_Init_HSI8MHz()) {
+        for (;;) { }
+    }
+    GPIO_Init();
+    USART1_Init();
     USART1_EnableRxInterrupt();
     USART1_SendString("PR4-04 STM32 READY\r\n");
     while (1) {
-        if (USART1_RxPop(&data)) {
+        if (USART1_RxPop(&data) != 0U) {
             USART1_SendChar(data);
             if (data == 'D') LED_Toggle();
         }
