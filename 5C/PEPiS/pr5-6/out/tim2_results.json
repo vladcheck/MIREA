@@ -157,8 +157,8 @@
     "comment": "переходные интервалы равны длительности старого ARR: записанный ARR вступает в силу только на следующем событии обновления (предзагрузка PSC/ARR, RM0008)"
   },
   "negative_diagnostics": {
-    "test_negative_uie_disabled": "UIE=0: фронтов нет, UIF=1, событий обновления 5, g_update_count = 0",
-    "test_negative_nvic_disabled": "NVIC выкл.: фронтов нет, UIF=1, событий обновления 5"
+    "test_negative_uie_disabled": "UIE=0: фронтов нет, UIF=1, событий обновления 4, g_update_count = 0",
+    "test_negative_nvic_disabled": "NVIC выкл.: фронтов нет, UIF=1, событий обновления 4"
   },
   "artifacts": {
     "results_json": "out/tim2_results.json",
@@ -193,12 +193,12 @@
     {
       "name": "test_negative_uie_disabled",
       "ok": true,
-      "detail": "UIE=0: фронтов нет, UIF=1, событий обновления 5, g_update_count = 0"
+      "detail": "UIE=0: фронтов нет, UIF=1, событий обновления 4, g_update_count = 0"
     },
     {
       "name": "test_negative_nvic_disabled",
       "ok": true,
-      "detail": "NVIC выкл.: фронтов нет, UIF=1, событий обновления 5"
+      "detail": "NVIC выкл.: фронтов нет, UIF=1, событий обновления 4"
     },
     {
       "name": "test_preload_semantics",
@@ -208,7 +208,7 @@
     {
       "name": "test_ug_and_uif_rc_w0",
       "ok": true,
-      "detail": "UG: CNT=0, PSC/ARR загружены, UIF=1; SR.UIF — rc_w0 (0 очищает, 1 не меняет)"
+      "detail": "UG: CNT=0, PSC/ARR загружены, UIF=1; SR — rc_w0 по всей записи (0 очищает, 1 в очищенный бит не поднимает)"
     },
     {
       "name": "test_variant4_sequence",
