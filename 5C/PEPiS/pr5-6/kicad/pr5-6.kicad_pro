@@ -1,0 +1,45 @@
+{
+  "board": {},
+  "boards": [],
+  "cvpcb": {
+    "equivalence_files": []
+  },
+  "erc": {},
+  "libraries": {
+    "pinned_footprint_libs": [],
+    "pinned_symbol_libs": []
+  },
+  "meta": {
+    "filename": "pr5-6.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {
+    "classes": [],
+    "meta": {
+      "version": 3
+    },
+    "net_colors": null,
+    "netclass_assignments": null,
+    "netclass_patterns": []
+  },
+  "pcbnew": {},
+  "schematic": {
+    "meta": {
+      "version": 1
+    },
+    "top_level_sheets": [
+      {
+        "filename": "pr5-6.kicad_sch",
+        "name": "pr5-6",
+        "uuid": "a28ff977-a084-4f99-9158-5b90b4c91a06"
+      }
+    ]
+  },
+  "sheets": [
+    [
+      "a28ff977-a084-4f99-9158-5b90b4c91a06",
+      ""
+    ]
+  ],
+  "text_variables": {}
+}
