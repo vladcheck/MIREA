@@ -217,7 +217,7 @@ def render_frame_figure(data, path):
     ax.text(
         2.5 * t_bit,
         -0.92,
-        "52,12 мкс (измерено, 5 бит подряд)",
+        "52,125 мкс (измерено, 5 бит подряд)",
         ha="center",
         va="bottom",
         fontsize=9,
@@ -321,7 +321,8 @@ def render_exchange_figure(data, path):
     ax_rx.axhline(1, color="#c8d4e8", lw=6, zorder=0)
 
     for t0, t1, ch in string_frames:
-        samples = render_tx(CTRL_BYTE, BRR_VARIANT4, PCLK2_HZ)
+        # Каждый символ строки рисуем его собственным битовым кодом.
+        samples = render_tx(ord(ch), BRR_VARIANT4, PCLK2_HZ)
         draw_frame(ax_tx, samples, t0, label=_fmt_char(ch))
     for ch, t_off in zip(echo_chars, echo_tx_times):
         samples = render_tx(ord(ch), BRR_VARIANT4, PCLK2_HZ)
