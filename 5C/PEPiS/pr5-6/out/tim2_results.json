@@ -1,0 +1,220 @@
+{
+  "work": "ПР №5-6. Организация заданных временных интервалов TIM2, STM32F103C8",
+  "variant": 4,
+  "note": "Proteus 8.17 недоступен на этой машине (macOS): все измерения сняты с реестровой модели TIM2, а не из Proteus.",
+  "settings": {
+    "clock": "HSI 8 МГц, APB1 делитель 1 -> PCLK1 = TIM2CLK = 8 МГц",
+    "TIM2CLK_Hz": 8000000,
+    "PSC": 7999,
+    "fCNT_Hz": 1000,
+    "tick_ms": 1,
+    "PA1": "обычный GPIO push-pull, инверсия в TIM2_IRQHandler",
+    "events_per_phase": 8,
+    "formula": "T = (PSC+1)*(ARR+1)/fTIM; при PSC = 7999: ARR = Tмс - 1"
+  },
+  "experiments": [
+    {
+      "name": "Базовая часть",
+      "T_zad_ms": 250,
+      "PSC": 7999,
+      "ARR": 249,
+      "fCNT_Hz": 1000,
+      "intervals_ms": [
+        250.0,
+        250.0,
+        250.0,
+        250.0,
+        250.0,
+        250.0,
+        250.0,
+        250.0
+      ],
+      "T_zam_ms": 250.0,
+      "full_period_ms": 500.0,
+      "delta_T_pct": 0.0
+    },
+    {
+      "name": "T1",
+      "T_zad_ms": 80,
+      "PSC": 7999,
+      "ARR": 79,
+      "fCNT_Hz": 1000,
+      "intervals_ms": [
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0,
+        80.0
+      ],
+      "T_zam_ms": 80.0,
+      "full_period_ms": 160.0,
+      "delta_T_pct": 0.0
+    },
+    {
+      "name": "T2",
+      "T_zad_ms": 40,
+      "PSC": 7999,
+      "ARR": 39,
+      "fCNT_Hz": 1000,
+      "intervals_ms": [
+        40.0,
+        40.0,
+        40.0,
+        40.0,
+        40.0,
+        40.0,
+        40.0,
+        40.0
+      ],
+      "T_zam_ms": 40.0,
+      "full_period_ms": 80.0,
+      "delta_T_pct": 0.0
+    },
+    {
+      "name": "Диагностика ARR+100",
+      "T_zad_ms": 140,
+      "PSC": 7999,
+      "ARR": 139,
+      "fCNT_Hz": 1000,
+      "intervals_ms": [
+        140.0,
+        140.0,
+        140.0,
+        140.0,
+        140.0,
+        140.0,
+        140.0,
+        140.0
+      ],
+      "T_zam_ms": 140.0,
+      "full_period_ms": 280.0,
+      "delta_T_pct": 0.0,
+      "T_ref_T2_ms": 40,
+      "deviation_from_T2_pct": 250.0,
+      "interval_growth_x": 3.5
+    },
+    {
+      "name": "Возврат T2",
+      "T_zad_ms": 40,
+      "PSC": 7999,
+      "ARR": 39,
+      "fCNT_Hz": 1000,
+      "intervals_ms": [
+        40.0,
+        40.0,
+        40.0,
+        40.0,
+        40.0,
+        40.0,
+        40.0
+      ],
+      "T_zam_ms": 40.0,
+      "full_period_ms": 80.0,
+      "delta_T_pct": 0.0
+    }
+  ],
+  "diagnostic_fault": {
+    "name": "Диагностика ARR+100",
+    "T_zad_ms": 140,
+    "PSC": 7999,
+    "ARR": 139,
+    "fCNT_Hz": 1000,
+    "intervals_ms": [
+      140.0,
+      140.0,
+      140.0,
+      140.0,
+      140.0,
+      140.0,
+      140.0,
+      140.0
+    ],
+    "T_zam_ms": 140.0,
+    "full_period_ms": 280.0,
+    "delta_T_pct": 0.0,
+    "T_ref_T2_ms": 40,
+    "deviation_from_T2_pct": 250.0,
+    "interval_growth_x": 3.5
+  },
+  "sequence": {
+    "order": [
+      "Базовая часть",
+      "T1",
+      "T2",
+      "Диагностика ARR+100",
+      "Возврат T2"
+    ],
+    "total_edges": 40,
+    "transition_intervals_ms": [
+      250.0,
+      80.0,
+      40.0,
+      140.0
+    ],
+    "comment": "переходные интервалы равны длительности старого ARR: записанный ARR вступает в силу только на следующем событии обновления (предзагрузка PSC/ARR, RM0008)"
+  },
+  "negative_diagnostics": {
+    "test_negative_uie_disabled": "UIE=0: фронтов нет, UIF=1, событий обновления 5, g_update_count = 0",
+    "test_negative_nvic_disabled": "NVIC выкл.: фронтов нет, UIF=1, событий обновления 5"
+  },
+  "artifacts": {
+    "results_json": "out/tim2_results.json",
+    "waveform_csv": "out/tim2_waveform.csv",
+    "waveform_png": [
+      "img/waveform-base.png",
+      "img/waveform-t1.png",
+      "img/waveform-t2.png"
+    ]
+  },
+  "tests": [
+    {
+      "name": "test_formula",
+      "ok": true,
+      "detail": "формула T = (PSC+1)*(ARR+1)/fTIM: 250/80/40/140 мс — совпадает"
+    },
+    {
+      "name": "test_base_250",
+      "ok": true,
+      "detail": "9 фронтов, интервалы = 250 мс, период = 500 мс, Tзам = 250 мс, δT = 0 %"
+    },
+    {
+      "name": "test_t1_t2_only_arr",
+      "ok": true,
+      "detail": "T1: 80 мс (ARR=79), T2: 40 мс (ARR=39); изменён только ARR, δT = 0 %"
+    },
+    {
+      "name": "test_fault_arr_plus_100",
+      "ok": true,
+      "detail": "ARR+100: 140 мс (×3,5 от T2, δT = 250 %); возврат ARR=39: 40 мс подтверждён"
+    },
+    {
+      "name": "test_negative_uie_disabled",
+      "ok": true,
+      "detail": "UIE=0: фронтов нет, UIF=1, событий обновления 5, g_update_count = 0"
+    },
+    {
+      "name": "test_negative_nvic_disabled",
+      "ok": true,
+      "detail": "NVIC выкл.: фронтов нет, UIF=1, событий обновления 5"
+    },
+    {
+      "name": "test_preload_semantics",
+      "ok": true,
+      "detail": "запись ARR=79 посреди интервала: текущий интервал 250 мс сохранён, следующие 80 мс"
+    },
+    {
+      "name": "test_ug_and_uif_rc_w0",
+      "ok": true,
+      "detail": "UG: CNT=0, PSC/ARR загружены, UIF=1; SR.UIF — rc_w0 (0 очищает, 1 не меняет)"
+    },
+    {
+      "name": "test_variant4_sequence",
+      "ok": true,
+      "detail": "5 фаз x 8 событий = 40 фронтов; фазы 250/80/40/140/40 мс, δT = 0 % везде, диагностика: 250 % от T2, переходы 250/80/40/140 мс"
+    }
+  ],
+  "all_pass": true
+}
