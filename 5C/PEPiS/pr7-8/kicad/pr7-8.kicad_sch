@@ -5,7 +5,7 @@
 	(uuid "d7f5e2d6-c262-4012-904e-d262beb38b7d")
 	(paper "A4")
 	(title_block
-		(title "Практическая работа №4. USART1 STM32F103C8, вариант 4")
+		(title "Практическая работа #4. USART1 STM32F103C8, вариант 4")
 	)
 	(lib_symbols
 		(symbol "Device:LED"
@@ -3304,6 +3304,7 @@
 		(uuid "0a255c7a-5dc8-49ba-91cd-a11a99cd8021")
 		(property "Reference" "PWR2"
 			(at 116.84 73.406 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3460,6 +3461,7 @@
 		(uuid "7536634d-73cb-429d-92b7-a1967b968c65")
 		(property "Reference" "PWR1"
 			(at 121.92 73.406 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3847,7 +3849,7 @@
 		(at 96.52 67.31)
 		(uuid "2f5cc01a-c471-4e69-bb58-6abe2086d7e2")
 	)
-	(text "Практическая работа №4. USART1 STM32F103C8, вариант 4"
+	(text "Практическая работа #4. USART1 STM32F103C8, вариант 4"
 		(exclude_from_sim no)
 		(at 55.88 43.18 0)
 		(effects
