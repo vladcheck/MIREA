@@ -1,0 +1,89 @@
+[
+  {
+    "key": "rm0008",
+    "type": "standard",
+    "authors": ["STMicroelectronics"],
+    "title": "Reference manual RM0008: STM32F101xx, STM32F102xx, STM32F103xx, STM32F105xx and STM32F107xx advanced Arm-based 32-bit MCUs",
+    "edition": "Rev. 21",
+    "publisher": "STMicroelectronics",
+    "year": 2021,
+    "pages": 1136,
+    "url": "https://www.st.com/resource/en/reference_manual/rm0008-stm32f101xx-stm32f102xx-stm32f103xx-stm32f105xx-and-stm32f107xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf",
+    "accessed": "17.10.2026",
+    "note": "описание периферии USART STM32F1: формат кадра 8N1, делитель частоты BRR, прерывания по приёму, тактирование HSI 8 МГц"
+  },
+  {
+    "key": "ds5319",
+    "type": "standard",
+    "authors": ["STMicroelectronics"],
+    "title": "Datasheet DS5319: STM32F103x8, STM32F103xB medium-density performance line Arm-based 32-bit MCU with 64 or 128 KB Flash, USB, CAN, 7 timers, 2 ADCs, 9 communication interfaces",
+    "edition": "Rev. 20",
+    "publisher": "STMicroelectronics",
+    "year": 2025,
+    "pages": 115,
+    "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+    "accessed": "17.10.2026",
+    "note": "назначение выводов USART1 (PA9/PA10) на STM32F103C8, внутренний генератор HSI 8 МГц, параметры микроконтроллера стенда"
+  },
+  {
+    "key": "st_uart_wiki",
+    "type": "web",
+    "authors": ["STMicroelectronics"],
+    "title": "Getting started with UART",
+    "year": 2026,
+    "url": "https://wiki.st.com/stm32mcu/wiki/Getting_started_with_UART",
+    "accessed": "17.10.2026",
+    "note": "варианты организации приёма данных по UART: опрос, прерывание, DMA, настройка USART1 и его прерывания"
+  },
+  {
+    "key": "cmsis6",
+    "type": "web",
+    "authors": ["Arm Limited"],
+    "title": "CMSIS-Core (Cortex-M) documentation",
+    "edition": "CMSIS version 6.4.0",
+    "year": 2026,
+    "url": "https://arm-software.github.io/CMSIS_6/latest/Core/",
+    "accessed": "17.10.2026",
+    "note": "библиотека CMSIS-Core: регистры ядра Cortex-M3, NVIC и разрешение обработчиков прерываний USART"
+  },
+  {
+    "key": "habr_libopencm3",
+    "type": "web",
+    "authors": ["Auriga"],
+    "title": "Библиотека libopencm3: Быстрый старт (Часть 3). Работа с USART, прерываниями, I2C и таймерами",
+    "year": 2023,
+    "url": "https://habr.com/ru/companies/auriga/articles/761612/",
+    "accessed": "17.10.2026",
+    "note": "настройка USART на 9600 бит/с в формате 8N1, NVIC и обработчик прерывания приёма данных"
+  },
+  {
+    "key": "habr_uart_ring",
+    "type": "web",
+    "authors": ["Alekssandr"],
+    "title": "Регистры STM32 в структурах на битовых полях, UART (Tx, Rx-длина?) + DMA",
+    "year": 2022,
+    "url": "https://habr.com/ru/articles/662341/",
+    "accessed": "17.10.2026",
+    "note": "организация кольцевого буфера при приёме данных по UART и доступ к регистрам периферии"
+  },
+  {
+    "key": "proteus_instruments",
+    "type": "web",
+    "authors": ["Labcenter Electronics"],
+    "title": "Virtual Instruments (Proteus): Virtual Terminal и Logic Analyser",
+    "year": 2026,
+    "url": "https://www.labcenter.com/instruments",
+    "accessed": "17.10.2026",
+    "note": "Virtual Terminal и Logic Analyser в Proteus 8.17: имитация обмена по UART и наблюдение кадров 8N1"
+  },
+  {
+    "key": "platformio_ststm32",
+    "type": "web",
+    "authors": ["PlatformIO"],
+    "title": "ST STM32 platform",
+    "year": 2026,
+    "url": "https://docs.platformio.org/en/latest/platforms/ststm32.html",
+    "accessed": "17.10.2026",
+    "note": "сборка и загрузка прошивки для STM32F103 в PlatformIO (platform = ststm32)"
+  }
+]
