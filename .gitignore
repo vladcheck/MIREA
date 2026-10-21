@@ -46,3 +46,6 @@ coverage/
 
 # misc
 .hidden/
+
+# Session-local agent artifacts
+.omp/
