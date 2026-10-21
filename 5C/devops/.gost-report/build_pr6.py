@@ -330,5 +330,5 @@ r.numbered([
 r.bib.references()
 
 
-r.save("PR6-report.docx")
+r.save("ИД ПР №6.docx")
 
