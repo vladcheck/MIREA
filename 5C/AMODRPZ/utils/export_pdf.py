@@ -32,10 +32,47 @@ try:
 except ImportError:  # pragma: no cover
     sync_playwright = None
 
-DEJAVU_CSS = (
-    "<style>body, div, span, p, li, h1, h2, h3, h4 "
+# Шрифты экспорта:
+#  - основной текст — DejaVu Sans (без принудительного шрифта Chrome
+#    подставляет в ToUnicode латинские гомоглифы, ломая поиск
+#    и копирование по-русски);
+#  - кодовые блоки — Fira Code (моноширинный шрифт с лигатурами,
+#    установлен локально);
+#  - математика — STIX-Web, математический шрифт семейства STIX (стандарт
+#    издательской вёрстки LaTeX): MathJax 2 подключён с jsDelivr (полная
+#    поставка шрифтов, в отличие от cdnjs) и настроен на вывод HTML-CSS
+#    шрифтом STIX-Web. Latin-Modern не используем — в MathJax 2 он рендерит
+#    дроби и скобки некорректно (пустые элементы)
+EXPORT_CSS = (
+    "<style>"
+    # «span» намеренно не входит в список: MathJax задаёт шрифт формул
+    # инлайн-стилями на span-элементах, а !important перебил бы их;
+    # span-ы всё равно наследуют DejaVu Sans от p/div
+    "body, div, p, li, h1, h2, h3, h4 "
     '{ font-family: "DejaVu Sans", sans-serif !important; }'
+    "pre, code, kbd, samp, .input_area, .output_area pre, .highlight "
+    '{ font-family: "Fira Code", "DejaVu Sans Mono", monospace !important; }'
     "</style>"
+)
+
+# nbconvert вставляет MathJax 2.7.7 с cdnjs, где нет не-TeX шрифтов;
+# unpacked-поставка jsDelivr содержит полный набор HTML-CSS шрифтов
+MATHJAX_CDNJS = (
+    '<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/'
+    '2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"> </script>'
+)
+MATHJAX_JSDELIVR = (
+    '<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/unpacked/'
+    'MathJax.js?config=TeX-AMS_HTML-full,Safe"> </script>\n'
+    '<script type="text/x-mathjax-config">\n'
+    'MathJax.Hub.Config({\n'
+    '  "HTML-CSS": {\n'
+    '    preferredFont: "STIX-Web",\n'
+    '    availableFonts: ["STIX-Web"],\n'
+    '    webFont: "STIX-Web"\n'
+    '  }\n'
+    '});\n'
+    "</script>"
 )
 
 
@@ -78,10 +115,11 @@ def notebook_to_html(nb_path, max_frames=12, cols=4):
     nb = replace_gifs(nb, max_frames=max_frames, cols=cols)
     exporter = HTMLExporter()
     html, _ = exporter.from_notebook_node(nb)
-    # фикс текстового слоя PDF: без принудительного DejaVu Sans
-    # Chrome подставляет в ToUnicode латинские гомоглифы (ĸ вместо
-    # кириллической к), ломая поиск и копирование по-русски
-    html = html.replace("</head>", DEJAVU_CSS + "</head>")
+    # фикс текстового слоя PDF — см. EXPORT_CSS выше
+    html = html.replace("</head>", EXPORT_CSS + "</head>")
+    # MathJax с полным набором шрифтов Latin Modern (см. MATHJAX_* выше)
+    if MATHJAX_CDNJS in html:
+        html = html.replace(MATHJAX_CDNJS, MATHJAX_JSDELIVR)
     return html
 
 
@@ -125,11 +163,15 @@ def export_notebooks(
                 page.goto(f"file://{os.path.abspath(html_path)}")
                 page.wait_for_load_state("networkidle")
                 # ждём, пока MathJax сверстает формулы; при отсутствии
-                # сети (CDN недоступен) не висим, а предупреждаем
+                # сети (CDN недоступен) не висим, а предупреждаем.
+                # mjx-container — признак MathJax 3, queue.queue —
+                # MathJax 2 (nbconvert вставляет именно его)
                 try:
                     page.wait_for_function(
                         "() => !document.querySelector('span.math') || "
-                        "document.querySelector('mjx-container') !== null",
+                        "document.querySelector('mjx-container') !== null || "
+                        "(window.MathJax && MathJax.Hub && "
+                        "MathJax.Hub.queue.queue.length === 0)",
                         timeout=mathjax_timeout,
                     )
                 except Exception:
