@@ -1,7 +1,7 @@
 #include "stm32f4xx.h"
 
 // Лабораторная работа №3, задание 2 для самостоятельной работы.
-// Два свитча S1 (PB0) и S2 (PB1) задают режим светодиода на PA0:
+// Два свитча S1 (PB8) и S2 (PB9) задают режим светодиода на PA0:
 //   SW2 SW1 = 0 0: выключен;
 //   SW2 SW1 = 0 1: мигание медленно (период около 1 с);
 //   SW2 SW1 = 1 0: мигание быстро (период около 250 мс);
@@ -31,7 +31,7 @@ static void debounce_poll(void)
     static uint8_t last = 0;
     static uint8_t cnt = 0;
     // Активный низкий, поэтому инверсия: бит = 1 пока свитч замкнут
-    uint8_t raw = (uint8_t)((~GPIOB->IDR) & 0x03);
+    uint8_t raw = (uint8_t)(((~GPIOB->IDR) >> 8) & 0x03);
     if (raw == last)
     {
         if (cnt < STABLE_N)
@@ -55,8 +55,8 @@ int main(void)
     volatile uint32_t tmp = RCC->AHB1ENR;
     (void)tmp;
 
-    // PB0, PB1: входы с подтяжкой вверх
-    for (int i = 0; i <= 1; i++)
+    // PB8, PB9: входы с подтяжкой вверх
+    for (int i = 8; i <= 9; i++)
     {
         GPIOB->MODER &= ~(0x3U << (i * 2));
         GPIOB->PUPDR &= ~(0x3U << (i * 2));
