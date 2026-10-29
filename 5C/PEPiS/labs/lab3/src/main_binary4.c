@@ -1,10 +1,10 @@
 #include "stm32f4xx.h"
 
 // Лабораторная работа №3, задание 4 (вариант 4).
-// Динамическое отображение состояния входов S1-S4 (PB0-PB3) на
+// Динамическое отображение состояния входов S1-S4 (PB8-PB11) на
 // четырёхразрядном семисегментном индикаторе: каждый разряд показывает
 // одну двоичную цифру, например 0001, 0010, 1111.
-// Раскладка слева направо: DIG1 S4, DIG2 S3, DIG3 S2, DIG4 S1,
+// Раскладка слева направо: DIG1 S1, DIG2 S2, DIG3 S3, DIG4 S4,
 // то есть старший бит слева, младший справа.
 // Свитчи активные низкие (замкнут на GND читается как 1 после инверсии),
 // индикатор с общим катодом: сегменты a-g на PA0-PA6,
@@ -53,8 +53,8 @@ static void gpio_init(void)
     }
     GPIOC->BSRR = (1U << 0) | (1U << 1) | (1U << 2) | (1U << 3);
 
-    // PB0-PB3: входы S1-S4 с внутренней подтяжкой вверх
-    for (int i = 0; i <= 3; i++)
+    // PB8-PB11: входы S1-S4 с внутренней подтяжкой вверх
+    for (int i = 8; i <= 11; i++)
     {
         GPIOB->MODER &= ~(0x3U << (i * 2)); // 00 вход
         GPIOB->PUPDR &= ~(0x3U << (i * 2));
@@ -70,7 +70,7 @@ static inline void show_digit_segments(uint8_t num)
     GPIOA->ODR = odr;
 }
 
-// Включение разряда pos 0-3 (0 DIG1 левый, 3 DIG4 правый),
+// Включение разряда pos 0-3 (0 DIG1 левый S1 ... 3 DIG4 правый S4),
 // остальные три гасятся. Катод на PCpos, активный низкий.
 static inline void enable_digit(uint8_t pos)
 {
@@ -88,7 +88,7 @@ static void debounce_poll(void)
     static uint8_t last_sample = 0;
     static uint8_t same_count = 0;
     // Активный низкий, поэтому инверсия: бит = 1 пока свитч замкнут
-    uint8_t raw = (uint8_t)((~GPIOB->IDR) & 0x0F);
+    uint8_t raw = (uint8_t)(((~GPIOB->IDR) >> 8) & 0x0F);
     if (raw == last_sample)
     {
         if (same_count < STABLE_COUNT_N)
@@ -112,7 +112,7 @@ int main(void)
 
     uint32_t t_next_mux = millis();
     uint32_t t_next_poll = millis() + POLL_DT_MS;
-    uint8_t mux_pos = 0; // 0 DIG1 (S4) ... 3 DIG4 (S1)
+    uint8_t mux_pos = 0; // 0 DIG1 (S1) ... 3 DIG4 (S4)
 
     while (1)
     {
@@ -122,8 +122,10 @@ int main(void)
         if ((int32_t)(now - t_next_mux) >= 0)
         {
             t_next_mux += 2U;
-            // DIG слева направо показывают S4 S3 S2 S1
-            uint8_t bit = (stable_bits >> (3 - mux_pos)) & 0x01;
+            // DIG слева направо показывают S1 S2 S3 S4; сначала гасим все
+            // разряды, потом ставим сегменты и включаем нужный (без гостинга)
+            GPIOC->BSRR = (1U << 0) | (1U << 1) | (1U << 2) | (1U << 3);
+            uint8_t bit = (stable_bits >> mux_pos) & 0x01;
             show_digit_segments(bit);
             enable_digit(mux_pos);
             mux_pos++;

@@ -35,3 +35,18 @@ def test_target_imbalance_preserved():
     rate = (train[TARGET_COL] == 1).mean()
     assert 0.08 < rate < 0.12  # ~9.5% risky in raw probe
     assert set(np.unique(train[TARGET_COL].values)) <= {0, 1}  # type: ignore
+
+
+def test_string_mean_encoding_fitted_on_train():
+    from data_pipeline import STRING_COLS, encode_string_features, load_clean_split
+
+    train, validate, _, _ = load_clean_split(TRAIN_CSV, with_string_cols=True)
+    enc_tr = encode_string_features(train, train)
+    enc_va = encode_string_features(train, validate)
+    assert enc_tr.shape == (len(train), len(STRING_COLS))
+    assert enc_va.shape == (len(validate), len(STRING_COLS))
+    assert not np.isnan(enc_tr).any() and not np.isnan(enc_va).any()
+    # Encoded values are target rates: within [0, 1], centered near the train rate.
+    assert enc_tr.min() >= 0 and enc_tr.max() <= 1
+    train_rate = train[TARGET_COL].mean()
+    assert abs(enc_va.mean() - train_rate) < 0.05
