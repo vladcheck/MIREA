@@ -43,6 +43,7 @@ Thumbs.db
 
 # Output
 coverage/
+.ipynb_checkpoints
 
 # misc
 .hidden/

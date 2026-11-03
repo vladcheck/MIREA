@@ -1,4 +1,3 @@
-code_dec,code_hex,code_bin,u_v
-8,0x08,00001000,0.1569
-36,0x24,00100100,0.7059
-107,0x6B,01101011,2.098
+version https://git-lfs.github.com/spec/v1
+oid sha256:b82f9f7150d5ae6b6a1fbbfaca37e13c9a26f2bbf6e44963662d893985cb459f
+size 106
