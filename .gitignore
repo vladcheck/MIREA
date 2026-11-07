@@ -49,7 +49,9 @@ coverage/
 .hidden/
 
 # Session-local agent artifacts
-.omp/
+.omp
+.omo
+.cursor
 
 # BEGIN assetout-tracked
 .assetout/data/
