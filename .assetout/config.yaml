@@ -1,0 +1,14 @@
+conflict_policy: ask
+github:
+  owner: vladcheck
+  repo: MIREA
+  tag: assets-latest
+hash_algorithm: xxh3
+max_git_file_size: 10MB
+packaging:
+  group_by_top_level: false
+  max_archive_size: 1900MB
+  max_file_size: 2000MB
+storage_backend: github_releases
+sync_policy: remote
+use_only_git_files: true
