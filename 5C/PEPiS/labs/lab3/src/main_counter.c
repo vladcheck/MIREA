@@ -7,6 +7,11 @@
 // катоды разрядов на PC0 (единицы) и PC1 (десятки, здесь всегда 0).
 // Нажатие выделяется фронтом с дебаунсом и блокировкой удержания.
 
+// Полярность индикатора: 1 — общий анод (выводы разрядов на +3 В, сегмент
+// тонет: 0 = горит, разряд включается высоким уровнем на PCx);
+// 0 — общий катод (1 = горит, разряд = 0 на PCx) — как на стенде и в методичке.
+#define COMMON_ANODE 0
+
 static const uint8_t SEG_CODE[10] = {
     0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F
 };
@@ -24,12 +29,29 @@ static inline void show_digit_segments(uint8_t num)
 {
     uint32_t odr = GPIOA->ODR;
     odr &= ~0x7FU;
+#if COMMON_ANODE
+    odr |= ((~SEG_CODE[num]) & 0x7FU); // общий анод: 0 = сегмент горит
+#else
     odr |= (SEG_CODE[num] & 0x7FU);
+#endif
     GPIOA->ODR = odr;
 }
 
+// COMMON_ANODE=1 (стенд): разряд включён высоким уровнем; 0 — общий катод.
 static inline void enable_digit(uint8_t idx)
 {
+#if COMMON_ANODE
+    if (idx)
+    {
+        GPIOC->BSRR = (1U << 0) << 16; // PC0 = 0 (единицы погашены)
+        GPIOC->BSRR = (1U << 1);       // PC1 = 1 (десятки включены)
+    }
+    else
+    {
+        GPIOC->BSRR = (1U << 1) << 16; // PC1 = 0 (десятки погашены)
+        GPIOC->BSRR = (1U << 0);       // PC0 = 1 (единицы включены)
+    }
+#else
     if (idx)
     {
         GPIOC->BSRR = (1U << 0);
@@ -40,6 +62,7 @@ static inline void enable_digit(uint8_t idx)
         GPIOC->BSRR = (1U << 1);
         GPIOC->BSRR = (1U << (0 + 16));
     }
+#endif
 }
 
 int main(void)
@@ -57,9 +80,13 @@ int main(void)
         GPIOA->OSPEEDR &= ~(0x3U << (i * 2));
         GPIOA->PUPDR &= ~(0x3U << (i * 2));
     }
+#if COMMON_ANODE
+    GPIOA->ODR |= 0x7FU; // сегменты погашены (1 = тёмный)
+#else
     GPIOA->ODR &= ~0x7FU;
+#endif
 
-    // PC0, PC1: катоды, по умолчанию погашены (лог. 1)
+    // PC0, PC1: выводы разрядов, по умолчанию погашены
     for (int i = 0; i <= 1; i++)
     {
         GPIOC->MODER &= ~(0x3U << (i * 2));
@@ -68,7 +95,11 @@ int main(void)
         GPIOC->OSPEEDR &= ~(0x3U << (i * 2));
         GPIOC->PUPDR &= ~(0x3U << (i * 2));
     }
-    GPIOC->BSRR = (1U << 0) | (1U << 1);
+#if COMMON_ANODE
+    GPIOC->BSRR = (1U << 0) << 16 | (1U << 1) << 16; // разряды погашены (0)
+#else
+    GPIOC->BSRR = (1U << 0) | (1U << 1); // погашены (лог. 1)
+#endif
 
     // PB8: вход с подтяжкой вверх
     GPIOB->MODER &= ~(0x3U << (8 * 2));

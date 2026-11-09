@@ -7,6 +7,11 @@
 // Считанный 4-битный код 0-15 отображается десятичным числом 0-15.
 // Опрос с фильтром дребезга, развёртка на SysTick 1 мс, слот разряда 2 мс.
 
+// Полярность индикатора: 1 — общий анод (выводы разрядов на +3 В, сегмент
+// тонет: 0 = горит, разряд включается высоким уровнем на PCx);
+// 0 — общий катод (1 = горит, разряд = 0 на PCx) — как на стенде и в методичке.
+#define COMMON_ANODE 0
+
 // Таблица сегментов, бит0 = a (PA0), ..., бит6 = g (PA6)
 static const uint8_t SEG_CODE[10] = {
     0x3F, // 0: a b c d e f
@@ -46,7 +51,11 @@ static void gpio_init(void)
         GPIOA->OSPEEDR &= ~(0x3U << (i * 2));
         GPIOA->PUPDR &= ~(0x3U << (i * 2));
     }
+#if COMMON_ANODE
+    GPIOA->ODR |= 0x7FU; // сегменты погашены (1 = тёмный)
+#else
     GPIOA->ODR &= ~0x7FU; // погасить сегменты
+#endif
 
     // PC0, PC1: выходы катодов, по умолчанию выключены (лог. 1)
     for (int i = 0; i <= 1; i++)
@@ -57,7 +66,11 @@ static void gpio_init(void)
         GPIOC->OSPEEDR &= ~(0x3U << (i * 2));
         GPIOC->PUPDR &= ~(0x3U << (i * 2));
     }
+#if COMMON_ANODE
+    GPIOC->BSRR = (1U << 0) << 16 | (1U << 1) << 16; // оба разряда погашены (0)
+#else
     GPIOC->BSRR = (1U << 0) | (1U << 1); // оба катода в 1, разряды погашены
+#endif
 
     // PB8-PB11: входы с внутренней подтяжкой вверх
     for (int i = 8; i <= 11; i++)
@@ -73,14 +86,32 @@ static inline void show_digit_segments(uint8_t num)
 {
     uint32_t odr = GPIOA->ODR;
     odr &= ~0x7FU;
+#if COMMON_ANODE
+    odr |= ((~SEG_CODE[num]) & 0x7FU); // общий анод: 0 = сегмент горит
+#else
     odr |= (SEG_CODE[num] & 0x7FU);
+#endif
     GPIOA->ODR = odr;
 }
 
-// Выбор активного разряда, общий катод, активный низкий:
-// idx = 1 левый (десятки) на PC1, idx = 0 правый (единицы) на PC0
+// Выбор активного разряда.
+// COMMON_ANODE=1 (стенд): разряд включён высоким уровнем на его выводе:
+// idx = 1 левый (десятки) на PC1, idx = 0 правый (единицы) на PC0.
+// COMMON_ANODE=0 (общий катод): активный низкий, наоборот.
 static inline void enable_digit(uint8_t idx)
 {
+#if COMMON_ANODE
+    if (idx)
+    {
+        GPIOC->BSRR = (1U << 0) << 16;  // PC0 = 0 (правый погашен)
+        GPIOC->BSRR = (1U << 1);        // PC1 = 1 (левый включён)
+    }
+    else
+    {
+        GPIOC->BSRR = (1U << 1) << 16;  // PC1 = 0 (левый погашен)
+        GPIOC->BSRR = (1U << 0);        // PC0 = 1 (правый включён)
+    }
+#else
     if (idx)
     {
         GPIOC->BSRR = (1U << 0);        // PC0 = 1 (правый погашен)
@@ -91,6 +122,7 @@ static inline void enable_digit(uint8_t idx)
         GPIOC->BSRR = (1U << 1);        // PC1 = 1 (левый погашен)
         GPIOC->BSRR = (1U << (0 + 16)); // PC0 = 0 (правый включён)
     }
+#endif
 }
 
 // Фильтр дребезга: новое значение принимается после N одинаковых
@@ -129,9 +161,9 @@ int main(void)
 
     uint8_t current = 0;
     uint8_t tens = 0, ones = 0;
-    uint32_t t_next_mux = millis(); // мультиплексирование разрядов
+    uint32_t t_next_mux = millis();               // мультиплексирование разрядов
     uint32_t t_next_poll = millis() + POLL_DT_MS; // опрос свитчей
-    uint8_t mux_idx = 1; // 1 левый (десятки), 0 правый (единицы)
+    uint8_t mux_idx = 1;                          // 1 левый (десятки), 0 правый (единицы)
 
     while (1)
     {

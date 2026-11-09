@@ -8,8 +8,13 @@
 // то есть старший бит слева, младший справа.
 // Свитчи активные низкие (замкнут на GND читается как 1 после инверсии),
 // индикатор с общим катодом: сегменты a-g на PA0-PA6,
-// катоды разрядов на PC0-PC3 (активный низкий).
+// выводы разрядов DIG1-DIG4 на PB12-PB15 (активный низкий).
 // Опрос с фильтром дребезга, развёртка на SysTick 1 мс, слот разряда 2 мс.
+
+// Полярность индикатора: 1 — общий анод (выводы разрядов на +3 В, сегмент
+// тонет: 0 = горит, разряд включается высоким уровнем на PCx);
+// 0 — общий катод (1 = горит, разряд = 0 на PCx) — как на стенде и в методичке.
+#define COMMON_ANODE 0
 
 static const uint8_t SEG_CODE[10] = {
     0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F
@@ -26,8 +31,8 @@ static inline uint32_t millis(void) { return ms; }
 
 static void gpio_init(void)
 {
-    // Тактирование AHB1: порты A, B, C
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN | RCC_AHB1ENR_GPIOCEN;
+    // Тактирование AHB1: порты A, B
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN;
     volatile uint32_t tmp = RCC->AHB1ENR;
     (void)tmp;
 
@@ -40,18 +45,28 @@ static void gpio_init(void)
         GPIOA->OSPEEDR &= ~(0x3U << (i * 2));
         GPIOA->PUPDR &= ~(0x3U << (i * 2));
     }
+#if COMMON_ANODE
+    GPIOA->ODR |= 0x7FU; // сегменты погашены (1 = тёмный)
+#else
     GPIOA->ODR &= ~0x7FU; // погасить сегменты
+#endif
 
-    // PC0-PC3: катоды четырёх разрядов, по умолчанию погашены (лог. 1)
-    for (int i = 0; i <= 3; i++)
+    // PB12-PB15: выводы разрядов DIG1-DIG4 (на стенде выводы GPIOC для
+    // этого задания работают неустойчиво), по умолчанию погашены
+    for (int i = 12; i <= 15; i++)
     {
-        GPIOC->MODER &= ~(0x3U << (i * 2));
-        GPIOC->MODER |= (0x1U << (i * 2));
-        GPIOC->OTYPER &= ~(1U << i);
-        GPIOC->OSPEEDR &= ~(0x3U << (i * 2));
-        GPIOC->PUPDR &= ~(0x3U << (i * 2));
+        GPIOB->MODER &= ~(0x3U << (i * 2));
+        GPIOB->MODER |= (0x1U << (i * 2));
+        GPIOB->OTYPER &= ~(1U << i);
+        GPIOB->OSPEEDR &= ~(0x3U << (i * 2));
+        GPIOB->PUPDR &= ~(0x3U << (i * 2));
     }
-    GPIOC->BSRR = (1U << 0) | (1U << 1) | (1U << 2) | (1U << 3);
+#if COMMON_ANODE
+    GPIOB->BSRR = (1U << 12) << 16 | (1U << 13) << 16 |
+                  (1U << 14) << 16 | (1U << 15) << 16; // все разряды погашены (0)
+#else
+    GPIOB->BSRR = (1U << 12) | (1U << 13) | (1U << 14) | (1U << 15);
+#endif
 
     // PB8-PB11: входы S1-S4 с внутренней подтяжкой вверх
     for (int i = 8; i <= 11; i++)
@@ -66,16 +81,27 @@ static inline void show_digit_segments(uint8_t num)
 {
     uint32_t odr = GPIOA->ODR;
     odr &= ~0x7FU;
+#if COMMON_ANODE
+    odr |= ((~SEG_CODE[num]) & 0x7FU); // общий анод: 0 = сегмент горит
+#else
     odr |= (SEG_CODE[num] & 0x7FU);
+#endif
     GPIOA->ODR = odr;
 }
 
 // Включение разряда pos 0-3 (0 DIG1 левый S1 ... 3 DIG4 правый S4),
-// остальные три гасятся. Катод на PCpos, активный низкий.
+// остальные три гасятся. Вывод разряда: PB(12+pos).
+// COMMON_ANODE=1: вывод разряда = 1 включает разряд; 0 — общий катод: 0 включает.
 static inline void enable_digit(uint8_t pos)
 {
-    GPIOC->BSRR = (1U << 0) | (1U << 1) | (1U << 2) | (1U << 3); // все погасить
-    GPIOC->BSRR = (1U << (pos + 16)); // выбранный в 0 (включить)
+#if COMMON_ANODE
+    GPIOB->BSRR = (1U << 12) << 16 | (1U << 13) << 16 |
+                  (1U << 14) << 16 | (1U << 15) << 16; // все погасить (0)
+    GPIOB->BSRR = (1U << (12 + pos)); // выбранный в 1 (включить)
+#else
+    GPIOB->BSRR = (1U << 12) | (1U << 13) | (1U << 14) | (1U << 15); // все погасить
+    GPIOB->BSRR = (1U << (12 + pos)) << 16; // выбранный в 0 (включить)
+#endif
 }
 
 #define POLL_DT_MS 2U
@@ -124,7 +150,12 @@ int main(void)
             t_next_mux += 2U;
             // DIG слева направо показывают S1 S2 S3 S4; сначала гасим все
             // разряды, потом ставим сегменты и включаем нужный (без гостинга)
-            GPIOC->BSRR = (1U << 0) | (1U << 1) | (1U << 2) | (1U << 3);
+#if COMMON_ANODE
+            GPIOB->BSRR = (1U << 12) << 16 | (1U << 13) << 16 |
+                          (1U << 14) << 16 | (1U << 15) << 16; // все погашены (0)
+#else
+            GPIOB->BSRR = (1U << 12) | (1U << 13) | (1U << 14) | (1U << 15);
+#endif
             uint8_t bit = (stable_bits >> mux_pos) & 0x01;
             show_digit_segments(bit);
             enable_digit(mux_pos);

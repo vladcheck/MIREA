@@ -82,6 +82,7 @@ if [[ ! -x "$KH_DIR/.venv/bin/kh" ]]; then
   log "Creating kicad-harness venv from KiCad's bundled python..."
   (cd "$KH_DIR" \
     && "$KICAD_PY" -m venv --system-site-packages .venv \
+    && ./.venv/bin/pip install -U pip setuptools \
     && ./.venv/bin/pip install -e . --ignore-requires-python)
 else
   log "kicad-harness venv exists — skipping."
