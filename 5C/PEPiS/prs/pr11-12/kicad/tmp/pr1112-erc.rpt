@@ -1,0 +1,123 @@
+ERC report (2026-11-13T14:46:52, Encoding UTF8)
+Report includes: Errors, Warnings, Exclusions
+
+***** Sheet /
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(73.66 mm, 55.88 mm): Symbol PWR1 [PWR_FLAG]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Package_QFP'
+    ; warning
+    @(78.74 mm, 100.33 mm): Symbol U1 [STM32F103C8Tx]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'MCU_ST_STM32F1'
+    ; warning
+    @(78.74 mm, 100.33 mm): Symbol U1 [STM32F103C8Tx]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(130.81 mm, 72.39 mm): Symbol R8 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(130.81 mm, 72.39 mm): Symbol R8 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(130.81 mm, 82.55 mm): Symbol R9 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(130.81 mm, 82.55 mm): Symbol R9 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(130.81 mm, 92.71 mm): Symbol R10 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(130.81 mm, 92.71 mm): Symbol R10 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(130.81 mm, 102.87 mm): Symbol R11 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(130.81 mm, 102.87 mm): Symbol R11 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(130.81 mm, 113.03 mm): Symbol R12 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(130.81 mm, 113.03 mm): Symbol R12 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(130.81 mm, 123.19 mm): Symbol R13 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(130.81 mm, 123.19 mm): Symbol R13 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(130.81 mm, 133.35 mm): Symbol R14 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(130.81 mm, 133.35 mm): Symbol R14 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(130.81 mm, 143.51 mm): Symbol R15 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(130.81 mm, 143.51 mm): Symbol R15 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(139.70 mm, 67.31 mm): Symbol R16 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(139.70 mm, 67.31 mm): Symbol R16 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(139.70 mm, 77.47 mm): Symbol R1 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(139.70 mm, 77.47 mm): Symbol R1 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(139.70 mm, 87.63 mm): Symbol R2 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(139.70 mm, 87.63 mm): Symbol R2 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(139.70 mm, 97.79 mm): Symbol R3 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(139.70 mm, 97.79 mm): Symbol R3 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(139.70 mm, 107.95 mm): Symbol R4 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(139.70 mm, 107.95 mm): Symbol R4 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(139.70 mm, 118.11 mm): Symbol R5 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(139.70 mm, 118.11 mm): Symbol R5 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(139.70 mm, 128.27 mm): Symbol R6 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(139.70 mm, 128.27 mm): Symbol R6 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Resistor_THT'
+    ; warning
+    @(139.70 mm, 138.43 mm): Symbol R7 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(139.70 mm, 138.43 mm): Symbol R7 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(146.05 mm, 59.69 mm): Symbol PWR2 [PWR_FLAG]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Connector_PinHeader_2.54mm'
+    ; warning
+    @(152.40 mm, 143.51 mm): Symbol J1 [Conn_01x02]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Connector_Generic'
+    ; warning
+    @(152.40 mm, 143.51 mm): Symbol J1 [Conn_01x02]
+
+ ** ERC messages: 38  Errors 0  Warnings 38
+
+ ** Ignored checks:
+    - SPICE model issue
