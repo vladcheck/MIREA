@@ -1,0 +1,185 @@
+ERC report (2026-11-13T15:10:18, Encoding UTF8)
+Report includes: Errors, Warnings
+
+***** Sheet /
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(53.34 mm, 90.17 mm): Symbol R9 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(53.34 mm, 90.17 mm): Symbol R9 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(53.34 mm, 97.79 mm): Symbol #PWR6 [+3.3V]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(55.88 mm, 86.36 mm): Symbol #PWR7 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(73.66 mm, 82.55 mm): Symbol #PWR3 [PWR_FLAG]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Package_QFP'
+    ; warning
+    @(78.74 mm, 118.11 mm): Symbol U1 [STM32F103C8Tx]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'MCU_ST_STM32F1'
+    ; warning
+    @(78.74 mm, 118.11 mm): Symbol U1 [STM32F103C8Tx]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(78.74 mm, 153.67 mm): Symbol #PWR5 [PWR_FLAG]
+[four_way_junction]: Four items connected at 787400, 1574800
+    ; warning
+    @(78.74 mm, 158.75 mm): Vertical Wire, length 1.27 mm
+    @(78.74 mm, 158.75 mm): Vertical Wire, length 1.27 mm
+[four_way_junction]: Four items connected at 787400, 1587500
+    ; warning
+    @(78.74 mm, 158.75 mm): Symbol U1 Pin 23 [VSS, Power input, Line]
+    @(78.74 mm, 158.75 mm): Vertical Wire, length 1.27 mm
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(80.01 mm, 82.55 mm): Symbol #PWR2 [+3.3V]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(80.01 mm, 153.67 mm): Symbol #PWR4 [GND]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(107.95 mm, 85.09 mm): Symbol R1 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(107.95 mm, 85.09 mm): Symbol R1 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(107.95 mm, 87.63 mm): Symbol R2 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(107.95 mm, 87.63 mm): Symbol R2 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(107.95 mm, 90.17 mm): Symbol R3 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(107.95 mm, 90.17 mm): Symbol R3 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(107.95 mm, 92.71 mm): Symbol R4 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(107.95 mm, 92.71 mm): Symbol R4 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(107.95 mm, 95.25 mm): Symbol R5 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(107.95 mm, 95.25 mm): Symbol R5 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(107.95 mm, 97.79 mm): Symbol R6 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(107.95 mm, 97.79 mm): Symbol R6 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(107.95 mm, 100.33 mm): Symbol R7 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(107.95 mm, 100.33 mm): Symbol R7 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(107.95 mm, 102.87 mm): Symbol R8 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(107.95 mm, 102.87 mm): Symbol R8 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Display_7Segment'
+    ; warning
+    @(140.97 mm, 92.71 mm): Symbol U2 [HDSP-7503]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Display_Character'
+    ; warning
+    @(140.97 mm, 92.71 mm): Symbol U2 [HDSP-7503]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(152.40 mm, 101.60 mm): Symbol #PWR1 [GND]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(207.01 mm, 80.01 mm): Symbol R18 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(207.01 mm, 80.01 mm): Symbol R18 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(207.01 mm, 87.63 mm): Symbol #PWR12 [+5V]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Package_DIP'
+    ; warning
+    @(229.87 mm, 118.11 mm): Symbol U3 [ATmega32-16P]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'MCU_Microchip_ATmega'
+    ; warning
+    @(229.87 mm, 118.11 mm): Symbol U3 [ATmega32-16P]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(229.87 mm, 172.72 mm): Symbol #PWR11 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(231.14 mm, 72.39 mm): Symbol #PWR9 [+5V]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(232.41 mm, 72.39 mm): Symbol #PWR10 [PWR_FLAG]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(256.54 mm, 74.93 mm): Symbol R10 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(256.54 mm, 74.93 mm): Symbol R10 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(256.54 mm, 77.47 mm): Symbol R11 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(256.54 mm, 77.47 mm): Symbol R11 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(256.54 mm, 80.01 mm): Symbol R12 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(256.54 mm, 80.01 mm): Symbol R12 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(256.54 mm, 82.55 mm): Symbol R13 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(256.54 mm, 82.55 mm): Symbol R13 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(256.54 mm, 85.09 mm): Symbol R14 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(256.54 mm, 85.09 mm): Symbol R14 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(256.54 mm, 87.63 mm): Symbol R15 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(256.54 mm, 87.63 mm): Symbol R15 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(256.54 mm, 90.17 mm): Symbol R16 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(256.54 mm, 90.17 mm): Symbol R16 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(256.54 mm, 92.71 mm): Symbol R17 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(256.54 mm, 92.71 mm): Symbol R17 [R]
+[footprint_link_issues]: The current configuration does not include the footprint library 'Display_7Segment'
+    ; warning
+    @(285.75 mm, 82.55 mm): Symbol U4 [HDSP-7503]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Display_Character'
+    ; warning
+    @(285.75 mm, 82.55 mm): Symbol U4 [HDSP-7503]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(297.18 mm, 91.44 mm): Symbol #PWR8 [GND]
+
+ ** ERC messages: 58  Errors 0  Warnings 58
+
+ ** Ignored checks:
+    - SPICE model issue

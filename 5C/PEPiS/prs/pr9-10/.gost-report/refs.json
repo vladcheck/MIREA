@@ -1,0 +1,82 @@
+[
+  {
+    "key": "rm0008",
+    "type": "standard",
+    "authors": ["STMicroelectronics"],
+    "title": "Reference manual RM0008: STM32F101xx, STM32F102xx, STM32F103xx, STM32F105xx and STM32F107xx advanced Arm-based 32-bit MCUs",
+    "edition": "Rev. 21",
+    "publisher": "STMicroelectronics",
+    "year": 2021,
+    "pages": 1136,
+    "url": "https://www.st.com/resource/en/reference_manual/rm0008-stm32f101xx-stm32f102xx-stm32f103xx-stm32f105xx-and-stm32f107xx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf",
+    "accessed": "13.11.2026",
+    "note": "регистры GPIO (CRL, BSRR), таймера TIM2 (PSC, ARR, SR, DIER) и RCC STM32F103C8; тактирование HSI 8 МГц"
+  },
+  {
+    "key": "ds5319",
+    "type": "standard",
+    "authors": ["STMicroelectronics"],
+    "title": "Datasheet DS5319: STM32F103x8, STM32F103xB medium-density performance line Arm-based 32-bit MCU with 64 or 128 KB Flash, USB, CAN, 7 timers, 2 ADCs, 9 communication interfaces",
+    "edition": "Rev. 20",
+    "publisher": "STMicroelectronics",
+    "year": 2025,
+    "pages": 115,
+    "url": "https://www.st.com/resource/en/datasheet/stm32f103c8.pdf",
+    "accessed": "13.11.2026",
+    "note": "допустимые токи выводов GPIO STM32F103C8 при напряжении питания 3,3 В"
+  },
+  {
+    "key": "atmega32",
+    "type": "standard",
+    "authors": ["Microchip Technology"],
+    "title": "ATmega32A Data Sheet: 8-bit AVR Microcontroller with 32K Bytes In-System Programmable Flash",
+    "edition": "Rev. 2500Q",
+    "publisher": "Microchip Technology",
+    "year": 2020,
+    "pages": 376,
+    "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega32A-Data-Sheet.pdf",
+    "accessed": "13.11.2026",
+    "note": "регистры DDRA, PORTA, Timer0 (TCCR0, OCR0, TIMSK) ATmega32; обязательное подключение AVCC к питанию порта A"
+  },
+  {
+    "key": "hdsp7503",
+    "type": "standard",
+    "authors": ["Broadcom"],
+    "title": "HDSP-750x Series: 7.6 mm (0.3 inch) Micro Bright Seven Segment Displays. Data Sheet AV02-2553EN",
+    "publisher": "Broadcom",
+    "year": 2015,
+    "url": "https://docs.broadcom.com/docs/AV02-2553EN",
+    "accessed": "13.11.2026",
+    "note": "одноразрядный красный семисегментный индикатор HDSP-7503 с общим катодом: назначение выводов, прямое падение напряжения"
+  },
+  {
+    "key": "proteus_instruments",
+    "type": "web",
+    "authors": ["Labcenter Electronics"],
+    "title": "Virtual Instruments (Proteus): Virtual Terminal и Logic Analyser",
+    "year": 2026,
+    "url": "https://www.labcenter.com/instruments",
+    "accessed": "13.11.2026",
+    "note": "Logic Analyser в Proteus 8.17: измерение логических уровней линий GPIO до токоограничивающих резисторов"
+  },
+  {
+    "key": "platformio_ststm32",
+    "type": "web",
+    "authors": ["PlatformIO"],
+    "title": "ST STM32 platform",
+    "year": 2026,
+    "url": "https://docs.platformio.org/en/latest/platforms/ststm32.html",
+    "accessed": "13.11.2026",
+    "note": "сборка прошивки для STM32F103 в PlatformIO (platform = ststm32, framework = cmsis)"
+  },
+  {
+    "key": "avrlibc",
+    "type": "web",
+    "authors": ["Free Software Foundation"],
+    "title": "AVR Libc User Manual: modules avr/io, avr/interrupt",
+    "year": 2024,
+    "url": "https://avrdudes.github.io/avr-libc/",
+    "accessed": "13.11.2026",
+    "note": "заголовки <avr/io.h> и <avr/interrupt.h>, макрос ISR, регистры портов ввода-вывода ATmega32"
+  }
+]

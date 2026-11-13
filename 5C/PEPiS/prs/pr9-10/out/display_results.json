@@ -1,0 +1,228 @@
+{
+  "checks": [
+    {
+      "name": "таблица 9.21: коды 0–9 декодируются обратно",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "статика stm32: цифра 5 -> 0x6D, сегменты acdfg",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "статика avr: цифра 5 -> 0x6D, сегменты acdfg",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "вариант 4 stm32: порядок 9,6,7,8 после самопроверки 0,8,9",
+      "ok": true,
+      "detail": "[0, 8, 9, 9, 6, 7, 8, 9, 6]"
+    },
+    {
+      "name": "вариант 4 stm32: средний интервал 400.0 мс (отклонение +0.00 %)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "вариант 4 avr: порядок 9,6,7,8 после самопроверки 0,8,9",
+      "ok": true,
+      "detail": "[0, 8, 9, 9, 6, 7, 8, 9, 6]"
+    },
+    {
+      "name": "вариант 4 avr: средний интервал 400.0 мс (отклонение +0.00 %)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "диагностика: инвертированный код 0x92 не образует цифру",
+      "ok": true,
+      "detail": "светятся сегменты bdpe"
+    }
+  ],
+  "all_pass": true,
+  "static": {
+    "stm32": {
+      "digit": 5,
+      "code": "0x6D",
+      "levels_pa7_pa0": "0b01101101",
+      "lit_segments": "acdfg",
+      "decoded": 5
+    },
+    "avr": {
+      "digit": 5,
+      "code": "0x6D",
+      "levels_pa7_pa0": "0b01101101",
+      "lit_segments": "acdfg",
+      "decoded": 5
+    }
+  },
+  "seq_stm32": {
+    "expected_order": [
+      0,
+      8,
+      9,
+      9,
+      6,
+      7,
+      8,
+      9,
+      6
+    ],
+    "measured_event_intervals_ms": [
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0
+    ],
+    "code_change_intervals_ms": [
+      400.0,
+      400.0,
+      800.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0
+    ],
+    "note": "участок 800 мс — самопроверка (9) и цикл (9) совпадают, код порта не меняется два интервала подряд",
+    "mean_interval_ms": 400.0,
+    "t_symbol_nominal_ms": 400,
+    "relative_deviation_pct": 0.0
+  },
+  "seq_avr": {
+    "expected_order": [
+      0,
+      8,
+      9,
+      9,
+      6,
+      7,
+      8,
+      9,
+      6
+    ],
+    "measured_event_intervals_ms": [
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0
+    ],
+    "code_change_intervals_ms": [
+      400.0,
+      400.0,
+      800.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0
+    ],
+    "note": "участок 800 мс — самопроверка (9) и цикл (9) совпадают, код порта не меняется два интервала подряд",
+    "mean_interval_ms": 400.0,
+    "t_symbol_nominal_ms": 400,
+    "relative_deviation_pct": 0.0
+  },
+  "timers": {
+    "stm32_tim2": {
+      "psc": 7999,
+      "arr": 399,
+      "tick_ms": 1.0,
+      "interval_ms": 400.0
+    },
+    "avr_timer0": {
+      "prescaler": 1024,
+      "ocr": 124,
+      "event_ms": 16.0,
+      "events": 25,
+      "interval_ms": 400.0
+    }
+  },
+  "diagnostic": {
+    "digit": 5,
+    "normal_code": "0x6D",
+    "inverted_code": "0x92",
+    "normal_segments": "acdfg",
+    "inverted_lit_segments": "bdpe",
+    "decoded_inverted": null
+  },
+  "code_table": [
+    {
+      "digit": 0,
+      "code": "0x3F",
+      "segments": "abcdef",
+      "decoded": 0
+    },
+    {
+      "digit": 1,
+      "code": "0x06",
+      "segments": "bc",
+      "decoded": 1
+    },
+    {
+      "digit": 2,
+      "code": "0x5B",
+      "segments": "abdeg",
+      "decoded": 2
+    },
+    {
+      "digit": 3,
+      "code": "0x4F",
+      "segments": "abcdg",
+      "decoded": 3
+    },
+    {
+      "digit": 4,
+      "code": "0x66",
+      "segments": "bcfg",
+      "decoded": 4
+    },
+    {
+      "digit": 5,
+      "code": "0x6D",
+      "segments": "acdfg",
+      "decoded": 5
+    },
+    {
+      "digit": 6,
+      "code": "0x7D",
+      "segments": "acdefg",
+      "decoded": 6
+    },
+    {
+      "digit": 7,
+      "code": "0x07",
+      "segments": "abc",
+      "decoded": 7
+    },
+    {
+      "digit": 8,
+      "code": "0x7F",
+      "segments": "abcdefg",
+      "decoded": 8
+    },
+    {
+      "digit": 9,
+      "code": "0x6F",
+      "segments": "abcdfg",
+      "decoded": 9
+    }
+  ],
+  "artifacts": {
+    "json": "out/display_results.json",
+    "csv": "out/display_waveform.csv",
+    "figure_static_stm32": "docs/figures/display-static-stm32.png",
+    "figure_static_atmega32": "docs/figures/display-static-atmega32.png",
+    "figure_seq_stm32": "docs/figures/display-seq-stm32.png",
+    "figure_seq_atmega32": "docs/figures/display-seq-atmega32.png",
+    "figure_digits": "docs/figures/display-digits-variant4.png",
+    "figure_diagnostic": "docs/figures/display-diagnostic-inverted.png"
+  }
+}
