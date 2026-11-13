@@ -1,0 +1,71 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "9d1c2f74-3a6b-4c1e-9f02-7b8e5d1a2c34")
+	(paper "A3")
+	(title_block
+		(title "Практическое занятие 13-14. АЦП, вариант 4")
+		(date "2026-11-13")
+		(rev "1.0")
+	)
+	(sheet
+		(at 25.4 152.4)
+		(size 165.1 63.5)
+		(fields_autoplaced yes)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d")
+	(property "Sheetname" "Задание 1. Исследование АЦП"
+		(at 27.94 217.17 0)
+		(show_name no)
+		(do_not_autoplace no)
+		(effects (font (size 2.54 2.54)))
+	)	(property "Sheetfile" "adc_investigation.kicad_sch"
+		(at 27.94 151.13 0)
+		(show_name no)
+		(do_not_autoplace no)
+		(effects (font (size 1.27 1.27)))
+	)		(instances
+			(project "pr13-14"
+				(path "/9d1c2f74-3a6b-4c1e-9f02-7b8e5d1a2c34" (page "2"))
+			)
+		)
+	)
+	(sheet
+		(at 212.09 152.4)
+		(size 165.1 63.5)
+		(fields_autoplaced yes)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d")
+	(property "Sheetname" "Задание 2. МК-51 + АЦП"
+		(at 214.63 217.17 0)
+		(show_name no)
+		(do_not_autoplace no)
+		(effects (font (size 2.54 2.54)))
+	)	(property "Sheetfile" "mcu_connection.kicad_sch"
+		(at 214.63 151.13 0)
+		(show_name no)
+		(do_not_autoplace no)
+		(effects (font (size 1.27 1.27)))
+	)		(instances
+			(project "pr13-14"
+				(path "/9d1c2f74-3a6b-4c1e-9f02-7b8e5d1a2c34" (page "3"))
+			)
+		)
+	)
+	(text "Практическое занятие 13-14 «Изучение принципов работы аналого-цифровых преобразователей»"
+		(at 63.5 234.95 0)
+		(effects (font (size 2.54 2.54)) (justify left bottom))
+		(uuid "c4ca16bd-c9e6-472c-a56d-5fa951ddb4e4")
+	)
+	(text "Вариант 4 (табл. 18 методички): 16-разрядный АЦП, Vref+ = +5 В, Vref- = 0 В"
+		(at 63.5 228.6 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "77223a2f-68d2-4e25-b4cf-da10df70a15a")
+	)
+	(sheet_instances
+		(path "/" (page "1"))
+	)
+)

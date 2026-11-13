@@ -1,0 +1,33 @@
+ERC report (2026-11-13T15:22:57, Encoding UTF8)
+Report includes: Errors, Warnings
+
+***** Sheet /
+[lib_symbol_mismatch]: Symbol 'PWR_FLAG' doesn't match copy in library 'power'
+    ; warning
+    @(85.09 mm, 176.53 mm): Symbol PWR1 [PWR_FLAG]
+[lib_symbol_mismatch]: Symbol 'AT89x51xxP' doesn't match copy in library 'MCU_Microchip_8051'
+    ; warning
+    @(222.25 mm, 95.25 mm): Symbol U1 [AT89x51xxP]
+[lib_symbol_mismatch]: Symbol 'PWR_FLAG' doesn't match copy in library 'power'
+    ; warning
+    @(245.11 mm, 60.96 mm): Symbol PWR2 [PWR_FLAG]
+
+***** Sheet /Задание 1. Исследование АЦП/
+[same_local_global_label]: Local and global labels have same name
+    ; warning
+    @(76.20 mm, 165.10 mm): Symbol GND2 Pin 1 [Power input, Line]
+    @(85.09 mm, 176.53 mm): Label 'GND'
+
+***** Sheet /Задание 2. МК-51 + АЦП/
+[same_local_global_label]: Local and global labels have same name
+    ; warning
+    @(222.25 mm, 54.61 mm): Symbol +5V1 Pin 1 [Power input, Line]
+    @(245.11 mm, 60.96 mm): Label '+5V'
+
+ ** ERC messages: 5  Errors 0  Warnings 5
+
+ ** Ignored checks:
+    - Global label only appears once in the schematic
+    - Four connection points are joined together
+    - SPICE model issue
+    - Assigned footprint doesn't match footprint filters

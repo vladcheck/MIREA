@@ -1,0 +1,4597 @@
+(export
+	(version "E")
+	(design
+		(source "/Users/vlad.valekzhanin/github/vladcheck/MIREA/5C/PEPiS/prs/pr13-14/kicad/pr13-14.kicad_sch")
+		(date "2026-11-13T15:22:57")
+		(tool "Eeschema 10.0.8")
+		(sheet
+			(number "1")
+			(name "/")
+			(tstamps "/")
+			(title_block
+				(title "Практическое занятие 13-14. АЦП, вариант 4")
+				(company)
+				(rev "1.0")
+				(date "2026-11-13")
+				(source "pr13-14.kicad_sch")
+				(comment
+					(number "1")
+					(value "")
+				)
+				(comment
+					(number "2")
+					(value "")
+				)
+				(comment
+					(number "3")
+					(value "")
+				)
+				(comment
+					(number "4")
+					(value "")
+				)
+				(comment
+					(number "5")
+					(value "")
+				)
+				(comment
+					(number "6")
+					(value "")
+				)
+				(comment
+					(number "7")
+					(value "")
+				)
+				(comment
+					(number "8")
+					(value "")
+				)
+				(comment
+					(number "9")
+					(value "")
+				)
+			)
+		)
+		(sheet
+			(number "2")
+			(name "/Задание 1. Исследование АЦП/")
+			(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			(title_block
+				(title "ПР 13-14, задание 1. Исследование 16-разрядного АЦП")
+				(company)
+				(rev "1.0")
+				(date "2026-11-13")
+				(source "adc_investigation.kicad_sch")
+				(comment
+					(number "1")
+					(value "")
+				)
+				(comment
+					(number "2")
+					(value "")
+				)
+				(comment
+					(number "3")
+					(value "")
+				)
+				(comment
+					(number "4")
+					(value "")
+				)
+				(comment
+					(number "5")
+					(value "")
+				)
+				(comment
+					(number "6")
+					(value "")
+				)
+				(comment
+					(number "7")
+					(value "")
+				)
+				(comment
+					(number "8")
+					(value "")
+				)
+				(comment
+					(number "9")
+					(value "")
+				)
+			)
+		)
+		(sheet
+			(number "3")
+			(name "/Задание 2. МК-51 + АЦП/")
+			(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			(title_block
+				(title "ПР 13-14, задание 2. Подключение МК-51 к 16-разрядному АЦП")
+				(company)
+				(rev "1.0")
+				(date "2026-11-13")
+				(source "mcu_connection.kicad_sch")
+				(comment
+					(number "1")
+					(value "")
+				)
+				(comment
+					(number "2")
+					(value "")
+				)
+				(comment
+					(number "3")
+					(value "")
+				)
+				(comment
+					(number "4")
+					(value "")
+				)
+				(comment
+					(number "5")
+					(value "")
+				)
+				(comment
+					(number "6")
+					(value "")
+				)
+				(comment
+					(number "7")
+					(value "")
+				)
+				(comment
+					(number "8")
+					(value "")
+				)
+				(comment
+					(number "9")
+					(value "")
+				)
+			)
+		)
+	)
+	(components
+		(comp
+			(ref "A1")
+			(value "VIRT_ADC16")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "VIRT_ADC16")
+				(description "Виртуальный АЦП, 16 разрядов")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "8ae60019-0572-47c3-993b-06eaf67e5c28")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "17")
+						)
+						(pin
+							(num "18")
+						)
+						(pin
+							(num "19")
+						)
+						(pin
+							(num "20")
+						)
+						(pin
+							(num "21")
+						)
+						(pin
+							(num "22")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "A2")
+			(value "VIRT_DAC16")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "VIRT_DAC16")
+				(description "Виртуальный ЦАП, 16 разрядов")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "f60bb02d-423a-4687-be9d-88a1971785df")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "17")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "GND1")
+			(value "GND")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "GND")
+				(description "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "1fa953ec-2252-4277-94e0-9fea5dcc665c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "GND2")
+			(value "GND")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "GND")
+				(description "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "15f55080-5035-43cc-8544-e127cee23eaa")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "GND3")
+			(value "GND")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "GND")
+				(description "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "b712a10b-6e2b-48f5-b138-fa00dbc8550a")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "GND4")
+			(value "GND")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "GND")
+				(description "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "e895003e-ba5f-4443-a5a4-12adaafa03e4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "GND6")
+			(value "GND")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "GND")
+				(description "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "610bc97f-b788-433c-867d-7bdfec249ca4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "PWR1")
+			(value "PWR_FLAG")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "PWR_FLAG")
+				(description "Special symbol for telling ERC where power comes from")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "flag power")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "d0d6902f-e41f-4879-b0e4-dc1701ce4e2e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U1")
+			(value "В")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Simulation_SPICE")
+				(part "VOLTMETER_DIFF")
+				(description "Differential voltmeter for simulation. The sensed differential voltage can be measured on the third terminal as a single-ended voltage")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "voltmeter differential vdiff")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "57e13720-5202-47da-bc56-0a7c1be006b2")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U2")
+			(value "74LS04")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "INV1")
+				(description "Инвертор (74LS04), элемент A")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "4be828b0-e7ea-4e30-967f-de4df8b92291")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "V1")
+			(value "+5 В")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Simulation_SPICE")
+				(part "VDC")
+				(description "Voltage source, DC")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "simulation")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "553c5290-2c6d-4e2a-ab18-a8d93587237b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "V3")
+			(value "Uвх")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Simulation_SPICE")
+				(part "VDC")
+				(description "Voltage source, DC")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "simulation")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "0c9137fa-33db-4174-9fa0-7576812cbdf9")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "V4")
+			(value "1 кГц")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Simulation_SPICE")
+				(part "VPULSE")
+				(description "Voltage source, pulse")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "simulation")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "a2e4bc9d-406c-4562-ad2f-72229598b5a4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X0")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "aca7e83b-847a-4fa3-94e1-48ca1f0a2438")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X1")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "084b7d8d-61f4-49aa-a4fd-8baf04e1ea9e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X2")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "72f155a3-4231-462d-8599-502ee3b966d7")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X3")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "2939c7b1-ff55-4219-9556-4f56eb88d90b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X4")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "b3c48506-45bf-4ee9-8464-4680a2627f92")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X5")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "3c742d20-bced-483c-9376-20de90c04b39")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X6")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "44d24338-87b8-43c5-995f-d02fac89bdd5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X7")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "977e08fe-7c4f-487e-a995-9ab13bb1d700")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X8")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "89a3423b-65d7-4c67-8e79-27b8b1faa4af")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X9")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "cb0bcae9-7dbe-43bb-8b7e-69bf61a8a400")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X10")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "0f98e962-4b4f-4714-aee9-500121a6a0f8")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X11")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "9cb30ac5-4ba7-447a-acb9-4fa625e19c7e")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X12")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "1d46b9df-1483-4872-ad54-73139ad8ad52")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X13")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "7942abd7-e164-41a3-bc88-b296520b11dd")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X14")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "73d2aef4-446f-40a2-8001-96e37d883b6b")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X15")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "9d1b1b95-9020-4e38-a9c9-00a4cddf9910")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X16")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 1. Исследование АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "adc_investigation.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 1. Исследование АЦП/")
+				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
+			)
+			(tstamps "a829fa09-7b22-4f22-883b-048b014672cf")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "+5V1")
+			(value "+5V")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "+5V")
+				(description "Power symbol creates a global label with name \"+5V\"")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "66826449-726b-439c-8948-60bb85c94471")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "A1")
+			(value "VIRT_ADC16")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "VIRT_ADC16")
+				(description "Виртуальный АЦП, 16 разрядов")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "a01be8af-d26c-444e-879d-a3c5658e14b4")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "17")
+						)
+						(pin
+							(num "18")
+						)
+						(pin
+							(num "19")
+						)
+						(pin
+							(num "20")
+						)
+						(pin
+							(num "21")
+						)
+						(pin
+							(num "22")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "GND1")
+			(value "GND")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "GND")
+				(description "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "d0c219e4-8a1a-4c19-a0db-236f4b384592")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "GND2")
+			(value "GND")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "GND")
+				(description "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "6431d7c4-d8db-4327-b9d8-b2e0399ed12f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "GND3")
+			(value "GND")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "GND")
+				(description "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "ba5c153e-51ac-4ce8-a4f6-ff68b149351f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "GND4")
+			(value "GND")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "GND")
+				(description "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "c59fc3bd-c100-4596-8a83-179b91974d84")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "GND5")
+			(value "GND")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "GND")
+				(description "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "global power")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "6f70da64-1cff-447a-8a1b-bb9c4f4697f5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "PWR2")
+			(value "PWR_FLAG")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "power")
+				(part "PWR_FLAG")
+				(description "Special symbol for telling ERC where power comes from")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "flag power")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "13d845b7-a0c5-4da7-9409-0109297f3a64")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "U1")
+			(value "AT89C51")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "MCU_Microchip_8051")
+				(part "AT89x51xxP")
+				(description "8-bit Microcontroller with 4K Bytes Flash, DIP-40")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "Microcontroller 8051 DIP")
+			)
+			(property
+				(name "ki_fp_filters")
+				(value "DIP*40*W15.24*")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "d94d85f9-c1b5-4421-93fe-50275e7b47f5")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "9")
+						)
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+						(pin
+							(num "3")
+						)
+						(pin
+							(num "4")
+						)
+						(pin
+							(num "5")
+						)
+						(pin
+							(num "6")
+						)
+						(pin
+							(num "7")
+						)
+						(pin
+							(num "8")
+						)
+						(pin
+							(num "10")
+						)
+						(pin
+							(num "11")
+						)
+						(pin
+							(num "12")
+						)
+						(pin
+							(num "13")
+						)
+						(pin
+							(num "14")
+						)
+						(pin
+							(num "15")
+						)
+						(pin
+							(num "16")
+						)
+						(pin
+							(num "17")
+						)
+						(pin
+							(num "19")
+						)
+						(pin
+							(num "18")
+						)
+						(pin
+							(num "31")
+						)
+						(pin
+							(num "40")
+						)
+						(pin
+							(num "20")
+						)
+						(pin
+							(num "39")
+						)
+						(pin
+							(num "38")
+						)
+						(pin
+							(num "37")
+						)
+						(pin
+							(num "36")
+						)
+						(pin
+							(num "35")
+						)
+						(pin
+							(num "34")
+						)
+						(pin
+							(num "33")
+						)
+						(pin
+							(num "32")
+						)
+						(pin
+							(num "21")
+						)
+						(pin
+							(num "22")
+						)
+						(pin
+							(num "23")
+						)
+						(pin
+							(num "24")
+						)
+						(pin
+							(num "25")
+						)
+						(pin
+							(num "26")
+						)
+						(pin
+							(num "27")
+						)
+						(pin
+							(num "28")
+						)
+						(pin
+							(num "29")
+						)
+						(pin
+							(num "30")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "V1")
+			(value "Uвх")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Simulation_SPICE")
+				(part "VDC")
+				(description "Voltage source, DC")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "simulation")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "f34062be-95c9-468e-825b-d8c53898381c")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "V2")
+			(value "+5 В")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "Simulation_SPICE")
+				(part "VDC")
+				(description "Voltage source, DC")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(property
+				(name "ki_keywords")
+				(value "simulation")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "50007874-a00f-42c1-a7bc-f04f2915caf0")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+						(pin
+							(num "2")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X0")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "c3df280e-ee31-4fde-97b1-7bd2f44cc660")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X1")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "e6d32bf7-10ae-41a9-bb28-4476e7894343")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X2")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "e4d91bb2-fa70-4093-9bc7-8bb83835355f")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X3")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "e4f25b82-a312-42c7-b100-fd300accc50d")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X4")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "46d5e857-3b3d-4d1f-b783-be0560376cac")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X5")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "89606212-a24d-49c1-a87e-1c05f83e4801")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X6")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "7d3185d7-8310-4460-8f59-9804e243b378")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+		(comp
+			(ref "X7")
+			(value "PROBE")
+			(fields
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description")
+				)
+			)
+			(libsource
+				(lib "pr1314")
+				(part "PROBE")
+				(description "Логический пробник")
+			)
+			(property
+				(name "Sheetname")
+				(value "Задание 2. МК-51 + АЦП")
+			)
+			(property
+				(name "Sheetfile")
+				(value "mcu_connection.kicad_sch")
+			)
+			(sheetpath
+				(names "/Задание 2. МК-51 + АЦП/")
+				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
+			)
+			(tstamps "d2e64a1e-6f33-4859-934b-9c2fbe763be1")
+			(units
+				(unit
+					(name "A")
+					(pins
+						(pin
+							(num "1")
+						)
+					)
+				)
+			)
+		)
+	)
+	(groups)
+	(variants)
+	(libparts
+		(libpart
+			(lib "MCU_Microchip_8051")
+			(part "AT89x51xxP")
+			(description "8-bit Microcontroller with 4K Bytes Flash, DIP-40")
+			(docs "https://ww1.microchip.com/downloads/en/DeviceDoc/doc2487.pdf")
+			(footprints
+				(fp "DIP*40*W15.24*")
+			)
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "AT89x51xxP")
+				(field
+					(name "Footprint") "Package_DIP:DIP-40_W15.24mm")
+				(field
+					(name "Datasheet") "https://ww1.microchip.com/downloads/en/DeviceDoc/doc2487.pdf")
+				(field
+					(name "Description") "8-bit Microcontroller with 4K Bytes Flash, DIP-40")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "P1.0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "2")
+					(name "P1.1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "3")
+					(name "P1.2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "4")
+					(name "P1.3")
+					(type "bidirectional")
+				)
+				(pin
+					(num "5")
+					(name "P1.4")
+					(type "bidirectional")
+				)
+				(pin
+					(num "6")
+					(name "P1.5")
+					(type "bidirectional")
+				)
+				(pin
+					(num "7")
+					(name "P1.6")
+					(type "bidirectional")
+				)
+				(pin
+					(num "8")
+					(name "P1.7/SCK")
+					(type "bidirectional")
+				)
+				(pin
+					(num "9")
+					(name "RST")
+					(type "input")
+				)
+				(pin
+					(num "10")
+					(name "P3.0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "11")
+					(name "P3.1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "12")
+					(name "P3.2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "13")
+					(name "P3.3")
+					(type "bidirectional")
+				)
+				(pin
+					(num "14")
+					(name "P3.4")
+					(type "bidirectional")
+				)
+				(pin
+					(num "15")
+					(name "P3.5")
+					(type "bidirectional")
+				)
+				(pin
+					(num "16")
+					(name "P3.6")
+					(type "bidirectional")
+				)
+				(pin
+					(num "17")
+					(name "P3.7")
+					(type "bidirectional")
+				)
+				(pin
+					(num "18")
+					(name "XTAL2")
+					(type "input")
+				)
+				(pin
+					(num "19")
+					(name "XTAL1")
+					(type "input")
+				)
+				(pin
+					(num "20")
+					(name "GND")
+					(type "power_in")
+				)
+				(pin
+					(num "21")
+					(name "P2.0/A8")
+					(type "bidirectional")
+				)
+				(pin
+					(num "22")
+					(name "P2.1/A9")
+					(type "bidirectional")
+				)
+				(pin
+					(num "23")
+					(name "P2.2/A10")
+					(type "bidirectional")
+				)
+				(pin
+					(num "24")
+					(name "P2.3/A11")
+					(type "bidirectional")
+				)
+				(pin
+					(num "25")
+					(name "P2.4/A12")
+					(type "bidirectional")
+				)
+				(pin
+					(num "26")
+					(name "P2.5/A13")
+					(type "bidirectional")
+				)
+				(pin
+					(num "27")
+					(name "P2.6/A14")
+					(type "bidirectional")
+				)
+				(pin
+					(num "28")
+					(name "P2.7/A15")
+					(type "bidirectional")
+				)
+				(pin
+					(num "29")
+					(name "~{PSEN}")
+					(type "output")
+				)
+				(pin
+					(num "30")
+					(name "ALE")
+					(type "output")
+				)
+				(pin
+					(num "31")
+					(name "~{EA}/V_{pp}")
+					(type "input")
+				)
+				(pin
+					(num "32")
+					(name "P0.7/AD7")
+					(type "bidirectional")
+				)
+				(pin
+					(num "33")
+					(name "P0.6/AD6")
+					(type "bidirectional")
+				)
+				(pin
+					(num "34")
+					(name "P0.5/AD5")
+					(type "bidirectional")
+				)
+				(pin
+					(num "35")
+					(name "P0.4/AD4")
+					(type "bidirectional")
+				)
+				(pin
+					(num "36")
+					(name "P0.3/AD3")
+					(type "bidirectional")
+				)
+				(pin
+					(num "37")
+					(name "P0.2/AD2")
+					(type "bidirectional")
+				)
+				(pin
+					(num "38")
+					(name "P0.1/AD1")
+					(type "bidirectional")
+				)
+				(pin
+					(num "39")
+					(name "P0.0/AD0")
+					(type "bidirectional")
+				)
+				(pin
+					(num "40")
+					(name "V_{cc}")
+					(type "power_in")
+				)
+			)
+		)
+		(libpart
+			(lib "Simulation_SPICE")
+			(part "VDC")
+			(description "Voltage source, DC")
+			(docs "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec_Independent_Sources_for")
+			(fields
+				(field
+					(name "Reference") "V")
+				(field
+					(name "Value") "1")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet") "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec_Independent_Sources_for")
+				(field
+					(name "Description") "Voltage source, DC")
+				(field
+					(name "Sim.Pins") "1=+ 2=-")
+				(field
+					(name "Sim.Type") "DC")
+				(field
+					(name "Sim.Device") "V")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "Simulation_SPICE")
+			(part "VOLTMETER_DIFF")
+			(description "Differential voltmeter for simulation. The sensed differential voltage can be measured on the third terminal as a single-ended voltage")
+			(docs "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec__SUBCKT_Subcircuits")
+			(fields
+				(field
+					(name "Reference") "MES?")
+				(field
+					(name "Value") "VOLTMETER_DIFF")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet") "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec__SUBCKT_Subcircuits")
+				(field
+					(name "Description") "Differential voltmeter for simulation. The sensed differential voltage can be measured on the third terminal as a single-ended voltage")
+				(field
+					(name "Sim.Name") "kicad_builtin_vdiff")
+				(field
+					(name "Sim.Device") "SUBCKT")
+				(field
+					(name "Sim.Pins") "1=1 2=2 3=3")
+				(field
+					(name "Sim.Params")
+				)
+				(field
+					(name "Sim.Library") "${KICAD9_SYMBOL_DIR}/Simulation_SPICE.sp")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "+")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "-")
+					(type "passive")
+				)
+				(pin
+					(num "3")
+					(name "out")
+					(type "output")
+				)
+			)
+		)
+		(libpart
+			(lib "Simulation_SPICE")
+			(part "VPULSE")
+			(description "Voltage source, pulse")
+			(docs "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec_Independent_Sources_for")
+			(fields
+				(field
+					(name "Reference") "V")
+				(field
+					(name "Value") "VPULSE")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet") "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#sec_Independent_Sources_for")
+				(field
+					(name "Description") "Voltage source, pulse")
+				(field
+					(name "Sim.Pins") "1=+ 2=-")
+				(field
+					(name "Sim.Type") "PULSE")
+				(field
+					(name "Sim.Device") "V")
+				(field
+					(name "Sim.Params") "y1=0 y2=1 td=2n tr=2n tf=2n tw=50n per=100n")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "passive")
+				)
+				(pin
+					(num "2")
+					(name "")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "power")
+			(part "+5V")
+			(description "Power symbol creates a global label with name \"+5V\"")
+			(fields
+				(field
+					(name "Reference") "#PWR")
+				(field
+					(name "Value") "+5V")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Power symbol creates a global label with name \"+5V\"")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "power_in")
+				)
+			)
+		)
+		(libpart
+			(lib "power")
+			(part "GND")
+			(description "Power symbol creates a global label with name \"GND\" , ground")
+			(fields
+				(field
+					(name "Reference") "#PWR")
+				(field
+					(name "Value") "GND")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Power symbol creates a global label with name \"GND\" , ground")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "power_in")
+				)
+			)
+		)
+		(libpart
+			(lib "power")
+			(part "PWR_FLAG")
+			(description "Special symbol for telling ERC where power comes from")
+			(fields
+				(field
+					(name "Reference") "#FLG")
+				(field
+					(name "Value") "PWR_FLAG")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Special symbol for telling ERC where power comes from")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "")
+					(type "power_out")
+				)
+			)
+		)
+		(libpart
+			(lib "pr1314")
+			(part "INV1")
+			(description "Инвертор (74LS04), элемент A")
+			(fields
+				(field
+					(name "Reference") "U")
+				(field
+					(name "Value") "74LS04")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Инвертор (74LS04), элемент A")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "A")
+					(type "input")
+				)
+				(pin
+					(num "2")
+					(name "Y")
+					(type "output")
+				)
+			)
+		)
+		(libpart
+			(lib "pr1314")
+			(part "PROBE")
+			(description "Логический пробник")
+			(fields
+				(field
+					(name "Reference") "X")
+				(field
+					(name "Value") "PROBE")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Логический пробник")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "X")
+					(type "passive")
+				)
+			)
+		)
+		(libpart
+			(lib "pr1314")
+			(part "VIRT_ADC16")
+			(description "Виртуальный АЦП, 16 разрядов")
+			(fields
+				(field
+					(name "Reference") "A")
+				(field
+					(name "Value") "VIRT_ADC16")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Виртуальный АЦП, 16 разрядов")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "Vin")
+					(type "input")
+				)
+				(pin
+					(num "2")
+					(name "Vref+")
+					(type "input")
+				)
+				(pin
+					(num "3")
+					(name "Vref-")
+					(type "input")
+				)
+				(pin
+					(num "4")
+					(name "SOC")
+					(type "input")
+				)
+				(pin
+					(num "5")
+					(name "OE")
+					(type "input")
+				)
+				(pin
+					(num "6")
+					(name "EOC")
+					(type "output")
+				)
+				(pin
+					(num "7")
+					(name "D15")
+					(type "output")
+				)
+				(pin
+					(num "8")
+					(name "D14")
+					(type "output")
+				)
+				(pin
+					(num "9")
+					(name "D13")
+					(type "output")
+				)
+				(pin
+					(num "10")
+					(name "D12")
+					(type "output")
+				)
+				(pin
+					(num "11")
+					(name "D11")
+					(type "output")
+				)
+				(pin
+					(num "12")
+					(name "D10")
+					(type "output")
+				)
+				(pin
+					(num "13")
+					(name "D9")
+					(type "output")
+				)
+				(pin
+					(num "14")
+					(name "D8")
+					(type "output")
+				)
+				(pin
+					(num "15")
+					(name "D7")
+					(type "output")
+				)
+				(pin
+					(num "16")
+					(name "D6")
+					(type "output")
+				)
+				(pin
+					(num "17")
+					(name "D5")
+					(type "output")
+				)
+				(pin
+					(num "18")
+					(name "D4")
+					(type "output")
+				)
+				(pin
+					(num "19")
+					(name "D3")
+					(type "output")
+				)
+				(pin
+					(num "20")
+					(name "D2")
+					(type "output")
+				)
+				(pin
+					(num "21")
+					(name "D1")
+					(type "output")
+				)
+				(pin
+					(num "22")
+					(name "D0")
+					(type "output")
+				)
+			)
+		)
+		(libpart
+			(lib "pr1314")
+			(part "VIRT_DAC16")
+			(description "Виртуальный ЦАП, 16 разрядов")
+			(fields
+				(field
+					(name "Reference") "A")
+				(field
+					(name "Value") "VIRT_DAC16")
+				(field
+					(name "Footprint")
+				)
+				(field
+					(name "Datasheet")
+				)
+				(field
+					(name "Description") "Виртуальный ЦАП, 16 разрядов")
+			)
+			(pins
+				(pin
+					(num "1")
+					(name "D15")
+					(type "input")
+				)
+				(pin
+					(num "2")
+					(name "D14")
+					(type "input")
+				)
+				(pin
+					(num "3")
+					(name "D13")
+					(type "input")
+				)
+				(pin
+					(num "4")
+					(name "D12")
+					(type "input")
+				)
+				(pin
+					(num "5")
+					(name "D11")
+					(type "input")
+				)
+				(pin
+					(num "6")
+					(name "D10")
+					(type "input")
+				)
+				(pin
+					(num "7")
+					(name "D9")
+					(type "input")
+				)
+				(pin
+					(num "8")
+					(name "D8")
+					(type "input")
+				)
+				(pin
+					(num "9")
+					(name "D7")
+					(type "input")
+				)
+				(pin
+					(num "10")
+					(name "D6")
+					(type "input")
+				)
+				(pin
+					(num "11")
+					(name "D5")
+					(type "input")
+				)
+				(pin
+					(num "12")
+					(name "D4")
+					(type "input")
+				)
+				(pin
+					(num "13")
+					(name "D3")
+					(type "input")
+				)
+				(pin
+					(num "14")
+					(name "D2")
+					(type "input")
+				)
+				(pin
+					(num "15")
+					(name "D1")
+					(type "input")
+				)
+				(pin
+					(num "16")
+					(name "D0")
+					(type "input")
+				)
+				(pin
+					(num "17")
+					(name "Vout")
+					(type "output")
+				)
+			)
+		)
+	)
+	(libraries
+		(library
+			(logical "MCU_Microchip_8051")
+			(uri "/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/MCU_Microchip_8051.kicad_sym")
+		)
+		(library
+			(logical "Simulation_SPICE")
+			(uri "/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/Simulation_SPICE.kicad_sym")
+		)
+		(library
+			(logical "power")
+			(uri "/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/power.kicad_sym")
+		)
+		(library
+			(logical "pr1314")
+			(uri "${KIPRJMOD}/pr1314.kicad_sym")
+		)
+	)
+	(nets
+		(net
+			(code "1")
+			(name "+5V")
+			(class "Default")
+			(node
+				(ref "+5V1")
+				(pin "1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "PWR2")
+				(pin "1")
+				(pintype "power_out")
+			)
+			(node
+				(ref "U1")
+				(pin "40")
+				(pinfunction "V_{cc}_40")
+				(pintype "power_in")
+			)
+		)
+		(net
+			(code "2")
+			(name "/Задание 1. Исследование АЦП/D0")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "22")
+				(pinfunction "D0_22")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "16")
+				(pinfunction "D0_16")
+				(pintype "input")
+			)
+			(node
+				(ref "X0")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "3")
+			(name "/Задание 1. Исследование АЦП/D1")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "21")
+				(pinfunction "D1_21")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "15")
+				(pinfunction "D1_15")
+				(pintype "input")
+			)
+			(node
+				(ref "X1")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "4")
+			(name "/Задание 1. Исследование АЦП/D2")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "20")
+				(pinfunction "D2_20")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "14")
+				(pinfunction "D2_14")
+				(pintype "input")
+			)
+			(node
+				(ref "X2")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "5")
+			(name "/Задание 1. Исследование АЦП/D3")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "19")
+				(pinfunction "D3_19")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "13")
+				(pinfunction "D3_13")
+				(pintype "input")
+			)
+			(node
+				(ref "X3")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "6")
+			(name "/Задание 1. Исследование АЦП/D4")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "18")
+				(pinfunction "D4_18")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "12")
+				(pinfunction "D4_12")
+				(pintype "input")
+			)
+			(node
+				(ref "X4")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "7")
+			(name "/Задание 1. Исследование АЦП/D5")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "17")
+				(pinfunction "D5_17")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "11")
+				(pinfunction "D5_11")
+				(pintype "input")
+			)
+			(node
+				(ref "X5")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "8")
+			(name "/Задание 1. Исследование АЦП/D6")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "16")
+				(pinfunction "D6_16")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "10")
+				(pinfunction "D6_10")
+				(pintype "input")
+			)
+			(node
+				(ref "X6")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "9")
+			(name "/Задание 1. Исследование АЦП/D7")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "15")
+				(pinfunction "D7_15")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "9")
+				(pinfunction "D7_9")
+				(pintype "input")
+			)
+			(node
+				(ref "X7")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "10")
+			(name "/Задание 1. Исследование АЦП/D8")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "14")
+				(pinfunction "D8_14")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "8")
+				(pinfunction "D8_8")
+				(pintype "input")
+			)
+			(node
+				(ref "X8")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "11")
+			(name "/Задание 1. Исследование АЦП/D9")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "13")
+				(pinfunction "D9_13")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "7")
+				(pinfunction "D9_7")
+				(pintype "input")
+			)
+			(node
+				(ref "X9")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "12")
+			(name "/Задание 1. Исследование АЦП/D10")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "12")
+				(pinfunction "D10_12")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "6")
+				(pinfunction "D10_6")
+				(pintype "input")
+			)
+			(node
+				(ref "X10")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "13")
+			(name "/Задание 1. Исследование АЦП/D11")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "11")
+				(pinfunction "D11_11")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "5")
+				(pinfunction "D11_5")
+				(pintype "input")
+			)
+			(node
+				(ref "X11")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "14")
+			(name "/Задание 1. Исследование АЦП/D12")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "10")
+				(pinfunction "D12_10")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "4")
+				(pinfunction "D12_4")
+				(pintype "input")
+			)
+			(node
+				(ref "X12")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "15")
+			(name "/Задание 1. Исследование АЦП/D13")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "9")
+				(pinfunction "D13_9")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "3")
+				(pinfunction "D13_3")
+				(pintype "input")
+			)
+			(node
+				(ref "X13")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "16")
+			(name "/Задание 1. Исследование АЦП/D14")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "8")
+				(pinfunction "D14_8")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "2")
+				(pinfunction "D14_2")
+				(pintype "input")
+			)
+			(node
+				(ref "X14")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "17")
+			(name "/Задание 1. Исследование АЦП/D15")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "7")
+				(pinfunction "D15_7")
+				(pintype "output")
+			)
+			(node
+				(ref "A2")
+				(pin "1")
+				(pinfunction "D15_1")
+				(pintype "input")
+			)
+			(node
+				(ref "X15")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "18")
+			(name "/Задание 1. Исследование АЦП/OE")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "5")
+				(pinfunction "OE_5")
+				(pintype "input")
+			)
+			(node
+				(ref "U2")
+				(pin "2")
+				(pinfunction "Y_2")
+				(pintype "output")
+			)
+		)
+		(net
+			(code "19")
+			(name "/Задание 1. Исследование АЦП/SOC")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "4")
+				(pinfunction "SOC_4")
+				(pintype "input")
+			)
+			(node
+				(ref "U2")
+				(pin "1")
+				(pinfunction "A_1")
+				(pintype "input")
+			)
+			(node
+				(ref "V4")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "20")
+			(name "/Задание 1. Исследование АЦП/VIN")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "1")
+				(pinfunction "Vin_1")
+				(pintype "input")
+			)
+			(node
+				(ref "V3")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "21")
+			(name "/Задание 1. Исследование АЦП/VREF+")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "2")
+				(pinfunction "Vref+_2")
+				(pintype "input")
+			)
+			(node
+				(ref "V1")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "22")
+			(name "/Задание 2. МК-51 + АЦП/D0")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "22")
+				(pinfunction "D0_22")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "1")
+				(pinfunction "P1.0_1")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "23")
+			(name "/Задание 2. МК-51 + АЦП/D1")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "21")
+				(pinfunction "D1_21")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "2")
+				(pinfunction "P1.1_2")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "24")
+			(name "/Задание 2. МК-51 + АЦП/D2")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "20")
+				(pinfunction "D2_20")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "3")
+				(pinfunction "P1.2_3")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "25")
+			(name "/Задание 2. МК-51 + АЦП/D3")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "19")
+				(pinfunction "D3_19")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "4")
+				(pinfunction "P1.3_4")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "26")
+			(name "/Задание 2. МК-51 + АЦП/D4")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "18")
+				(pinfunction "D4_18")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "5")
+				(pinfunction "P1.4_5")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "27")
+			(name "/Задание 2. МК-51 + АЦП/D5")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "17")
+				(pinfunction "D5_17")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "6")
+				(pinfunction "P1.5_6")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "28")
+			(name "/Задание 2. МК-51 + АЦП/D6")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "16")
+				(pinfunction "D6_16")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "7")
+				(pinfunction "P1.6_7")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "29")
+			(name "/Задание 2. МК-51 + АЦП/D7")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "15")
+				(pinfunction "D7_15")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "8")
+				(pinfunction "P1.7/SCK_8")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "30")
+			(name "/Задание 2. МК-51 + АЦП/D8")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "14")
+				(pinfunction "D8_14")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "32")
+				(pinfunction "P0.7/AD7_32")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "31")
+			(name "/Задание 2. МК-51 + АЦП/D9")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "13")
+				(pinfunction "D9_13")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "33")
+				(pinfunction "P0.6/AD6_33")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "32")
+			(name "/Задание 2. МК-51 + АЦП/D10")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "12")
+				(pinfunction "D10_12")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "34")
+				(pinfunction "P0.5/AD5_34")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "33")
+			(name "/Задание 2. МК-51 + АЦП/D11")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "11")
+				(pinfunction "D11_11")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "35")
+				(pinfunction "P0.4/AD4_35")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "34")
+			(name "/Задание 2. МК-51 + АЦП/D12")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "10")
+				(pinfunction "D12_10")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "36")
+				(pinfunction "P0.3/AD3_36")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "35")
+			(name "/Задание 2. МК-51 + АЦП/D13")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "9")
+				(pinfunction "D13_9")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "37")
+				(pinfunction "P0.2/AD2_37")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "36")
+			(name "/Задание 2. МК-51 + АЦП/D14")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "8")
+				(pinfunction "D14_8")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "38")
+				(pinfunction "P0.1/AD1_38")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "37")
+			(name "/Задание 2. МК-51 + АЦП/D15")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "7")
+				(pinfunction "D15_7")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "39")
+				(pinfunction "P0.0/AD0_39")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "38")
+			(name "/Задание 2. МК-51 + АЦП/EOC")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "6")
+				(pinfunction "EOC_6")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "17")
+				(pinfunction "P3.7_17")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "39")
+			(name "/Задание 2. МК-51 + АЦП/SOC")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "4")
+				(pinfunction "SOC_4")
+				(pintype "input")
+			)
+			(node
+				(ref "U1")
+				(pin "16")
+				(pinfunction "P3.6_16")
+				(pintype "bidirectional")
+			)
+		)
+		(net
+			(code "40")
+			(name "/Задание 2. МК-51 + АЦП/VIN")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "1")
+				(pinfunction "Vin_1")
+				(pintype "input")
+			)
+			(node
+				(ref "V1")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "41")
+			(name "/Задание 2. МК-51 + АЦП/VREF+")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "2")
+				(pinfunction "Vref+_2")
+				(pintype "input")
+			)
+			(node
+				(ref "V2")
+				(pin "1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "42")
+			(name "GND")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "3")
+				(pinfunction "Vref-_3")
+				(pintype "input")
+			)
+			(node
+				(ref "A1")
+				(pin "5")
+				(pinfunction "OE_5")
+				(pintype "input")
+			)
+			(node
+				(ref "GND1")
+				(pin "1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "GND2")
+				(pin "1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "GND3")
+				(pin "1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "GND4")
+				(pin "1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "GND5")
+				(pin "1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "GND6")
+				(pin "1")
+				(pintype "power_in")
+			)
+			(node
+				(ref "PWR1")
+				(pin "1")
+				(pintype "power_out")
+			)
+			(node
+				(ref "U1")
+				(pin "2")
+				(pinfunction "-_2")
+				(pintype "passive")
+			)
+			(node
+				(ref "U1")
+				(pin "20")
+				(pinfunction "GND_20")
+				(pintype "power_in")
+			)
+			(node
+				(ref "V1")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "V2")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "V3")
+				(pin "2")
+				(pintype "passive")
+			)
+			(node
+				(ref "V4")
+				(pin "2")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "43")
+			(name "Net-(A1-EOC)")
+			(class "Default")
+			(node
+				(ref "A1")
+				(pin "6")
+				(pinfunction "EOC_6")
+				(pintype "output")
+			)
+			(node
+				(ref "X16")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "44")
+			(name "Net-(A2-Vout)")
+			(class "Default")
+			(node
+				(ref "A2")
+				(pin "17")
+				(pinfunction "Vout_17")
+				(pintype "output")
+			)
+			(node
+				(ref "U1")
+				(pin "1")
+				(pinfunction "+_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "45")
+			(name "Net-(U1-P2.0{slash}A8)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "21")
+				(pinfunction "P2.0/A8_21")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "X0")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "46")
+			(name "Net-(U1-P2.1{slash}A9)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "22")
+				(pinfunction "P2.1/A9_22")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "X1")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "47")
+			(name "Net-(U1-P2.2{slash}A10)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "23")
+				(pinfunction "P2.2/A10_23")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "X2")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "48")
+			(name "Net-(U1-P2.3{slash}A11)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "24")
+				(pinfunction "P2.3/A11_24")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "X3")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "49")
+			(name "Net-(U1-P2.4{slash}A12)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "25")
+				(pinfunction "P2.4/A12_25")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "X4")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "50")
+			(name "Net-(U1-P2.5{slash}A13)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "26")
+				(pinfunction "P2.5/A13_26")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "X5")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "51")
+			(name "Net-(U1-P2.6{slash}A14)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "27")
+				(pinfunction "P2.6/A14_27")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "X6")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "52")
+			(name "Net-(U1-P2.7{slash}A15)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "28")
+				(pinfunction "P2.7/A15_28")
+				(pintype "bidirectional")
+			)
+			(node
+				(ref "X7")
+				(pin "1")
+				(pinfunction "X_1")
+				(pintype "passive")
+			)
+		)
+		(net
+			(code "53")
+			(name "unconnected-(U1-ALE-Pad30)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "30")
+				(pinfunction "ALE_30")
+				(pintype "output+no_connect")
+			)
+		)
+		(net
+			(code "54")
+			(name "unconnected-(U1-P3.0-Pad10)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "10")
+				(pinfunction "P3.0_10")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "55")
+			(name "unconnected-(U1-P3.1-Pad11)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "11")
+				(pinfunction "P3.1_11")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "56")
+			(name "unconnected-(U1-P3.2-Pad12)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "12")
+				(pinfunction "P3.2_12")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "57")
+			(name "unconnected-(U1-P3.3-Pad13)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "13")
+				(pinfunction "P3.3_13")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "58")
+			(name "unconnected-(U1-P3.4-Pad14)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "14")
+				(pinfunction "P3.4_14")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "59")
+			(name "unconnected-(U1-P3.5-Pad15)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "15")
+				(pinfunction "P3.5_15")
+				(pintype "bidirectional+no_connect")
+			)
+		)
+		(net
+			(code "60")
+			(name "unconnected-(U1-RST-Pad9)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "9")
+				(pinfunction "RST_9")
+				(pintype "input+no_connect")
+			)
+		)
+		(net
+			(code "61")
+			(name "unconnected-(U1-XTAL1-Pad19)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "19")
+				(pinfunction "XTAL1_19")
+				(pintype "input+no_connect")
+			)
+		)
+		(net
+			(code "62")
+			(name "unconnected-(U1-XTAL2-Pad18)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "18")
+				(pinfunction "XTAL2_18")
+				(pintype "input+no_connect")
+			)
+		)
+		(net
+			(code "63")
+			(name "unconnected-(U1-out-Pad3)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "3")
+				(pinfunction "out_3")
+				(pintype "output+no_connect")
+			)
+		)
+		(net
+			(code "64")
+			(name "unconnected-(U1-~{EA}{slash}V_{pp}-Pad31)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "31")
+				(pinfunction "~{EA}/V_{pp}_31")
+				(pintype "input+no_connect")
+			)
+		)
+		(net
+			(code "65")
+			(name "unconnected-(U1-~{PSEN}-Pad29)")
+			(class "Default")
+			(node
+				(ref "U1")
+				(pin "29")
+				(pinfunction "~{PSEN}_29")
+				(pintype "output+no_connect")
+			)
+		)
+	)
+)

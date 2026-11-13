@@ -1,0 +1,64 @@
+[
+  {
+    "key": "tz_pr1314",
+    "type": "standard",
+    "authors": ["Клёсов Д.Н."],
+    "title": "Практическое занятие 13-14. Лабораторная работа № 7. Изучение принципов работы аналого-цифровых преобразователей",
+    "publisher": "Институт перспективных технологий и индустриального программирования, кафедра индустриального программирования",
+    "year": 2025,
+    "url": "local:prs/pr13-14/sources/Практическое занятие 13-14-1.pdf",
+    "accessed": "13.11.2026",
+    "note": "задание работы: исследование точности виртуального АЦП (рис. 58, табл. 17), подключение МК-51 к АЦП (рис. 60), варианты заданий (табл. 18): вариант 4 — 16-разрядный АЦП, Vref+ = +5 В, Vref- = 0 В"
+  },
+  {
+    "key": "at89c51_ds",
+    "type": "standard",
+    "authors": ["Microchip Technology"],
+    "title": "AT89C51 8-bit Microcontroller with 4K Bytes Flash",
+    "publisher": "Microchip Technology",
+    "year": 2024,
+    "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/doc0313.pdf",
+    "accessed": "13.11.2026",
+    "note": "назначение выводов микроконтроллера AT89C51 (порты P0…P3), квази-двунаправленные порты, подтяжка линий при чтении"
+  },
+  {
+    "key": "kicad10_docs",
+    "type": "web",
+    "authors": ["KiCad"],
+    "title": "KiCad documentation: Schematic editor and file format",
+    "year": 2026,
+    "url": "https://docs.kicad.org/10.0/en/eeschema/eeschema.html",
+    "accessed": "13.11.2026",
+    "note": "оформление схем в KiCad 10: метки цепей, силовые символы, проверка ERC, экспорт SVG схем"
+  },
+  {
+    "key": "proteus_instruments",
+    "type": "web",
+    "authors": ["Labcenter Electronics"],
+    "title": "Virtual Instruments (Proteus): Virtual Terminal и Logic Analyser",
+    "year": 2026,
+    "url": "https://www.labcenter.com/instruments",
+    "accessed": "13.11.2026",
+    "note": "средства моделирования микроконтроллерных схем в Proteus 8.17: виртуальные пробники и индикаторы"
+  },
+  {
+    "key": "platformio_mcs51",
+    "type": "web",
+    "authors": ["PlatformIO"],
+    "title": "Intel MCS-51 (8051) platform",
+    "year": 2026,
+    "url": "https://docs.platformio.org/en/latest/platforms/intel_mcs51.html",
+    "accessed": "13.11.2026",
+    "note": "сборка прошивки для микроконтроллеров MCS-51 в PlatformIO (компилятор SDCC, плата AT89C51)"
+  },
+  {
+    "key": "multisim_adc",
+    "type": "web",
+    "authors": ["NI"],
+    "title": "Multisim HELP: Mixed components, ADC and DAC",
+    "year": 2024,
+    "url": "https://www.ni.com/en-us/support/documentation/supplemental/11/multisim-components.html",
+    "accessed": "13.11.2026",
+    "note": "виртуальные 8- и 16-разрядные АЦП и ЦАП из группы Mixed: назначение выводов Vin, Vref+, Vref-, D0…D15, SOC, EOC, OE"
+  }
+]

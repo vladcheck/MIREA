@@ -1,0 +1,6 @@
+(sym_lib_table
+  (lib (name "pr1314") (type "KiCad") (uri "${KIPRJMOD}/pr1314.kicad_sym") (options "") (descr "Виртуальные модели АЦП/ЦАП и пробники ПР 13-14"))
+  (lib (name "power") (type "KiCad") (uri "/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/power.kicad_sym") (options "") (descr "Power symbols"))
+  (lib (name "Simulation_SPICE") (type "KiCad") (uri "/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/Simulation_SPICE.kicad_sym") (options "") (descr "SPICE sources"))
+  (lib (name "MCU_Microchip_8051") (type "KiCad") (uri "/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/MCU_Microchip_8051.kicad_sym") (options "") (descr "8051 MCUs"))
+)

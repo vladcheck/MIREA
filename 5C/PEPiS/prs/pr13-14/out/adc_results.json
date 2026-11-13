@@ -1,0 +1,262 @@
+{
+  "example": {
+    "bits": 8,
+    "vref_p": 5.0,
+    "vref_m": 0.0,
+    "u_in": 1.0,
+    "expected_probe_code": 51,
+    "model_code": 51,
+    "p2_probe_code": 51
+  },
+  "variant4": {
+    "bits": 16,
+    "vref_p": 5.0,
+    "vref_m": 0.0,
+    "levels": 65536,
+    "lsb_v": 7.62939453125e-05,
+    "d_per_volt": 13107.2,
+    "t_conv_us": 10.0,
+    "v4_freq_hz": 1000.0
+  },
+  "tz_table17": [
+    {
+      "u_in": 0.1,
+      "u_dac": 0.09375,
+      "code_bin": "10000100",
+      "code_hex": "84",
+      "code_probe": 132,
+      "code_dec": 4,
+      "d_calc": 4.27,
+      "d_u_pct": 6.25
+    },
+    {
+      "u_in": 0.5,
+      "u_dac": 0.5156,
+      "code_bin": "10010101",
+      "code_hex": "95",
+      "code_probe": 149,
+      "code_dec": 21,
+      "d_calc": 21.33,
+      "d_u_pct": 3.12
+    },
+    {
+      "u_in": 1.0,
+      "u_dac": 0.9644,
+      "code_bin": "10101010",
+      "code_hex": "AA",
+      "code_probe": 170,
+      "code_dec": 42,
+      "d_calc": 42.67,
+      "d_u_pct": 3.56
+    },
+    {
+      "u_in": 2.0,
+      "u_dac": 2.017,
+      "code_bin": "11010101",
+      "code_hex": "D5",
+      "code_probe": 213,
+      "code_dec": 85,
+      "d_calc": 85.34,
+      "d_u_pct": 0.85
+    },
+    {
+      "u_in": 2.5,
+      "u_dac": 2.484,
+      "code_bin": "11101010",
+      "code_hex": "EA",
+      "code_probe": 234,
+      "code_dec": 106,
+      "d_calc": 106.67,
+      "d_u_pct": 0.64
+    },
+    {
+      "u_in": 2.9,
+      "u_dac": 2.906,
+      "code_bin": "11111011",
+      "code_hex": "FB",
+      "code_probe": 251,
+      "code_dec": 123,
+      "d_calc": 123.74,
+      "d_u_pct": 0.21
+    },
+    {
+      "u_in": -1.0,
+      "u_dac": -0.9844,
+      "code_bin": "01010101",
+      "code_hex": "55",
+      "code_probe": 85,
+      "code_dec": -43,
+      "d_calc": -42.67,
+      "d_u_pct": 3.56
+    }
+  ],
+  "variant4_table17": [
+    {
+      "u_in": 0.1,
+      "u_dac": 0.099945,
+      "code_bin": "0000010100011110",
+      "code_hex": "051E",
+      "code_dec": 1310,
+      "d_calc": 1310.72,
+      "d_u_pct": -0.05
+    },
+    {
+      "u_in": 0.5,
+      "u_dac": 0.499954,
+      "code_bin": "0001100110011001",
+      "code_hex": "1999",
+      "code_dec": 6553,
+      "d_calc": 6553.6,
+      "d_u_pct": -0.01
+    },
+    {
+      "u_in": 1.0,
+      "u_dac": 0.999985,
+      "code_bin": "0011001100110011",
+      "code_hex": "3333",
+      "code_dec": 13107,
+      "d_calc": 13107.2,
+      "d_u_pct": -0.0
+    },
+    {
+      "u_in": 1.5,
+      "u_dac": 1.499939,
+      "code_bin": "0100110011001100",
+      "code_hex": "4CCC",
+      "code_dec": 19660,
+      "d_calc": 19660.8,
+      "d_u_pct": -0.0
+    },
+    {
+      "u_in": 2.0,
+      "u_dac": 1.999969,
+      "code_bin": "0110011001100110",
+      "code_hex": "6666",
+      "code_dec": 26214,
+      "d_calc": 26214.4,
+      "d_u_pct": -0.0
+    },
+    {
+      "u_in": 2.5,
+      "u_dac": 2.5,
+      "code_bin": "1000000000000000",
+      "code_hex": "8000",
+      "code_dec": 32768,
+      "d_calc": 32768.0,
+      "d_u_pct": 0.0
+    },
+    {
+      "u_in": 3.0,
+      "u_dac": 2.999954,
+      "code_bin": "1001100110011001",
+      "code_hex": "9999",
+      "code_dec": 39321,
+      "d_calc": 39321.6,
+      "d_u_pct": -0.0
+    },
+    {
+      "u_in": 4.0,
+      "u_dac": 3.999939,
+      "code_bin": "1100110011001100",
+      "code_hex": "CCCC",
+      "code_dec": 52428,
+      "d_calc": 52428.8,
+      "d_u_pct": -0.0
+    },
+    {
+      "u_in": 4.5,
+      "u_dac": 4.499969,
+      "code_bin": "1110011001100110",
+      "code_hex": "E666",
+      "code_dec": 58982,
+      "d_calc": 58982.4,
+      "d_u_pct": -0.0
+    },
+    {
+      "u_in": 4.9,
+      "u_dac": 4.899979,
+      "code_bin": "1111101011100001",
+      "code_hex": "FAE1",
+      "code_dec": 64225,
+      "d_calc": 64225.28,
+      "d_u_pct": -0.0
+    }
+  ],
+  "variant4_mcu": [
+    {
+      "u_in": 1.0,
+      "code": 13107,
+      "p2_low": 51,
+      "p0_in": 51,
+      "p1_in": 51,
+      "probes": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "u_in": 2.5,
+      "code": 32768,
+      "p2_low": 0,
+      "p0_in": 128,
+      "p1_in": 0,
+      "probes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "u_in": 4.0,
+      "code": 52428,
+      "p2_low": 204,
+      "p0_in": 204,
+      "p1_in": 204,
+      "probes": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ]
+    }
+  ]
+}
