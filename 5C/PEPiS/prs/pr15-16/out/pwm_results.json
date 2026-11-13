@@ -1,0 +1,54 @@
+{
+  "results": [
+    {
+      "name": "example",
+      "title": "Учебный пример",
+      "fosc_hz": 11059200,
+      "rcap2h": "0x00",
+      "rcap2l": "0x00",
+      "tmp_cnt": 4000,
+      "expected": {
+        "reload_dec": 0,
+        "reload_hex": "0x0000",
+        "span_mc": 65536,
+        "period_s": 0.07111111111111111,
+        "high_s": 0.004340277777777778,
+        "duty_pct": 6.103515625
+      },
+      "measured": {
+        "period_mc": 65536.0,
+        "period_s": 0.07111111111111111,
+        "high_mc": 4002.0,
+        "high_s": 0.004342447916666666,
+        "duty_pct": 6.1065673828125
+      },
+      "period_deviation_pct": 0.0,
+      "duty_deviation_pct": 0.05
+    },
+    {
+      "name": "variant4",
+      "title": "Индивидуальный вариант 4",
+      "fosc_hz": 13000000,
+      "rcap2h": "0x02",
+      "rcap2l": "0x18",
+      "tmp_cnt": 48750,
+      "expected": {
+        "reload_dec": 536,
+        "reload_hex": "0x0218",
+        "span_mc": 65000,
+        "period_s": 0.060000000000000005,
+        "high_s": 0.045000000000000005,
+        "duty_pct": 75.0
+      },
+      "measured": {
+        "period_mc": 65000.0,
+        "period_s": 0.060000000000000005,
+        "high_mc": 48752.0,
+        "high_s": 0.045001846153846156,
+        "duty_pct": 75.00307692307693
+      },
+      "period_deviation_pct": 0.0,
+      "duty_deviation_pct": 0.004102564102576404
+    }
+  ]
+}

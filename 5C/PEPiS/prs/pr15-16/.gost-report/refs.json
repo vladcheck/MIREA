@@ -1,0 +1,63 @@
+[
+  {
+    "key": "tz",
+    "type": "book",
+    "authors": ["Клёсов Д.Н."],
+    "title": "Лабораторная работа № 8. Исследование широтно-импульсной модуляции, реализованной микроконтроллером МК-52",
+    "publisher": "МИРЭА, Российский технологический университет, Институт перспективных технологий и индустриального программирования",
+    "year": 2025,
+    "note": "методические указания к практическому занятию 15-16: режимы таймера Т/С2 МК-52, расчёт регистров RCAP2H/RCAP2L, формулы периода и скважности, варианты задания (таблица 19), контрольные вопросы"
+  },
+  {
+    "key": "sdccman",
+    "type": "web",
+    "authors": ["SDCC Team"],
+    "title": "SDCC User Manual: MCS-51 compiler, header 8052.h, interrupt pragmas",
+    "edition": "SDCC 4.4.0",
+    "year": 2024,
+    "url": "https://sdcc.sourceforge.net/doc/sdccman.pdf",
+    "accessed": "13.11.2026",
+    "note": "сборка прошивки МК-52 (8052) компилятором SDCC: заголовочный файл 8052.h с объявлениями __sfr/__sbit, атрибуты __interrupt(5) и __using(2) обработчика прерывания таймера 2"
+  },
+  {
+    "key": "at89c52",
+    "type": "standard",
+    "authors": ["Microchip Technology"],
+    "title": "AT89C52 8-bit Microcontroller with 8K Bytes Flash: datasheet",
+    "publisher": "Microchip Technology",
+    "year": 2020,
+    "url": "https://ww1.microchip.com/downloads/en/DeviceDoc/doc0313.pdf",
+    "accessed": "13.11.2026",
+    "note": "назначение выводов 8052-совместимого МК (P1.0/T2, XTAL1/XTAL2, RST, EA), состав таймера Т/С2 и регистров T2CON, RCAP2H, RCAP2L, вектор прерывания 002Bh"
+  },
+  {
+    "key": "proteus_instruments",
+    "type": "web",
+    "authors": ["Labcenter Electronics"],
+    "title": "Virtual Instruments (Proteus): осциллограф и логический анализатор",
+    "year": 2026,
+    "url": "https://www.labcenter.com/instruments",
+    "accessed": "13.11.2026",
+    "note": "наблюдение осциллограмм ШИМ на выводе P1.0 виртуальным осциллографом при моделировании схемы с МК-52"
+  },
+  {
+    "key": "platformio_mcs51",
+    "type": "web",
+    "authors": ["PlatformIO"],
+    "title": "PlatformIO: Intel MCS-51 (8051) platform",
+    "year": 2026,
+    "url": "https://docs.platformio.org/en/latest/platforms/intel_mcs51.html",
+    "accessed": "13.11.2026",
+    "note": "сборка прошивок для Generic 8052 платформой intel_mcs51 (toolchain-sdcc), получение файлов firmware.hex для поля Program File модели МК"
+  },
+  {
+    "key": "mcs51_guide",
+    "type": "web",
+    "authors": ["Hristov S."],
+    "title": "8051 Tutorial: Timer 2 (8052), auto-reload and capture modes",
+    "year": 2022,
+    "url": "https://www.8051projects.net/wiki/Timer2_Autoreload",
+    "accessed": "13.11.2026",
+    "note": "режим автоперезагрузки таймера 2 (CP/RL2 = 0), период счёта (65536 - RCAP2) машинных циклов, флаг TF2 и вектор прерывания"
+  }
+]

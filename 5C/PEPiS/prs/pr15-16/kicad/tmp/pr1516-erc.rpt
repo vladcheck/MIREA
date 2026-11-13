@@ -1,0 +1,90 @@
+ERC report (2026-11-13T15:04:46, Encoding UTF8)
+Report includes: Errors, Warnings
+
+***** Sheet /
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(57.15 mm, 91.44 mm): Symbol PWR6 [PWR_FLAG]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (Connector*:*_1x??_*)
+    ; warning
+    @(58.42 mm, 60.96 mm): Symbol J1 [Conn_01x02]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Connector_Generic'
+    ; warning
+    @(58.42 mm, 60.96 mm): Symbol J1 [Conn_01x02]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(60.96 mm, 91.44 mm): Symbol GND1 [GND]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (C_*)
+    ; warning
+    @(60.96 mm, 95.25 mm): Symbol C1 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(60.96 mm, 95.25 mm): Symbol C1 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(63.50 mm, 58.42 mm): Symbol GND5 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(63.50 mm, 68.58 mm): Symbol GND3 [GND]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(63.50 mm, 74.93 mm): Symbol R1 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(63.50 mm, 74.93 mm): Symbol R1 [R]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (Crystal*)
+    ; warning
+    @(64.77 mm, 101.60 mm): Symbol Y1 [Crystal]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(64.77 mm, 101.60 mm): Symbol Y1 [Crystal]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (C_*)
+    ; warning
+    @(68.58 mm, 85.09 mm): Symbol C3 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(68.58 mm, 85.09 mm): Symbol C3 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(68.58 mm, 88.90 mm): Symbol PWR1 [+5V]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(68.58 mm, 91.44 mm): Symbol GND2 [GND]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (C_*)
+    ; warning
+    @(68.58 mm, 95.25 mm): Symbol C2 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(68.58 mm, 95.25 mm): Symbol C2 [C]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(71.12 mm, 88.90 mm): Symbol PWR5 [PWR_FLAG]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(71.12 mm, 109.22 mm): Symbol GND4 [GND]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(73.66 mm, 71.12 mm): Symbol PWR2 [+5V]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Switch'
+    ; warning
+    @(73.66 mm, 76.20 mm): Symbol SW1 [SW_Push]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'PEPiS'
+    ; warning
+    @(81.28 mm, 60.96 mm): Symbol U1 [MK52]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(121.92 mm, 109.22 mm): Symbol PWR3 [+5V]
+[footprint_filter]: Assigned footprint () doesn't match footprint filters (R_*)
+    ; warning
+    @(124.46 mm, 86.36 mm): Symbol R2 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'Device'
+    ; warning
+    @(124.46 mm, 86.36 mm): Symbol R2 [R]
+[lib_symbol_issues]: The current configuration does not include the symbol library 'power'
+    ; warning
+    @(128.27 mm, 88.90 mm): Symbol PWR4 [+5V]
+
+ ** ERC messages: 27  Errors 0  Warnings 27
+
+ ** Ignored checks:
+    - SPICE model issue
