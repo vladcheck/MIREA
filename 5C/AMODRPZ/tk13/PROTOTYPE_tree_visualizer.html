@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ПРОТОТИП — Как дерево решений учится на данных</title>
+<style>
+  :root { --accent:#2563eb; --surv:#16a34a; --dead:#2563eb; --bg:#f8fafc; --card:#ffffff; --text:#1e293b; --muted:#64748b; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif; background:var(--bg); color:var(--text); padding:24px; max-width:1280px; margin:0 auto; }
+  .badge { display:inline-block; background:var(--accent); color:#fff; font-weight:700; font-size:12px; padding:3px 10px; border-radius:4px; letter-spacing:1px; }
+  h1 { font-size:22px; margin:10px 0 6px; line-height:1.35; }
+  .intro p.note { color:var(--muted); font-size:13px; margin-top:4px; }
+  .card { background:var(--card); border:1px solid #e2e8f0; border-radius:10px; padding:16px; }
+  .layout { display:grid; grid-template-columns: 540px 1fr; gap:16px; margin-top:16px; }
+  @media (max-width:1100px){ .layout { grid-template-columns:1fr; } }
+  h2 { font-size:15px; margin-bottom:10px; color:var(--text); }
+  .panel { margin-top:16px; }
+  .state-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; font-size:14px; }
+  .state-grid .lbl { color:var(--muted); font-size:12px; }
+  .state-grid .val { font-weight:600; font-size:15px; }
+  button { background:var(--accent); color:#fff; border:none; border-radius:6px; padding:9px 14px; font-size:14px; cursor:pointer; margin:4px 4px 4px 0; }
+  button:hover { filter:brightness(1.1); }
+  button.secondary { background:#e2e8f0; color:var(--text); }
+  button:disabled { opacity:.4; cursor:default; }
+  .controls label { font-size:14px; margin-right:14px; display:inline-block; margin-top:6px; }
+  input[type=range] { vertical-align:middle; }
+  select { font-size:14px; padding:4px 6px; }
+  .tabs { display:flex; gap:6px; margin-top:16px; flex-wrap:wrap; }
+  .tabbtn { background:#e2e8f0; color:var(--text); }
+  .tabbtn.active { background:var(--accent); color:#fff; }
+  .walkthrough { margin-top:10px; }
+  .walkthrough p { font-size:14px; line-height:1.5; margin-bottom:10px; }
+  .walkstep { background:#fff; border:1px solid var(--accent); color:var(--accent); }
+  .legend { font-size:13px; color:var(--muted); margin-top:6px; }
+  .dot { display:inline-block; width:10px; height:10px; border-radius:50%; margin:0 4px 0 10px; vertical-align:middle; }
+  .explain { background:#eff6ff; border-left:3px solid var(--accent); padding:10px 12px; font-size:14px; border-radius:0 6px 6px 0; margin-top:10px; line-height:1.5; }
+  svg text { font-family:inherit; }
+</style>
+</head>
+<body>
+
+<div class="intro card">
+  <span class="badge">ПРОТОТИП</span>
+  <h1>Как дерево решений выбирает разбиения на обучающей выборке, и как <b>max_depth</b> и <b>min_samples_leaf</b> меняют итоговое дерево?</h1>
+  <p class="note">Одноразовый демо-прототип для ТК13, не часть практической работы.</p>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div class="walkthrough card" id="walkPanel" style="display:none"></div>
+
+<div class="layout">
+  <div class="card">
+    <h2>Обучающая выборка (возраст × тариф)</h2>
+    <svg id="plot" width="500" height="420" viewBox="0 0 500 420"></svg>
+    <div class="legend">
+      <span class="dot" style="background:var(--surv)"></span>выжил
+      <span class="dot" style="background:var(--dead)"></span>погиб
+      <span class="dot" style="background:none;border:2px dashed #ef4444;width:8px;height:8px"></span>шумовая точка
+    </div>
+  </div>
+  <div class="card">
+    <h2>Дерево (текущее состояние)</h2>
+    <div id="treeBox"></div>
+  </div>
+</div>
+
+<div class="card panel">
+  <h2>Состояние обучения</h2>
+  <div class="state-grid" id="statePanel"></div>
+  <div class="explain" id="explain"></div>
+</div>
+
+<div class="card panel controls">
+  <h2>Управление</h2>
+  <button id="btnStep">Шаг: построить следующее разбиение</button>
+  <button id="btnAll">Построить всё дерево</button>
+  <button id="btnReset" class="secondary">Сброс</button>
+  <br>
+  <label>max_depth: <span id="mdVal">3</span>
+    <input type="range" id="md" min="1" max="6" step="1" value="3">
+  </label>
+  <label>min_samples_leaf: <span id="mslVal">1</span>
+    <input type="range" id="msl" min="1" max="6" step="1" value="1">
+  </label>
+  <label>Критерий:
+    <select id="crit">
+      <option value="gini">Джини</option>
+      <option value="entropy">Энтропия</option>
+    </select>
+  </label>
+</div>
+
+<!-- ============ PURE MODULE (no DOM) ============ -->
+<script id="pure-module">
+// ===== Данные: 26 точек, признаки: возраст (0-80), тариф (0-100) =====
+function makeDataset(){
+  const pts = [];
+  // Два чистых скопления: выжившие (низкий тариф) и погибшие (высокий тариф)
+  const surv = [[22,18],[30,25],[45,30],[60,22],[70,35],[25,40],[38,15],[52,28],[65,18],[33,33],[47,20],[28,12]];
+  const dead = [[20,70],[35,80],[50,75],[62,85],[72,68],[28,88],[42,65],[55,92],[68,78],[40,72],[58,60],[75,82],[48,95]];
+  surv.forEach(p=>pts.push({x:p[0],y:p[1],cls:1,noise:false}));
+  dead.forEach(p=>pts.push({x:p[1]!==undefined?p[0]:p[0],y:p[1],cls:0,noise:false}));
+  // 3 шумовые точки: враги чистых границ
+  pts.push({x:24,y:62,cls:1,noise:true});  // выживший с дорогим тарифом
+  pts.push({x:66,y:30,cls:0,noise:true});  // погибший с дешёвым тарифом
+  pts.push({x:45,y:52,cls:1,noise:true});  // выживший в середине
+  return pts;
+}
+
+function gini(labels){
+  if(labels.length===0) return 0;
+  const c={};
+  labels.forEach(l=>c[l]=(c[l]||0)+1);
+  let s=0;
+  for(const k in c){ const p=c[k]/labels.length; s+=p*p; }
+  return 1-s;
+}
+function entropy(labels){
+  if(labels.length===0) return 0;
+  const c={};
+  labels.forEach(l=>c[l]=(c[l]||0)+1);
+  let s=0;
+  for(const k in c){ const p=c[k]/labels.length; if(p>0) s-=p*Math.log2(p); }
+  return s;
+}
+function impurity(labels,crit){ return crit==='entropy' ? entropy(labels) : gini(labels); }
+
+// Перебираем пороги — середины между соседними уникальными значениями признака
+function bestSplit(points, criterion){
+  let best=null;
+  const n=points.length;
+  const before=impurity(points.map(p=>p.cls),criterion);
+  ['x','y'].forEach(f=>{
+    const vals=[...new Set(points.map(p=>p[f]))].sort((a,b)=>a-b);
+    for(let i=0;i<vals.length-1;i++){
+      const thr=(vals[i]+vals[i+1])/2;
+      const left=points.filter(p=>p[f]<=thr);
+      const right=points.filter(p=>p[f]>thr);
+      if(left.length===0||right.length===0) continue;
+      const gain=before-(left.length/n)*impurity(left.map(p=>p.cls),criterion)
+                       -(right.length/n)*impurity(right.map(p=>p.cls),criterion);
+      if(!best||gain>best.gain){
+        best={feature:f,threshold:thr,gain,left,right,giniBefore:before,
+              giniLeft:impurity(left.map(p=>p.cls),criterion),
+              giniRight:impurity(right.map(p=>p.cls),criterion)};
+      }
+    }
+  });
+  return best;
+}
+
+function majority(points){
+  let c1=0; points.forEach(p=>{ if(p.cls===1)c1++; });
+  return c1>=points.length-c1 ? 1 : 0;
+}
+
+// Построение всего дерева сразу (стоп-правила как в sklearn)
+function buildTree(points, opts){
+  const {maxDepth=3, minSamplesLeaf=1, criterion='gini'}=opts||{};
+  function rec(pts, depth){
+    const counts={0:0,1:0}; pts.forEach(p=>counts[p.cls]++);
+    const labels=pts.map(p=>p.cls);
+    const isPure=counts[0]===0||counts[1]===0;
+    const base={depth, count:pts.length, classCounts:counts, gini:gini(labels),
+                prediction:majority(pts), points:pts};
+    if(isPure) return Object.assign({leaf:true},base);
+    if(depth>=maxDepth) return Object.assign({leaf:true},base);
+    if(pts.length<2*minSamplesLeaf) return Object.assign({leaf:true},base);
+    const sp=bestSplit(pts,criterion);
+    if(!sp||sp.gain<=1e-12) return Object.assign({leaf:true},base);
+    // защита: дети не меньше minSamplesLeaf
+    if(sp.left.length<minSamplesLeaf||sp.right.length<minSamplesLeaf) return Object.assign({leaf:true},base);
+    return Object.assign({leaf:false,feature:sp.feature,threshold:sp.threshold,gain:sp.gain},base,{
+      left:rec(sp.left,depth+1), right:rec(sp.right,depth+1)
+    });
+  }
+  return rec(points,0);
+}
+
+// Пошаговое построение: nextSplit делает ОДНО разбиение
+function makeStepper(points, opts){
+  const {maxDepth=3,minSamplesLeaf=1,criterion='gini'}=opts||{};
+  // Копируем точки (без ссылок на внешние)
+  const pts=points.map(p=>({x:p.x,y:p.y,cls:p.cls,noise:p.noise}));
+  // Дерево начинается как лист-корень
+  function leafOf(ps,depth){
+    const counts={0:0,1:0}; ps.forEach(p=>counts[p.cls]++);
+    return {leaf:true,depth,count:ps.length,classCounts:counts,
+            gini:gini(ps.map(p=>p.cls)),prediction:majority(ps),points:ps};
+  }
+  const root=leafOf(pts,0);
+  // Очередь внутренних кандидатов: листья, которые ещё можно разбить
+  const queue=[root];
+  const history=[];
+  const state={tree:root, done:false, steps:0, history, criterion};
+  function canSplit(node){
+    if(node.leaf===false) return false;
+    const counts=node.classCounts;
+    if(counts[0]===0||counts[1]===0) return false;
+    if(node.depth>=maxDepth) return false;
+    if(node.count<2*minSamplesLeaf) return false;
+    return true;
+  }
+  function nextSplit(){
+    // найдём следующий разбиваемый лист (по глубине, как в DFS)
+    while(queue.length && !canSplit(queue[queue.length-1])) queue.pop();
+    if(!queue.length){ state.done=true; return null; }
+    const node=queue[queue.length-1];
+    const sp=bestSplit(node.points,criterion);
+    if(!sp||sp.gain<=1e-12||sp.left.length<minSamplesLeaf||sp.right.length<minSamplesLeaf){
+      queue.pop(); return nextSplit(); // этот лист нельзя разбить — пробуем следующий
+    }
+    // второй по величине кандидат (для сравнения)
+    let runner=null;
+    const n=node.points.length;
+    ['x','y'].forEach(f=>{
+      const vals=[...new Set(node.points.map(p=>p[f]))].sort((a,b)=>a-b);
+      for(let i=0;i<vals.length-1;i++){
+        const thr=(vals[i]+vals[i+1])/2;
+        if(node.feature===f && Math.abs(thr-node.threshold)<1e-9) continue;
+        const L=node.points.filter(p=>p[f]<=thr), R=node.points.filter(p=>p[f]>thr);
+        if(!L.length||!R.length) continue;
+        const g=node.gini-(L.length/n)*gini(L.map(p=>p.cls))-(R.length/n)*gini(R.map(p=>p.cls));
+        if((!runner||g>runner.gain) && !(f===sp.feature && Math.abs(thr-sp.threshold)<1e-9))
+          runner={feature:f,threshold:thr,gain:g};
+      }
+    });
+    node.leaf=false;
+    node.feature=sp.feature; node.threshold=sp.threshold; node.gain=sp.gain;
+    node.left=leafOf(sp.left,node.depth+1);
+    node.right=leafOf(sp.right,node.depth+1);
+    node.splitInfo={runnerUp:runner, giniBefore:sp.giniBefore, giniLeft:sp.giniLeft, giniRight:sp.giniRight};
+    queue.push(node.left,node.right);
+    state.steps++;
+    history.push({node, split:sp, runner});
+    return {node, split:sp, runner};
+  }
+  state.nextSplit=nextSplit;
+  state.buildAll=function(){ let r; while((r=nextSplit())){} return state.tree; };
+  return state;
+}
+
+function countLeaves(node){
+  if(node.leaf) return 1;
+  return countLeaves(node.left)+countLeaves(node.right);
+}
+function treeDepth(node){
+  if(node.leaf) return node.depth;
+  return Math.max(treeDepth(node.left),treeDepth(node.right));
+}
+function predict(node,p){
+  while(!node.leaf){ node = p[node.feature]<=node.threshold ? node.left : node.right; }
+  return node.prediction;
+}
+function trainAccuracy(tree,points){
+  let ok=0; points.forEach(p=>{ if(predict(tree,p)===p.cls) ok++; });
+  return ok/points.length;
+}
+
+const TREE_MODULE = {makeDataset,gini,entropy,bestSplit,buildTree,makeStepper,
+                     countLeaves,treeDepth,predict,trainAccuracy};
+if(typeof module!=='undefined') module.exports=TREE_MODULE;
+</script>
+
+<!-- ============ PAGE SHELL ============ -->
+<script>
+(function(){
+const M = TREE_MODULE;
+const DATA = M.makeDataset();
+const W=500,H=420,PX=50,PY=25;
+function sx(x){ return PX + x/80*(W-PX-15); }
+function sy(y){ return H-PY - y/100*(H-PY-15); }
+
+let params = {maxDepth:3, minSamplesLeaf:1, criterion:'gini'};
+let stepper = null;
+let lastStep = null;
+let activeTab = null; // null = свободный режим
+
+const fmt = v => (Math.round(v*100)/100).toString();
+
+// ---------- отрисовка ----------
+function renderPlot(){
+  const tree = stepper.tree;
+  let s = `<rect x="0" y="0" width="${W}" height="${H}" fill="#fff"/>`;
+  // оси
+  s += `<line x1="${PX}" y1="10" x2="${PX}" y2="${H-PY}" stroke="#94a3b8"/>`;
+  s += `<line x1="${PX}" y1="${H-PY}" x2="${W-10}" y2="${H-PY}" stroke="#94a3b8"/>`;
+  s += `<text x="${W/2}" y="${H-4}" font-size="12" fill="#64748b" text-anchor="middle">возраст</text>`;
+  s += `<text x="14" y="${H/2}" font-size="12" fill="#64748b" text-anchor="middle" transform="rotate(-90 14 ${H/2})">тариф</text>`;
+  [0,20,40,60,80].forEach(v=>{ s+=`<text x="${sx(v)}" y="${H-PY+14}" font-size="10" fill="#94a3b8" text-anchor="middle">${v}</text>`; });
+  [0,25,50,75,100].forEach(v=>{ s+=`<text x="${PX-6}" y="${sy(v)+3}" font-size="10" fill="#94a3b8" text-anchor="end">${v}</text>`; });
+
+  // листья → подсветка областей: проходим сеткой
+  if(tree && !(tree.leaf)){
+    for(let gx=0;gx<80;gx+=2){
+      for(let gy=0;gy<100;gy+=2){
+        const p={x:gx+1,y:gy+1};
+        const pred=M.predict(tree,p);
+        s+=`<rect x="${sx(gx)}" y="${sy(gy+2)}" width="${sx(gx+2)-sx(gx)}" height="${sy(gy)-sy(gy+2)}" fill="${pred===1?'#16a34a':'#2563eb'}" opacity="0.06"/>`;
+      }
+    }
+  }
+  // линии разбиений
+  function lines(node,x0,x1,y0,y1){
+    if(!node||node.leaf) return '';
+    let out='';
+    if(node.feature==='x'){
+      const X=sx(node.threshold);
+      out+=`<line x1="${X}" y1="${y0}" x2="${X}" y2="${y1}" stroke="#1e293b" stroke-width="2"/>`;
+      out+=lines(node.left,x0,node.threshold,y0,y1)+lines(node.right,node.threshold,x1,y0,y1);
+    } else {
+      const Y=sy(node.threshold);
+      out+=`<line x1="${x0}" y1="${Y}" x2="${x1}" y2="${Y}" stroke="#1e293b" stroke-width="2"/>`;
+      out+=lines(node.left,x0,x1,node.threshold,y1)+lines(node.right,x0,x1,y0,node.threshold);
+    }
+    return out;
+  }
+  s+=lines(tree,0,80,0,100);
+  // точки
+  DATA.forEach(p=>{
+    const X=sx(p.x),Y=sy(p.y);
+    if(p.noise) s+=`<circle cx="${X}" cy="${Y}" r="8" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,2"/>`;
+    s+=`<circle cx="${X}" cy="${Y}" r="5" fill="${p.cls===1?'#16a34a':'#2563eb'}" stroke="#fff" stroke-width="1"/>`;
+  });
+  document.getElementById('plot').innerHTML=s;
+}
+
+function renderTree(){
+  const tree=stepper.tree;
+  const lastNode = lastStep ? lastStep.node : null;
+  function box(node){
+    if(!node) return '';
+    const isLast = node===lastNode;
+    const border = isLast ? 'border:2px solid #f59e0b;background:#fffbeb;' : 'border:1px solid #cbd5e1;background:#fff;';
+    let inner;
+    if(node.leaf){
+      const pred=node.prediction===1?'выжил':'погиб';
+      inner=`<b>Лист</b> → ${pred}<br>объектов: ${node.count} (выжил: ${node.classCounts[1]}, погиб: ${node.classCounts[0]})<br>Джини: ${fmt(node.gini)}`;
+    } else {
+      const fname=node.feature==='x'?'возраст':'тариф';
+      inner=`<b>${fname} ≤ ${fmt(node.threshold)}?</b><br>прирост информации: ${fmt(node.gain)}<br>объектов: ${node.count}, Джини: ${fmt(node.gini)}`;
+    }
+    let kids='';
+    if(!node.leaf){
+      kids=`<div style="display:flex;gap:8px;margin-top:8px;align-items:flex-start;">
+        <div style="flex:1"><div style="font-size:11px;color:#64748b;text-align:center">да</div>${box(node.left)}</div>
+        <div style="flex:1"><div style="font-size:11px;color:#64748b;text-align:center">нет</div>${box(node.right)}</div>
+      </div>`;
+    }
+    return `<div style="display:inline-block;${border}border-radius:8px;padding:8px 10px;font-size:13px;text-align:center;">${inner}${kids}</div>`;
+  }
+  document.getElementById('treeBox').innerHTML=box(tree);
+}
+
+function renderState(){
+  const tree=stepper.tree;
+  const acc=M.trainAccuracy(tree,DATA);
+  const giniRoot = M.gini(DATA.map(p=>p.cls));
+  let chosen='—', compare='—';
+  if(lastStep){
+    const f=lastStep.split.feature==='x'?'возраст':'тариф';
+    chosen=`${f} ≤ ${fmt(lastStep.split.threshold)}, прирост ${fmt(lastStep.split.gain)}`;
+    if(lastStep.runner){
+      const rf=lastStep.runner.feature==='x'?'возраст':'тариф';
+      compare=`${rf} ≤ ${fmt(lastStep.runner.threshold)}, прирост ${fmt(lastStep.runner.gain)}`;
+    } else compare='нет (единственный кандидат)';
+  }
+  const cells=[
+    ['Глубина дерева', M.treeDepth(tree)],
+    ['Число листьев', M.countLeaves(tree)],
+    ['Выбранное разбиение', chosen],
+    ['Второй кандидат', compare],
+    ['Джини корня', fmt(giniRoot)],
+    ['Точность на обучении', fmt(acc)],
+    ['max_depth', params.maxDepth],
+    ['min_samples_leaf', params.minSamplesLeaf],
+  ];
+  document.getElementById('statePanel').innerHTML =
+    cells.map(c=>`<div><div class="lbl">${c[0]}</div><div class="val">${c[1]}</div></div>`).join('');
+}
+
+function renderExplain(msg){
+  document.getElementById('explain').innerHTML = msg||'Нажмите «Шаг», чтобы дерево выбрало первое разбиение.';
+}
+
+function renderAll(){ renderPlot(); renderTree(); renderState(); }
+
+// ---------- управление ----------
+function reset(msg){
+  stepper=M.makeStepper(DATA,params);
+  lastStep=null;
+  renderAll();
+  renderExplain(msg);
+  updateStepBtn();
+}
+function updateStepBtn(){
+  document.getElementById('btnStep').disabled = stepper.done;
+  document.getElementById('btnAll').disabled = stepper.done;
+}
+function doStep(){
+  const r=stepper.nextSplit();
+  if(!r){ renderExplain('Дерево построено: дальше разбивать нечего (чистые листья, лимит глубины или слишком мало объектов).'); updateStepBtn(); renderAll(); return; }
+  lastStep=r;
+  const f=r.split.feature==='x'?'возраст':'тариф';
+  let msg=`Шаг ${stepper.steps}: узел с ${r.node.count} объектами. `+
+    `Выбрано разбиение <b>${f} ≤ ${fmt(r.split.threshold)}</b> — прирост информации ${fmt(r.split.gain)} `+
+    `(Джини до: ${fmt(r.node.gini)}, слева: ${fmt(r.split.giniLeft)}, справа: ${fmt(r.split.giniRight)}). `;
+  if(r.runner) msg+=`Лучший проигравший: ${r.runner.feature==='x'?'возраст':'тариф'} ≤ ${fmt(r.runner.threshold)} с приростом ${fmt(r.runner.gain)}. `;
+  msg+=`Узел стал внутренним; добавлены два листа.`;
+  if(stepper.done) msg+=' Дерево завершено.';
+  renderAll(); renderExplain(msg); updateStepBtn();
+}
+
+document.getElementById('btnStep').onclick=doStep;
+document.getElementById('btnAll').onclick=()=>{ stepper.buildAll(); lastStep=stepper.history[stepper.history.length-1]||null; renderAll(); renderExplain('Дерево построено целиком.'); updateStepBtn(); };
+document.getElementById('btnReset').onclick=()=>reset();
+
+function bindParam(id,valId,key,label){
+  const el=document.getElementById(id);
+  el.oninput=()=>{
+    params[key]=+el.value;
+    document.getElementById(valId).textContent=el.value;
+    reset(`${label} изменён на ${el.value} — пошаговое построение начато заново.`);
+  };
+}
+bindParam('md','mdVal','maxDepth','max_depth');
+bindParam('msl','mslVal','minSamplesLeaf','min_samples_leaf');
+document.getElementById('crit').onchange=e=>{
+  params.criterion=e.target.value;
+  // makeStepper принимает criterion, но текущий stepper построен со старым — пересоздаём с учётом критерия
+  stepper=M.makeStepper(DATA,params);
+  lastStep=null; renderAll();
+  renderExplain(`Критерий: ${params.criterion==='entropy'?'энтропия':'Джини'} — дерево перестроено заново.`);
+  updateStepBtn();
+};
+
+// ---------- обход с гидом ----------
+const TABS=[
+  {id:'t1',name:'Первое разбиение'},
+  {id:'t2',name:'Глубина дерева (max_depth)'},
+  {id:'t3',name:'Минимум в листе (min_samples_leaf)'},
+  {id:'t4',name:'Джини против энтропии'},
+];
+const WALK={
+  t1:{
+    text:'Настройки по умолчанию: max_depth=3, min_samples_leaf=1, критерий Джини. Смотрите, какое разбиение выберет корень и насколько его прирост информации больше, чем у второго кандидата.',
+    steps:[
+      {label:'Шаг 1: разбить корень', act(){ doStep(); }},
+      {label:'Шаг 2: ещё одно разбиение (глубина 2)', act(){ doStep(); }},
+    ]
+  },
+  t2:{
+    text:'Сначала строим дерево с max_depth=2 — оно грубое, но честное. Потом переключаем max_depth=6: дерево доберёт листья по одному объекту, точность на обучении станет 100% — это и есть переобучение на глазах.',
+    steps:[
+      {label:'Шаг 1: max_depth=2, построить всё', act(){ setP('maxDepth',2); stepper.buildAll(); lastStep=stepper.history.slice(-1)[0]||null; renderAll(); renderExplain('Дерево глубины 2. Запомните точность на обучении из панели состояния.'); updateStepBtn(); }},
+      {label:'Шаг 2: max_depth=6, построить всё', act(){ setP('maxDepth',6); stepper.buildAll(); lastStep=stepper.history.slice(-1)[0]||null; renderAll(); renderExplain('Теперь глубина 6: держите в уме точность при глубине 2 и сравните. Шумовые точки получили собственные листья.'); updateStepBtn(); }},
+      {label:'Шаг 3: вернуть max_depth=3', act(){ setP('maxDepth',3); reset('Вернули max_depth=3 — базовое состояние.'); }},
+    ]
+  },
+  t3:{
+    text:'max_depth=6 в обоих случаях. Сначала min_samples_leaf=1: дерево цепляется за шумовые точки и строит под них отдельные разбиения. Потом min_samples_leaf=5: каждый лист должен содержать минимум 5 объектов, и шум остаётся внутри общих листьев.',
+    steps:[
+      {label:'Шаг 1: leaf=1, построить всё', act(){ setP('maxDepth',6); setP('minSamplesLeaf',1); stepper.buildAll(); lastStep=stepper.history.slice(-1)[0]||null; renderAll(); renderExplain('min_samples_leaf=1: посмотрите на маленькие листья у шумовых точек (пунктирные кружки).'); updateStepBtn(); }},
+      {label:'Шаг 2: leaf=5, перестроить', act(){ setP('minSamplesLeaf',5); stepper.buildAll(); lastStep=stepper.history.slice(-1)[0]||null; renderAll(); renderExplain('min_samples_leaf=5: те же шумовые точки теперь «поглощены» общими листьями — собственных разбиений под них нет.'); updateStepBtn(); }},
+      {label:'Шаг 3: вернуть leaf=1, depth=3', act(){ setP('minSamplesLeaf',1); setP('maxDepth',3); reset('Вернули базовые настройки.'); }},
+    ]
+  },
+  t4:{
+    text:'Одинаковые данные и настройки (max_depth=3, leaf=1), меняем только критерий нечистоты. Смотрите: деревья почти одинаковые — Джини и энтропия обычно выбирают одни и те же разбиения.',
+    steps:[
+      {label:'Шаг 1: критерий Джини, построить всё', act(){ setP('criterion','gini'); document.getElementById('crit').value='gini'; stepper.buildAll(); lastStep=stepper.history.slice(-1)[0]||null; renderAll(); renderExplain('Дерево по критерию Джини. Запомните структуру.'); updateStepBtn(); }},
+      {label:'Шаг 2: критерий энтропия, построить всё', act(){ setP('criterion','entropy'); document.getElementById('crit').value='entropy'; stepper=M.makeStepper(DATA,params); stepper.buildAll(); lastStep=stepper.history.slice(-1)[0]||null; renderAll(); renderExplain('Дерево по энтропии: сравните с предыдущим — разбиения совпадают или почти совпадают.'); updateStepBtn(); }},
+      {label:'Шаг 3: вернуть Джини', act(){ setP('criterion','gini'); document.getElementById('crit').value='gini'; reset('Вернули критерий Джини.'); }},
+    ]
+  }
+};
+function setP(k,v){
+  params[k]=v;
+  if(k==='maxDepth'){ document.getElementById('md').value=v; document.getElementById('mdVal').textContent=v; }
+  if(k==='minSamplesLeaf'){ document.getElementById('msl').value=v; document.getElementById('mslVal').textContent=v; }
+  stepper=M.makeStepper(DATA,params);
+  lastStep=null;
+}
+function renderTabs(){
+  const el=document.getElementById('tabs');
+  let s=`<button class="tabbtn ${activeTab===null?'active':''}" data-tab="">Свободный режим</button>`;
+  TABS.forEach(t=>{ s+=`<button class="tabbtn ${activeTab===t.id?'active':''}" data-tab="${t.id}">${t.name}</button>`; });
+  el.innerHTML=s;
+  el.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    activeTab=b.dataset.tab||null;
+    renderTabs();
+    const wp=document.getElementById('walkPanel');
+    if(!activeTab){ wp.style.display='none'; return; }
+    const w=WALK[activeTab];
+    wp.style.display='block';
+    wp.innerHTML=`<p>${w.text}</p>`+w.steps.map((st,i)=>`<button class="walkstep" data-i="${i}">${i+1}. ${st.label}</button>`).join('');
+    wp.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{
+      const i=+btn.dataset.i;
+      w.steps[i].act();
+      // прячем выполненные шаги
+      btn.disabled=true;
+    });
+  });
+}
+
+reset();
+renderTabs();
+})();
+</script>
+</body>
+</html>
