@@ -58,12 +58,12 @@
 	(text "Практическое занятие 13-14 «Изучение принципов работы аналого-цифровых преобразователей»"
 		(at 63.5 234.95 0)
 		(effects (font (size 2.54 2.54)) (justify left bottom))
-		(uuid "a808d810-8b9d-4753-9a8b-30d9071e5fb3")
+		(uuid "d7c02aed-aca7-4d65-b86c-11ffe6df1ccf")
 	)
 	(text "Вариант 4 (табл. 18 методички): 16-разрядный АЦП, Vref+ = +5 В, Vref- = 0 В"
 		(at 63.5 228.6 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "29a90e79-c18f-4b49-a70d-aa9919eef7bf")
+		(uuid "8a722111-0fa6-4700-bd7d-c723f5b01896")
 	)
 	(sheet_instances
 		(path "/" (page "1"))

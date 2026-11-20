@@ -139,11 +139,11 @@ def no_connect(x, y):
     )
 
 
-def _prop(name, value, x, y, hide=False, size=1.27):
+def _prop(name, value, x, y, hide=False, size=1.27, rot=0):
     h = "\n\t\t(hide yes)" if hide else ""
     return (
         f'\t(property "{name}" "{value}"\n'
-        f"\t\t(at {num(x)} {num(y)} 0){h}\n"
+        f"\t\t(at {num(x)} {num(y)} {rot}){h}\n"
         "\t\t(show_name no)\n"
         "\t\t(do_not_autoplace no)\n"
         "\t\t(effects (font (size "
@@ -156,7 +156,7 @@ def _prop(name, value, x, y, hide=False, size=1.27):
 def instance(lib_id, ref, value, x, y, path, rot=0, unit=1, pins=(),
              val_size=1.27, extra_props=None,
              ref_dx=0.0, ref_dy=-2.54, val_dx=0.0, val_dy=2.54,
-             hide_ref=False, hide_val=False):
+             hide_ref=False, hide_val=False, prop_rot=0):
     """Экземпляр символа на листе.
 
     ref_dx/ref_dy, val_dx/val_dy — смещения подписей Reference/Value
@@ -180,7 +180,7 @@ def instance(lib_id, ref, value, x, y, path, rot=0, unit=1, pins=(),
     parts.append(_prop("Reference", ref, x + ref_dx, y + ref_dy,
                        hide=hide_ref))
     parts.append(_prop("Value", value, x + val_dx, y + val_dy, size=val_size,
-                       hide=hide_val))
+                       hide=hide_val, rot=prop_rot))
     parts.append(_prop("Footprint", "", x, y, hide=True))
     parts.append(_prop("Datasheet", "", x, y, hide=True))
     parts.append(_prop("Description", "", x, y, hide=True))
@@ -205,7 +205,8 @@ def instance(lib_id, ref, value, x, y, path, rot=0, unit=1, pins=(),
 def power(lib, value, ref, x, y, path, rot=0):
     g(x, y)
     return instance(lib, ref, value, x, y, path, rot=rot, pins=("1",),
-                    val_size=1.27, hide_ref=True, val_dy=5.08)
+                    val_size=1.27, hide_ref=True, val_dy=5.08,
+                    prop_rot=rot)
 
 
 def vsource(s, lib, ref, value, x, y, label, path, gnd_ref,
@@ -539,7 +540,8 @@ def build_sheet1():
     # Входы АЦП: Vin/Vref+ — метки, Vref- — земля
     s.add(net_label("VIN", vin_e[0], vin_e[1], justify="right"))
     s.add(net_label("VREF+", vrp_e[0], vrp_e[1], justify="right"))
-    s.add(power("power:GND", "GND", "GND3", vrm_e[0], vrm_e[1], p))
+    # GND на выводе Vref-: вывод слева от корпуса -> треугольник влево
+    s.add(power("power:GND", "GND", "GND3", vrm_e[0], vrm_e[1], p, rot=270))
     s.add(net_label("SOC", soc_e[0], soc_e[1], justify="right"))
     s.add(net_label("OE", oe_e[0], oe_e[1], justify="right"))
     # U2 — инвертор (74LS04), выводы на оси Y (инвариантны)
@@ -652,11 +654,12 @@ def build_sheet2():
     # P3.6 -> SOC (метки)
     s.add(net_label("SOC", p3_6_e[0], p3_6_e[1], justify="right"))
     s.add(net_label("SOC", soc_e[0], soc_e[1], justify="right"))
-    # OE -> земля, Vin/Vref+ — метки, Vref- — земля
-    s.add(power("power:GND", "GND", "GND1", oe_e[0], oe_e[1], p))
+    # OE -> земля, Vin/Vref+ — метки, Vref- — земля; выводы слева от
+    # корпуса АЦП -> треугольники GND влево (rot 270)
+    s.add(power("power:GND", "GND", "GND1", oe_e[0], oe_e[1], p, rot=270))
     s.add(net_label("VIN", vin_e[0], vin_e[1], justify="right"))
     s.add(net_label("VREF+", vrp_e[0], vrp_e[1], justify="right"))
-    s.add(power("power:GND", "GND", "GND4", vrm_e[0], vrm_e[1], p))
+    s.add(power("power:GND", "GND", "GND4", vrm_e[0], vrm_e[1], p, rot=270))
     # Источники слева: V2 (+5 В -> VREF+), V1 (uвх -> VIN)
     vsource(s, "Simulation_SPICE:VDC", "V2", "+5 В", 48.26, 151.13,
             "VREF+", p, "GND2")
