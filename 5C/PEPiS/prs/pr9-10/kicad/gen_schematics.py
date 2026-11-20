@@ -152,6 +152,7 @@ class Sheet:
     def __init__(self):
         self.libs = {}
         self.items = []
+        self._wires = set()
 
     def use(self, sym):
         self.libs.setdefault(f"{sym.lib}:{sym.name}", sym.embedded)
@@ -159,6 +160,10 @@ class Sheet:
     def wire(self, x1, y1, x2, y2):
         x1, y1, x2, y2 = r2(x1), r2(y1), r2(x2), r2(y2)
         grid_ok(x1, y1, x2, y2)
+        key = tuple(sorted(((x1, y1), (x2, y2))))
+        if key in self._wires:
+            return  # наложенные выводы (VSS×3): один сегмент вместо стека
+        self._wires.add(key)
         self.items.append(
             f'\t(wire\n\t\t(pts\n\t\t\t(xy {x1} {y1}) (xy {x2} {y2})\n\t\t)\n'
             f'\t\t(stroke\n\t\t\t(width 0)\n\t\t\t(type default)\n\t\t)\n'
@@ -188,8 +193,15 @@ class Sheet:
             f'\t\t\t(justify left bottom)\n\t\t)\n\t\t(uuid "{uid()}")\n\t)'
         )
 
-    def symbol(self, sym, x, y, ref, value, pwr=False, rot=0):
-        """Экземпляр символа. Возвращает {номер вывода: (abs x, abs y)}."""
+    def symbol(self, sym, x, y, ref, value, pwr=False, rot=0,
+               ref_at=None, val_at=None):
+        """Экземпляр символа. Возвращает {номер вывода: (abs x, abs y)}.
+
+        ref_at/val_at — (px, py, угол, выравнивание left|right) для
+        свойств Reference/Value; по умолчанию — в точке (x, y).
+        У силовых символов (pwr) Reference скрыт: иначе «#PWR0x»
+        печатается поверх графики символа.
+        """
         x, y = r2(x), r2(y)
         grid_ok(x, y)
         self.use(sym)
@@ -211,6 +223,23 @@ class Sheet:
             grid_ok(ax, ay)
             pins[pnum] = (ax, ay)
         extra = "" if pwr else "\t\t(in_pos_files yes)\n"
+        rp = ref_at or (x, y, 0, "left")
+        vp = val_at or (x, y, 0, "left")
+        grid_ok(rp[0], rp[1], vp[0], vp[1])
+        hide_ref = "\t\t\t(hide yes)\n" if pwr else ""
+
+        def prop_block(name, val, pos, hide=""):
+            return (
+                f'\t\t(property "{name}" "{val}"\n'
+                f'\t\t\t(at {pos[0]} {pos[1]} {pos[2]})\n'
+                f'{hide}'
+                f'\t\t\t(show_name no)\n\t\t\t(do_not_autoplace no)\n'
+                f'\t\t\t(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n'
+                f'\t\t\t\t)\n'
+                f'\t\t\t\t(justify {pos[3]} bottom)\n'
+                f'\t\t\t)\n\t\t)\n'
+            )
+
         self.items.append(
             f'\t(symbol\n'
             f'\t\t(lib_id "{sym.lib}:{sym.name}")\n'
@@ -223,23 +252,10 @@ class Sheet:
             f'{extra}'
             f'\t\t(dnp no)\n'
             f'\t\t(uuid "{uid()}")\n'
-            f'\t\t(property "Reference" "{ref}"\n'
-            f'\t\t\t(at {x} {y} 0)\n'
-            f'\t\t\t(show_name no)\n\t\t\t(do_not_autoplace no)\n'
-            f'\t\t\t(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n'
-            f'\t\t\t\t)\n\t\t\t)\n\t\t)\n'
-            f'\t\t(property "Value" "{value}"\n'
-            f'\t\t\t(at {x} {y} 0)\n'
-            f'\t\t\t(show_name no)\n\t\t\t(do_not_autoplace no)\n'
-            f'\t\t\t(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n'
-            f'\t\t\t\t)\n\t\t\t)\n\t\t)\n'
+            + prop_block("Reference", ref, rp, hide_ref)
+            + prop_block("Value", value, vp)
             + "".join(
-                f'\t\t(property "{k}" "{v}"\n'
-                f'\t\t\t(at {x} {y} 0)\n'
-                + ("\t\t\t(hide yes)\n" if k not in ("Reference", "Value") else "")
-                + f'\t\t\t(show_name no)\n\t\t\t(do_not_autoplace no)\n'
-                f'\t\t\t(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n'
-                f'\t\t\t\t)\n\t\t\t)\n\t\t)\n'
+                prop_block(k, v, (x, y, 0, "left"), "\t\t\t(hide yes)\n")
                 for k, v in props_def.items()
                 if k not in ("Reference", "Value")
             )
@@ -303,17 +319,27 @@ SEG_FROM_PA = ["A", "B", "C", "D", "E", "F", "G", "DP"]
 
 sh = Sheet()
 
+# Лист A3 (420x297): оба стенда размещены в середине листа,
+# свободные поля — по краям (см. канонический pr7-8).
+HDR_Y = 60.96          # строка-заголовок над каждым стендом
+UY = 160.02            # центр МК STM32 (вертикальная центровка листа)
+AY = 160.02            # центр МК ATmega
+
 # ===========================================================================
 # Блок 1: STM32F103C8, индикатор общего катода, резисторы 330 Ом (3,3 В)
 # ===========================================================================
-sh.text(48.26, 45.72, "STM32F103C8T6, питание 3,3 В, индикатор с общим катодом")
-UX, UY = 78.74, 118.11
-p = sh.symbol(STM32, UX, UY, ref_next("u"), "STM32F103C8Tx")
+sh.text(48.26, HDR_Y, "STM32F103C8T6, питание 3,3 В, индикатор с общим катодом")
+UX = 78.74
+p = sh.symbol(STM32, UX, UY, ref_next("u"), "STM32F103C8Tx",
+              ref_at=(UX - 17.78, UY + 50.8, 0, "left"),
+              val_at=(UX + 17.78, UY + 50.8, 0, "right"))
 
 # --- индикатор HDSP-7503: вывод A совмещён по вертикали с PA0 ----------
 pa0 = pin_by_name(p, STM32, "PA0")
 DX, DY = 140.97, pa0[1] + 7.62
-dp = sh.symbol(DISP, DX, DY, ref_next("u"), "HDSP-7503")
+dp = sh.symbol(DISP, DX, DY, ref_next("u"), "HDSP-7503",
+               ref_at=(DX - 5.08, DY - 15.24, 0, "left"),
+               val_at=(DX + 10.16, DY - 15.24, 0, "right"))
 
 for i, seg in enumerate(SEG_FROM_PA):
     pa = pin_by_name(p, STM32, f"PA{i}")
@@ -321,7 +347,14 @@ for i, seg in enumerate(SEG_FROM_PA):
     grid_ok(pa[1], dsp[1])
     assert abs(pa[1] - dsp[1]) < 1e-9, f"PA{i} (y={pa[1]}) не совпадает с {seg} (y={dsp[1]})"
     y = pa[1]
-    sh.symbol(R, 107.95, y, ref_next("r"), "330", rot=90)
+    # резистор вертикально повёрнут (выводы 1/2 слева/справа); позиция и
+    # номинал — снаружи корпуса, чтобы не наезжали на соседние резисторы
+    # угол 90: надпись поворачивается вместе с символом, поэтому в файле
+    # указывается 90, чтобы на листе текст был горизонтальным; позиции —
+    # по бокам от колонки корпусов (между ними на шаге 2,54 не помещаются)
+    sh.symbol(R, 107.95, y, ref_next("r"), "330", rot=90,
+              ref_at=(104.14, y - 2.54, 90, "left"),
+              val_at=(111.76, y - 2.54, 90, "right"))
     sh.wire(pa[0], y, 104.14, y)      # PA -> резистор (pin 1)
     sh.wire(111.76, y, dsp[0], y)     # резистор (pin 2) -> сегмент
 
@@ -337,16 +370,22 @@ sh.junction(rail, mid_y)
 sh.symbol(GND, rail, mid_y, ref_next("pwr"), "GND", pwr=True)
 
 # --- питание: VBAT/VDD×3/VDDA -> шина +3,3 В; VSS×3/VSSA -> шина GND ---
-def power_rail(pts, sym, value, pwr_flag=None):
-    """Горизонтальная шина от группы одноимённых выводов питания."""
+def power_rail(pts, sym, value, center_y, pwr_flag=None):
+    """Горизонтальная шина от группы одноимённых выводов питания.
+
+    Шина — со стороны, свободной от корпуса МК; отвод PWR_FLAG —
+    за правым краем шины, подальше от символа питания (иначе их
+    надписи наезжают друг на друга).
+    """
     xs = sorted(x for x, _y in pts)
     ys = [y for _x, y in pts]
-    below = min(ys) > UY  # выводы ниже центра МК -> шина под ними
-    rail_y = (min(ys) - 1.27) if below else (max(ys) + 1.27)
+    below = min(ys) > center_y  # выводы ниже центра МК -> шина под ними
+    rail_y = (max(ys) + 1.27) if below else (min(ys) - 1.27)
     for x, y in pts:
         sh.wire(x, y, x, rail_y)
         sh.junction(x, rail_y)
-    sh.wire(xs[0], rail_y, xs[-1], rail_y)
+    fx = r2(xs[-1] + 7.62)  # отвод PWR_FLAG за правым выводом
+    sh.wire(xs[0], rail_y, fx, rail_y)
     # точка отвода: на сетке, но не совпадающая с отводом вывода (иначе
     # получится четырёхстороннее соединение)
     mid_x = r2((xs[0] + xs[-1]) / 2)
@@ -356,39 +395,41 @@ def power_rail(pts, sym, value, pwr_flag=None):
         mid_x = r2((xs[0] + xs[-1]) / 2)
         while mid_x in xs:
             mid_x = r2(mid_x - 1.27)
-    dy = -3.81 if below else 3.81
+    dy = 3.81 if below else -3.81
     sh.junction(mid_x, rail_y)
     sh.wire(mid_x, rail_y, mid_x, rail_y + dy)
     sh.symbol(sym, mid_x, rail_y + dy, ref_next("pwr"), value, pwr=True)
     if pwr_flag is not None:
-        fx = xs[0]
         sh.wire(fx, rail_y, fx, rail_y + dy)
-        sh.junction(fx, rail_y)
         sh.symbol(pwr_flag, fx, rail_y + dy, ref_next("pwr"), "PWR_FLAG",
                   pwr=True)
 
 top = []
 for nm in ("VBAT", "VDD", "VDDA"):
     top += [pin_by_name(p, STM32, nm, w) for w in range(len(STM32.by_name(nm)))]
-power_rail(top, V33, "+3.3V", pwr_flag=PWR_FLAG)
+power_rail(top, V33, "+3.3V", UY, pwr_flag=PWR_FLAG)
 
 bot = []
 for nm in ("VSS", "VSSA"):
     bot += [pin_by_name(p, STM32, nm, w) for w in range(len(STM32.by_name(nm)))]
-power_rail(bot, GND, "GND", pwr_flag=PWR_FLAG)
+power_rail(bot, GND, "GND", UY, pwr_flag=PWR_FLAG)
 
 # --- NRST: подтяжка 10к к +3,3 В; BOOT0 -> GND ---------------------------
+# Цепочки разнесены по горизонтали (53,34 и 58,42), чтобы надписи
+# резисторов и символов питания не наезжали друг на друга.
 nrst = pin_by_name(p, STM32, "NRST")
 sh.wire(nrst[0], nrst[1], 53.34, nrst[1])
-sh.wire(53.34, nrst[1], 53.34, nrst[1] + 1.27)
-sh.symbol(R, 53.34, nrst[1] + 5.08, ref_next("r"), "10k")
-sh.wire(53.34, nrst[1] + 8.89, 53.34, nrst[1] + 12.7)
-sh.symbol(V33, 53.34, nrst[1] + 12.7, ref_next("pwr"), "+3.3V", pwr=True)
+sh.wire(53.34, nrst[1], 53.34, nrst[1] - 1.27)
+sh.symbol(R, 53.34, nrst[1] - 5.08, ref_next("r"), "10k",
+          ref_at=(53.34 - 2.54, nrst[1] - 5.08, 0, "right"),
+          val_at=(53.34 + 2.54, nrst[1] - 5.08, 0, "left"))
+sh.wire(53.34, nrst[1] - 8.89, 53.34, nrst[1] - 12.7)
+sh.symbol(V33, 53.34, nrst[1] - 12.7, ref_next("pwr"), "+3.3V", pwr=True)
 
 boot0 = pin_by_name(p, STM32, "BOOT0")
-sh.wire(boot0[0], boot0[1], 55.88, boot0[1])
-sh.wire(55.88, boot0[1], 55.88, boot0[1] - 3.81)
-sh.symbol(GND, 55.88, boot0[1] - 3.81, ref_next("pwr"), "GND", pwr=True)
+sh.wire(boot0[0], boot0[1], 58.42, boot0[1])
+sh.wire(58.42, boot0[1], 58.42, boot0[1] + 3.81)
+sh.symbol(GND, 58.42, boot0[1] + 3.81, ref_next("pwr"), "GND", pwr=True)
 
 # --- неиспользуемые выводы ----------------------------------------------
 used = {"PA%d" % i for i in range(8)} | {"VBAT", "VDD", "VDDA", "VSS", "VSSA", "NRST", "BOOT0"}
@@ -399,13 +440,17 @@ for num, (nm, rx, ry, _rt) in STM32.pins.items():
 # ===========================================================================
 # Блок 2: ATmega32, индикатор общего катода, резисторы 470 Ом (5 В)
 # ===========================================================================
-sh.text(200.66, 45.72, "ATmega32, питание 5 В (VCC и AVCC), индикатор с общим катодом")
-AX, AY = 229.87, 118.11
-a = sh.symbol(AVR, AX, AY, ref_next("u"), "ATmega32-16P")
+sh.text(200.66, HDR_Y, "ATmega32, питание 5 В (VCC и AVCC), индикатор с общим катодом")
+AX = 229.87
+a = sh.symbol(AVR, AX, AY, ref_next("u"), "ATmega32-16P",
+              ref_at=(AX - 15.24, AY + 59.69, 0, "left"),
+              val_at=(AX + 15.24, AY + 59.69, 0, "right"))
 
 pa0 = pin_by_name(a, AVR, "PA0")
 DX2, DY2 = 285.75, pa0[1] + 7.62
-dp2 = sh.symbol(DISP, DX2, DY2, ref_next("u"), "HDSP-7503")
+dp2 = sh.symbol(DISP, DX2, DY2, ref_next("u"), "HDSP-7503",
+                ref_at=(DX2 - 5.08, DY2 - 15.24, 0, "left"),
+                val_at=(DX2 + 10.16, DY2 - 15.24, 0, "right"))
 
 for i, seg in enumerate(SEG_FROM_PA):
     pa = pin_by_name(a, AVR, f"PA{i}")
@@ -413,7 +458,9 @@ for i, seg in enumerate(SEG_FROM_PA):
     grid_ok(pa[1], dsp[1])
     assert abs(pa[1] - dsp[1]) < 1e-9, f"ATmega PA{i} не совпадает с {seg}"
     y = pa[1]
-    sh.symbol(R, 256.54, y, ref_next("r"), "470", rot=90)
+    sh.symbol(R, 256.54, y, ref_next("r"), "470", rot=90,
+              ref_at=(252.73, y - 2.54, 90, "left"),
+              val_at=(260.35, y - 2.54, 90, "right"))
     sh.wire(pa[0], y, 252.73, y)
     sh.wire(260.35, y, dsp[0], y)
 
@@ -428,44 +475,23 @@ sh.junction(rail2, mid_y2)
 sh.symbol(GND, rail2, mid_y2, ref_next("pwr"), "GND", pwr=True)
 
 # --- питание: VCC и AVCC -> шина +5 В; оба GND (одна точка) -------------
-def power_rail_avr(pts, sym, value, pwr_flag=None):
-    xs = sorted(x for x, _y in pts)
-    ys = [y for _x, y in pts]
-    below = min(ys) > AY
-    rail_y = (min(ys) - 1.27) if below else (max(ys) + 1.27)
-    for x, y in pts:
-        sh.wire(x, y, x, rail_y)
-        sh.junction(x, rail_y)
-    sh.wire(xs[0], rail_y, xs[-1], rail_y)
-    mid_x = r2((xs[0] + xs[-1]) / 2)
-    while mid_x in xs:
-        mid_x = r2(mid_x + 1.27)
-    dy = -3.81 if below else 3.81
-    sh.junction(mid_x, rail_y)
-    sh.wire(mid_x, rail_y, mid_x, rail_y + dy)
-    sh.symbol(sym, mid_x, rail_y + dy, ref_next("pwr"), value, pwr=True)
-    if pwr_flag is not None:
-        fx = xs[-1]
-        sh.wire(fx, rail_y, fx, rail_y + dy)
-        sh.junction(fx, rail_y)
-        sh.symbol(pwr_flag, fx, rail_y + dy, ref_next("pwr"), "PWR_FLAG",
-                  pwr=True)
-
 vcc = pin_by_name(a, AVR, "VCC")
 avcc = pin_by_name(a, AVR, "AVCC")
-power_rail_avr([vcc, avcc], V5, "+5V", pwr_flag=PWR_FLAG)
+power_rail([vcc, avcc], V5, "+5V", AY, pwr_flag=PWR_FLAG)
 
 g = pin_by_name(a, AVR, "GND")  # оба вывода GND совпадают по координатам
 sh.wire(g[0], g[1], g[0], g[1] + 3.81)
 sh.symbol(GND, g[0], g[1] + 3.81, ref_next("pwr"), "GND", pwr=True)
 
-# --- RESET: подтяжка 10к к +5 В ------------------------------------------
+# --- RESET: подтяжка 10к к +5 В (цепочка уходит вверх, как у NRST) ------
 rst = pin_by_name(a, AVR, "~{RESET}")
 sh.wire(rst[0], rst[1], 207.01, rst[1])
-sh.wire(207.01, rst[1], 207.01, rst[1] + 1.27)
-sh.symbol(R, 207.01, rst[1] + 5.08, ref_next("r"), "10k")
-sh.wire(207.01, rst[1] + 8.89, 207.01, rst[1] + 12.7)
-sh.symbol(V5, 207.01, rst[1] + 12.7, ref_next("pwr"), "+5V", pwr=True)
+sh.wire(207.01, rst[1], 207.01, rst[1] - 1.27)
+sh.symbol(R, 207.01, rst[1] - 5.08, ref_next("r"), "10k",
+          ref_at=(207.01 - 2.54, rst[1] - 5.08, 0, "right"),
+          val_at=(207.01 + 2.54, rst[1] - 5.08, 0, "left"))
+sh.wire(207.01, rst[1] - 8.89, 207.01, rst[1] - 12.7)
+sh.symbol(V5, 207.01, rst[1] - 12.7, ref_next("pwr"), "+5V", pwr=True)
 
 # --- неиспользуемые выводы (тактирование — свойство модели 8 МГц) -------
 used_avr = {f"PA{i}" for i in range(8)} | {"VCC", "AVCC", "GND", "~{RESET}"}
@@ -473,4 +499,5 @@ for num, (nm, rx, ry, _rt) in AVR.pins.items():
     if nm not in used_avr:
         sh.no_connect(AX + rx, AY - ry)
 
-sh.save(OUT, "Практическая работа № 5. Семисегментный индикатор, вариант 4 (пр9-10)")
+# «№» в шрифтах KiCad превращается в тофу — только «#»
+sh.save(OUT, "Практическая работа # 5. Семисегментный индикатор, вариант 4 (пр9-10)")
