@@ -122,7 +122,8 @@ L = []  # строки выходного файла
 
 
 def emit(s: str = "") -> None:
-    L.append(s)
+    # Защита от «тофу»: KiCad не рисует «№», заменяем на «#».
+    L.append(s.replace("№", "#"))
 
 
 def prop(name: str, value: str, at, hide=False, justify=None, rot=None) -> None:
@@ -147,9 +148,9 @@ def prop(name: str, value: str, at, hide=False, justify=None, rot=None) -> None:
 
 
 def symbol(lib_id, ref, value, at, pins, ref_at=None, val_at=None,
-           footprint=None, datasheet="", description="", pin_uuids=None,
+           footprint="", datasheet="", description="", pin_uuids=None,
            hide_value=False, hide_ref=False, val_rot=None, project="pr11-12",
-           extra_props=None, justify_right_at=None):
+           extra_props=None, ref_justify=None, val_justify=None):
     x, y, rot = at
     emit("\t(symbol")
     emit(f'\t\t(lib_id "{lib_id}")')
@@ -162,9 +163,10 @@ def symbol(lib_id, ref, value, at, pins, ref_at=None, val_at=None,
     emit("\t\t(in_pos_files yes)")
     emit("\t\t(dnp no)")
     emit(f'\t\t(uuid "{u("sym:" + ref)}")')
-    prop("Reference", ref, ref_at or (x, y - 2.54, 0), hide=hide_ref)
+    prop("Reference", ref, ref_at or (x, y - 2.54, 0), hide=hide_ref,
+         justify=ref_justify)
     prop("Value", value, val_at or (x, y + 2.54, 0),
-         hide=hide_value, rot=val_rot)
+         hide=hide_value, rot=val_rot, justify=val_justify)
     if footprint:
         prop("Footprint", footprint, (x, y, 0), hide=True)
     if datasheet:
@@ -223,7 +225,7 @@ def label(text, x, y, rot=0, justify="left bottom") -> None:
     emit("\t)")
 
 
-def global_label(text, x, y, rot=0) -> None:
+def global_label(text, x, y, rot=0, justify="left bottom") -> None:
     emit(f'\t(global_label "{text}"')
     emit("\t\t(shape bidirectional)")
     emit(f"\t\t(at {x} {y} {rot})")
@@ -231,7 +233,7 @@ def global_label(text, x, y, rot=0) -> None:
     emit("\t\t\t(font")
     emit("\t\t\t\t(size 1.27 1.27)")
     emit("\t\t\t)")
-    emit("\t\t\t(justify left bottom)")
+    emit(f"\t\t\t(justify {justify})")
     emit("\t\t)")
     emit(f'\t\t(uuid "{u(f"glabel:{text}:{x},{y}")}")')
     emit("\t)")
@@ -273,7 +275,7 @@ emit('\t(generator_version "10.0")')
 emit(f'\t(uuid "{SHEET_UUID}")')
 emit('\t(paper "A4")')
 emit("\t(title_block")
-emit('\t\t(title "ПР 11-12. ЦАП на матрице R-2R, STM32F103C8, вариант 4")')
+emit('\t\t(title "Практическая работа #11-12. ЦАП R-2R, вариант 4")')
 emit("\t)")
 for ln in embedded_lib_symbols().splitlines():
     emit("\t" + ln)
@@ -283,26 +285,36 @@ mcu_pins = [str(n) for n in range(1, 49)]
 symbol(
     "MCU_ST_STM32F1:STM32F103C8Tx", "U1", "STM32F103C8Tx",
     (78.74, 100.33, 0), mcu_pins,
-    ref_at=(63.5, 148.59, 0), val_at=(86.36, 148.59, 0),
+    ref_at=(63.5, 139.7, 0), val_at=(86.36, 139.7, 0),
+    ref_justify="left", val_justify="left",
     footprint="Package_QFP:LQFP-48_7x7mm_P0.5mm",
     datasheet=DS_STM32, description=DESC_STM32,
 )
 
 # ------------------------------------------------- подключение питания U1
 # Верхние выводы (связка = pos + (x, -y)): VBAT 1, VDD 24, VDDA 9, VDD 36,
-# VDD 48. Нижние: VSS 23/35/47, VSSA 8.
+# VDD 48. Нижние: VSS 23/35/47, VSSA 8. Выводы соединены короткими
+# перемычками с шинами (y = 57.15 сверху, y = 143.51 снизу), чтобы
+# избежать наложения меток. Слева на шине 3V3 — символ PWR_FLAG на
+# видимой перемычке 2,54 мм. Горизонтальные метки 3V3 закреплены на
+# концах шины: левая смотрит влево от начала шины (рядом с флагом),
+# правая — вправо от конца шины; ни одна не перекрывает символы и провода.
 for px in (73.66, 76.2, 78.74, 81.28, 83.82):
-    global_label("3V3", px, 59.69, rot=90)
+    wire(px, 59.69, px, 57.15)
+    junction(px, 57.15)
+wire(73.66, 57.15, 83.82, 57.15)
+wire(73.66, 57.15, 73.66, 54.61)
+symbol("power:PWR_FLAG", "PWR1", "PWR_FLAG", (73.66, 54.61, 0), ["1"],
+       hide_value=True, hide_ref=True)
+global_label("3V3", 73.66, 57.15, rot=0, justify="right bottom")
+global_label("3V3", 83.82, 57.15, rot=0)
 for px in (78.74, 81.28):
-    global_label("GND", px, 140.97, rot=270)
+    wire(px, 140.97, px, 143.51)
+    junction(px, 143.51)
+wire(78.74, 143.51, 83.82, 143.51)
+global_label("GND", 83.82, 143.51, rot=0)
 
-# Флаги питания для ERC.
-symbol("power:PWR_FLAG", "PWR1", "PWR_FLAG", (73.66, 55.88, 0), ["1"],
-       hide_value=True, hide_ref=True)
-global_label("3V3", 73.66, 55.88, rot=0)
-symbol("power:PWR_FLAG", "PWR2", "PWR_FLAG", (146.05, 59.69, 0), ["1"],
-       hide_value=True, hide_ref=True)
-global_label("GND", 146.05, 59.69, rot=270)
+# Флаг питания GND стоит на отводе J1.2 (см. раздел разъёма J1 ниже).
 
 # -------------------------------------------------- линии разрядов D0..D7
 # Выводы PA0..PA7 (выводы 10..17) справа, x = 96.52, шаг 2.54, PA0 снизу.
@@ -352,24 +364,31 @@ symbol(
 )
 wire(NODE_X, Y[0], NODE_X, Y[0] - 1.27)
 wire(NODE_X, Y[0] - 8.89, NODE_X, 59.69)
-global_label("GND", NODE_X, 59.69, rot=270)
+global_label("GND", NODE_X, 59.69, rot=0)
 
 # Выход VOUT с узла N7 (старший разряд) на разъём приборов J1.
 # Точки подключения Conn_01x02 на (-5.08, 0) и (-5.08, -2.54) от центра.
+# Позиции Reference/Value — у корпуса символа (как в пр7-8).
 VOUT_Y = Y[7]
 wire(NODE_X, VOUT_Y, 147.32, VOUT_Y)
 label("VOUT", 141.24, VOUT_Y)
 symbol(
     "Connector_Generic:Conn_01x02", "J1", "VOUT + GND",
     (152.4, VOUT_Y, 0), ["1", "2"],
-    ref_at=(152.4, VOUT_Y - 7.62, 0),
-    val_at=(156.21, VOUT_Y - 1.27, 0),
+    ref_at=(152.4, VOUT_Y - 3.81, 0),
+    val_at=(161.29, VOUT_Y, 0),
     footprint="Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
     description="Generic connector, single row, 01x02",
 )
 # J1.1 (вывод 1) сидит на конце провода VOUT; J1.2 (вывод 2) на GND.
-wire(147.32, VOUT_Y + 2.54, 147.32, VOUT_Y + 5.08)
-global_label("GND", 147.32, VOUT_Y + 5.08, rot=270)
+# Отвод уходит вниз, затем вправо на флаг питания PWR2; горизонтальная
+# метка GND закреплена на углу провода — провод виден от вывода до метки
+# и от метки до символа, ничего не перекрывает корпус J1.
+wire(147.32, VOUT_Y + 2.54, 147.32, VOUT_Y + 10.16)
+wire(147.32, VOUT_Y + 10.16, 152.4, VOUT_Y + 10.16)
+global_label("GND", 147.32, VOUT_Y + 10.16, rot=0, justify="right bottom")
+symbol("power:PWR_FLAG", "PWR2", "PWR_FLAG", (152.4, VOUT_Y + 10.16, 0),
+       ["1"], hide_value=True, hide_ref=True)
 
 # -------------------------------------------------- неиспользуемые выводы
 # Левый ряд: PC13..PC15 (2..4), PD0/PD1 (5..6), NRST (7), PB0..PB2 (18..20),

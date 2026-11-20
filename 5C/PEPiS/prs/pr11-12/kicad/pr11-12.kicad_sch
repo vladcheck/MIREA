@@ -5,7 +5,7 @@
 	(uuid "3f2a1c9e-7b4d-4e8a-9c15-2d6f0a48b3e7")
 	(paper "A4")
 	(title_block
-		(title "ПР 11-12. ЦАП на матрице R-2R, STM32F103C8, вариант 4")
+		(title "Практическая работа #11-12. ЦАП R-2R, вариант 4")
 	)
 	(lib_symbols
 		(symbol "MCU_ST_STM32F1:STM32F103C8Tx"
@@ -1515,23 +1515,25 @@
 		(dnp no)
 		(uuid "e8410c9f-ac47-5989-bb55-6fd43c189bf7")
 		(property "Reference" "U1"
-			(at 63.5 148.59 0)
+			(at 63.5 139.7 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Value" "STM32F103C8Tx"
-			(at 86.36 148.59 0)
+			(at 86.36 139.7 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Package_QFP:LQFP-48_7x7mm_P0.5mm"
@@ -1720,86 +1722,109 @@
 			)
 		)
 	)
-	(global_label "3V3"
-		(shape bidirectional)
-		(at 73.66 59.69 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 73.66 59.69) (xy 73.66 57.15)
 		)
-		(uuid "9df10eb8-accd-5687-84f8-041cffe4f72f")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "466237b5-e46e-5e55-a9b4-fae227870cf6")
 	)
-	(global_label "3V3"
-		(shape bidirectional)
-		(at 76.2 59.69 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f722d78e-6992-5687-8112-7617ca2e351a")
+	(junction
+		(at 73.66 57.15)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "10e634c4-3ce4-5509-93d4-90af2ede855c")
 	)
-	(global_label "3V3"
-		(shape bidirectional)
-		(at 78.74 59.69 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 76.2 59.69) (xy 76.2 57.15)
 		)
-		(uuid "7915476f-a732-5ce2-8aa1-961e30cae147")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "66c46e92-67ee-5f08-b053-3f9ad6d84bd8")
 	)
-	(global_label "3V3"
-		(shape bidirectional)
-		(at 81.28 59.69 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e978b87c-5fe6-57f9-a037-b14444c27182")
+	(junction
+		(at 76.2 57.15)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2b389693-09b5-5816-86fd-a3a63aee4344")
 	)
-	(global_label "3V3"
-		(shape bidirectional)
-		(at 83.82 59.69 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 78.74 59.69) (xy 78.74 57.15)
 		)
-		(uuid "1b5634f8-86ad-5dfd-bddb-18ca40ac4251")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b6f394d1-1453-5e75-95bc-05066e3b717b")
 	)
-	(global_label "GND"
-		(shape bidirectional)
-		(at 78.74 140.97 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "df3c96dd-5252-544e-830a-82d767743b82")
+	(junction
+		(at 78.74 57.15)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d614aa3e-9e1f-5d7e-a736-317249286187")
 	)
-	(global_label "GND"
-		(shape bidirectional)
-		(at 81.28 140.97 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
+	(wire
+		(pts
+			(xy 81.28 59.69) (xy 81.28 57.15)
 		)
-		(uuid "a44c9bc6-8d5f-531a-b4a0-2808b8be9f98")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0acfe302-32ed-5433-b497-2e9e017c6af0")
+	)
+	(junction
+		(at 81.28 57.15)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ed001e27-5c74-5bf7-a30f-3416deff313e")
+	)
+	(wire
+		(pts
+			(xy 83.82 59.69) (xy 83.82 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8680b16a-100c-5561-be21-8e6902c99d04")
+	)
+	(junction
+		(at 83.82 57.15)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f5a4cfb7-ead2-55f9-af2f-20cf63e27531")
+	)
+	(wire
+		(pts
+			(xy 73.66 57.15) (xy 83.82 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "144cab5b-110e-5dfe-ad28-61913f801850")
+	)
+	(wire
+		(pts
+			(xy 73.66 57.15) (xy 73.66 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77a61ffe-1b68-552b-967d-5cd184ecc009")
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 73.66 55.88 0)
+		(at 73.66 54.61 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -1809,7 +1834,7 @@
 		(dnp no)
 		(uuid "ea741f07-4c2d-564e-ba32-7789e4ec35e6")
 		(property "Reference" "PWR1"
-			(at 73.66 53.34 0)
+			(at 73.66 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1820,7 +1845,7 @@
 			)
 		)
 		(property "Value" "PWR_FLAG"
-			(at 73.66 58.42 0)
+			(at 73.66 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1844,70 +1869,78 @@
 	)
 	(global_label "3V3"
 		(shape bidirectional)
-		(at 73.66 55.88 0)
+		(at 73.66 57.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a024346b-aea7-5fd0-8413-f0e9a0b73df2")
+	)
+	(global_label "3V3"
+		(shape bidirectional)
+		(at 83.82 57.15 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "9f5e75b3-7623-50a9-846d-88d5c020718d")
+		(uuid "9e694131-d001-5ff1-9b61-0f78c540f3dd")
 	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 146.05 59.69 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c8559fb3-4812-5023-88d0-67a2936bc8d0")
-		(property "Reference" "PWR2"
-			(at 146.05 57.15 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
+	(wire
+		(pts
+			(xy 78.74 140.97) (xy 78.74 143.51)
 		)
-		(property "Value" "PWR_FLAG"
-			(at 146.05 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
+		(stroke
+			(width 0)
+			(type default)
 		)
-		(pin "1"
-			(uuid "37ae1a03-2baf-5ef9-985f-6bfac5c50efd")
+		(uuid "b9e3ae80-a7da-51a3-9750-e3efbce35114")
+	)
+	(junction
+		(at 78.74 143.51)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "08dda141-ee06-58ba-bdd3-90914ca83976")
+	)
+	(wire
+		(pts
+			(xy 81.28 140.97) (xy 81.28 143.51)
 		)
-		(instances
-			(project "pr11-12"
-				(path "/3f2a1c9e-7b4d-4e8a-9c15-2d6f0a48b3e7"
-					(reference "PWR2")
-					(unit 1)
-				)
-			)
+		(stroke
+			(width 0)
+			(type default)
 		)
+		(uuid "61e4a377-eb25-5fde-956c-4158ad7a286c")
+	)
+	(junction
+		(at 81.28 143.51)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f33bb35c-6321-5fde-ada3-4425c75fea3f")
+	)
+	(wire
+		(pts
+			(xy 78.74 143.51) (xy 83.82 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3b223406-c33f-5ac0-b967-6fd6b48c3fe3")
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 146.05 59.69 270)
+		(at 83.82 143.51 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "67e60e7c-1893-5ba0-91a8-981cef676254")
+		(uuid "d9b3d1db-54fd-5c05-aac8-e65f92352b23")
 	)
 	(wire
 		(pts
@@ -3431,7 +3464,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 139.7 59.69 270)
+		(at 139.7 59.69 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3472,7 +3505,7 @@
 		(dnp no)
 		(uuid "b2a527d6-7eab-5249-87e7-c4ac1981edb9")
 		(property "Reference" "J1"
-			(at 152.4 135.89 0)
+			(at 152.4 139.7 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3482,7 +3515,7 @@
 			)
 		)
 		(property "Value" "VOUT + GND"
-			(at 156.21 142.23999999999998 0)
+			(at 161.29 143.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3530,24 +3563,79 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 146.04999999999998) (xy 147.32 148.59)
+			(xy 147.32 146.04999999999998) (xy 147.32 153.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d2411bd9-2c81-5bd7-bab8-336add296142")
+		(uuid "6a0af8c1-264e-5dc8-b483-82cf900098de")
+	)
+	(wire
+		(pts
+			(xy 147.32 153.67) (xy 152.4 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a63b6305-4c7d-5be1-9e79-03fe879d1ba8")
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 147.32 148.59 270)
+		(at 147.32 153.67 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
-		(uuid "09f9e841-844a-5a55-8c14-8acf38cbf780")
+		(uuid "9adfeab8-e77d-574b-b36d-3ef5553341e9")
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 152.4 153.67 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c8559fb3-4812-5023-88d0-67a2936bc8d0")
+		(property "Reference" "PWR2"
+			(at 152.4 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 152.4 156.20999999999998 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "37ae1a03-2baf-5ef9-985f-6bfac5c50efd")
+		)
+		(instances
+			(project "pr11-12"
+				(path "/3f2a1c9e-7b4d-4e8a-9c15-2d6f0a48b3e7"
+					(reference "PWR2")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(no_connect
 		(at 60.96 85.09)
