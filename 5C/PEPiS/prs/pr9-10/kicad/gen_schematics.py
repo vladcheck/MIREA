@@ -229,6 +229,9 @@ class Sheet:
         hide_ref = "\t\t\t(hide yes)\n" if pwr else ""
 
         def prop_block(name, val, pos, hide=""):
+            # pos[3] — горизонтальное выравнивание (left/right) или полная
+            # строка justify («right top» и т.п.)
+            just = pos[3] if " " in pos[3] else pos[3] + " bottom"
             return (
                 f'\t\t(property "{name}" "{val}"\n'
                 f'\t\t\t(at {pos[0]} {pos[1]} {pos[2]})\n'
@@ -236,7 +239,7 @@ class Sheet:
                 f'\t\t\t(show_name no)\n\t\t\t(do_not_autoplace no)\n'
                 f'\t\t\t(effects\n\t\t\t\t(font\n\t\t\t\t\t(size 1.27 1.27)\n'
                 f'\t\t\t\t)\n'
-                f'\t\t\t\t(justify {pos[3]} bottom)\n'
+                f'\t\t\t\t(justify {just})\n'
                 f'\t\t\t)\n\t\t)\n'
             )
 
@@ -367,7 +370,11 @@ sh.wire(cc_a[0], cc_a[1], rail, cc_a[1])
 sh.wire(cc_b[0], cc_b[1], rail, cc_b[1])
 sh.wire(rail, cc_a[1], rail, cc_b[1])
 sh.junction(rail, mid_y)
-sh.symbol(GND, rail, mid_y, ref_next("pwr"), "GND", pwr=True)
+# отвод от шины катодов: индикатор слева -> треугольник вправо (rot 90),
+# надпись — правее треугольника; угол поля 270: KiCad рендерит поле как
+# (угол + поворот), 270+90=360 даёт горизонтальный текст с обычным justify
+sh.symbol(GND, rail, mid_y, ref_next("pwr"), "GND", pwr=True, rot=90,
+          val_at=(r2(rail + 3.81), mid_y, 270, "left"))
 
 # --- питание: VBAT/VDD×3/VDDA -> шина +3,3 В; VSS×3/VSSA -> шина GND ---
 def power_rail(pts, sym, value, center_y, pwr_flag=None):
@@ -401,8 +408,18 @@ def power_rail(pts, sym, value, center_y, pwr_flag=None):
     sh.symbol(sym, mid_x, rail_y + dy, ref_next("pwr"), value, pwr=True)
     if pwr_flag is not None:
         sh.wire(fx, rail_y, fx, rail_y + dy)
+        # флажок — дальше от шины: под шиной смотрит вниз (rot 180),
+        # над шиной — вверх (rot 0). Подпись при rot 180: поле с углом 0
+        # и justify «right top» — KiCad дважды зеркалит (рендер upright,
+        # текст вправо от отвода, как у флагов над шиной).
+        if below:
+            fpos = (r2(fx + 1.27), rail_y + dy, 0, "right top")
+            frot = 180
+        else:
+            fpos = (fx, rail_y + dy, 0, "left")
+            frot = 0
         sh.symbol(pwr_flag, fx, rail_y + dy, ref_next("pwr"), "PWR_FLAG",
-                  pwr=True)
+                  pwr=True, rot=frot, val_at=fpos)
 
 top = []
 for nm in ("VBAT", "VDD", "VDDA"):
@@ -472,7 +489,8 @@ sh.wire(cc_a[0], cc_a[1], rail2, cc_a[1])
 sh.wire(cc_b[0], cc_b[1], rail2, cc_b[1])
 sh.wire(rail2, cc_a[1], rail2, cc_b[1])
 sh.junction(rail2, mid_y2)
-sh.symbol(GND, rail2, mid_y2, ref_next("pwr"), "GND", pwr=True)
+sh.symbol(GND, rail2, mid_y2, ref_next("pwr"), "GND", pwr=True, rot=90,
+          val_at=(r2(rail2 + 3.81), mid_y2, 270, "left"))
 
 # --- питание: VCC и AVCC -> шина +5 В; оба GND (одна точка) -------------
 vcc = pin_by_name(a, AVR, "VCC")
