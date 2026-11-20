@@ -3594,7 +3594,7 @@
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
-		(at 152.4 153.67 0)
+		(at 152.4 153.67 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)

@@ -387,7 +387,8 @@ symbol(
 wire(147.32, VOUT_Y + 2.54, 147.32, VOUT_Y + 10.16)
 wire(147.32, VOUT_Y + 10.16, 152.4, VOUT_Y + 10.16)
 global_label("GND", 147.32, VOUT_Y + 10.16, rot=0, justify="right bottom")
-symbol("power:PWR_FLAG", "PWR2", "PWR_FLAG", (152.4, VOUT_Y + 10.16, 0),
+# флажок продолжает линию: провод подходит слева -> ромб вправо (rot 270)
+symbol("power:PWR_FLAG", "PWR2", "PWR_FLAG", (152.4, VOUT_Y + 10.16, 270),
        ["1"], hide_value=True, hide_ref=True)
 
 # -------------------------------------------------- неиспользуемые выводы
