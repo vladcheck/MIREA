@@ -154,9 +154,17 @@ def _prop(name, value, x, y, hide=False, size=1.27):
 
 
 def instance(lib_id, ref, value, x, y, path, rot=0, unit=1, pins=(),
-             val_size=1.27, extra_props=None):
-    """Экземпляр символа на листе."""
+             val_size=1.27, extra_props=None,
+             ref_dx=0.0, ref_dy=-2.54, val_dx=0.0, val_dy=2.54,
+             hide_ref=False, hide_val=False):
+    """Экземпляр символа на листе.
+
+    ref_dx/ref_dy, val_dx/val_dy — смещения подписей Reference/Value
+    относительно точки привязки (нужны, чтобы подписи не залезали
+    на графику символа); hide_ref/hide_val — скрыть подпись.
+    """
     g(x, y)
+    g(x + ref_dx, y + ref_dy, x + val_dx, y + val_dy)
     parts = [
         "\t(symbol",
         f'\t\t(lib_id "{lib_id}")',
@@ -169,8 +177,10 @@ def instance(lib_id, ref, value, x, y, path, rot=0, unit=1, pins=(),
         "\t\t(dnp no)",
         f'\t\t(uuid "{uid()}")',
     ]
-    parts.append(_prop("Reference", ref, x, y - 2.54, size=1.27))
-    parts.append(_prop("Value", value, x, y + 2.54, size=val_size))
+    parts.append(_prop("Reference", ref, x + ref_dx, y + ref_dy,
+                       hide=hide_ref))
+    parts.append(_prop("Value", value, x + val_dx, y + val_dy, size=val_size,
+                       hide=hide_val))
     parts.append(_prop("Footprint", "", x, y, hide=True))
     parts.append(_prop("Datasheet", "", x, y, hide=True))
     parts.append(_prop("Description", "", x, y, hide=True))
@@ -195,7 +205,22 @@ def instance(lib_id, ref, value, x, y, path, rot=0, unit=1, pins=(),
 def power(lib, value, ref, x, y, path, rot=0):
     g(x, y)
     return instance(lib, ref, value, x, y, path, rot=rot, pins=("1",),
-                    val_size=1.27)
+                    val_size=1.27, hide_ref=True, val_dy=5.08)
+
+
+def vsource(s, lib, ref, value, x, y, label, path, gnd_ref,
+            pins=("1", "2")):
+    """Источник питания/сигнала (VDC/VPULSE): '+' сверху, GND снизу.
+
+    Точка привязки (x, y) — центр круга; '+' в (x, y-5.08), '-' в
+    (x, y+5.08). Подписи: Reference над '+', Value под символом GND,
+    метка цепи у вывода '+'. Сеть на выводе '-' — GND (силовой символ).
+    """
+    g(x, y)
+    s.add(instance(lib, ref, value, x, y, path, pins=pins,
+                   ref_dy=-8.89, val_dy=12.7))
+    s.add(net_label(label, x, y - 5.08, justify="right"))
+    s.add(power("power:GND", "GND", gnd_ref, x, y + 5.08, path))
 
 
 # ---------------------------------------------------------------------------
@@ -218,10 +243,15 @@ def _pin(ptype, x, y, rot, length, name, number):
     )
 
 
-def _sym_header(lib_name, ref_letter, value, desc, ref_y, val_y):
-    return [
+def _sym_header(lib_name, ref_letter, value, desc, ref_y, val_y,
+                hide_numbers=False):
+    L = [
         f'\t(symbol "pr1314:{lib_name}"',
         "\t\t(pin_names (offset 1.016))",
+    ]
+    if hide_numbers:
+        L.append("\t\t(pin_numbers (hide yes))")
+    L += [
         "\t\t(exclude_from_sim no)",
         "\t\t(in_bom yes)",
         "\t\t(on_board yes)",
@@ -238,30 +268,38 @@ def _sym_header(lib_name, ref_letter, value, desc, ref_y, val_y):
         f'\t\t(property "Description" "{desc}" (at 0 0 0) (hide yes)',
         "\t\t\t(effects (font (size 1.27 1.27))))",
     ]
+    return L
 
 
 def sym_adc16():
-    """Виртуальный 16-разрядный АЦП (аналог элемента Mixed Multisim)."""
+    """Виртуальный 16-разрядный АЦП (аналог элемента Mixed Multisim).
+
+    Геометрия: левые выводы Vin/Vref+/Vref-/SOC/OE, правые EOC и шина
+    данных D15..D0 с шагом 3.81 мм (читаемая подпись у каждого вывода).
+    Номера выводов скрыты (у многоразрядной шины они не нужны), имена
+    выводов показаны.
+    """
     L = _sym_header("VIRT_ADC16", "A", "VIRT_ADC16",
-                    "Виртуальный АЦП, 16 разрядов", 33.02, -29.21)
+                    "Виртуальный АЦП, 16 разрядов", 40.64, -43.18,
+                    hide_numbers=True)
     L.append(f'\t\t(symbol "VIRT_ADC16_0_1"')
     L.append(
-        "\t\t\t(rectangle (start -22.86 30.48) (end 22.86 -25.4)"
+        "\t\t\t(rectangle (start -22.86 35.56) (end 22.86 -40.64)"
         "\n\t\t\t\t(stroke (width 0.254) (type default))"
         "\n\t\t\t\t(fill (type background))\n\t\t\t)"
     )
-    L.append('\t\t\t(text "АЦП 16 бит" (at 0 27.94 0)')
+    L.append('\t\t\t(text "АЦП 16 бит" (at 0 33.02 0)')
     L.append("\t\t\t\t(effects (font (size 2.54 2.54))))")
     L.append("\t\t)")
     L.append('\t\t(symbol "VIRT_ADC16_1_1"')
-    L.append(_pin("input", -26.67, 27.94, 0, 3.81, "Vin", "1"))
-    L.append(_pin("input", -26.67, 20.32, 0, 3.81, "Vref+", "2"))
-    L.append(_pin("input", -26.67, 12.7, 0, 3.81, "Vref-", "3"))
-    L.append(_pin("input", -26.67, -12.7, 0, 3.81, "SOC", "4"))
-    L.append(_pin("input", -26.67, -20.32, 0, 3.81, "OE", "5"))
+    L.append(_pin("input", -26.67, 30.48, 0, 3.81, "Vin", "1"))
+    L.append(_pin("input", -26.67, 22.86, 0, 3.81, "Vref+", "2"))
+    L.append(_pin("input", -26.67, 15.24, 0, 3.81, "Vref-", "3"))
+    L.append(_pin("input", -26.67, -15.24, 0, 3.81, "SOC", "4"))
+    L.append(_pin("input", -26.67, -22.86, 0, 3.81, "OE", "5"))
     L.append(_pin("output", 26.67, 27.94, 180, 3.81, "EOC", "6"))
     for i in range(16):
-        L.append(_pin("output", 26.67, 20.32 - 2.54 * i, 180, 3.81,
+        L.append(_pin("output", 26.67, 20.32 - 3.81 * i, 180, 3.81,
                       f"D{15 - i}", str(7 + i)))
     L.append("\t\t)")
     L.append("\t\t(embedded_fonts no)")
@@ -270,23 +308,28 @@ def sym_adc16():
 
 
 def sym_dac16():
-    """Виртуальный ЦАП (аналог элемента Mixed Multisim)."""
+    """Виртуальный ЦАП (аналог элемента Mixed Multisim).
+
+    Зеркальная геометрия АЦП: входы D15..D0 слева с шагом 3.81 мм,
+    выход Vout справа. Номера выводов скрыты.
+    """
     L = _sym_header("VIRT_DAC16", "A", "VIRT_DAC16",
-                    "Виртуальный ЦАП, 16 разрядов", 33.02, -29.21)
+                    "Виртуальный ЦАП, 16 разрядов", 40.64, -43.18,
+                    hide_numbers=True)
     L.append('\t\t(symbol "VIRT_DAC16_0_1"')
     L.append(
-        "\t\t\t(rectangle (start -22.86 30.48) (end 22.86 -25.4)"
+        "\t\t\t(rectangle (start -22.86 35.56) (end 22.86 -40.64)"
         "\n\t\t\t\t(stroke (width 0.254) (type default))"
         "\n\t\t\t\t(fill (type background))\n\t\t\t)"
     )
-    L.append('\t\t\t(text "ЦАП 16 бит" (at 0 27.94 0)')
+    L.append('\t\t\t(text "ЦАП 16 бит" (at 0 33.02 0)')
     L.append("\t\t\t\t(effects (font (size 2.54 2.54))))")
     L.append("\t\t)")
     L.append('\t\t(symbol "VIRT_DAC16_1_1"')
     for i in range(16):
-        L.append(_pin("input", -26.67, 20.32 - 2.54 * i, 0, 3.81,
+        L.append(_pin("input", -26.67, 20.32 - 3.81 * i, 0, 3.81,
                       f"D{15 - i}", str(1 + i)))
-    L.append(_pin("output", 26.67, 0, 180, 3.81, "Vout", "17"))
+    L.append(_pin("output", 26.67, -2.54, 180, 3.81, "Vout", "17"))
     L.append("\t\t)")
     L.append("\t\t(embedded_fonts no)")
     L.append("\t)")
@@ -294,10 +337,15 @@ def sym_dac16():
 
 
 def sym_probe():
-    """Пробник (индикатор логического уровня)."""
-    L = _sym_header("PROBE", "X", "PROBE", "Логический пробник", 3.81, -3.81)
+    """Пробник (индикатор логического уровня).
+
+    Маленький круг (r = 0.635 мм), чтобы колонка пробников не сливалась
+    даже при шаге выводов 2.54 мм (порт P2 МК-51 на листе 2).
+    """
+    L = _sym_header("PROBE", "X", "PROBE", "Логический пробник", 3.81, -3.81,
+                    hide_numbers=True)
     L.append('\t\t(symbol "PROBE_0_1"')
-    L.append("\t\t\t(circle (center 0 0) (radius 1.27)")
+    L.append("\t\t\t(circle (center 0 0) (radius 0.635)")
     L.append("\t\t\t\t(stroke (width 0.254) (type default))")
     L.append("\t\t\t\t(fill (type outline))\n\t\t\t)")
     L.append("\t\t)")
@@ -420,6 +468,15 @@ def system_embeds(libspecs):
     return [embed(nick, fn, nm) for nick, fn, nm in libspecs]
 
 
+def hide_pin_numbers(def_text):
+    """Скрывает номера выводов у встроенного определения символа."""
+    return def_text.replace(
+        "\t\t(on_board yes)\n",
+        "\t\t(on_board yes)\n\t\t(pin_numbers (hide yes))\n",
+        1,
+    )
+
+
 EMBEDS_SHEET1 = [hoist_pins(d) for d in system_embeds([
     ("Simulation_SPICE", "Simulation_SPICE.kicad_sym", "VDC"),
     ("Simulation_SPICE", "Simulation_SPICE.kicad_sym", "VPULSE"),
@@ -429,13 +486,17 @@ EMBEDS_SHEET1 = [hoist_pins(d) for d in system_embeds([
     ("power", "power.kicad_sym", "PWR_FLAG"),
 ])]
 
-EMBEDS_SHEET2 = [hoist_pins(d) for d in system_embeds([
-    ("Simulation_SPICE", "Simulation_SPICE.kicad_sym", "VDC"),
-    ("MCU_Microchip_8051", "MCU_Microchip_8051.kicad_sym", "AT89x51xxP"),
-    ("power", "power.kicad_sym", "GND"),
-    ("power", "power.kicad_sym", "+5V"),
-    ("power", "power.kicad_sym", "PWR_FLAG"),
-])]
+EMBEDS_SHEET2 = [
+    hide_pin_numbers(d) if ":AT89x51xxP" in d else d
+    for d in [hoist_pins(x) for x in system_embeds([
+        ("Simulation_SPICE", "Simulation_SPICE.kicad_sym", "VDC"),
+        ("MCU_Microchip_8051", "MCU_Microchip_8051.kicad_sym",
+         "AT89x51xxP"),
+        ("power", "power.kicad_sym", "GND"),
+        ("power", "power.kicad_sym", "+5V"),
+        ("power", "power.kicad_sym", "PWR_FLAG"),
+    ])]
+]
 
 
 # ---------------------------------------------------------------------------
@@ -453,73 +514,74 @@ def build_sheet1():
               PATH_SHEET1)
     s.libs = EMBEDS_SHEET1 + CUSTOM_LIBS_EMBEDDED
     p = PATH_SHEET1
-    # A1 — АЦП в (160.02, 140.97); ERC-истинные выводы:
+    # A1 — АЦП в (160.02, 140.97); ERC-истинные выводы (anchor = (x, y-dy)):
     ax, ay = 160.02, 140.97
     s.add(instance("pr1314:VIRT_ADC16", "A1", "VIRT_ADC16", ax, ay, p,
                    pins=ADC_PINS))
-    vin_e = (133.35, 113.03)    # Vin  (+27.94 -> зеркально)
-    vrp_e = (133.35, 120.65)    # Vref+
-    vrm_e = (133.35, 128.27)    # Vref-
-    soc_e = (133.35, 153.67)    # SOC  (-12.7)
-    oe_e = (133.35, 161.29)     # OE   (-20.32)
-    eoc_e = (186.69, 113.03)    # EOC
-    data_e = [(186.69, 120.65 + 2.54 * i) for i in range(16)]  # D15..D0
+    tip_x = ax + 26.67              # точки подключения правых выводов
+    vin_e = (ax - 26.67, ay - 30.48)    # Vin
+    vrp_e = (ax - 26.67, ay - 22.86)    # Vref+
+    vrm_e = (ax - 26.67, ay - 15.24)    # Vref-
+    soc_e = (ax - 26.67, ay + 15.24)    # SOC
+    oe_e = (ax - 26.67, ay + 22.86)     # OE
+    eoc_e = (tip_x, ay - 27.94)         # EOC
+    # строка y = ay-20.32+3.81*k — разряд D(15-k) (зеркальная ось Y)
+    def data_row(k):
+        return ay - 20.32 + 3.81 * k
 
-    # V1 (+5 В): '+' ERC (105.41, 151.13), '-' ERC (105.41, 161.29)
-    v1 = (105.41, 156.21)
-    s.add(instance("Simulation_SPICE:VDC", "V1", "+5 В", *v1, p, pins=("1", "2")))
-    s.add(net_label("VREF+", 105.41, 151.13, justify="right"))
-    s.add(power("power:GND", "GND", "GND1", 105.41, 161.29, p))
-    # V3 (uвх): '+' ERC (76.2, 154.94), '-' ERC (76.2, 165.1)
-    v3 = (76.2, 160.02)
-    s.add(instance("Simulation_SPICE:VDC", "V3", "Uвх", *v3, p, pins=("1", "2")))
-    s.add(net_label("VIN", 76.2, 154.94, justify="right"))
-    s.add(power("power:GND", "GND", "GND2", 76.2, 165.1, p))
-    # Vref+, Vin АЦП — метки; Vref- — земля
-    s.add(net_label("VREF+", vrp_e[0], vrp_e[1], justify="right"))
+    # Источники слева: V3 (uвх), V1 (+5 В), V4 (синхронизация 1 кГц)
+    vsource(s, "Simulation_SPICE:VDC", "V3", "Uвх", 76.2, 115.57,
+            "VIN", p, "GND2")
+    vsource(s, "Simulation_SPICE:VDC", "V1", "+5 В", 105.41, 123.19,
+            "VREF+", p, "GND1")
+    vsource(s, "Simulation_SPICE:VPULSE", "V4", "1 кГц", 105.41, 161.29,
+            "SOC", p, "GND4")
+    # Входы АЦП: Vin/Vref+ — метки, Vref- — земля
     s.add(net_label("VIN", vin_e[0], vin_e[1], justify="right"))
+    s.add(net_label("VREF+", vrp_e[0], vrp_e[1], justify="right"))
     s.add(power("power:GND", "GND", "GND3", vrm_e[0], vrm_e[1], p))
-    # V4 (VPULSE 1 кГц): '+' ERC (105.41, 118.11), '-' ERC (105.41, 128.27)
-    v4 = (105.41, 123.19)
-    s.add(instance("Simulation_SPICE:VPULSE", "V4", "1 кГц", *v4, p,
-                   pins=("1", "2")))
-    s.add(net_label("SOC", 105.41, 118.11, justify="right"))
-    s.add(power("power:GND", "GND", "GND4", 105.41, 128.27, p))
     s.add(net_label("SOC", soc_e[0], soc_e[1], justify="right"))
+    s.add(net_label("OE", oe_e[0], oe_e[1], justify="right"))
     # U2 — инвертор (74LS04), выводы на оси Y (инвариантны)
     u2 = (128.27, 139.7)
-    s.add(instance("pr1314:INV1", "U2", "74LS04", *u2, p, pins=("1", "2")))
+    s.add(instance("pr1314:INV1", "U2", "74LS04", *u2, p, pins=("1", "2"),
+                   ref_dy=-5.08, val_dy=5.08))
     s.add(net_label("SOC", 120.65, 139.7, justify="right"))
     s.add(net_label("OE", 135.89, 139.7))
-    s.add(net_label("OE", oe_e[0], oe_e[1], justify="right"))
-    # A2 — ЦАП в (247.65, 140.97); ERC-выводы данных:
-    dx, dy = 247.65, 140.97
-    s.add(instance("pr1314:VIRT_DAC16", "A2", "VIRT_DAC16", dx, dy, p,
-                   pins=DAC_PINS))
-    # строка y = 120.65 + 2.54*k — это разряд D(15-k) (зеркальная ось Y)
+    # Шина данных АЦП: от каждого вывода отрезок 7.62 мм, на конце метка
+    # и пробник (контакт вывод-вывод); подпись пробника — справа от круга.
     for k in range(16):
         b = 15 - k
-        ye = 120.65 + 2.54 * k
-        s.add(net_label(f"D{b}", 186.69, ye, justify="right"))
-        # пробник Xb: контакт вывод-вывод с выходом АЦП
-        s.add(instance("pr1314:PROBE", f"X{b}", "PROBE", 191.77,
-                       ye, p, pins=PROBE_PINS))
-        s.add(text(f"X{b}", 193.04, ye))
-        s.add(net_label(f"D{b}", 220.98, ye, justify="right"))
-    # EOC -> пробник X16 (контакт)
-    s.add(instance("pr1314:PROBE", "X16", "PROBE", eoc_e[0] + 5.08, eoc_e[1],
-                   p, pins=PROBE_PINS))
-    s.add(text("EOC", eoc_e[0] + 7.62, eoc_e[1]))
-    # U1 — вольтметр: '+' ERC должен совпасть с Vout (274.32, 140.97)
-    # '+' local (0, +5.08) -> ERC (x, y - 5.08) = (274.32, 140.97) => y = 146.05
-    u1 = (274.32, 146.05)
+        ye = data_row(k)
+        s.add(wire(tip_x, ye, tip_x + 7.62, ye))
+        s.add(net_label(f"D{b}", tip_x + 7.62, ye, justify="right"))
+        s.add(instance("pr1314:PROBE", f"X{b}", "PROBE",
+                       tip_x + 12.7, ye, p, pins=PROBE_PINS,
+                       ref_dx=2.54, ref_dy=0, hide_val=True))
+    # EOC -> пробник X16 (отрезком; без метки — имя цепи не меняется)
+    s.add(wire(eoc_e[0], eoc_e[1], eoc_e[0] + 7.62, eoc_e[1]))
+    s.add(instance("pr1314:PROBE", "X16", "PROBE", eoc_e[0] + 12.7,
+                   eoc_e[1], p, pins=PROBE_PINS,
+                   ref_dx=2.54, ref_dy=0, hide_val=True))
+    # A2 — ЦАП в (250.19, 140.97); отрезки от входов влево, метки на концах
+    dx, dy = 250.19, 140.97
+    s.add(instance("pr1314:VIRT_DAC16", "A2", "VIRT_DAC16", dx, dy, p,
+                   pins=DAC_PINS))
+    dtip_x = dx - 26.67
+    for k in range(16):
+        b = 15 - k
+        ye = dy - 20.32 + 3.81 * k
+        s.add(wire(dtip_x, ye, dtip_x - 7.62, ye))
+        s.add(net_label(f"D{b}", dtip_x - 7.62, ye, justify="right"))
+    # U1 — вольтметр: '+' ERC совпадает с Vout (dx+26.67, dy+2.54)
+    u1 = (dx + 26.67, dy + 7.62)
     s.add(instance("Simulation_SPICE:VOLTMETER_DIFF", "U1", "В", *u1, p,
-                   pins=("1", "2", "3")))
-    s.add(power("power:GND", "GND", "GND6", 274.32, 151.13, p))  # '-' ERC
-    s.add(no_connect(279.4, 146.05))                             # out ERC
-    # флаги питания (источник для ERC по сети GND)
+                   pins=("1", "2", "3"), ref_dy=-7.62, hide_val=True))
+    s.add(power("power:GND", "GND", "GND6", u1[0], u1[1] + 5.08, p))  # '-' ERC
+    s.add(no_connect(u1[0] + 5.08, u1[1]))                           # out ERC
+    # флаг питания (источник для ERC по сети GND)
     s.add(instance("power:PWR_FLAG", "PWR1", "PWR_FLAG", 85.09, 176.53, p,
-                   pins=("1",)))
+                   pins=("1",), hide_ref=True))
     s.add(net_label("GND", 85.09, 176.53, justify="right"))
     # подписи
     s.add(text("Задание 1. Схема исследования точности 16-разрядного "
@@ -541,22 +603,24 @@ def build_sheet2():
               PATH_SHEET2)
     s.libs = EMBEDS_SHEET2 + CUSTOM_LIBS_EMBEDDED
     p = PATH_SHEET2
-    # A1 — АЦП в (118.11, 135.89); ERC-истинные выводы:
+    # A1 — АЦП в (118.11, 135.89); ERC-истинные выводы (anchor = (x, y-dy)):
     ax, ay = 118.11, 135.89
     s.add(instance("pr1314:VIRT_ADC16", "A1", "VIRT_ADC16", ax, ay, p,
                    pins=ADC_PINS))
-    vin_e = (91.44, 107.95)
-    vrp_e = (91.44, 115.57)
-    vrm_e = (91.44, 123.19)
-    soc_e = (91.44, 148.59)
-    oe_e = (91.44, 156.21)
-    eoc_e = (144.78, 107.95)
-    data_e = [(144.78, 115.57 + 2.54 * i) for i in range(16)]  # D15..D0
+    tip_x = ax + 26.67
+    vin_e = (ax - 26.67, ay - 30.48)
+    vrp_e = (ax - 26.67, ay - 22.86)
+    vrm_e = (ax - 26.67, ay - 15.24)
+    soc_e = (ax - 26.67, ay + 15.24)
+    oe_e = (ax - 26.67, ay + 22.86)
+    eoc_e = (tip_x, ay - 27.94)
+    data_e = [(tip_x, ay - 20.32 + 3.81 * i) for i in range(16)]  # D15..D0
     # U1 — AT89C51 в (222.25, 95.25); ERC-истинные выводы (зеркально):
     mx, my = 222.25, 95.25
     mcu_pins = [str(n) for n in range(1, 41)]
     s.add(instance("MCU_Microchip_8051:AT89x51xxP", "U1", "AT89C51",
-                   mx, my, p, pins=mcu_pins))
+                   mx, my, p, pins=mcu_pins,
+                   ref_dy=-2.54, val_dx=-11.43, val_dy=0))
     # левый край (local y -> ERC -y): P1.i local +22.86-2.54i -> ERC 72.39+2.54i
     p1_e = {i: (207.01, 72.39 + 2.54 * i) for i in range(8)}
     # P3.k local -2.54-2.54k -> ERC 97.79+2.54k; RST +27.94 -> 67.31;
@@ -568,18 +632,22 @@ def build_sheet2():
     p2_e = {i: (237.49, 97.79 + 2.54 * i) for i in range(8)}
     vcc_e = (222.25, 54.61)    # VCC local +40.64 -> ERC -
     gnd_e = (222.25, 135.89)   # GND local -40.64 -> ERC +
-    # D0..D7 -> P1.0..P1.7 (метки)
+    # D0..D7 -> P1.0..P1.7 (метки на отрезках от выводов АЦП)
     for i in range(8):
-        s.add(net_label(f"D{i}", data_e[15 - i][0], data_e[15 - i][1],
-                        justify="right"))
+        ye = data_e[15 - i][1]
+        s.add(wire(tip_x, ye, tip_x + 5.08, ye))
+        s.add(net_label(f"D{i}", tip_x + 5.08, ye, justify="right"))
         s.add(net_label(f"D{i}", p1_e[i][0], p1_e[i][1], justify="right"))
     # D8..D15 -> P0.0..P0.7 (метки)
     for k in range(8):
         bit = 15 - k
-        s.add(net_label(f"D{bit}", data_e[k][0], data_e[k][1], justify="right"))
+        ye = data_e[k][1]
+        s.add(wire(tip_x, ye, tip_x + 5.08, ye))
+        s.add(net_label(f"D{bit}", tip_x + 5.08, ye, justify="right"))
         s.add(net_label(f"D{bit}", p0_e[k][0], p0_e[k][1]))
     # EOC -> P3.7 (метки)
-    s.add(net_label("EOC", eoc_e[0], eoc_e[1], justify="right"))
+    s.add(wire(tip_x, eoc_e[1], tip_x + 5.08, eoc_e[1]))
+    s.add(net_label("EOC", tip_x + 5.08, eoc_e[1], justify="right"))
     s.add(net_label("EOC", p3_7_e[0], p3_7_e[1], justify="right"))
     # P3.6 -> SOC (метки)
     s.add(net_label("SOC", p3_6_e[0], p3_6_e[1], justify="right"))
@@ -589,27 +657,23 @@ def build_sheet2():
     s.add(net_label("VIN", vin_e[0], vin_e[1], justify="right"))
     s.add(net_label("VREF+", vrp_e[0], vrp_e[1], justify="right"))
     s.add(power("power:GND", "GND", "GND4", vrm_e[0], vrm_e[1], p))
-    # V2 (+5 В): '+' ERC (48.26, 146.05), '-' ERC (48.26, 156.21)
-    v2 = (48.26, 151.13)
-    s.add(instance("Simulation_SPICE:VDC", "V2", "+5 В", *v2, p, pins=("1", "2")))
-    s.add(net_label("VREF+", 48.26, 146.05, justify="right"))
-    s.add(power("power:GND", "GND", "GND2", 48.26, 156.21, p))
-    # V1 (uвх): '+' ERC (76.2, 154.94), '-' ERC (76.2, 165.1)
-    v1 = (76.2, 160.02)
-    s.add(instance("Simulation_SPICE:VDC", "V1", "Uвх", *v1, p, pins=("1", "2")))
-    s.add(net_label("VIN", 76.2, 154.94, justify="right"))
-    s.add(power("power:GND", "GND", "GND3", 76.2, 165.1, p))
+    # Источники слева: V2 (+5 В -> VREF+), V1 (uвх -> VIN)
+    vsource(s, "Simulation_SPICE:VDC", "V2", "+5 В", 48.26, 151.13,
+            "VREF+", p, "GND2")
+    vsource(s, "Simulation_SPICE:VDC", "V1", "Uвх", 76.2, 160.02,
+            "VIN", p, "GND3")
     # питание МК (ERC-истинные позиции)
-    s.add(power("power:+5V", "+5V", "+5V1", vcc_e[0], vcc_e[1], p))
+    s.add(instance("power:+5V", "+5V1", "+5V", vcc_e[0], vcc_e[1], p,
+                   pins=("1",), hide_ref=True, hide_val=True))
     s.add(power("power:GND", "GND", "GND5", gnd_e[0], gnd_e[1], p))
-    # P2 -> пробники X0..X7 (контакт вывод-вывод)
+    # P2 -> пробники X0..X7 (контакт вывод-вывод); подпись — справа от круга
     for i in range(8):
         s.add(instance("pr1314:PROBE", f"X{i}", "PROBE",
-                       p2_e[i][0] + 5.08, p2_e[i][1], p, pins=PROBE_PINS))
-        s.add(text(f"X{i}", p2_e[i][0] + 7.62, p2_e[i][1]))
+                       p2_e[i][0] + 5.08, p2_e[i][1], p, pins=PROBE_PINS,
+                       ref_dx=2.54, ref_dy=0, hide_val=True))
     # флаг питания сети +5V (GND-флаг — на листе 1, сеть глобальная)
     s.add(instance("power:PWR_FLAG", "PWR2", "PWR_FLAG", 245.11, 60.96, p,
-                   pins=("1",)))
+                   pins=("1",), hide_ref=True))
     s.add(net_label("+5V", 245.11, 60.96, justify="right"))
     # неиспользуемые выводы МК (ERC-истинные позиции)
     nc_left = [

@@ -1,4 +1,4 @@
-ERC report (2026-11-13T15:22:57, Encoding UTF8)
+ERC report (2026-11-20T15:23:24, Encoding UTF8)
 Report includes: Errors, Warnings
 
 ***** Sheet /
@@ -13,12 +13,12 @@ Report includes: Errors, Warnings
     @(245.11 mm, 60.96 mm): Symbol PWR2 [PWR_FLAG]
 
 ***** Sheet /Задание 1. Исследование АЦП/
-[same_local_global_label]: Local and global labels have same name
-    ; warning
-    @(76.20 mm, 165.10 mm): Symbol GND2 Pin 1 [Power input, Line]
-    @(85.09 mm, 176.53 mm): Label 'GND'
 
 ***** Sheet /Задание 2. МК-51 + АЦП/
+[same_local_global_label]: Local and global labels have same name
+    ; warning
+    @(76.20 mm, 165.10 mm): Symbol GND3 Pin 1 [Power input, Line]
+    @(85.09 mm, 176.53 mm): Label 'GND'
 [same_local_global_label]: Local and global labels have same name
     ; warning
     @(222.25 mm, 54.61 mm): Symbol +5V1 Pin 1 [Power input, Line]

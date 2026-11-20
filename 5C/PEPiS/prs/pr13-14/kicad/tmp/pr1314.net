@@ -2,7 +2,7 @@
 	(version "E")
 	(design
 		(source "/Users/vlad.valekzhanin/github/vladcheck/MIREA/5C/PEPiS/prs/pr13-14/kicad/pr13-14.kicad_sch")
-		(date "2026-11-13T15:22:57")
+		(date "2026-11-20T15:23:25")
 		(tool "Eeschema 10.0.8")
 		(sheet
 			(number "1")
@@ -181,7 +181,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "8ae60019-0572-47c3-993b-06eaf67e5c28")
+			(tstamps "65762fd2-0710-498d-b527-7c13bb2770dc")
 			(units
 				(unit
 					(name "A")
@@ -287,7 +287,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "f60bb02d-423a-4687-be9d-88a1971785df")
+			(tstamps "9326757c-3091-45bd-b723-744e06d504cf")
 			(units
 				(unit
 					(name "A")
@@ -382,7 +382,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "1fa953ec-2252-4277-94e0-9fea5dcc665c")
+			(tstamps "0d00ffbf-d833-45aa-8452-312a1bbefdba")
 			(units
 				(unit
 					(name "A")
@@ -429,7 +429,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "15f55080-5035-43cc-8544-e127cee23eaa")
+			(tstamps "29d086a2-75b1-40b2-8473-417ba76bba2a")
 			(units
 				(unit
 					(name "A")
@@ -476,7 +476,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "b712a10b-6e2b-48f5-b138-fa00dbc8550a")
+			(tstamps "00e055bc-dcf2-44fa-84fe-c09307912355")
 			(units
 				(unit
 					(name "A")
@@ -523,7 +523,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "e895003e-ba5f-4443-a5a4-12adaafa03e4")
+			(tstamps "86032233-d156-4f7e-80aa-92b813b87b30")
 			(units
 				(unit
 					(name "A")
@@ -570,7 +570,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "610bc97f-b788-433c-867d-7bdfec249ca4")
+			(tstamps "1e37dfbe-f5ea-4419-8ee0-d14fb982e8c4")
 			(units
 				(unit
 					(name "A")
@@ -617,7 +617,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "d0d6902f-e41f-4879-b0e4-dc1701ce4e2e")
+			(tstamps "cb281f39-0014-4a96-8964-846aa65dbf3e")
 			(units
 				(unit
 					(name "A")
@@ -664,7 +664,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "57e13720-5202-47da-bc56-0a7c1be006b2")
+			(tstamps "487cb433-3b6f-4f72-acf6-e30f0601567d")
 			(units
 				(unit
 					(name "A")
@@ -713,7 +713,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "4be828b0-e7ea-4e30-967f-de4df8b92291")
+			(tstamps "a5b921a9-0856-4dd3-ba07-05bf20d1651c")
 			(units
 				(unit
 					(name "A")
@@ -763,7 +763,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "553c5290-2c6d-4e2a-ab18-a8d93587237b")
+			(tstamps "0227a24b-b87a-4da0-a15d-9f22a56410ba")
 			(units
 				(unit
 					(name "A")
@@ -813,7 +813,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "0c9137fa-33db-4174-9fa0-7576812cbdf9")
+			(tstamps "fb09a515-ffd0-4716-b17e-0922df6ffb8b")
 			(units
 				(unit
 					(name "A")
@@ -863,7 +863,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "a2e4bc9d-406c-4562-ad2f-72229598b5a4")
+			(tstamps "ce18b8df-e646-45a0-a831-8d20184ee7f1")
 			(units
 				(unit
 					(name "A")
@@ -909,7 +909,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "aca7e83b-847a-4fa3-94e1-48ca1f0a2438")
+			(tstamps "d5fc95ae-8e5e-4db9-8bed-57a5b1cf0f5c")
 			(units
 				(unit
 					(name "A")
@@ -952,7 +952,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "084b7d8d-61f4-49aa-a4fd-8baf04e1ea9e")
+			(tstamps "c7baa736-4cdc-4b8a-aedd-88ca235637cb")
 			(units
 				(unit
 					(name "A")
@@ -995,7 +995,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "72f155a3-4231-462d-8599-502ee3b966d7")
+			(tstamps "50c8b4ed-54f4-41db-bdf8-f5287148ce7c")
 			(units
 				(unit
 					(name "A")
@@ -1038,7 +1038,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "2939c7b1-ff55-4219-9556-4f56eb88d90b")
+			(tstamps "db881887-365f-40d7-951f-a06da99e7e02")
 			(units
 				(unit
 					(name "A")
@@ -1081,7 +1081,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "b3c48506-45bf-4ee9-8464-4680a2627f92")
+			(tstamps "0afe68f1-d884-4999-b12b-f8ef02cee245")
 			(units
 				(unit
 					(name "A")
@@ -1124,7 +1124,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "3c742d20-bced-483c-9376-20de90c04b39")
+			(tstamps "f935cb99-4f38-4a16-87c8-a9b060514237")
 			(units
 				(unit
 					(name "A")
@@ -1167,7 +1167,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "44d24338-87b8-43c5-995f-d02fac89bdd5")
+			(tstamps "bdd55528-9582-4484-8366-002b71167c80")
 			(units
 				(unit
 					(name "A")
@@ -1210,7 +1210,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "977e08fe-7c4f-487e-a995-9ab13bb1d700")
+			(tstamps "645bbe3c-2e86-4f26-a4af-01defabcb8d5")
 			(units
 				(unit
 					(name "A")
@@ -1253,7 +1253,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "89a3423b-65d7-4c67-8e79-27b8b1faa4af")
+			(tstamps "bbc1f7b9-e343-4729-8664-8488f6c003ad")
 			(units
 				(unit
 					(name "A")
@@ -1296,7 +1296,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "cb0bcae9-7dbe-43bb-8b7e-69bf61a8a400")
+			(tstamps "cfd1707b-1d35-4e9f-8815-25e2feebd19d")
 			(units
 				(unit
 					(name "A")
@@ -1339,7 +1339,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "0f98e962-4b4f-4714-aee9-500121a6a0f8")
+			(tstamps "e9dfde8f-10a0-48c2-b8e2-ff5c022895f0")
 			(units
 				(unit
 					(name "A")
@@ -1382,7 +1382,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "9cb30ac5-4ba7-447a-acb9-4fa625e19c7e")
+			(tstamps "980c8f1f-971a-43bd-aa44-b2ab8e147eb0")
 			(units
 				(unit
 					(name "A")
@@ -1425,7 +1425,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "1d46b9df-1483-4872-ad54-73139ad8ad52")
+			(tstamps "73ef2775-ad6f-4bd2-9f97-03bd6bca871d")
 			(units
 				(unit
 					(name "A")
@@ -1468,7 +1468,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "7942abd7-e164-41a3-bc88-b296520b11dd")
+			(tstamps "154e41bd-40d2-410e-b942-216a9b125043")
 			(units
 				(unit
 					(name "A")
@@ -1511,7 +1511,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "73d2aef4-446f-40a2-8001-96e37d883b6b")
+			(tstamps "6e0f5036-9f2e-4002-ae69-5eb63f76a0ad")
 			(units
 				(unit
 					(name "A")
@@ -1554,7 +1554,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "9d1b1b95-9020-4e38-a9c9-00a4cddf9910")
+			(tstamps "931fd635-1ab3-4670-b4c7-358a1833275d")
 			(units
 				(unit
 					(name "A")
@@ -1597,7 +1597,7 @@
 				(names "/Задание 1. Исследование АЦП/")
 				(tstamps "/1a7b3c5d-9e2f-4a6b-8c1d-2e4f6a8b0c1d/")
 			)
-			(tstamps "a829fa09-7b22-4f22-883b-048b014672cf")
+			(tstamps "84d634c8-5866-462e-80fa-c5c4ff7fd360")
 			(units
 				(unit
 					(name "A")
@@ -1644,7 +1644,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "66826449-726b-439c-8948-60bb85c94471")
+			(tstamps "19cb0f15-baca-4b77-a36b-9404fd6be791")
 			(units
 				(unit
 					(name "A")
@@ -1687,7 +1687,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "a01be8af-d26c-444e-879d-a3c5658e14b4")
+			(tstamps "a4479a0e-5032-4b41-a560-726d762d90b1")
 			(units
 				(unit
 					(name "A")
@@ -1797,7 +1797,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "d0c219e4-8a1a-4c19-a0db-236f4b384592")
+			(tstamps "951212ed-fdb2-4197-af2d-29bb62afb45b")
 			(units
 				(unit
 					(name "A")
@@ -1844,7 +1844,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "6431d7c4-d8db-4327-b9d8-b2e0399ed12f")
+			(tstamps "ddc00f8c-abf6-46b6-a39b-3f665b92a8ab")
 			(units
 				(unit
 					(name "A")
@@ -1891,7 +1891,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "ba5c153e-51ac-4ce8-a4f6-ff68b149351f")
+			(tstamps "4fdf7e93-2b2a-400b-9623-7b3aa9101153")
 			(units
 				(unit
 					(name "A")
@@ -1938,7 +1938,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "c59fc3bd-c100-4596-8a83-179b91974d84")
+			(tstamps "2925b3c2-7f4e-4379-9876-16a1dbada213")
 			(units
 				(unit
 					(name "A")
@@ -1985,7 +1985,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "6f70da64-1cff-447a-8a1b-bb9c4f4697f5")
+			(tstamps "66d6adbd-6ad4-4774-b560-8d6cebf2628d")
 			(units
 				(unit
 					(name "A")
@@ -2032,7 +2032,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "13d845b7-a0c5-4da7-9409-0109297f3a64")
+			(tstamps "db36276d-ca6f-47c3-97b4-8f808a192b82")
 			(units
 				(unit
 					(name "A")
@@ -2083,7 +2083,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "d94d85f9-c1b5-4421-93fe-50275e7b47f5")
+			(tstamps "c3ba9568-aba5-4688-9fda-2f57f5a6e17e")
 			(units
 				(unit
 					(name "A")
@@ -2247,7 +2247,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "f34062be-95c9-468e-825b-d8c53898381c")
+			(tstamps "2974d026-88e4-46e3-a8da-ee08a7d52bd6")
 			(units
 				(unit
 					(name "A")
@@ -2297,7 +2297,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "50007874-a00f-42c1-a7bc-f04f2915caf0")
+			(tstamps "74f1265c-1219-43f6-b328-a4072dc39cde")
 			(units
 				(unit
 					(name "A")
@@ -2343,7 +2343,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "c3df280e-ee31-4fde-97b1-7bd2f44cc660")
+			(tstamps "9703101b-a529-475d-af0a-7043b181ffe6")
 			(units
 				(unit
 					(name "A")
@@ -2386,7 +2386,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "e6d32bf7-10ae-41a9-bb28-4476e7894343")
+			(tstamps "18ce3305-ec12-4d84-90f7-3b39cb4afe58")
 			(units
 				(unit
 					(name "A")
@@ -2429,7 +2429,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "e4d91bb2-fa70-4093-9bc7-8bb83835355f")
+			(tstamps "2ed36834-2018-42ae-b061-8ef8adeae756")
 			(units
 				(unit
 					(name "A")
@@ -2472,7 +2472,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "e4f25b82-a312-42c7-b100-fd300accc50d")
+			(tstamps "175f1bdd-5d58-4075-a106-16718bb8f701")
 			(units
 				(unit
 					(name "A")
@@ -2515,7 +2515,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "46d5e857-3b3d-4d1f-b783-be0560376cac")
+			(tstamps "607ef09b-49d7-4f5e-a575-9adf2edcd245")
 			(units
 				(unit
 					(name "A")
@@ -2558,7 +2558,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "89606212-a24d-49c1-a87e-1c05f83e4801")
+			(tstamps "b37de939-d8fe-4458-85d4-1599825413f7")
 			(units
 				(unit
 					(name "A")
@@ -2601,7 +2601,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "7d3185d7-8310-4460-8f59-9804e243b378")
+			(tstamps "c58199fe-5b1d-4a90-9b70-255a68729e89")
 			(units
 				(unit
 					(name "A")
@@ -2644,7 +2644,7 @@
 				(names "/Задание 2. МК-51 + АЦП/")
 				(tstamps "/2b8c4d6e-0f3a-5b7c-9d2e-3f5a7c9e1b2d/")
 			)
-			(tstamps "d2e64a1e-6f33-4859-934b-9c2fbe763be1")
+			(tstamps "0e19e1b4-683c-44e7-897f-8012e360df07")
 			(units
 				(unit
 					(name "A")
