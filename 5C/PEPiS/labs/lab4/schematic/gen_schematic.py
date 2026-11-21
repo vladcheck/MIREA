@@ -26,9 +26,10 @@
 import re
 import uuid
 
-STOCK_DEV = "/Applications/KiCad.app/Contents/SharedSupport/symbols/Device.kicad_sym"
-STOCK_SW = "/Applications/KiCad.app/Contents/SharedSupport/symbols/Switch.kicad_sym"
-STOCK_PW = "/Applications/KiCad.app/Contents/SharedSupport/symbols/power.kicad_sym"
+STOCK_DIR = "/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/"
+STOCK_DEV = STOCK_DIR + "Device.kicad_sym"
+STOCK_SW = STOCK_DIR + "Switch.kicad_sym"
+STOCK_PW = STOCK_DIR + "power.kicad_sym"
 OUT = "schematic/lab4-atmega32.kicad_sch"
 PROJECT = "lab4-atmega32"
 
@@ -82,7 +83,7 @@ PIN_NUM = {  # имя -> номер вывода DIP-40
 }
 LX_TIP, RX_TIP = 137.16, 167.64  # кончики левых/правых выводов U1
 TOP_TIP, BOT_TIP = 124.46, 180.34  # кончики верхних/нижних выводов U1
-TOP_XS = [139.7, 144.78, 149.86, 154.94, 160.02]  # Vcc GND AVCC GND AREF
+TOP_XS = [147.32, 149.86, 152.4, 154.94, 157.48]  # Vcc GND AVCC GND AREF (разнесены, чтобы имена не перекрывали PA0/PA1, PD0/PD1)
 TOP_IDS = ["VCC", "GND11", "AVCC", "GND31", "AREF"]
 BOT_XS = [144.78, 152.4, 160.02]  # RESET XTAL1 XTAL2
 BOT_IDS = ["RESET", "XTAL1", "XTAL2"]
@@ -172,14 +173,28 @@ def pin_line(name, num, x, y, ang, etype):
         '\t\t\t\t\t(name "%s"\n\t\t\t\t\t\t(effects\n\t\t\t\t\t\t\t(font\n'
         "\t\t\t\t\t\t\t\t(size 1.27 1.27)\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t)\n"
         '\t\t\t\t\t)\n\t\t\t\t\t(number "%s"\n\t\t\t\t\t\t(effects\n'
-        "\t\t\t\t\t\t\t(font\n\t\t\t\t\t\t\t\t(size 1.27 1.27)\n"
-        "\t\t\t\t\t\t\t)\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)"
+        "\t\t\t\t\t\t(font\n\t\t\t\t\t\t\t(size 1.27 1.27)\n"
+        "\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)"
         % (etype, x, y, ang, name, num)
     )
 
 
 def inst(
-    lib_id, ref, value, footprint, x, y, rot, root_uuid, pins, ref_hide=False, pang=None
+    lib_id,
+    ref,
+    value,
+    footprint,
+    x,
+    y,
+    rot,
+    root_uuid,
+    pins,
+    ref_hide=False,
+    pang=None,
+    vdy=3.81,
+    vdx=0.0,
+    rdx=0.0,
+    rdy=-3.81,
 ):
     L = []
     A = L.append
@@ -191,8 +206,8 @@ def inst(
         % (lib_id, x, y, rot, U())
     )
     for prop, val, px, py, show in (
-        ("Reference", ref, x, round(y - 3.81, 2), not ref_hide),
-        ("Value", value, x, round(y + 3.81, 2), True),
+        ("Reference", ref, round(x + rdx, 2), round(y + rdy, 2), not ref_hide),
+        ("Value", value, round(x + vdx, 2), round(y + vdy, 2), True),
         ("Footprint", footprint, x, y, False),
         ("Datasheet", "", x, y, False),
     ):
@@ -293,6 +308,10 @@ def main():
     A('\t(generator_version "10.0")')
     A('\t(uuid "%s")' % root_uuid)
     A('\t(paper "A3")')
+    A("\t(title_block")
+    A('\t\t(title "Лабораторная работа #4: стенд ATmega32 (вариант 4)")')
+    A('\t\t(date "2026-11-20")')
+    A("\t)")
     A("\t(lib_symbols")
     A("\n".join(libs))
     A("\t)")
@@ -300,7 +319,7 @@ def main():
     gnd_n = [0]
     p5_n = [0]
 
-    def gnd(x, y, rot=0):
+    def gnd(x, y, rot=0, vdy=3.81, pang=None):
         gnd_n[0] += 1
         A(
             inst(
@@ -314,10 +333,12 @@ def main():
                 root_uuid,
                 ["1"],
                 ref_hide=True,
+                pang=pang,
+                vdy=vdy,
             )
         )
 
-    def p5(x, y, rot=0):
+    def p5(x, y, rot=0, vdy=3.81, pang=None):
         p5_n[0] += 1
         A(
             inst(
@@ -331,6 +352,8 @@ def main():
                 root_uuid,
                 ["1"],
                 ref_hide=True,
+                pang=pang,
+                vdy=vdy,
             )
         )
 
@@ -344,6 +367,8 @@ def main():
 
     # ---------- входные стабы + метки слева (PA/PB) ----------
     for r, name in enumerate(LEFT_NAMES):
+        if r >= 12:  # PB4-PB7: только no-connect, без стаба и метки
+            continue
         y = ROW_Y[r]
         A(wire([(132.08, y), (LX_TIP, y)]))
         A(label(name, 132.08, y, 0, "left"))
@@ -356,39 +381,57 @@ def main():
     for r in range(12, 16):
         A(no_connect(LX_TIP, ROW_Y[r]))
 
-    # ---------- питание верхних выводов ----------
+    # ---------- питание верхних выводов (символы на кончиках выводов,
+    #           значения GND ниже, чтобы не перекрывать соседние +5V) ----------
     for xid, idx in zip(TOP_XS, TOP_IDS):
-        A(wire([(xid, 121.92), (xid, TOP_TIP)]))
         if idx in ("VCC", "AVCC", "AREF"):
-            p5(xid, 121.92)
+            p5(xid, TOP_TIP, vdy=-3.81)
         else:
-            gnd(xid, 121.92)
+            gnd(xid, TOP_TIP, 180, vdy=-6.35, pang=0)
 
     # ---------- шина +5V с PWR_FLAG ----------
-    A(wire([(50.8, 60.96), (60.96, 60.96)]))
-    A(wire([(60.96, 60.96), (88.9, 60.96)]))
-    p5(50.8, 60.96)
-    p5(88.9, 60.96)
+    A(wire([(55.88, 60.96), (81.28, 60.96)]))
+    p5(55.88, 60.96)
+    p5(81.28, 60.96)
+    A(wire([(68.58, 60.96), (68.58, 58.42)]))
+    A(junction(68.58, 60.96))
     A(
         inst(
             "power:PWR_FLAG",
             "PWR_FLAG1",
             "PWR_FLAG",
             "",
-            60.96,
-            60.96,
-            0,
+            68.58,
+            58.42,
+            180,
             root_uuid,
             ["1"],
             ref_hide=True,
+            pang=0,
+            vdy=-3.81,
         )
     )
 
     # ---------- развязка Vcc / AVCC ----------
-    for n, cx, val in ((1, 118.11, "100n"), (2, 128.27, "100n")):
-        A(inst("Device:C", "C%d" % n, val, THT_C, cx, 104.14, 0, root_uuid, ["1", "2"]))
+    for n, cx, val, vdx in ((1, 118.11, "100n", -8.89), (2, 128.27, "100n", 8.89)):
+        A(
+            inst(
+                "Device:C",
+                "C%d" % n,
+                val,
+                THT_C,
+                cx,
+                104.14,
+                0,
+                root_uuid,
+                ["1", "2"],
+                vdx=vdx,
+                vdy=0,
+                rdx=vdx,
+            )
+        )
         A(wire([(cx, 95.25), (cx, 100.33)]))
-        p5(cx, 95.25)
+        p5(cx, 95.25, vdy=-3.81)
         A(wire([(cx, 107.95), (cx, 114.3)]))
         gnd(cx, 114.3)
 
@@ -431,7 +474,7 @@ def main():
         gnd(cx, 220.98)
 
     # ---------- RESET: подтяжка 10k + кнопка ----------
-    A(inst("Device:R", "R17", "10k", THT_R, 144.78, 193.04, 0, root_uuid, ["1", "2"]))
+    A(inst("Device:R", "R17", "10k", THT_R, 144.78, 193.04, 0, root_uuid, ["1", "2"], vdx=-8.89, vdy=0, rdx=-8.89))
     A(wire([(144.78, BOT_TIP), (144.78, 189.23)]))
     A(wire([(144.78, 196.85), (144.78, 200.66)]))
     p5(144.78, 200.66)
@@ -451,7 +494,7 @@ def main():
     A(wire([(119.38, 187.96), (144.78, 187.96)]))
     A(junction(144.78, 187.96))
     A(wire([(104.14, 187.96), (109.22, 187.96)]))
-    gnd(104.14, 187.96, 90)
+    gnd(104.14, 187.96, 270)
 
     # ---------- SA1-SA8 (тумблеры на PA) ----------
     SA_Y = [round(69.85 + 12.7 * i, 2) for i in range(8)]
@@ -586,7 +629,8 @@ def main():
 
     # ---------- PWR_FLAG на GND ----------
     A(wire([(139.7, 250.19), (149.86, 250.19)]))
-    gnd(139.7, 250.19, 90)
+    gnd(139.7, 250.19, 270)
+    A(wire([(149.86, 250.19), (149.86, 247.65)]))
     A(
         inst(
             "power:PWR_FLAG",
@@ -594,11 +638,13 @@ def main():
             "PWR_FLAG",
             "",
             149.86,
-            250.19,
-            0,
+            247.65,
+            180,
             root_uuid,
             ["1"],
             ref_hide=True,
+            pang=0,
+            vdy=-3.81,
         )
     )
 
