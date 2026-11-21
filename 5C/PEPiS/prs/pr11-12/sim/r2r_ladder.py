@@ -93,26 +93,8 @@ def bit_string(code):
 
 
 # ---------------------------------------------------------------------------
-# Временные диаграммы (логический анализатор и осциллограф)
+# Временная диаграмма пилы (расчёт периода)
 # ---------------------------------------------------------------------------
-def dwell_waveform(codes, dwell_ms, dt_ms=1.0, lead_ms=0.0):
-    """Диаграмма последовательного удержания кодов.
-
-    Возвращает список образцов (t_ms, code) с шагом dt_ms; каждый код
-    удерживается dwell_ms, код меняется мгновенно (все восемь линий
-    переключаются одной операцией записи в BSRR).
-    """
-    total_ms = lead_ms + dwell_ms * len(codes)
-    samples = []
-    t = 0.0
-    while t < total_ms:
-        idx = int((t - lead_ms) // dwell_ms) if t >= lead_ms else -1
-        code = codes[idx] if 0 <= idx < len(codes) else 0
-        samples.append((t, code))
-        t += dt_ms
-    return samples
-
-
 def ramp_waveform(periods, t_step_ms=T_STEP_MS, dt_ms=0.5):
     """Пилообразный сигнал 0..255 с шагом t_step_ms, periods полных
     периодов (256 ступеней на период). Возвращает (samples, wrap_times):
@@ -136,7 +118,7 @@ def ramp_waveform(periods, t_step_ms=T_STEP_MS, dt_ms=0.5):
 
 
 def measure_periods(wrap_times):
-    """Пять измеренных периодов по моментам перехода 255 -> 0, мс."""
+    """Пять расчётных периодов по моментам перехода 255 -> 0, мс."""
     periods = [wrap_times[i + 1] - wrap_times[i]
                for i in range(len(wrap_times) - 1)]
     avg = sum(periods) / len(periods)
