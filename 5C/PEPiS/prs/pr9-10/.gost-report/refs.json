@@ -50,16 +50,6 @@
     "note": "одноразрядный красный семисегментный индикатор HDSP-7503 с общим катодом: назначение выводов, прямое падение напряжения"
   },
   {
-    "key": "proteus_instruments",
-    "type": "web",
-    "authors": ["Labcenter Electronics"],
-    "title": "Virtual Instruments (Proteus): Virtual Terminal и Logic Analyser",
-    "year": 2026,
-    "url": "https://www.labcenter.com/instruments",
-    "accessed": "13.11.2026",
-    "note": "Logic Analyser в Proteus 8.17: измерение логических уровней линий GPIO до токоограничивающих резисторов"
-  },
-  {
     "key": "platformio_ststm32",
     "type": "web",
     "authors": ["PlatformIO"],

@@ -217,12 +217,6 @@
   ],
   "artifacts": {
     "json": "out/display_results.json",
-    "csv": "out/display_waveform.csv",
-    "figure_static_stm32": "docs/figures/display-static-stm32.png",
-    "figure_static_atmega32": "docs/figures/display-static-atmega32.png",
-    "figure_seq_stm32": "docs/figures/display-seq-stm32.png",
-    "figure_seq_atmega32": "docs/figures/display-seq-atmega32.png",
-    "figure_digits": "docs/figures/display-digits-variant4.png",
-    "figure_diagnostic": "docs/figures/display-diagnostic-inverted.png"
+    "csv": "out/display_waveform.csv"
   }
 }
