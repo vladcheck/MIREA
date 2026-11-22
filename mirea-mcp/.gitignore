@@ -3,6 +3,10 @@
 .state/
 .venv/
 
+# Кэш и логи аббревиатур (mirea_mcp/abbreviations.py)
+.cache/
+.logs/
+
 # Python
 __pycache__/
 *.pyc

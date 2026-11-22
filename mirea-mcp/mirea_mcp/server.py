@@ -5,11 +5,11 @@
 """
 from fastmcp import FastMCP
 
-from .tools import auth_tools, plan_tools, pulse_tools, sdo_tools
+from .tools import auth_tools, plan_tools, pulse_tools, sdo_tools, submit_tools
 
 mcp = FastMCP("mirea-mcp")
 
-for _mod in (auth_tools, sdo_tools, pulse_tools, plan_tools):
+for _mod in (auth_tools, sdo_tools, pulse_tools, plan_tools, submit_tools):
     _mod.register(mcp)
 
 

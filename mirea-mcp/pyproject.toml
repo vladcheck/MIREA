@@ -12,6 +12,11 @@ dependencies = [
     "flake8>=7.5.0",
 ]
 
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
 [project.scripts]
 mirea-mcp = "mirea_mcp.server:main"
 
@@ -21,6 +26,9 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["mirea_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 88

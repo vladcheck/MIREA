@@ -22,10 +22,13 @@ state["sdo"]["cookies"] и переиспользуется при следую�
 """
 from __future__ import annotations
 
+import json
 import re
 import time
 from datetime import datetime
-from urllib.parse import urljoin
+from pathlib import Path
+from typing import Any
+from urllib.parse import unquote, urljoin
 from zoneinfo import ZoneInfo
 
 import httpx
@@ -33,7 +36,14 @@ from bs4 import BeautifulSoup
 
 from . import state
 from .config import SDO_BASE, SDO_TOKEN_OVERRIDE
-from .models import DisciplineGrades, SdoAuthError, Work
+from .models import (
+    AssignTarget,
+    Attachment,
+    DisciplineGrades,
+    MireaMcpError,
+    SdoAuthError,
+    Work,
+)
 
 _TIMEOUT = 30
 _MSK = ZoneInfo("Europe/Moscow")
