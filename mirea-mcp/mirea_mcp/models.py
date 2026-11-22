@@ -45,6 +45,30 @@ class Work:
 
 
 @dataclass
+class Attachment:
+    """Вложение ответа на работу (файл из submission-плагина)."""
+
+    filename: str
+    # href как сейчас парсится из a[href*="assignsubmission_file/submission_files"]
+    fileurl: str
+    filesize: int | None = None
+
+
+@dataclass
+class AssignTarget:
+    """Валидированная цель записи: assign с файловым типом ответа (ADR-0006)."""
+
+    url: str  # нормализованный /mod/assign/view.php?id=... URL
+    cmid: int
+    name: str  # название работы (h1 страницы)
+    course_name: str
+    status: str  # "no_answer" | "draft" | "submitted" | "graded"
+    editable: bool  # ответ сейчас принимает изменения
+    due: str | None  # ISO 8601 Europe/Moscow или None
+    attachments: list[Attachment] = field(default_factory=list)
+
+
+@dataclass
 class DisciplineGrades:
     """Баллы по дисциплине из СДО."""
 

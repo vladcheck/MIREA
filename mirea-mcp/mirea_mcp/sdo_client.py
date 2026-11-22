@@ -47,9 +47,14 @@ from .models import (
 
 _TIMEOUT = 30
 _MSK = ZoneInfo("Europe/Moscow")
-# Коды ошибок Moodle REST, после которых имеет смысл переключаться на OIDC-режим
-_REST_FATAL_CODES = {"accessexception", "invalidtoken",
-                     "servicerequireslogin", "usernotfullysetup"}
+# Коды ошибок Moodle REST, после которых имеет смысл
+# переключаться на OIDC-режим
+_REST_FATAL_CODES = {
+    "accessexception",
+    "invalidtoken",
+    "servicerequireslogin",
+    "usernotfullysetup"
+}
 _RANGE_CELL = re.compile(
     r"^\s*(?P<score>-|[-\d.,\s]+)\s*/\s*(?P<max>[-\d.,\s]+)\s*$")
 _WS = re.compile(r"\s+")
@@ -69,7 +74,10 @@ class SdoClient:
         self._wstoken: str | None = None
         self._sesskey: str | None = None
         self._userid: int | None = None
-        self._assign_cache: dict[str, list[dict]] = {}  # course_id -> assign-страницы
+        # course_id -> assign-страницы
+        self._assign_cache: dict[str, list[dict]] = {}
+        # cmid -> параметры filemanager черновика
+        self._draft_ctx_cache: dict[int, dict] = {}
 
     # ------------------------------------------------------------------ общее
 
@@ -359,7 +367,8 @@ class SdoClient:
             name = _WS.sub(" ", a.get_text(" ", strip=True)).strip()
             if not name:
                 continue
-            info: dict = {"id": aid, "name": name, "url": urljoin(SDO_BASE, href)}
+            info: dict = {"id": aid, "name": name,
+                          "url": urljoin(SDO_BASE, href)}
             try:
                 info.update(self._parse_assign_page(
                     self._get_page(href)))
@@ -662,10 +671,13 @@ class SdoClient:
             works.append(work)
         return works, category_scores, official_sb
 
-    # ------------------------------------------------------------------ дедлайны
+    # ---------------------------------------------------------------- дедлайны
 
     def due_works(self, days: int = 14) -> list[dict]:
-        """Предстоящие работы с дедлайнами (по всем дисциплинам, dict'и с полем discipline)."""
+        """
+        Предстоящие работы с дедлайнами
+        (по всем дисциплинам, dict'и с полем discipline).
+        """
         self._ensure_mode()
         if self._mode == "rest":
             return self._rest_due_works(days)
@@ -721,9 +733,763 @@ class SdoClient:
         out.sort(key=lambda w: w["due"])
         return out
 
+    # ------------------------------------- запись: ответы на работы (ADR-0006)
+    #
+    # Механика Moodle (reverse-engineering GET-инспекцией форм, 2026-11-22):
+    # - редактирование ответа: GET view.php?id=CMID&action=editsubmission;
+    #   на странице — форма с action=savesubmission и hidden-полем
+    #   files_filemanager=<itemid черновика> (input#id_files_filemanager);
+    #   JSON-конфиг M.form_filemanager.init: client_id, itemid, maxbytes,
+    #   areamaxbytes, context.id, author, filepicker.defaultlicense,
+    #   filepicker.repositories[type=upload].id (репозиторий «Загрузить файл»).
+    #   ВАЖНО: itemid перевыдаётся при каждом открытии формы, а повторное
+    #   открытие пересевивает черновик ТОЛЬКО из сохранённого ответа: файлы,
+    #   поэтапно загруженные в предыдущий itemid, теряются. Поэтому контекст
+    #   черновика пиннуется по cmid до успешной отправки (submission_send);
+    #   resolve_assign/reload_submission пин НЕ сбрасывают.
+    # - загрузка файла: multipart POST /repository/repository_ajax.php
+    #   ?action=upload с query repo_id, env=filemanager, sesskey, client_id,
+    #   itemid, maxbytes, areamaxbytes, ctx_id, savepath=/; тело: repo_upload_file,
+    #   title, author, license, itemid. Конфликт имён -> {"event":"fileexists"}.
+    # - операции над файлами черновика: POST urlencoded
+    #   /repository/draftfiles_ajax.php?action=<action> с sesskey, client_id,
+    #   itemid, filepath; переименование — updatefile (filename, newfilename,
+    #   newfilepath=/), удаление — deleteselected (selected=<JSON-массив
+    #   объектов {"filepath": "/", "filename": ...}> — Moodle вызывает
+    #   get_filepath() на каждом элементе, голые строки дают null).
+    # - атомарная замена содержимого: upload нового файла, затем
+    #   repository_ajax.php?action=overwrite (existingfilename/existingfilepath/
+    #   newfilename/newfilepath) — тот же вызов, что у диалога «файл существует».
+    # - сохранение ответа: POST view.php (форма редактирования) со всеми hidden
+    #   полями + files_filemanager=<itemid> + нажатой кнопкой. Когда включены
+    #   черновики, есть две кнопки: submitbutton («Сохранить» — черновик) и
+    #   submitbutton2 («Отправить задание»); при выключенных черновиках одна
+    #   кнопка «Сохранить», которая отправляет ответ преподавателю сразу
+    #   (на online-edu черновики выключены → submission_save == submission_send).
+    # - submissionstatement (чекбокс «я принимаю условия») — если присутствует
+    #   в форме, отправляется как submissionstatement=1.
+    # Каждая мутация перевытаскивает sesskey со страницы задания (пиннутый
+    # sesskey формы может протухнуть в длинной сессии); при ответ Moodle о
+    # невалидном sesskey форма редактирования перевыпускается ОДИН раз (пин
+    # обновляется под новый itemid) и операция повторяется. После мутации
+    # вызывающий обязан показать draft_list(target) — поэтапное состояние
+    # черновика, которое submit_post сохранил бы в ответе.
+
+    def _require_write_mode(self) -> None:
+        """
+        Запись в СДО существует только в браузерной OIDC-сессии (ADR-0004/0006).
+        """
+        self._ensure_mode()
+        if self._mode != "oidc":
+            raise SdoAuthError(
+                "Запись в СДО недоступна в текущем режиме.",
+                hint="запись доступна только в браузерной OIDC-сессии; "
+                "выполните вход в Пульс (mirea_auth_start)",
+            )
+
+    def _fresh_sesskey(self, html: str | None = None) -> str:
+        """Перевытащить sesskey перед каждой мутацией (ADR-0006)."""
+        if not self._extract_sesskey(html):
+            raise SdoAuthError(
+                "Не удалось получить sesskey СДО; повторите вход.", hint=self._SSO_HINT)
+        assert self._sesskey is not None
+        return self._sesskey
+
+    @staticmethod
+    def _ajax_json(resp: httpx.Response, what: str) -> Any:
+        """Распарсить JSON-ответ repository_ajax / draftfiles_ajax.
+
+        Принимает ЛЮБОЕ валидное JSON-значение (dict/list/bool/str — Moodle
+        отдаёт, например, голый `true` для action=overwrite); не-JSON →
+        MireaMcpError. Потребители dict-специфичных полей обязаны проверять
+        тип (см. _raise_ajax_error, _is_sesskey_failure).
+        """
+        try:
+            return resp.json()
+        except ValueError as exc:
+            raise MireaMcpError(
+                f"СДО вернул не-JSON для «{what}» (HTTP {resp.status_code}).") from exc
+
+    # ---------------- разбор страницы задания (общий для resolve/reload)
+
+    @staticmethod
+    def _parse_attachments(soup: BeautifulSoup) -> list[Attachment]:
+        """Вложения ответа: ссылки assignsubmission_file/submission_files."""
+        out: list[Attachment] = []
+        for a in soup.select('a[href*="assignsubmission_file/submission_files"]'):
+            href = a["href"]
+            text = _WS.sub(" ", a.get_text(" ", strip=True)).strip()
+            filename = text or unquote(
+                href.rstrip("/").rsplit("/", 1)[-1].split("?", 1)[0])
+            if filename:
+                out.append(Attachment(filename=filename, fileurl=href))
+        return out
+
+    @staticmethod
+    def _assign_status(soup: BeautifulSoup) -> tuple[str, bool]:
+        """(status, editable) из «Состояние ответа» и кнопок редактирования.
+
+        status: no_answer | draft | submitted | graded.
+        editable: на странице есть форма editsubmission/submitforgrading —
+        это ground truth того, что Moodle сейчас примет изменения ответа.
+        """
+        state_text = ""
+        graded = False
+        for tr in soup.select(".submissionstatustable tr"):
+            th, td = tr.find("th"), tr.find("td")
+            if th is None or td is None:
+                continue
+            if "submissiongraded" in (td.get("class") or []):
+                graded = True
+            label = _WS.sub(" ", th.get_text(" ", strip=True))
+            if "Состояние ответа" in label:
+                state_text = _WS.sub(" ", td.get_text(
+                    " ", strip=True)).casefold()
+        if not state_text:
+            # запасной вариант по тексту страницы (темы отличаются разметкой)
+            page = soup.get_text(" ", strip=True).casefold()
+            if "черновик" in page:
+                state_text = "черновик"
+            elif "отправлено для оценивания" in page or "отправлено на проверку" in page:
+                state_text = "отправлено"
+            elif "нет ответа" in page or "не представлены" in page:
+                state_text = "не представлены"
+        if graded:
+            status = "graded"
+        elif "черновик" in state_text:
+            status = "draft"
+        elif "отправлен" in state_text:
+            status = "submitted"
+        elif "не представлен" in state_text or "нет ответа" in state_text:
+            status = "no_answer"
+        else:
+            status = "no_answer" if not state_text else "submitted"
+        editable = bool(
+            soup.find("input", {"name": "action", "value": "editsubmission"})
+            or soup.find("input", {"name": "action", "value": "submitforgrading"}))
+        return status, editable
+
+    @staticmethod
+    def _assign_due(soup: BeautifulSoup) -> str | None:
+        """Дедлайн из блока activity-dates («Срок сдачи: ...»), ISO Москва."""
+        dates_el = soup.select_one("[data-region='activity-dates']")
+        if dates_el is None:
+            return None
+        dtext = dates_el.get_text(" ", strip=True)
+        m = re.search(
+            r"(?:Срок сдачи|Доступно до)\s*:\s*(.+?)(?:\s{2,}|Открыто|$)", dtext)
+        return _parse_ru_datetime(m.group(1)) if m else None
+
+    def _parse_assign_target(self, html: str, cmid: int) -> AssignTarget:
+        soup = BeautifulSoup(html, "html.parser")
+        name_el = soup.find("h1") or soup.find("h2")
+        name = _WS.sub(" ", name_el.get_text(" ", strip=True)
+                       ).strip() if name_el else ""
+        course_name = ""
+        for a in soup.select("#page-navbar a[href], nav a[href]"):
+            if "course/view.php" in (a.get("href") or ""):
+                course_name = _WS.sub(" ", a.get_text(" ", strip=True)).strip()
+        status, editable = self._assign_status(soup)
+        return AssignTarget(
+            url=f"{SDO_BASE}/mod/assign/view.php?id={cmid}",
+            cmid=cmid,
+            name=name,
+            course_name=course_name,
+            status=status,
+            editable=editable,
+            due=self._assign_due(soup),
+            attachments=self._parse_attachments(soup),
+        )
+
+    @staticmethod
+    def _assign_cmid(url: str) -> int:
+        m = re.search(r"[?&]id=(\d+)", url)
+        if not m or "/mod/assign/view.php" not in url:
+            raise MireaMcpError(
+                "Ссылка не распознана: не страница задания СДО.",
+                hint="ожидается адрес вида "
+                "https://online-edu.mirea.ru/mod/assign/view.php?id=NNN",
+            )
+        return int(m.group(1))
+
+    def resolve_assign(self, url: str) -> AssignTarget:
+        """
+        Валидировать страницу задания в цель записи (assign + файловый ответ).
+
+        Без редактируемого ответа или без файлового submission-плагина кидает
+        MireaMcpError со специфичной русской подсказкой.
+        """
+        self._require_write_mode()
+        cmid = self._assign_cmid(url)
+        target = self._parse_assign_target(
+            self._get_page(f"/mod/assign/view.php?id={cmid}"), cmid)
+        if not target.editable:
+            raise MireaMcpError(
+                "Ответ на работу не редактируется.",
+                hint="ответ отправлен и редактирование запрещено"
+                if target.status in {"submitted", "graded"}
+                else "работа сейчас не принимает изменения ответа",
+            )
+        self._draft_context(target)  # валидирует файловый тип ответа
+        return target
+
+    def reload_submission(self, target: AssignTarget) -> list[Attachment]:
+        """Перечитать страницу: обновить attachments/status/editable на месте."""
+        html = self._get_page(f"/mod/assign/view.php?id={target.cmid}")
+        soup = BeautifulSoup(html, "html.parser")
+        target.status, target.editable = self._assign_status(soup)
+        target.due = self._assign_due(soup)
+        target.attachments = self._parse_attachments(soup)
+        # пин черновика НЕ сбрасываем: пересев происходит только при
+        # перевыпуске формы editsubmission, а reload её не открывает.
+        # Пин живёт до успешной submission_send.
+        return target.attachments
+
+    # ---------------- параметры черновика (filemanager)
+
+    @staticmethod
+    def _fm_config(html: str) -> dict:
+        """
+        JSON-конфиг M.form_filemanager.init со страницы редактирования ответа.
+        """
+        marker = "M.form_filemanager.init(Y,"
+        i = html.find(marker)
+        if i == -1:
+            return {}
+        j = html.find("{", i + len(marker))
+        if j == -1:
+            return {}
+        depth = 0
+        for k in range(j, len(html)):
+            if html[k] == "{":
+                depth += 1
+            elif html[k] == "}":
+                depth -= 1
+                if depth == 0:
+                    try:
+                        return json.loads(html[j:k + 1])
+                    except ValueError:
+                        return {}
+        return {}
+
+    def _draft_context(self, target: AssignTarget, html: str | None = None) -> dict:
+        """
+        Параметры файлового менеджера черновика: itemid, client_id, контекст.
+
+        Лениво создаётся по cmid и пиннуется до успешной submission_send:
+        itemid перевыдаётся при каждом открытии editsubmission, а повторное
+        открытие пересевивает черновик только из сохранённого ответа — ранее
+        поэтапно загруженные файлы при этом терялись бы.
+        """
+        cached = self._draft_ctx_cache.get(target.cmid)
+        if cached:
+            return cached
+        if html is None:
+            html = self._get_page(
+                f"/mod/assign/view.php?id={target.cmid}&action=editsubmission")
+        soup = BeautifulSoup(html, "html.parser")
+        fm_input = soup.find("input", {"name": "files_filemanager"})
+        if fm_input is None:
+            if soup.find(
+                "input",
+                {"name": "action", "value": "savesubmission"}
+            ) is None:
+                raise MireaMcpError(
+                    "Ответ больше не редактируется.",
+                    hint="повторите resolve_assign: статус работы мог измениться",
+                )
+            raise MireaMcpError(
+                "У работы нет файлового типа ответа.",
+                hint="у работы нет файлового типа ответа — "
+                "прикрепление файлов для этого задания не поддерживается",
+            )
+        fm = self._fm_config(html)
+        fp = fm.get("filepicker") or {}
+        repositories = fp.get("repositories") or {}
+        upload_repo = next(
+            (r for r in repositories.values() if r.get("type") == "upload"),
+            None
+        )
+        if upload_repo is None:
+            raise MireaMcpError(
+                "У работы нет репозитория загрузки файлов.",
+                hint="у работы нет файлового типа ответа",
+            )
+        ctx = {
+            "itemid": int(fm_input.get("value") or fm.get("itemid") or 0),
+            "client_id": fm.get("client_id", ""),
+            "ctx_id": (fm.get("context") or {}).get("id"),
+            "maxbytes": fm.get("maxbytes", -1),
+            "areamaxbytes": fm.get("areamaxbytes", -1),
+            "author": fm.get("author") or fp.get("author") or "",
+            "license": fp.get("defaultlicense") or "allrightsreserved",
+            "upload_repo_id": upload_repo["id"],
+        }
+        self._draft_ctx_cache[target.cmid] = ctx
+        return ctx
+
+    # ---------------- sesskey и повторная попытка мутации
+
+    def _view_sesskey(self, target: AssignTarget) -> str:
+        """Свежий sesskey со страницы задания (без перевыпуска формы).
+
+        Страница задания, а не /my/: у pinned-формы sesskey может протухнуть
+        в длинной сессии, и каждая мутация обязана взять актуальный.
+        """
+        html = self._get_page(f"/mod/assign/view.php?id={target.cmid}")
+        if not self._extract_sesskey(html):
+            raise SdoAuthError(
+                "Не удалось получить sesskey СДО; повторите вход.",
+                hint=self._SSO_HINT)
+        assert self._sesskey is not None
+        return self._sesskey
+
+    def _refresh_draft_pin(self, target: AssignTarget) -> tuple[dict, str]:
+        """Перевыпустить форму редактирования: новый itemid + свежий sesskey.
+
+        Единственное место, где пин черновика инвалидируется до submission_send:
+        Moodle ответил о невалидном sesskey, без новой формы не обойтись.
+        ВНИМАНИЕ: повторное открытие формы пересевивает черновик только из
+        сохранённого ответа — ранее поэтапно загруженные файлы теряются.
+        """
+        html = self._get_page(
+            f"/mod/assign/view.php?id={target.cmid}&action=editsubmission")
+        self._draft_ctx_cache.pop(target.cmid, None)
+        ctx = self._draft_context(target, html)
+        if not self._extract_sesskey(html):
+            raise SdoAuthError(
+                "Не удалось получить sesskey СДО; повторите вход.",
+                hint=self._SSO_HINT)
+        assert self._sesskey is not None
+        return ctx, self._sesskey
+
+    @staticmethod
+    def _is_sesskey_failure(payload: Any) -> bool:
+        """Ответ Moodle AJAX, указывающий на невалидный/протухший sesskey."""
+        if not isinstance(payload, dict):
+            return False
+        exc = payload.get("exception")
+        parts: list[str] = [str(payload.get("error") or ""),
+                            str(payload.get("message") or "")]
+        if isinstance(exc, dict):
+            parts.append(str(exc.get("message") or ""))
+        return "sesskey" in " ".join(parts).casefold()
+
+    def _raise_ajax_error(self, payload: Any, what: str) -> None:
+        """Громкая ошибка по payload["error"], КРОМЕ невалидного sesskey
+        (его обрабатывает _mutate повторной попыткой). Dict-only."""
+        if not isinstance(payload, dict):
+            return
+        err = payload.get("error")
+        if err and not self._is_sesskey_failure(payload):
+            raise MireaMcpError(f"СДО отклонил операцию «{what}»: {err}")
+
+    def _mutate(self, target: AssignTarget, op) -> Any:
+        """
+        Выполнить один шаг мутации черновика с защитой от протухшего sesskey.
+
+        op(ctx, sesskey) -> Any — POST-операция Moodle AJAX; вернуть
+        распарсенный ответ, НЕ выбрасывая исключения по sesskey (см.
+        _raise_ajax_error для прочих ошибок). Если Moodle ответил о невалидном
+        sesskey, форма редактирования перевыпускается ОДИН раз (новый itemid,
+        пин обновляется) и операция повторяется; при повторной неудаче —
+        громкая ошибка.
+        """
+        ctx = self._draft_context(target)
+        sesskey = self._view_sesskey(target)
+        payload = op(ctx, sesskey)
+        if self._is_sesskey_failure(payload):
+            ctx, sesskey = self._refresh_draft_pin(target)
+            payload = op(ctx, sesskey)
+            if self._is_sesskey_failure(payload):
+                raise MireaMcpError(
+                    "СДО отклонил операцию: невалидный sesskey сессии.",
+                    hint="сессия СДО устарела; повторите вход "
+                    "(mirea_auth_start → mirea_auth_otp)",
+                )
+        return payload
+
+    # ---------------- мутации черновика
+
+    def _check_editable(self, target: AssignTarget) -> None:
+        if not target.editable:
+            raise MireaMcpError(
+                "Ответ на работу не редактируется.",
+                hint="ответ отправлен и редактирование запрещено"
+                if target.status in {"submitted", "graded"}
+                else "работа сейчас не принимает изменения ответа",
+            )
+
+    @staticmethod
+    def _available_hint(attachments: list[Attachment]) -> str:
+        names = [a.filename for a in attachments]
+        return "доступные файлы: " + (", ".join(names) if names else "нет")
+
+    def _upload_file(self, ctx: dict, path: Path, sesskey: str) -> Any:
+        """Загрузить файл в черновик: repository_ajax.php?action=upload."""
+        query = {
+            "action": "upload",
+            "repo_id": ctx["upload_repo_id"],
+            "p": "",
+            "page": "",
+            "env": "filemanager",
+            "sesskey": sesskey,
+            "client_id": ctx["client_id"],
+            "itemid": ctx["itemid"],
+            "maxbytes": ctx["maxbytes"],
+            "areamaxbytes": ctx["areamaxbytes"],
+            "ctx_id": ctx["ctx_id"],
+            "savepath": "/",
+        }
+        data = {
+            "itemid": str(ctx["itemid"]),
+            "title": path.name,
+            "author": ctx["author"],
+            "license": ctx["license"],
+        }
+        resp = self._http.post(
+            "/repository/repository_ajax.php",
+            params=query,
+            data=data,
+            files={"repo_upload_file": (
+                path.name, path.read_bytes(), "application/octet-stream")},
+        )
+        payload = self._ajax_json(resp, "upload")
+        self._raise_ajax_error(payload, "upload")
+        return payload
+
+    def draft_upload(self, target: AssignTarget, path: Path) -> None:
+        """Прикрепить файл к черновику ответа (no-cobber по имени файла).
+
+        Проверка уникальности имён — по поэтапно размещённым файлам pinned
+        черновика (draft_list), а не по сохранённому ответу.
+        """
+        self._require_write_mode()
+        self._check_editable(target)
+        if not path.is_file():
+            raise MireaMcpError(f"Файл не найден: {path}")
+        staged = self.draft_list(target)
+        if path.name in {a.filename for a in staged}:
+            raise MireaMcpError(
+                f"Файл «{path.name}» уже есть в черновике.",
+                hint=self._available_hint(staged)
+                + "; используйте submit_replace, чтобы заменить содержимое",
+            )
+        payload = self._mutate(
+            target, lambda ctx, sesskey: self._upload_file(ctx, path, sesskey))
+        if payload.get("event") == "fileexists":
+            raise MireaMcpError(
+                f"Файл «{path.name}» уже существует в черновике.",
+                hint=self._available_hint(staged),
+            )
+
+    def _draftfiles_action(
+            self, ctx: dict, action: str, sesskey: str,
+            extra: dict[str, str]) -> Any:
+        """Операция над файлами черновика: draftfiles_ajax.php?action=<action>.
+
+        Ответы о невалидном sesskey НЕ выбрасываются — их обрабатывает
+        _mutate повторной попыткой; прочие payload["error"] — громко.
+        """
+        data = {
+            "sesskey": sesskey,
+            "client_id": ctx["client_id"],
+            "itemid": str(ctx["itemid"]),
+            "filepath": "/",
+            **extra,
+        }
+        resp = self._http.post(
+            "/repository/draftfiles_ajax.php",
+            params={"action": action},
+            data=data
+        )
+        payload = self._ajax_json(resp, action)
+        self._raise_ajax_error(payload, action)
+        return payload
+
+    def _draftfiles_list(self, ctx: dict, sesskey: str) -> dict:
+        """
+        draftfiles_ajax?action=list → {"error": str} | {"files": [Attachment]}.
+
+        Ответ Moodle — либо голый JSON-массив элементов черновика, либо dict
+        с ключом "list"; обе формы принимаются.
+        """
+        data = {
+            "sesskey": sesskey,
+            "client_id": ctx["client_id"],
+            "itemid": str(ctx["itemid"]),
+            "filepath": "/",
+        }
+        resp = self._http.post(
+            "/repository/draftfiles_ajax.php", params={"action": "list"}, data=data)
+        try:
+            payload = resp.json()
+        except ValueError as exc:
+            raise MireaMcpError(
+                f"СДО вернул не-JSON для «list» (HTTP {resp.status_code}).") from exc
+        if isinstance(payload, dict):
+            if payload.get("error"):
+                return {"error": str(payload["error"])}
+            items = payload.get("list")
+        else:
+            items = payload
+        if not isinstance(items, list):
+            raise MireaMcpError("СДО вернул неожиданный ответ для «list».")
+        files = [Attachment(filename=str(it["filename"]), fileurl="")
+                 for it in items
+                 if isinstance(it, dict) and it.get("filename")]
+        return {"files": files}
+
+    def draft_list(self, target: AssignTarget) -> list[Attachment]:
+        """Файлы, поэтапно размещённые в области черновика ответа.
+
+        Именно то состояние, которое submission_send сохранил бы в ответе.
+        Пин черновика лениво создаётся по cmid и живёт до успешной отправки.
+        """
+        self._require_write_mode()
+        ctx = self._draft_context(target)
+        sesskey = self._view_sesskey(target)
+        result = self._draftfiles_list(ctx, sesskey)
+        if result.get("error") and self._is_sesskey_failure(result):
+            ctx, sesskey = self._refresh_draft_pin(target)
+            result = self._draftfiles_list(ctx, sesskey)
+        if result.get("error"):
+            raise MireaMcpError(
+                f"СДО отклонил операцию «list»: {result['error']}")
+        return result["files"]
+
+    def draft_rename(self, target: AssignTarget, filename: str, new_name: str) -> None:
+        """Переименовать файл в черновике ответа.
+
+        Проверки имён — по поэтапно размещённым файлам pinned черновика.
+        """
+        self._require_write_mode()
+        self._check_editable(target)
+        staged = self.draft_list(target)
+        names = {a.filename for a in staged}
+        if filename not in names:
+            raise MireaMcpError(
+                f"Файл «{filename}» не найден в черновике.",
+                hint=self._available_hint(staged))
+        if new_name in names:
+            raise MireaMcpError(
+                f"Файл «{new_name}» уже есть в черновике.",
+                hint=self._available_hint(staged))
+        self._mutate(target, lambda ctx, sesskey: self._draftfiles_action(
+            ctx, "updatefile", sesskey, {
+                "filepath": "/", "filename": filename,
+                "newfilename": new_name, "newfilepath": "/",
+            }))
+
+    def draft_delete(self, target: AssignTarget, filenames: list[str]) -> None:
+        """Удалить перечисленные файлы из черновика ответа."""
+        self._require_write_mode()
+        self._check_editable(target)
+        staged = self.draft_list(target)
+        names = {a.filename for a in staged}
+        missing = [f for f in filenames if f not in names]
+        if missing:
+            raise MireaMcpError(
+                "Не найдены файлы: " + ", ".join(f"«{f}»" for f in missing),
+                hint=self._available_hint(staged))
+        self._mutate(target, lambda ctx, sesskey: self._draftfiles_action(
+            ctx, "deleteselected", sesskey, {
+                # Moodle итерирует объекты и зовёт get_filepath() на каждом
+                # элементе — голые строки приводят к ошибке сервера.
+                "selected": json.dumps(
+                    [{"filepath": "/", "filename": n} for n in filenames],
+                    ensure_ascii=False),
+            }))
+
+    def _overwrite_file(
+        self, ctx: dict, sesskey: str,
+        existing: dict, new: dict
+    ) -> dict:
+        """
+        Атомарно подменить содержимое: repository_ajax.php?action=overwrite.
+        """
+        data = {
+            "repo_id": ctx["upload_repo_id"],
+            "p": "",
+            "page": "",
+            "env": "filemanager",
+            "sesskey": sesskey,
+            "client_id": ctx["client_id"],
+            "itemid": str(ctx["itemid"]),
+            "maxbytes": ctx["maxbytes"],
+            "areamaxbytes": ctx["areamaxbytes"],
+            "ctx_id": ctx["ctx_id"],
+            "existingfilename": existing["filename"],
+            "existingfilepath": existing.get("filepath", "/"),
+            "newfilename": new["filename"],
+            "newfilepath": new.get("filepath", "/"),
+        }
+        resp = self._http.post(
+            "/repository/repository_ajax.php", params={"action": "overwrite"}, data=data)
+        payload = self._ajax_json(resp, "overwrite")
+        # Moodle отвечает ГОЛЫМ JSON-булом: true = замена прошла,
+        # false = отклонена (сервер НЕ трогал существующий файл).
+        if payload is False:
+            raise MireaMcpError(
+                "СДО не смог заменить файл (overwrite отклонён)",
+                hint="содержимое существующего файла НЕ изменилось; "
+                "свежезагруженный файл остался в черновике под именем "
+                f"«{new['filename']}» — удалите его через draft_delete "
+                "(см. draft_list)",
+            )
+        self._raise_ajax_error(payload, "overwrite")
+        return payload
+
+    def draft_replace(
+            self, target: AssignTarget, filename: str, path: Path
+    ) -> None:
+        """Атомарно заменить содержимое файла черновика (upload + overwrite).
+
+        Проверка существования — по поэтапно размещённым файлам pinned
+        черновика.
+        """
+        self._require_write_mode()
+        self._check_editable(target)
+        if not path.is_file():
+            raise MireaMcpError(f"Файл не найден: {path}")
+        staged = self.draft_list(target)
+        if filename not in {a.filename for a in staged}:
+            raise MireaMcpError(
+                f"Файл «{filename}» не найден в черновике.",
+                hint=self._available_hint(staged))
+
+        def op(ctx: dict, sesskey: str) -> Any:
+            payload = self._upload_file(ctx, path, sesskey)
+            if payload.get("event") == "fileexists":
+                existing = payload["existingfile"]
+                new = payload["newfile"]
+            else:
+                # новый файл лёг в корень черновика (savepath=/)
+                existing = {"filename": filename, "filepath": "/"}
+                new = {"filename": payload.get(
+                    "file") or path.name, "filepath": "/"}
+            return self._overwrite_file(ctx, sesskey, existing, new)
+
+        self._mutate(target, op)
+
+    # ---------------- сохранение и отправка ответа
+
+    def _submission_form(
+            self, target: AssignTarget, html: str
+    ) -> tuple[dict[str, str], dict[str, str]]:
+        """Разобрать форму редактирования ответа: hidden-поля и кнопки."""
+        soup = BeautifulSoup(html, "html.parser")
+        form = None
+        for f in soup.find_all("form"):
+            if f.find("input", {"name": "action", "value": "savesubmission"}) is not None:
+                form = f
+                break
+        if form is None:
+            raise MireaMcpError(
+                "Форма ответа не найдена: ответ, вероятно, больше не редактируется.",
+                hint="повторите resolve_assign",
+            )
+        fields: dict[str, str] = {}
+        for inp in form.find_all("input"):
+            name = inp.get("name")
+            typ = (inp.get("type") or "text").lower()
+            if not name or typ in ("submit", "button", "file"):
+                continue
+            if typ in ("checkbox", "radio"):
+                # чекбоксы Moodle отправляют только отмеченные; submissionstatement
+                # (если есть) будет добавлен ниже как подтверждённое согласие
+                if "submissionstatement" in name or inp.has_attr("checked"):
+                    fields[name] = inp.get("value") or "1"
+                continue
+            fields[name] = inp.get("value") or ""
+        if form.find("input", attrs={"name": re.compile("submissionstatement")}):
+            fields["submissionstatement"] = "1"
+        buttons = {
+            inp["name"]: inp.get("value") or ""
+            for inp in form.find_all("input", type="submit")
+            if inp.get("name")
+        }
+        return fields, buttons
+
+    def _post_submission(self, fields: dict[str, str]) -> None:
+        """
+        Отправить форму ответа на view.php и проверить, что Moodle принял её.
+        """
+        fields.setdefault("sesskey", self._fresh_sesskey())
+        resp = self._drain_redirects(self._http.post(
+            f"{SDO_BASE}/mod/assign/view.php", data=fields, follow_redirects=False))
+        if resp.status_code >= 400:
+            raise MireaMcpError(
+                f"СДО отклонил сохранение ответа: HTTP {resp.status_code}")
+        soup = BeautifulSoup(resp.text, "html.parser")
+        # alert-danger внутри <noscript> («JavaScript отключен…») вшит Moodle
+        # в КАЖДУЮ страницу — это не ошибка приёма ответа, игнорируем.
+        danger = next(
+            (el for el in soup.select(".alert-danger, .notifyproblem")
+             if el.find_parent("noscript") is None), None)
+        if danger is not None:
+            raise MireaMcpError(
+                "СДО не принял ответ.",
+                hint=_WS.sub(" ", danger.get_text(" ", strip=True))[:300] or None)
+        if "action=editsubmission" in str(resp.url):
+            raise MireaMcpError(
+                "СДО не принял ответ: остались на форме редактирования.",
+                hint="проверьте требования задания (обязательные поля, срок сдачи)",
+            )
+
+    def submission_save(self, target: AssignTarget) -> None:
+        """Сохранить черновик ответа (кнопка «Сохранить» формы editsubmission).
+
+        При выключенных черновиках (этот Moodle) та же кнопка отправляет ответ
+        преподавателю — ср. submission_send.
+        """
+        self._require_write_mode()
+        self._check_editable(target)
+        html = self._get_page(
+            f"/mod/assign/view.php?id={target.cmid}&action=editsubmission")
+        fields, buttons = self._submission_form(target, html)
+        ctx = self._draft_context(target, html)
+        fields["files_filemanager"] = str(ctx["itemid"])
+        for name, value in buttons.items():
+            if name != "cancel":
+                fields[name] = value
+                break
+        self._post_submission(fields)
+
+    def submission_send(self, target: AssignTarget) -> None:
+        """
+        Окончательная отправка ответа преподавателю (кнопка «Отправить задание»).
+
+        Отдельный шаг существует только при включённых черновиках (кнопка
+        submitbutton2 в форме). На online-edu.mirea.ru черновики выключены:
+        единственная кнопка «Сохранить» отправляет ответ сразу, поэтому здесь
+        просто делегируем submission_save.
+        """
+        self._require_write_mode()
+        self._check_editable(target)
+        html = self._get_page(
+            f"/mod/assign/view.php?id={target.cmid}&action=editsubmission")
+        fields, buttons = self._submission_form(target, html)
+        if "submitbutton2" not in buttons:
+            self.submission_save(target)
+            # отправка состоялась (на этом Moodle сохранение == отправка):
+            # сохранённое состояние изменилось — следующая мутация начнёт
+            # с нового черновика, пересеянного из нового сохранённого ответа.
+            self._draft_ctx_cache.pop(target.cmid, None)
+            return
+        ctx = self._draft_context(target, html)
+        fields["files_filemanager"] = str(ctx["itemid"])
+        fields["submitbutton2"] = buttons["submitbutton2"]
+        self._post_submission(fields)
+        # отправка успешна: пин черновика сбрасываем, следующая мутация
+        # получит свежий itemid, пересеянный из нового сохранённого ответа.
+        self._draft_ctx_cache.pop(target.cmid, None)
+
 
 def _control_from_name(name: str) -> str | None:
-    """Тип промежуточной аттестации из суффикса имени дисциплины: _Экзамен / _Зачет(Ё)."""
+    """
+    Тип промежуточной аттестации из суффикса имени дисциплины: _Экзамен / _Зачет(Ё).
+    """
     if "_Экзамен" in name:
         return "exam"
     if "_Зачет" in name or "_Зачёт" in name:
@@ -731,14 +1497,18 @@ def _control_from_name(name: str) -> str | None:
     return None
 
 
-_RU_MONTHS = {
-    "января": 1, "февраля": 2, "марта": 3, "апреля": 4, "мая": 5, "июня": 6,
-    "июля": 7, "августа": 8, "сентября": 9, "октября": 10, "ноября": 11, "декабря": 12,
-}
-
-
 def _parse_ru_datetime(text: str) -> str | None:
-    """«вторник, 8 декабря 2026, 23:41» → ISO 8601 с таймзоной Москвы; None при неудаче."""
+    """
+    «вторник, 8 декабря 2026, 23:41» → ISO 8601 с таймзоной Москвы;
+    None при неудаче.
+    """
+    _RU_MONTHS = {
+        "января": 1, "февраля": 2, "марта": 3,
+        "апреля": 4, "мая": 5, "июня": 6,
+        "июля": 7, "августа": 8, "сентября": 9,
+        "октября": 10, "ноября": 11, "декабря": 12,
+    }
+
     m = re.search(
         r"(\d{1,2})\s+([а-яё]+)\s+(\d{4})\s*,?\s*(\d{1,2}):(\d{2})",
         text.strip().casefold(),
