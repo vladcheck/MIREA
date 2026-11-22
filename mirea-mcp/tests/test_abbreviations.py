@@ -158,7 +158,8 @@ def test_cache_missing_algo_field_falls_back_to_hash_mismatch(tmp_path):
 def test_changed_names_refresh_and_log(tmp_path):
     cache = tmp_path / "abbreviations.json"
     log_dir = tmp_path / "logs"
-    load_or_derive(NAMES, cache_path=cache, log_dir=log_dir)
+    first = load_or_derive(NAMES, cache_path=cache, log_dir=log_dir)
+    old_hash = first["source_hash"]
     changed = NAMES + ["Физика"]
     result = load_or_derive(changed, cache_path=cache, log_dir=log_dir)
     assert result["refreshed"] is True
@@ -167,6 +168,9 @@ def test_changed_names_refresh_and_log(tmp_path):
     assert "reason=hash_mismatch" in text
     assert "disciplines=4" in text
     assert "abbreviations=4" in text
+    assert f"want={result['source_hash']}" in text
+    assert f"got={old_hash}" in text
+    assert result["source_hash"] != old_hash
 
 
 def test_forced_refresh_logs_forced(tmp_path):

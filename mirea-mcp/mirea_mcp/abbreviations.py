@@ -84,13 +84,19 @@ def source_hash(names: list[str]) -> str:
 
 
 def _log_refresh(
-        log_dir: Path, reason: str, disciplines: int, abbreviations: int
+        log_dir: Path,
+        reason: str,
+        want: str,
+        got: str,
+        disciplines: int,
+        abbreviations: int
 ) -> None:
     log_dir.mkdir(parents=True, exist_ok=True)
     now = datetime.now()
     log_path = log_dir / f"{now:%Y-%m-%d}.log"
     line = (
         f"{now.isoformat(timespec='seconds')} refresh reason={reason} "
+        f"want={want} got={got} "
         f"disciplines={disciplines} abbreviations={abbreviations}\n"
     )
     with open(log_path, "a", encoding="utf-8") as fh:
@@ -130,6 +136,7 @@ def load_or_derive(
     """
     hash_value = source_hash(names)
     algo_mismatch = False
+    cached: dict | None = None
     if not refresh and cache_path.is_file():
         try:
             cached = json.loads(cache_path.read_text(encoding="utf-8"))
@@ -158,7 +165,15 @@ def load_or_derive(
         reason = "algo_change"
     else:
         reason = "hash_mismatch"
-    _log_refresh(log_dir, reason, len(names), len(abbreviations))
+    got = cached.get("source_hash", "-") if isinstance(cached, dict) else "-"
+    _log_refresh(
+        log_dir,
+        reason,
+        want=hash_value,
+        got=got,
+        disciplines=len(names),
+        abbreviations=len(abbreviations)
+    )
     return {
         "abbreviations": abbreviations,
         "derived_at": datetime.now().isoformat(timespec="seconds"),
