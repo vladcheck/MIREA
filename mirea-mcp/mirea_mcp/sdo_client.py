@@ -980,10 +980,18 @@ class SdoClient:
         itemid перевыдаётся при каждом открытии editsubmission, а повторное
         открытие пересевивает черновик только из сохранённого ответа — ранее
         поэтапно загруженные файлы при этом терялись бы.
+
+        Пин двухуровневый: L1 — память процесса, L2 — draft.json на диске
+        (state.load_draft_pins/save_draft_pins), чтобы файлы, прикреплённые
+        в одном процессе, не терялись при отправке из другого.
         """
         cached = self._draft_ctx_cache.get(target.cmid)
         if cached:
             return cached
+        pinned = state.load_draft_pins().get(str(target.cmid))
+        if pinned:
+            self._draft_ctx_cache[target.cmid] = pinned
+            return pinned
         if html is None:
             html = self._get_page(
                 f"/mod/assign/view.php?id={target.cmid}&action=editsubmission")
@@ -1026,7 +1034,18 @@ class SdoClient:
             "upload_repo_id": upload_repo["id"],
         }
         self._draft_ctx_cache[target.cmid] = ctx
+        pins = state.load_draft_pins()
+        pins[str(target.cmid)] = ctx
+        state.save_draft_pins(pins)
         return ctx
+
+    def _drop_draft_pin(self, cmid: int) -> None:
+        """Сбросить пин черновика из обоих уровней (L1-память и L2-диск)."""
+        self._draft_ctx_cache.pop(cmid, None)
+        pins = state.load_draft_pins()
+        if str(cmid) in pins:
+            pins.pop(str(cmid))
+            state.save_draft_pins(pins)
 
     # ---------------- sesskey и повторная попытка мутации
 
@@ -1054,7 +1073,7 @@ class SdoClient:
         """
         html = self._get_page(
             f"/mod/assign/view.php?id={target.cmid}&action=editsubmission")
-        self._draft_ctx_cache.pop(target.cmid, None)
+        self._drop_draft_pin(target.cmid)  # L1 и L2: устаревший пин не выживет
         ctx = self._draft_context(target, html)
         if not self._extract_sesskey(html):
             raise SdoAuthError(
@@ -1475,7 +1494,7 @@ class SdoClient:
             # отправка состоялась (на этом Moodle сохранение == отправка):
             # сохранённое состояние изменилось — следующая мутация начнёт
             # с нового черновика, пересеянного из нового сохранённого ответа.
-            self._draft_ctx_cache.pop(target.cmid, None)
+            self._drop_draft_pin(target.cmid)
             return
         ctx = self._draft_context(target, html)
         fields["files_filemanager"] = str(ctx["itemid"])
@@ -1483,7 +1502,7 @@ class SdoClient:
         self._post_submission(fields)
         # отправка успешна: пин черновика сбрасываем, следующая мутация
         # получит свежий itemid, пересеянный из нового сохранённого ответа.
-        self._draft_ctx_cache.pop(target.cmid, None)
+        self._drop_draft_pin(target.cmid)
 
 
 def _control_from_name(name: str) -> str | None:

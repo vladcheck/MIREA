@@ -55,7 +55,7 @@ def _attachments_payload(client, target: AssignTarget) -> dict:
     }
 
 
-def _fuzzy_candidates(query: str, limit: int) -> dict:
+def _fuzzy_candidates(query: str) -> dict:
     """Нечёткий поиск работ по дисциплинам текущего семестра (только чтение)."""
     client = _get_client()
     disciplines = client.disciplines()
@@ -76,15 +76,15 @@ def _fuzzy_candidates(query: str, limit: int) -> dict:
     if not tokens:
         return {"error": "пустой запрос query", "hint": "передайте слова из названия дисциплины или работы"}
 
-    # (текст, источник): raw — сам токен, worktype — статичная расшифровка,
-    # abbrev — полное имя дисциплины по производной аббревиатуре.
-    per_token: dict[str, list[tuple[str, str]]] = {}
+    # Варианты на токен: сам токен, статичная расшифровка типа работы,
+    # полное имя дисциплины по производной аббревиатуре.
+    per_token: dict[str, list[str]] = {}
     for token in tokens:
-        variants: list[tuple[str, str]] = [(token, "raw")]
+        variants: list[str] = [token]
         if token in _WORK_TYPE_MAP:
-            variants.append((_WORK_TYPE_MAP[token], "worktype"))
+            variants.append(_WORK_TYPE_MAP[token])
         for full in abbr_map.get(token, []):
-            variants.append((full, "abbrev"))
+            variants.append(full)
         per_token[token] = variants
 
     candidates: list[dict] = []
@@ -94,48 +94,31 @@ def _fuzzy_candidates(query: str, limit: int) -> dict:
             if not work.url:
                 continue  # без страницы сдачи кандидат непригоден для точного режима
             title_cf = work.name.casefold()
-            score = 0
-            matched_terms: list[str] = []
-            abbrev_hit = False
             ok = True
             for token in tokens:
-                hit_text = None
-                hit_source = "raw"
-                for text, source in per_token[token]:
-                    if text in disc_cf or text in title_cf:
-                        hit_text, hit_source = text, source
-                        break
-                if hit_text is None:
+                if not any(
+                    text in disc_cf or text in title_cf for text in per_token[token]
+                ):
                     ok = False
                     break
-                score += len(token)
-                if hit_source == "abbrev":
-                    abbrev_hit = True
-                if hit_source == "worktype" and hit_text in title_cf:
-                    score += 10
-                matched_terms.append(
-                    f"{token} → {hit_text}" if hit_text != token else token)
             if not ok:
                 continue
-            if abbrev_hit:
-                score += 50
-            candidates.append({
-                "url": work.url,
-                "discipline": disc.name,
-                "work_title": work.name,
-                "due": work.due,
-                "submitted": work.submitted,
-                "score": score,
-                "matched_terms": matched_terms,
-            })
-    candidates.sort(key=lambda c: (-c["score"], c["discipline"], c["work_title"]))
-    return {"mode": "fuzzy", "enact": False, "candidates": candidates[:limit]}
+            candidates.append(
+                {
+                    "url": work.url,
+                    "discipline": disc.name,
+                    "work_title": work.name,
+                    "due": work.due,
+                    "submitted": work.submitted,
+                }
+            )
+    candidates.sort(key=lambda c: (c["discipline"], c["work_title"]))
+    return {"mode": "fuzzy", "enact": False, "candidates": candidates}
 
 
 def register(mcp: FastMCP) -> None:
     @mcp.tool
-    def mirea_submit_find(url: str | None = None, query: str | None = None,
-                          limit: int = 5) -> dict:
+    def mirea_submit_find(url: str | None = None, query: str | None = None) -> dict:
         """Поиск работы для сдачи: точный режим по url или нечёткий по query.
 
         Ровно один из аргументов обязателен. Режим url: валидирует страницу
@@ -145,9 +128,9 @@ def register(mcp: FastMCP) -> None:
         дисциплины и работы, токены вроде «лр4» дробятся по границе
         буква/цифра («лр» + «4»), короткие токены типов работ (лр, кр, пр,
         тк, кп) расшифровываются, а аббревиатуры дисциплин — по глоссарию.
-        Возвращает до limit кандидатов с объяснением совпадений. Нечёткий
-        поиск никогда ничего не отправляет и не изменяет (enact: false),
-        даже при единственном совпадении.
+        Возвращает все совпадения в алфавитном порядке (дисциплина, работа)
+        без ранжирования. Нечёткий поиск никогда ничего не отправляет и не
+        изменяет (enact: false), даже при единственном совпадении.
         """
         client = _get_client()
         try:
@@ -159,7 +142,7 @@ def register(mcp: FastMCP) -> None:
                 staged = client.draft_list(target)
                 return {"mode": "exact", **asdict(target),
                         "staged": [asdict(a) for a in staged]}
-            return _fuzzy_candidates(query or "", max(1, limit))
+            return _fuzzy_candidates(query or "")
         except MireaMcpError as e:
             return _err(e)
 
