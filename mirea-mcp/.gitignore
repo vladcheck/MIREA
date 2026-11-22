@@ -1,0 +1,10 @@
+# Секреты и локальное состояние
+.env
+.state/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+dist/
+*.egg-info/
