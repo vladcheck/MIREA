@@ -1,16 +1,21 @@
 """Клиент СДО РТУ МИРЭА (Moodle, online-edu.mirea.ru).
 
+Железное правило: пароль в Moodle НИКОГДА не отправляется (локальная auth
+отключена вузом; несколько invalidlogin = блокировка аккаунта).
+
 Режимы работы (пер-инстанс, лениво определяется при первом вызове, порядок проб):
 
-1. REST (предпочтительно) — wstoken из MIREA_SDO_TOKEN, из state.json или
-   через /login/token.php (service=moodle_mobile_app). Токен кэшируется в state.
-2. OIDC — проезд по сессии Keycloak (sso.mirea.ru): куки из state["pulse"]["cookies"]
+1. REST — только когда задан config.SDO_TOKEN_OVERRIDE (MIREA_SDO_TOKEN):
+   чистый wstoken, без пароля где-либо. Ручной резерв на случай, если вуз
+   когда-нибудь включит мобильный сервис.
+2. Восстановление сохранённой сессии: state["sdo"]["cookies"] → jar,
+   валидация GET /my/ (200, без редиректа на вход).
+3. OIDC — проезд по сессии Keycloak (sso.mirea.ru): куки из state["pulse"]["cookies"]
    подсаживаются в jar, GET /auth/oidc/ проходит SSO-редиректы без OTP. Локальный
    логин/пароль Keycloak здесь НЕ реализуется — требуется предварительный вход
    в Пульс (mirea_auth_start → mirea_auth_otp).
-3. Браузерная локальная форма (последний резерв) — POST /login/index.php с logintoken.
 
-Успешная oidc/browser-сессия (MoodleSession + sesskey) сохраняется в
+Успешная oidc-сессия (MoodleSession + sesskey) сохраняется в
 state["sdo"]["cookies"] и переиспользуется при следующих запусках.
 
 Подключение ленивое: импорт модуля не требует кредов и сети.
@@ -19,18 +24,20 @@ from __future__ import annotations
 
 import re
 import time
+from datetime import datetime
 from urllib.parse import urljoin
+from zoneinfo import ZoneInfo
 
 import httpx
 from bs4 import BeautifulSoup
 
 from . import state
-from .config import LOGIN, PASSWORD, SDO_BASE, SDO_TOKEN_OVERRIDE
-from .models import CredentialsMissing, DisciplineGrades, SdoAuthError, Work
+from .config import SDO_BASE, SDO_TOKEN_OVERRIDE
+from .models import DisciplineGrades, SdoAuthError, Work
 
 _TIMEOUT = 30
-_REST_SERVICE = "moodle_mobile_app"
-# Коды ошибок Moodle REST, после которых имеет смысл переключаться на браузерный режим
+_MSK = ZoneInfo("Europe/Moscow")
+# Коды ошибок Moodle REST, после которых имеет смысл переключаться на OIDC-режим
 _REST_FATAL_CODES = {"accessexception", "invalidtoken",
                      "servicerequireslogin", "usernotfullysetup"}
 _RANGE_CELL = re.compile(
@@ -48,16 +55,17 @@ class SdoClient:
             follow_redirects=False,
             headers={"User-Agent": "mirea-mcp/0.1 (+sdo)"},
         )
-        self._mode: str | None = None  # "rest" | "oidc" | "browser"
+        self._mode: str | None = None  # "rest" | "oidc"
         self._wstoken: str | None = None
         self._sesskey: str | None = None
         self._userid: int | None = None
+        self._assign_cache: dict[str, list[dict]] = {}  # course_id -> assign-страницы
 
     # ------------------------------------------------------------------ общее
 
     @property
     def source(self) -> str:
-        """Канал данных текущей сессии: "rest", "oidc" или "browser"."""
+        """Канал данных текущей сессии: "rest" или "oidc"."""
         self._ensure_mode()
         assert self._mode is not None
         return self._mode
@@ -65,15 +73,9 @@ class SdoClient:
     def _ensure_mode(self) -> None:
         if self._mode is not None:
             return
-        rest_error: CredentialsMissing | None = None
-        try:
-            if self._try_rest():
-                self._mode = "rest"
-                return
-        except CredentialsMissing as e:
-            # Локальная Moodle-авторизация мертва для этого аккаунта — не прерываем
-            # цепочку, идём дальше к SSO/браузеру, а ошибку сохраняем на конец
-            rest_error = e
+        if self._try_rest():
+            self._mode = "rest"
+            return
         if self._restore_session():
             return
         try:
@@ -83,16 +85,10 @@ class SdoClient:
                 return
         except SdoAuthError:
             raise  # SSO требует входа в Пульс — подсказка уже в ошибке
-        if self._login_browser():
-            self._mode = "browser"
-            self._save_session("browser")
-            return
-        if rest_error is not None:
-            raise rest_error
         raise SdoAuthError(
-            "Не удалось войти в СДО: нет ни REST-токена, ни SSO-сессии Пульса, "
-            "ни локальной Moodle-авторизации.",
-            hint=self._SSO_HINT + "; либо задайте MIREA_SDO_TOKEN.",
+            "Не удалось войти в СДО: нет ни REST-токена (MIREA_SDO_TOKEN), "
+            "ни сохранённой сессии, ни SSO-сессии Пульса.",
+            hint=self._SSO_HINT,
         )
 
     # ------------------------------------------------------ куки сессии (state)
@@ -151,7 +147,8 @@ class SdoClient:
             return False
         self._seed_cookies(jar, mirea_only=False)
         mode = sdo.get("mode")
-        if mode not in ("oidc", "browser"):
+        if mode != "oidc":
+            # legacy-режим "browser" (локальная форма с паролем) удалён — пере-auth через OIDC
             return False
         if self._session_valid():
             self._mode = mode
@@ -184,39 +181,15 @@ class SdoClient:
     # ------------------------------------------------------------------ REST
 
     def _get_token(self) -> str | None:
+        """wstoken только из MIREA_SDO_TOKEN или сохранённого state.
+
+        Пароль в Moodle НИКОГДА не отправляется: обмен логин/пароль на токен
+        (login/token.php) удалён — локальная auth отключена вузом, а каждый
+        invalidlogin приближает блокировку аккаунта.
+        """
         if SDO_TOKEN_OVERRIDE:
             return SDO_TOKEN_OVERRIDE.strip()
-        saved = (state.load().get("sdo") or {}).get("wstoken")
-        if saved:
-            return saved
-        if not (LOGIN and PASSWORD):
-            raise CredentialsMissing(
-                "Не заданы учётные данные СДО.",
-                hint="Добавьте MIREA_LOGIN и MIREA_PASSWORD в mirea-mcp/.env.",
-            )
-        resp = self._http.get(
-            "/login/token.php",
-            params={"username": LOGIN, "password": PASSWORD,
-                    "service": _REST_SERVICE},
-        )
-        try:
-            data = resp.json()
-        except ValueError as exc:
-            raise SdoAuthError("СДО вернул не-JSON на запрос токена.") from exc
-        if data.get("error") == "invalidlogin":
-            raise CredentialsMissing(
-                "СДО отклонил логин/пароль (invalidlogin).",
-                hint="Проверьте MIREA_LOGIN/MIREA_PASSWORD; при необходимости задайте MIREA_SDO_TOKEN.",
-            )
-        token = data.get("token")
-        if not token:
-            # Например: "service не включён" — токен недоступен, уходим в браузерный режим
-            return None
-        st = state.load()
-        st.setdefault("sdo", {})["wstoken"] = token
-        st["sdo"]["saved_at"] = time.time()
-        state.save(st)
-        return token
+        return (state.load().get("sdo") or {}).get("wstoken") or None
 
     def _rest(self, function: str, fatal_ok: bool = False, **params) -> dict | list | None:
         """Вызов REST-функции Moodle. Возвращает None при фатальной ошибке режима."""
@@ -251,8 +224,6 @@ class SdoClient:
     def _try_rest(self) -> bool:
         try:
             info = self._rest("core_webservice_get_site_info", fatal_ok=True)
-        except CredentialsMissing:
-            raise  # кредов нет — сразу понятно, в браузерный режим тоже не войти
         except SdoAuthError:
             return False
         if not isinstance(info, dict) or not info.get("userid"):
@@ -342,44 +313,117 @@ class SdoClient:
             return None
         return action, fields
 
-    # ------------------------------------------------------------------ браузерный режим
+    # ------------------------------------------------------------------ сдача работ и дедлайны (browser/oidc)
 
-    def _login_browser(self) -> bool:
-        if not (LOGIN and PASSWORD):
-            return False
-        # 1. GET страницы входа — MoodleSession + logintoken
-        resp = self._http.get("/login/index.php")
-        if resp.status_code >= 400:
-            return False
-        soup = BeautifulSoup(resp.text, "html.parser")
-        token_input = soup.find("input", {"name": "logintoken"})
-        logintoken = token_input.get("value", "") if token_input else ""
-        # 2. POST формы входа
-        resp = self._http.post(
-            "/login/index.php",
-            data={
-                "logintoken": logintoken,
-                "username": LOGIN,
-                "password": PASSWORD,
-                "anchor": "",
-            },
-        )
-        # Успех: редирект на главную / dashboard; неуспех — страница входа снова
-        for _ in range(6):
-            if resp.status_code in (301, 302, 303, 307, 308):
-                location = urljoin(
-                    str(resp.url), resp.headers.get("Location", ""))
-                path = location.split("://", 1)[-1].split("/", 1)[-1]
-                if path.startswith(("login/", "auth/")):
-                    return False  # редирект обратно на вход — пароль неверный
-                resp = self._http.get(location)
+    @staticmethod
+    def _norm_name(s: str) -> str:
+        return _WS.sub(" ", s).strip().casefold()
+
+    def _course_assignments(self, course_id) -> list[dict]:
+        """Страницы заданий курса: ссылка, название, срок, статус сдачи, файлы.
+
+        Результат кэшируется в рамках инстанса (один вызов инструмента — один
+        проход по страницам курса).
+        """
+        key = str(course_id)
+        if key in self._assign_cache:
+            return self._assign_cache[key]
+        assigns: list[dict] = []
+        try:
+            html = self._get_page(f"/course/view.php?id={course_id}")
+        except SdoAuthError:
+            self._assign_cache[key] = []
+            return []
+        soup = BeautifulSoup(html, "html.parser")
+        seen: dict[int, dict] = {}
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            if "/mod/assign/view.php" not in href:
                 continue
-            break
-        if resp.status_code >= 400:
-            return False
-        if "login/index.php" in str(resp.url):
-            return False
-        return self._extract_sesskey(resp.text)
+            m = re.search(r"[?&]id=(\d+)", href)
+            if not m:
+                continue
+            aid = int(m.group(1))
+            if aid in seen:
+                continue
+            name = _WS.sub(" ", a.get_text(" ", strip=True)).strip()
+            if not name:
+                continue
+            info: dict = {"id": aid, "name": name, "url": urljoin(SDO_BASE, href)}
+            try:
+                info.update(self._parse_assign_page(
+                    self._get_page(href)))
+            except SdoAuthError:
+                pass  # страница недоступна — оставляем null'ы
+            seen[aid] = info
+        assigns = list(seen.values())
+        self._assign_cache[key] = assigns
+        return assigns
+
+    @staticmethod
+    def _parse_assign_page(html: str) -> dict:
+        """Срок сдачи, статус отправки и число файлов со страницы задания."""
+        soup = BeautifulSoup(html, "html.parser")
+        nfiles = len(soup.select(
+            'a[href*="assignsubmission_file/submission_files"]'))
+        submitted: bool | None = None
+        status_el = soup.select_one(
+            "[data-region='submission-status']") or soup.select_one(".submissionstatus")
+        if status_el is not None:
+            t = status_el.get_text(" ", strip=True).casefold()
+            if "отправлен" in t:
+                submitted = True
+            elif "нет ответа" in t or "не отправлен" in t or "отправить работу" in t:
+                submitted = False
+        if submitted is None:
+            # запасной вариант по тексту страницы (разметка статуса отличается между темами)
+            page = soup.get_text(" ", strip=True).casefold()
+            if "отправлено для оценивания" in page or "отправлено на проверку" in page or nfiles:
+                submitted = True
+            elif (
+                "отправить работу" in page
+                or "нет ответа" in page
+                or "не представлены" in page  # «Ответы на задание еще не представлены»
+            ):
+                submitted = False
+        due = None
+        dates_el = soup.select_one("[data-region='activity-dates']")
+        if dates_el is not None:
+            dtext = dates_el.get_text(" ", strip=True)
+            m = re.search(
+                r"(?:Срок сдачи|Доступно до)\s*:\s*(.+?)(?:\s{2,}|Открыто|$)", dtext)
+            if m:
+                due = _parse_ru_datetime(m.group(1))
+        return {"submitted": submitted, "due": due, "nfiles": nfiles}
+
+    def _enrich_works(self, course_id, works: list[Work]) -> None:
+        """Заполнить Work.submitted/due/url по assign-страницам курса.
+
+        Маппинг по нормализованному имени (casefold + вложенность) в пределах
+        одного курса; без уверенного матча work не трогается (честные null).
+        """
+        assigns = self._course_assignments(course_id)
+        if not assigns:
+            return
+        used: set[int] = set()
+        for w in works:
+            nw = self._norm_name(w.name)
+            if not nw:
+                continue
+            best = None
+            for a in assigns:
+                if a["id"] in used:
+                    continue
+                na = self._norm_name(a["name"])
+                if na and (nw in na or na in nw):
+                    best = a
+                    break
+            if best is None:
+                continue
+            used.add(best["id"])
+            w.url = w.url or best["url"]
+            w.submitted = best.get("submitted")
+            w.due = best.get("due")
 
     def _get_page(self, path: str) -> str:
         resp = self._http.get(path, follow_redirects=True)
@@ -464,6 +508,7 @@ class SdoClient:
             else:
                 works, category_scores, official_sb = self._browser_works(
                     course_id)
+                self._enrich_works(course_id, works)
             sb = official_sb
             if sb is None:
                 sb = sum(
@@ -570,20 +615,26 @@ class SdoClient:
                 continue
             grade_cell = tr.find("td", class_="column-grade")
             range_cell = tr.find("td", class_="column-range")
-            score = max_ = None
+            score = None
+            max_: float | None = None
+            # Максимум читаем из колонки «Диапазон» независимо («0–7»)
+            if range_cell is not None:
+                rtext = range_cell.get_text(" ", strip=True).replace("–", "-")
+                rm = re.search(r"-\s*([\d.,\s]+)\s*$", rtext)
+                if rm:
+                    max_ = _to_float(rm.group(1))
             graded = False
-            source = (grade_cell.get_text(" ", strip=True) if grade_cell else "") or (
-                range_cell.get_text(" ", strip=True) if range_cell else ""
-            )
-            m = _RANGE_CELL.match(source.replace("–", "-"))
+            gtext = grade_cell.get_text(" ", strip=True) if grade_cell else ""
+            m = _RANGE_CELL.match(gtext.replace("–", "-"))
             if m:
                 raw_score = m.group("score").strip()
                 if raw_score not in ("-", ""):
                     graded = True
                     score = _to_float(raw_score)
-                max_ = _to_float(m.group("max"))
-            elif source and source.strip() not in ("-", "–"):
-                score = _to_float(source)
+                if max_ is None:
+                    max_ = _to_float(m.group("max"))
+            elif gtext and gtext.strip() not in ("-", "–"):
+                score = _to_float(gtext)
                 graded = score is not None
             lowered = name.lower()
             if lowered in self._AGGREGATE_NAMES:
@@ -635,61 +686,30 @@ class SdoClient:
         return out
 
     def _browser_due_works(self, days: int) -> list[dict]:
+        """Несданные работы с дедлайном в окне days — из обогащённых works."""
         now = time.time()
         cutoff = now + days * 86400
         out: list[dict] = []
-        for course in self._courses():
-            cname = _WS.sub(" ", str(course.get("fullname", ""))).strip()
-            html = self._get_page(
-                f"/grade/report/user/index.php?id={course.get('id')}")
-            soup = BeautifulSoup(html, "html.parser")
-            for tr in soup.select("table.user-grade tr"):
-                th = tr.find("th")
-                if th is None or "baggt" in (th.get("class") or []):
+        for g in self.grades(None):
+            for w in g.works:
+                if not w.due or w.submitted:
                     continue
-                name = _WS.sub(" ", th.get_text(" ", strip=True)).strip()
-                if not name:
+                try:
+                    due_ts = datetime.fromisoformat(w.due).timestamp()
+                except ValueError:
                     continue
-                link = th.find("a", href=True)
-                url = urljoin(SDO_BASE, link["href"]) if link and link["href"].startswith(
-                    "/") else None
-                out.append({"discipline": cname, "name": name,
-                           "due": None, "submitted": None, "url": url})
-        # Даты сдачи из календаря (AJAX); если недоступен — работы без дат пропускаются
-        try:
-            events = self._ajax(
-                "core_calendar_get_calendar_events",
-                options={
-                    "userevents": 1,
-                    "siteevents": 0,
-                    "timestart": int(now),
-                    "timeend": int(cutoff),
-                    "limitnum": 100,
-                },
-            ) or {}
-        except SdoAuthError:
-            events = {}
-        by_name: dict[str, dict] = {}
-        for ev in (events.get("events") or []):
-            evname = _WS.sub(" ", str(ev.get("name") or "")).strip()
-            if not evname:
-                continue
-            by_name.setdefault(
-                evname,
-                {
-                    "due": time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime(int(ev["timestart"])))
-                    if ev.get("timestart")
-                    else None
-                },
-            )
-        result: list[dict] = []
-        for w in out:
-            meta = by_name.get(w["name"])
-            if meta and meta.get("due"):
-                w["due"] = meta["due"]
-                result.append(w)
-        result.sort(key=lambda w: w["due"] or "")
-        return result
+                if now <= due_ts <= cutoff:
+                    out.append(
+                        {
+                            "discipline": g.name,
+                            "name": w.name,
+                            "due": w.due,
+                            "submitted": w.submitted,
+                            "url": w.url,
+                        }
+                    )
+        out.sort(key=lambda w: w["due"])
+        return out
 
 
 def _control_from_name(name: str) -> str | None:
@@ -699,6 +719,32 @@ def _control_from_name(name: str) -> str | None:
     if "_Зачет" in name or "_Зачёт" in name:
         return "zachet"
     return None
+
+
+_RU_MONTHS = {
+    "января": 1, "февраля": 2, "марта": 3, "апреля": 4, "мая": 5, "июня": 6,
+    "июля": 7, "августа": 8, "сентября": 9, "октября": 10, "ноября": 11, "декабря": 12,
+}
+
+
+def _parse_ru_datetime(text: str) -> str | None:
+    """«вторник, 8 декабря 2026, 23:41» → ISO 8601 с таймзоной Москвы; None при неудаче."""
+    m = re.search(
+        r"(\d{1,2})\s+([а-яё]+)\s+(\d{4})\s*,?\s*(\d{1,2}):(\d{2})",
+        text.strip().casefold(),
+    )
+    if not m:
+        return None
+    day, mon_name, year, hour, minute = m.groups()
+    month = _RU_MONTHS.get(mon_name)
+    if month is None:
+        return None
+    try:
+        dt = datetime(int(year), month, int(day), int(
+            hour), int(minute), tzinfo=_MSK)
+    except ValueError:
+        return None
+    return dt.isoformat()
 
 
 def _to_float(text: str) -> float | None:

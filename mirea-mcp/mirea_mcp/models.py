@@ -80,6 +80,8 @@ class DisciplineAttendance:
     bp_points: float | None = None
     # честная пометка, если детализация по занятиям недоступна
     note: str | None = None
+    # число занятий в будущем (counters attended/total считают только прошедшие)
+    upcoming: int = 0
 
 
 @dataclass

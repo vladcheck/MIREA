@@ -23,8 +23,9 @@ def register(mcp: FastMCP) -> None:
 
         Возвращает список дисциплин с баллами по работам текущего контроля,
         суммой набранных баллов и максимумом. Поле source показывает канал
-        данных: "rest" (Moodle REST), "oidc" (SSO Пульса) или "browser"
-        (локальная сессия Moodle).
+        данных: "rest" (Moodle REST, только с MIREA_SDO_TOKEN) или "oidc"
+        (SSO-сессия Пульса). Работы с заполненными submitted/due/url — это
+        assign-страницы Moodle; у работ без страницы сдачи поля честно null.
         """
         client = _get_client()
         try:

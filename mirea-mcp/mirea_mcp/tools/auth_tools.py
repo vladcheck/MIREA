@@ -4,7 +4,7 @@ import time
 from fastmcp import FastMCP
 
 from .. import state
-from ..config import BRS_FILE, LOGIN, PASSWORD, STATE_FILE
+from ..config import BRS_FILE, LOGIN, PASSWORD, SDO_TOKEN_OVERRIDE, STATE_FILE
 
 
 def register(mcp: FastMCP) -> None:
@@ -27,7 +27,10 @@ def register(mcp: FastMCP) -> None:
                 "saved_at": saved_at,
                 "fresh": bool(saved_at) and (time.time() - saved_at < 3600),
             },
-            "sdo": {"token_saved": bool(sdo.get("wstoken"))},
+            "sdo": {
+                "session_saved": bool(sdo.get("cookies")),
+                "rest_token_configured": bool(SDO_TOKEN_OVERRIDE),
+            },
             "brs_semester_file": BRS_FILE.exists(),
             "state_file": str(STATE_FILE),
         }

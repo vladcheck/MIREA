@@ -93,18 +93,36 @@ def plan_discipline(
                 or (cat_max.get(cat_code) or {}).get("max"),
             }
 
+        def _brs_only(cat_code: str) -> dict:
+            # категории без поля в Пульсе: max — строго из brs-semester.json
+            return {"points": None,
+                    "max": (cat_max.get(cat_code) or {}).get("max")}
+
         category_fill = {
             "БТК": _fill("current_control", "current_control_max", "БТК"),
             "БСК": _fill("semester_control", "semester_control_max", "БСК"),
             "БП": _fill("attendance", "attendance_max", "БП"),
-            "БД": {"points": None,
-                   "max": (cat_max.get("БД") or {}).get("max")},
-            "БТД": _fill("achievements", "achievements_max", "БТД"),
+            "БД": _brs_only("БД"),
+            "БТД": _brs_only("БТД"),
             "БДОП": _fill("additional", "additional_max", "БДОП"),
         }
         diff = abs((sb_pulse or 0.0) - sb_sdo)
         if diff > 1.0:
-            sources_note = f"расхождение СДО/Пульс на {round(diff, 1)} баллов"
+            pr_lr_sum = sum(
+                w.score or 0.0
+                for w in dg.works
+                if w.graded
+                and w.name.casefold().startswith(
+                    ("практические занятия", "лабораторная", "текущий контроль")
+                )
+            )
+            if sb_sdo > sb and pr_lr_sum > 0 and pr_lr_sum >= diff - 1.0:
+                sources_note = (
+                    f"сумма работ СДО ({sb_sdo}) включает ПР/ЛР, не внесённые "
+                    f"преподавателем в официальный БРС; официальный СБ = {sb}"
+                )
+            else:
+                sources_note = f"расхождение СДО/Пульс на {round(diff, 1)} баллов"
 
     result = {
         "name": dg.name,

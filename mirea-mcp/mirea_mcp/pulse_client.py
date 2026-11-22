@@ -334,17 +334,24 @@ class PulseClient:
         _persist_session(session)
 
         out: list[DisciplineAttendance] = []
+        now = datetime.now(tz=_MSK)
         for subject, detail, decoded, note in details:
             marks: list[AttendanceMark] = []
-            attended = total = 0
+            attended = total = upcoming = 0
             if decoded:
+                # Пульс премаркирует будущие занятия как absent — в счётчики
+                # они не идут: attended/total только по прошедшим занятиям.
+                past = [d for d in decoded
+                        if d[0] is not None and datetime.fromtimestamp(d[0], tz=_MSK) <= now]
+                future = [d for d in decoded
+                          if d[0] is not None and datetime.fromtimestamp(d[0], tz=_MSK) > now]
                 if detail.success and detail.summary:
                     attended = detail.summary.present
                     total = detail.summary.total_lessons
                 else:
-                    total = len(decoded)
-                    attended = sum(1 for _, status,
-                                   _ in decoded if status == "present")
+                    total = len(past)
+                    attended = sum(1 for _, status, _ in past if status == "present")
+                upcoming = len(future)
                 for start_epoch, status, kind in decoded:
                     start = _iso(start_epoch)
                     lesson_date = (
@@ -373,6 +380,7 @@ class PulseClient:
                     total=total,
                     bp_points=subject.attendance if subject.attendance else None,
                     note=note,
+                    upcoming=upcoming,
                 )
             )
         return out
