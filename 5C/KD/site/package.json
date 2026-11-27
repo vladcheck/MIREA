@@ -1,0 +1,45 @@
+{
+  "name": "kd-mathprofi-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "storybook": "storybook dev -p 6006",
+    "test-storybook": "test-storybook"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "esbuild",
+      "playwright",
+      "playwright-core"
+    ]
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-viewport": "8.6.19",
+    "@storybook/react": "8.6.19",
+    "@storybook/react-vite": "^8.6.19",
+    "@storybook/test": "8.6.19",
+    "@storybook/test-runner": "^0.19.1",
+    "@testing-library/jest-dom": "^8.0.0",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.13",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.1.1",
+    "jsdom": "^24.1.0",
+    "playwright": "^1.65.1",
+    "storybook": "^8.6.19",
+    "vite": "^5.4.8",
+    "vitest": "^2.1.9"
+  }
+}
