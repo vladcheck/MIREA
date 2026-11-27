@@ -1,0 +1,26 @@
+/* The single content container: horizontal insets, guide-bar overlay,
+   hard containment. Every page child lives inside it and may only shrink. */
+.band {
+  margin: 0 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shrink-only: no descendant can force the band wider than its margins. */
+.band,
+.band * {
+  min-width: 0;
+}
+
+/* Media and card-like blocks never exceed the band width. */
+.band img,
+.band [class*='card'],
+.band .grid-3 > * {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .band {
+    margin: 0 16px;
+  }
+}

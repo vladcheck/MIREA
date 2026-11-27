@@ -1,0 +1,193 @@
+/* Single-popup page: one card centered on a dark backdrop. */
+.popup-page {
+  background: var(--popup-backdrop);
+  min-height: 100vh;
+  padding: 64px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-wrap {
+  width: 480px;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.caption {
+  font-size: 13px;
+  color: var(--popup-caption);
+  margin-bottom: 12px;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: var(--popup-radius);
+  padding: 32px;
+  box-shadow: 0 16px 48px rgba(26, 34, 51, 0.16);
+}
+
+.modal h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-heading);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.modal input,
+.modal textarea {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  border: var(--popup-input-border-width) solid var(--popup-input-border);
+  border-radius: var(--popup-input-radius);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--color-heading);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.modal input {
+  height: 48px;
+}
+
+.modal textarea {
+  height: 64px;
+  resize: none;
+}
+
+.modal ::placeholder {
+  color: var(--color-muted);
+}
+
+.submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  background: var(--popup-submit-bg);
+  color: #ffffff;
+  border: var(--popup-submit-border);
+  border-radius: var(--popup-submit-radius);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--color-muted);
+  text-align: center;
+  margin-top: 14px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  color: var(--color-heading);
+  border-bottom: 1px solid var(--popup-price-line);
+}
+
+.price-row:last-of-type {
+  border-bottom: none;
+}
+
+.price-row span:last-child {
+  font-weight: 700;
+}
+
+/* Burger menu popup */
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.menu-header .logo {
+  background: transparent;
+  padding: 0;
+  color: var(--logo-color);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.menu-header .logo::after {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--logo-dot);
+  border-radius: 2px;
+  margin-left: 5px;
+}
+
+.close {
+  width: 44px;
+  height: 44px;
+  background: #ffffff;
+  border: 2px solid var(--close-border);
+  border-radius: 10px;
+  font-size: 18px;
+  color: var(--close-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-heading);
+  text-decoration: none;
+  border-bottom: 1px solid var(--popup-price-line);
+}
+
+.menu-nav a:last-child {
+  border-bottom: none;
+}
+
+/* Not-found popup */
+.notfound-modal {
+  text-align: center;
+}
+
+.notfound-modal .btn {
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .popup-page {
+    padding: 32px 0;
+  }
+
+  .modal-wrap {
+    width: 100%;
+  }
+
+  .modal {
+    padding: 24px 16px;
+  }
+
+  .modal h2 {
+    font-size: 20px;
+  }
+
+  .modal textarea {
+    height: 72px;
+  }
+}

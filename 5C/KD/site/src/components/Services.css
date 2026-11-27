@@ -1,0 +1,14 @@
+.services .card-outlined {
+  display: flex;
+  flex-direction: column;
+}
+
+.services .card-body {
+  margin-top: 12px;
+  flex: 1;
+}
+
+.services .btn {
+  display: block;
+  margin-top: 20px;
+}

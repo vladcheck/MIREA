@@ -1,0 +1,36 @@
+/* Vertical guide bars: wireframe only, in front of everything, full height.
+   They live INSIDE .band (absolute overlay) — the band owns the insets. */
+.guides {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 20px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.guides > div {
+  background: rgb(240 128 128 / var(--bar-opacity, 1));
+  flex: 1;
+}
+
+.guides-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .guides-desktop {
+    display: none;
+  }
+
+  /* 8 mobile bars: 36px wide, 10px gap (16px margins come from .band) */
+  .guides-mobile {
+    display: flex;
+    gap: 10px;
+  }
+
+  .guides-mobile > div {
+    width: 36px;
+    flex: 1 1 36px;
+  }
+}

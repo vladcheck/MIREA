@@ -1,0 +1,6 @@
+/* Landing composition lives in base.css; page-level extras go here. */
+
+/* Full variant: hide the divider that would sit on the accent CTA band */
+.theme-full .cta + .divider {
+  visibility: hidden;
+}

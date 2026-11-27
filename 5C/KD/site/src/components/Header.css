@@ -1,0 +1,95 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 24px 0;
+  min-height: 112px;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  background: var(--logo-bg);
+  color: var(--logo-color);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 6px;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Full variant: wordmark with warm dot; wireframe renders the gray box as-is */
+.theme-full .header .logo {
+  background: transparent;
+  color: var(--logo-color);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  padding: 0;
+}
+
+.theme-full .header .logo::after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--logo-dot);
+  border-radius: 2px;
+  margin-left: 6px;
+}
+
+.nav {
+  display: flex;
+  gap: 28px;
+  margin-left: 48px;
+}
+
+.nav a {
+  font-size: 14px;
+  color: var(--color-heading);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.burger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 0;
+    min-height: 0;
+    justify-content: space-between;
+  }
+
+  .nav,
+  .header-actions {
+    display: none;
+  }
+
+  .theme-full .header .logo {
+    font-size: 18px;
+  }
+
+  .burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--burger-border);
+    border-radius: 6px;
+    font-size: 20px;
+    color: var(--burger-border);
+    background: transparent;
+    text-decoration: none;
+  }
+}

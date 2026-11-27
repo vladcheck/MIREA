@@ -1,0 +1,31 @@
+.about {
+  text-align: center;
+}
+
+.about-inner {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.about-text {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+.about .btn {
+  margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+  .about-inner {
+    width: 100%;
+  }
+
+  .about .btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}

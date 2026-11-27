@@ -1,0 +1,63 @@
+.theme-full {
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  --color-heading: #1a2233;
+  --color-body: #3a4553;
+  --color-muted: #616161;
+  --color-fill: #ffffff;
+  --color-placeholder: #f7f7f7;
+  --color-accent: #1f4e8c;
+  --color-outline: #1f4e8c;
+  --color-on-accent: #ffffff;
+  --color-page-bg: #ffffff;
+
+  --header-bg: #ffffff;
+  --header-border: #e6e6e6;
+  --burger-border: #1f1f1f;
+
+  --card-bg: #ffffff;
+  --card-border: #e6e6e6;
+  --card-radius: 10px;
+  --card-shadow: 0 2px 10px rgba(26, 34, 51, 0.06);
+
+  --btn-radius: 8px;
+  --input-border: #d5d5d5;
+
+  --divider-color: #e6e6e6;
+  --divider-height: 1px;
+
+  --footer-bg: #1a2233;
+  --footer-text: #cfcfcf;
+  --footer-logo-bg: transparent;
+  --footer-logo-color: #ffffff;
+
+  --logo-bg: transparent;
+  --logo-color: #1f4e8c;
+  --logo-dot: #f5a623;
+
+  --hero-bg: linear-gradient(180deg, #f7f9fc 0%, #ffffff 100%);
+
+  --cta-bg: #1f4e8c;
+  --cta-heading: #ffffff;
+  --cta-sub: #d9d9d9;
+  --cta-btn-bg: #f5a623;
+  --cta-btn-border: #f5a623;
+  --cta-btn-color: #1a2233;
+
+  --bar-color: transparent;
+  --bar-opacity: 0;
+
+  --popup-backdrop: #1a2233;
+  --popup-caption: #9b9b9b;
+  --popup-radius: 12px;
+  --popup-input-border: #d5d5d5;
+  --popup-input-border-width: 1px;
+  --popup-input-radius: 8px;
+  --popup-submit-bg: #1f4e8c;
+  --popup-submit-border: none;
+  --popup-submit-radius: 8px;
+  --close-border: #1f4e8c;
+  --close-color: #1f4e8c;
+  --popup-price-line: #e6e6e6;
+}

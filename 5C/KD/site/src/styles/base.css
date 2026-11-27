@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-page-bg, #ffffff);
+  font-family: var(--font-family, Helvetica, Arial, sans-serif);
+  color: var(--color-body, #1f1f1f);
+  -webkit-font-smoothing: antialiased;
+  padding: 0 !important; /* storybook injects body{padding:16px} in test-runner */
+}
+
+/* Fixed 1440px page, centered */
+.page {
+  width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  background: var(--color-page-bg);
+}
+
+.section {
+  padding: 70px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Dividers span the Band width; the Band owns the horizontal inset. */
+.divider {
+  height: var(--divider-height);
+  background: var(--divider-color);
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--color-heading);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+.sub {
+  font-size: 15px;
+  color: var(--color-muted);
+  margin-top: 10px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.card-body {
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.55;
+}
+
+.small {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+.btn {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-filled {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border: 1px solid var(--color-accent);
+}
+
+.btn-outlined {
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-outline);
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+}
+
+.card-outlined {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: 24px;
+  box-shadow: var(--card-shadow);
+}
+
+/* Themes grid: 3 equal columns inside the 1140px content band */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.themes {
+  row-gap: 24px;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+/* ===== Mobile (<=768px) ===== */
+@media (max-width: 768px) {
+  .page {
+    width: 100%;
+  }
+
+  .section {
+    padding: 32px 0;
+  }
+
+  h1 {
+    font-size: 24px;
+    line-height: 1.25;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+  }
+
+  .card,
+  .card-outlined {
+    padding: 16px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .card-body,
+  .review-quote,
+  .about-text {
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 14px 24px;
+  }
+}

@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# test artifacts
+coverage/
+screenshots/
+storybook-static/
+
+# caches
+.vite/
+*.log
+.DS_Store

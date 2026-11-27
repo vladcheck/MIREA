@@ -1,0 +1,58 @@
+.cta {
+  text-align: center;
+  background: var(--cta-bg);
+}
+
+.cta h2 {
+  color: var(--cta-heading);
+}
+
+.cta .sub {
+  color: var(--cta-sub);
+}
+
+.cta-form {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.email-input {
+  width: 360px;
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--btn-radius);
+  background: #ffffff;
+  color: var(--color-heading);
+}
+
+/* Full variant: warm button on the accent band */
+.theme-full .cta-btn {
+  background: var(--cta-btn-bg);
+  border-color: var(--cta-btn-border);
+  color: var(--cta-btn-color);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .cta-form {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .email-input {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .cta-form .btn {
+    width: 100%;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}

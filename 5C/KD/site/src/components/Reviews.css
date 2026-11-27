@@ -1,0 +1,16 @@
+.reviews-grid {
+  margin-top: 36px;
+}
+
+.review-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.review-quote {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin-top: 16px;
+  line-height: 1.6;
+}
